@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK Bina Mandiri - Pendidikan Vokasi Unggul & Siap Kerja</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1E3A8A',
+                            900: '#0F172A',
+                            950: '#090D16',
+                        },
+                        amber: {
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animasi halus dan kustomisasi scrollbar */
+        body {
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Kustomisasi Modal Backdrop */
+        .modal-backdrop {
+            background-color: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-500 selection:text-white">
+
+    <!-- 1. NAVBAR RESPONSIF -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Nama Sekolah -->
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-navy-900 flex items-center justify-center text-amber-500 shadow-md group-hover:bg-navy-800 transition">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-extrabold text-xl tracking-tight text-navy-900 block leading-none">SMK BINA MANDIRI</span>
+                        <span class="text-[11px] font-medium text-slate-500 tracking-wider uppercase">Unggul • Kompeten • Berkarakter</span>
+                    </div>
+                </a>
+
+                <!-- Menu Navigasi Desktop -->
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="#beranda" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Beranda</a>
+                    <a href="#profil" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Profil</a>
+                    <a href="#jurusan" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Program Keahlian</a>
+                    <a href="#fasilitas" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Fasilitas</a>
+                    <a href="#berita" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Berita & Agenda</a>
+                    <a href="#kontak" class="text-sm font-medium text-slate-700 hover:text-navy-800 transition">Kontak</a>
+                </nav>
+
+                <!-- Tombol CTA & Hamburger -->
+                <div class="flex items-center gap-3">
+                    <a href="#ppdb" class="hidden sm:inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-navy-900 font-heading font-bold text-sm px-5 py-2.5 rounded-xl shadow-sm hover:shadow transition transform hover:-translate-y-0.5">
+                        <span>Daftar PPDB</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2.5 rounded-xl text-navy-900 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Navigasi Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
+            <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Beranda</a>
+            <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Profil Sekolah</a>
+            <a href="#jurusan" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Program Keahlian</a>
+            <a href="#fasilitas" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Fasilitas & Keunggulan</a>
+            <a href="#berita" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Berita & Agenda</a>
+            <a href="#kontak" class="mobile-link block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-navy-800">Kontak</a>
+            <div class="pt-2 px-4">
+                <a href="#ppdb" class="mobile-link w-full flex justify-center items-center gap-2 bg-amber-500 hover:bg-amber-600 text-navy-900 font-heading font-bold text-sm px-5 py-3 rounded-xl shadow">
+                    <span>Daftar PPDB Online</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="beranda" class="relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-navy-900 text-white overflow-hidden">
+        <!-- Dekorasi Latar -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500 blur-3xl"></div>
+            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-blue-500 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Konten Kiri -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800/80 border border-blue-700/50 text-amber-400 text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        PENERIMAAN PESERTA DIDIK BARU (PPDB) TELAH DIBUKA
+                    </div>
+                    
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-[52px] leading-tight tracking-tight">
+                        Mencetak Generasi <span class="text-amber-400">Vokasi Unggul</span>, Kompeten & Siap Kerja
+                    </h1>
+                    
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        SMK Bina Mandiri memadukan kurikulum berbasis industri, fasilitas praktik modern, dan pembinaan karakter untuk mempersiapkan lulusan yang siap bersaing di dunia kerja maupun berwirausaha.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#ppdb" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-900 font-heading font-bold text-base shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-center">
+                            Daftar Sekarang
+                        </a>
+                        <a href="#jurusan" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-semibold text-base transition text-center">
+                            Jelajahi Jurusan
+                        </a>
+                    </div>
+
+                    <!-- Statistik Singkat -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 mt-8">
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">95%</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Lulusan Terserap Kerja</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">50+</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Mitra Industri Aktif</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">A</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Terakreditasi Unggul</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Kanan -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-800 bg-navy-800">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.src='https://placehold.co/800x600/1E3A8A/FFFFFF?text=Siswa+Praktik+SMK+Bina+Mandiri'" 
+                             alt="Kegiatan Praktik Siswa SMK Bina Mandiri" 
+                             class="w-full h-[360px] sm:h-[420px] object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent p-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-amber-500 text-navy-900 flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-white">SMK Pusat Keunggulan</p>
+                                    <p class="text-xs text-slate-300">Sertifikasi Kompetensi BNSP & Industri</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PROFIL SEKOLAH (SAMBUTAN KEPALA SEKOLAH, VISI & MISI) -->
+    <section id="profil" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Tentang Kami</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Profil SMK Bina Mandiri</h2>
+                <p class="text-slate-600 mt-3 text-sm sm:text-base">Berkomitmen menghadirkan pendidikan kejuruan berkualitas tinggi yang relevan dengan perkembangan teknologi dan kebutuhan industri masa kini.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                <!-- Sambutan Kepala Sekolah -->
+                <div class="lg:col-span-6 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 fade-in-up">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" 
+                             onerror="this.src='https://placehold.co/300x300/0F172A/F59E0B?text=Kepala+Sekolah'" 
+                             alt="Kepala Sekolah SMK Bina Mandiri" 
+                             class="w-24 h-24 rounded-2xl object-cover shadow-md border-2 border-amber-500 shrink-0">
+                        <div class="text-center sm:text-left">
+                            <span class="inline-block px-3 py-1 rounded-full bg-navy-900 text-amber-400 text-xs font-semibold mb-2">Sambutan Kepala Sekolah</span>
+                            <h3 class="font-heading font-bold text-xl text-navy-900">Drs. H. Ahmad Fauzi, M.Pd.</h3>
+                            <p class="text-xs text-slate-500 font-medium">Kepala SMK Bina Mandiri</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                        <p>
+                            <em>"Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera bagi kita semua."</em>
+                        </p>
+                        <p>
+                            Selamat datang di website resmi SMK Bina Mandiri. Di era transformasi digital dan revolusi industri saat ini, pendidikan kejuruan memegang peran vital dalam menyiapkan sumber daya manusia yang adaptif, terampil, dan berintegritas.
+                        </p>
+                        <p>
+                            Kami terus memperkuat sinergi dengan dunia usaha dan dunia industri (DUDI) melalui penyelarasan kurikulum, program magang terstruktur, serta sertifikasi keahlian agar setiap lulusan mampu langsung berkarya maupun melanjutkan pendidikan tinggi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visi & Misi -->
+                <div class="lg:col-span-6 space-y-6 fade-in-up">
+                    <!-- Kartu Visi -->
+                    <div class="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 shadow-lg">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-navy-900 flex items-center justify-center">
+                                <i class="fa-solid fa-eye text-lg"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl">Visi Sekolah</h3>
+                        </div>
+                        <p class="text-slate-200 text-sm sm:text-base leading-relaxed font-medium">
+                            "Menjadi lembaga pendidikan kejuruan terdepan yang menghasilkan lulusan berakhlak mulia, kompeten secara profesional, berjiwa wirausaha, dan berdaya saing global pada tahun 2030."
+                        </p>
+                    </div>
+
+                    <!-- Kartu Misi -->
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-navy-800 text-amber-400 flex items-center justify-center">
+                                <i class="fa-solid fa-bullseye text-lg"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-navy-900">Misi Sekolah</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Menyelenggarakan pembelajaran berbasis proyek (Project-Based Learning) sesuai standar industri terkini.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Membentuk karakter peserta didik yang disiplin, jujur, mandiri, dan memiliki etos kerja tinggi.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Memperluas kemitraan strategis dengan perusahaan nasional dan multinasional untuk penyaluran kerja lulusan.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
+                                <span>Mengembangkan inkubator bisnis sekolah untuk menumbuhkan jiwa kewirausahaan (technopreneurship) siswa.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROGRAM KEAHLIAN / JURUSAN -->
+    <section id="jurusan" class="py-20 bg-slate-50 border-y border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 fade-in-up">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Kompetensi Keahlian</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Program Keahlian Unggulan</h2>
+                <p class="text-slate-600 mt-3 text-sm sm:text-base">Pilih jurusan yang sesuai dengan minat dan bakatmu. Klik pada masing-masing kartu untuk melihat detail kurikulum dan prospek karir.</p>
+            </div>
+
+            <!-- Grid Kartu Jurusan (Di-render & dikelola interaktif via JS) -->
+            <div id="jurusan-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Kartu Jurusan akan dimasukkan lewat JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FASILITAS & KEUNGGULAN SEKOLAH -->
+    <section id="fasilitas" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4 fade-in-up">
+                <div class="max-w-2xl">
+                    <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Sarana & Prasarana</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Fasilitas & Keunggulan Sekolah</h2>
+                </div>
+                <p class="text-slate-600 text-sm max-w-md">Lingkungan belajar kondusif dengan fasilitas praktik berstandar industri untuk menunjang penguasaan keterampilan siswa.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Fasilitas 1 -->
+                <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl mb-5 transition">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-white mb-2 transition">Lab Komputer Modern</h3>
+                    <p class="text-sm text-slate-600 group-hover:text-slate-300 leading-relaxed transition">
+                        Laboratorium ber-AC dengan spesifikasi PC terbaru, jaringan fiber optik berkecepatan tinggi, dan perangkat lunak berlisensi.
+                    </p>
+                </div>
+
+                <!-- Fasilitas 2 -->
+                <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl mb-5 transition">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-white mb-2 transition">Bengkel Standar Industri</h3>
+                    <p class="text-sm text-slate-600 group-hover:text-slate-300 leading-relaxed transition">
+                        Workshop otomotif dan perangkat keras lengkap dengan alat diagnostik modern untuk simulasi kerja nyata.
+                    </p>
+                </div>
+
+                <!-- Fasilitas 3 -->
+                <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl mb-5 transition">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-white mb-2 transition">Bursa Kerja Khusus (BKK)</h3>
+                    <p class="text-sm text-slate-600 group-hover:text-slate-300 leading-relaxed transition">
+                        Pusat informasi karir, pelatihan wawancara, dan rekrutmen langsung oleh perusahaan mitra sebelum siswa lulus.
+                    </p>
+                </div>
+
+                <!-- Fasilitas 4 -->
+                <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl mb-5 transition">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-white mb-2 transition">Ekstrakurikuler Berprestasi</h3>
+                    <p class="text-sm text-slate-600 group-hover:text-slate-300 leading-relaxed transition">
+                        Wadah pengembangan bakat mulai dari Robotik, Coding Club, Paskibra, Pramuka, Futsal, hingga Seni Hadroh & Musik.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. BERITA & PENGUMUMAN TERBARU -->
+    <section id="berita" class="py-20 bg-slate-50 border-t border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 fade-in-up">
+                <div>
+                    <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Informasi Terkini</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Berita & Agenda Sekolah</h2>
+                </div>
+
+                <!-- Filter Kategori -->
+                <div class="flex flex-wrap gap-2" id="news-filters">
+                    <button data-filter="Semua" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-navy-900 text-white shadow-sm transition">Semua</button>
+                    <button data-filter="Prestasi" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Prestasi</button>
+                    <button data-filter="Kegiatan" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Kegiatan</button>
+                    <button data-filter="Pengumuman" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Pengumuman</button>
+                </div>
+            </div>
+
+            <!-- Grid Kartu Berita -->
+            <div id="news-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <!-- Diisi melalui JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FORMULIR PENDAFTARAN PPDB ONLINE -->
+    <section id="ppdb" class="py-20 bg-navy-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-amber-500 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Info Alur PPDB -->
+                <div class="lg:col-span-5 space-y-6 fade-in-up">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">PPDB Tahun Ajaran Baru</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl leading-tight">
+                        Daftar Online Mudah & Cepat Tanpa Antre
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Segera amankan kursimu di SMK Bina Mandiri. Isi formulir pendaftaran di samping untuk mendapatkan nomor registrasi resmi dan informasi jadwal seleksi/daftar ulang.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">1</div>
+                            <div>
+                                <h4 class="font-heading font-bold text-base text-white">Isi Formulir Online</h4>
+                                <p class="text-xs text-slate-400">Lengkapi biodata diri dan pilih maksimal 2 program keahlian.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">2</div>
+                            <div>
+                                <h4 class="font-heading font-bold text-base text-white">Dapatkan Nomor Pendaftaran</h4>
+                                <p class="text-xs text-slate-400">Sistem otomatis menerbitkan bukti & kode pendaftaran unik.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">3</div>
+                            <div>
+                                <h4 class="font-heading font-bold text-base text-white">Verifikasi Berkas & Wawancara</h4>
+                                <p class="text-xs text-slate-400">Panitia PPDB akan menghubungi melalui WhatsApp terdaftar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="lg:col-span-7 fade-in-up">
+                    <div class="bg-white text-slate-800 rounded-2xl p-6 sm:p-9 shadow-2xl">
+                        <h3 class="font-heading font-extrabold text-2xl text-navy-900 mb-1">Formulir Pendaftaran Calon Siswa</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 mb-6">Pastikan seluruh data diisi dengan benar sesuai ijazah / kartu keluarga.</p>
+
+                        <!-- Kotak Notifikasi Sukses PPDB (Tersembunyi Awalnya) -->
+                        <div id="ppdb-success-box" class="hidden mb-6 p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600 text-xl mt-0.5"></i>
+                                <div class="w-full">
+                                    <h4 class="font-heading font-bold text-base text-emerald-900">Pendaftaran Berhasil Dikirim!</h4>
+                                    <p class="text-xs text-emerald-700 mt-1">Simpan nomor pendaftaran di bawah ini untuk proses verifikasi berkas:</p>
+                                    <div class="mt-3 p-3 bg-white rounded-lg border border-emerald-200 flex items-center justify-between">
+                                        <div>
+                                            <span class="text-[11px] uppercase tracking-wider text-slate-400 block">Nomor Registrasi PPDB</span>
+                                            <span id="reg-number-display" class="font-heading font-extrabold text-lg text-navy-900 tracking-wide">PPDB-2026-0000</span>
+                                        </div>
+                                        <button type="button" id="copy-reg-btn" class="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-800 text-white text-xs font-semibold transition">
+                                            <i class="fa-regular fa-copy mr-1"></i> Salin
+                                        </button>
+                                    </div>
+                                    <p id="reg-summary-text" class="text-xs text-slate-600 mt-3"></p>
+                                    <button type="button" id="reset-ppdb-btn" class="mt-3 text-xs font-bold text-emerald-700 hover:underline">
+                                        + Daftarkan Calon Siswa Lain
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Element -->
+                        <form id="ppdb-form" class="space-y-4" novalidate>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nama" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+                                    <input type="text" id="nama" name="nama" required placeholder="Contoh: Budi Santoso"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                    <p class="error-msg text-xs text-red-500 mt-1 hidden">Nama lengkap wajib diisi.</p>
+                                </div>
+
+                                <div>
+                                    <label for="asal_sekolah" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Asal Sekolah (SMP/MTs) <span class="text-red-500">*</span></label>
+                                    <input type="text" id="asal_sekolah" name="asal_sekolah" required placeholder="Contoh: SMP Negeri 1 Mandiri"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                    <p class="error-msg text-xs text-red-500 mt-1 hidden">Asal sekolah wajib diisi.</p>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="jurusan1" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pilihan Jurusan 1 <span class="text-red-500">*</span></label>
+                                    <select id="jurusan1" name="jurusan1" required
+                                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-800">
+                                        <option value="">-- Pilih Jurusan Utama --</option>
+                                        <option value="Teknik Komputer dan Jaringan (TKJ)">Teknik Komputer dan Jaringan (TKJ)</option>
+                                        <option value="Rekayasa Perangkat Lunak (RPL)">Rekayasa Perangkat Lunak (RPL)</option>
+                                        <option value="Akuntansi dan Keuangan Lembaga (AKL)">Akuntansi dan Keuangan Lembaga (AKL)</option>
+                                        <option value="Teknik Kendaraan Ringan Otomotif (TKRO)">Teknik Kendaraan Ringan Otomotif (TKRO)</option>
+                                        <option value="Manajemen Perkantoran dan Layanan Bisnis (MPLB)">Manajemen Perkantoran dan Layanan Bisnis (MPLB)</option>
+                                    </select>
+                                    <p class="error-msg text-xs text-red-500 mt-1 hidden">Silakan pilih jurusan pertama.</p>
+                                </div>
+
+                                <div>
+                                    <label for="jurusan2" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pilihan Jurusan 2 <span class="text-red-500">*</span></label>
+                                    <select id="jurusan2" name="jurusan2" required
+                                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-800">
+                                        <option value="">-- Pilih Jurusan Cadangan --</option>
+                                        <option value="Teknik Komputer dan Jaringan (TKJ)">Teknik Komputer dan Jaringan (TKJ)</option>
+                                        <option value="Rekayasa Perangkat Lunak (RPL)">Rekayasa Perangkat Lunak (RPL)</option>
+                                        <option value="Akuntansi dan Keuangan Lembaga (AKL)">Akuntansi dan Keuangan Lembaga (AKL)</option>
+                                        <option value="Teknik Kendaraan Ringan Otomotif (TKRO)">Teknik Kendaraan Ringan Otomotif (TKRO)</option>
+                                        <option value="Manajemen Perkantoran dan Layanan Bisnis (MPLB)">Manajemen Perkantoran dan Layanan Bisnis (MPLB)</option>
+                                    </select>
+                                    <p class="error-msg text-xs text-red-500 mt-1 hidden">Silakan pilih jurusan kedua yang berbeda.</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="whatsapp" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nomor WhatsApp Aktif <span class="text-red-500">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Contoh: 081234567890"
+                                       class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                <p class="error-msg text-xs text-red-500 mt-1 hidden">Masukkan nomor WhatsApp yang valid (minimal 10 digit).</p>
+                            </div>
+
+                            <div>
+                                <label for="alamat" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Alamat Lengkap <span class="text-red-500">*</span></label>
+                                <textarea id="alamat" name="alamat" rows="2" required placeholder="Nama jalan, RT/RW, Desa/Kelurahan, Kecamatan"
+                                          class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent"></textarea>
+                                <p class="error-msg text-xs text-red-500 mt-1 hidden">Alamat lengkap wajib diisi.</p>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-heading font-extrabold text-sm sm:text-base shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Kirim Pendaftaran PPDB</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. KONTAK & FOOTER LENGKAP -->
+    <footer id="kontak" class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
+                <!-- Kolom 1: Identitas Sekolah -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-navy-900 flex items-center justify-center">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-white tracking-tight">SMK BINA MANDIRI</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Membangun generasi vokasi yang siap kerja, santun, dan inovatif melalui pembelajaran berbasis industri dan teknologi terapan.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#kontak" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#kontak" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#kontak" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#kontak" aria-label="TikTok" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Tautan Cepat -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Tautan Cepat</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#beranda" class="hover:text-amber-400 transition">Beranda</a></li>
+                        <li><a href="#profil" class="hover:text-amber-400 transition">Profil & Visi Misi</a></li>
+                        <li><a href="#jurusan" class="hover:text-amber-400 transition">Program Keahlian</a></li>
+                        <li><a href="#fasilitas" class="hover:text-amber-400 transition">Fasilitas Sekolah</a></li>
+                        <li><a href="#berita" class="hover:text-amber-400 transition">Berita & Agenda</a></li>
+                        <li><a href="#ppdb" class="hover:text-amber-400 transition">PPDB Online</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3: Informasi Kontak -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Hubungi Kami</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-amber-500 mt-1 shrink-0"></i>
+                            <span>Jl. Pendidikan Raya No. 45, Kec. Jawilan, Kab. Serang, Banten 42177</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-amber-500 shrink-0"></i>
+                            <span>(0254) 789-1234 / 0812-9876-5432</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-amber-500 shrink-0"></i>
+                            <span>info@smkbinamandiri.sch.id</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock text-amber-500 mt-1 shrink-0"></i>
+                            <span>Senin – Jumat: 07.00 – 16.00 WIB<br>Sabtu: 07.30 – 13.00 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 4: Peta Lokasi Placeholder -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Lokasi Kampus</h4>
+                    <div class="rounded-xl overflow-hidden border border-slate-800 bg-navy-900 h-40 relative flex flex-col items-center justify-center p-4 text-center">
+                        <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mb-2">
+                            <i class="fa-solid fa-map-location-dot text-lg"></i>
+                        </div>
+                        <p class="text-xs font-semibold text-white">Kampus Utama SMK Bina Mandiri</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Kawasan Pendidikan Terpadu Banten</p>
+                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="mt-2.5 inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:underline">
+                            <span>Buka di Google Maps</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 SMK Bina Mandiri. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Dikembangkan untuk Pendidikan Vokasi Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL JURUSAN -->
+    <div id="jurusan-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+        <div class="bg-white rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl transform transition-all">
+            <div class="bg-navy-900 text-white p-6 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div id="modal-jurusan-icon" class="w-11 h-11 rounded-xl bg-amber-500 text-navy-900 flex items-center justify-center text-xl"></div>
+                    <div>
+                        <span id="modal-jurusan-code" class="text-xs font-bold uppercase tracking-wider text-amber-400"></span>
+                        <h3 id="modal-jurusan-title" class="font-heading font-bold text-lg sm:text-xl leading-snug"></h3>
+                    </div>
+                </div>
+                <button id="close-jurusan-modal" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Deskripsi Program</h4>
+                    <p id="modal-jurusan-desc" class="text-sm text-slate-600 leading-relaxed"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Kompetensi yang Dipelajari</h4>
+                    <ul id="modal-jurusan-skills" class="grid sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700"></ul>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Prospek Karir Lulusan</h4>
+                    <p id="modal-jurusan-career" class="text-xs sm:text-sm text-slate-600"></p>
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button id="btn-tutup-jurusan" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50">Tutup</button>
+                    <a href="#ppdb" id="btn-daftar-jurusan" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 text-sm font-bold shadow-sm transition">Daftar Jurusan Ini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BACA BERITA SELENGKAPNYA -->
+    <div id="news-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl">
+            <div class="relative h-56 bg-navy-900">
+                <img id="modal-news-img" src="" alt="Gambar Berita" class="w-full h-full object-cover">
+                <button id="close-news-modal" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-navy-900/80 hover:bg-navy-900 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="modal-news-cat" class="absolute bottom-4 left-6 px-3 py-1 rounded-full bg-amber-500 text-navy-900 text-xs font-bold"></span>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4 max-h-[65vh] overflow-y-auto">
+                <div class="flex items-center gap-4 text-xs text-slate-500">
+                    <span><i class="fa-regular fa-calendar mr-1.5 text-amber-600"></i><span id="modal-news-date"></span></span>
+                    <span><i class="fa-regular fa-user mr-1.5 text-amber-600"></i>Admin Humas</span>
+                </div>
+                <h3 id="modal-news-title" class="font-heading font-extrabold text-xl sm:text-2xl text-navy-900 leading-snug"></h3>
+                <div id="modal-news-content" class="text-sm text-slate-600 leading-relaxed space-y-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MURNI UNTUK INTERAKTIVITAS LENGKAP -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ==========================================
+            // 1. DATA JURUSAN (PROGRAM KEAHLIAN)
+            // ==========================================
+            const dataJurusan = [
+                {
+                    kode: "TKJ",
+                    nama: "Teknik Komputer dan Jaringan",
+                    ikon: "fa-network-wired",
+                    singkat: "Mempelajari perakitan komputer, instalasi jaringan LAN/WAN, administrasi server, serta keamanan siber dan cloud.",
+                    deskripsi: "Program keahlian Teknik Komputer dan Jaringan (TKJ) membekali siswa dengan keterampilan merancang, membangun, mengelola, dan mengamankan infrastruktur jaringan komputer skala kecil hingga enterprise.",
+                    kompetensi: [
+                        "Administrasi Sistem Jaringan (Linux & Windows Server)",
+                        "Konfigurasi Router & Switch (MikroTik & Cisco)",
+                        "Instalasi Fiber Optik & Jaringan Nirkabel",
+                        "Dasar Keamanan Siber & Cloud Computing"
+                    ],
+                    karir: "Network Engineer, System Administrator, IT Support Specialist, Teknisi Fiber Optik, Wirausaha Layanan Internet."
+                },
+                {
+                    kode: "RPL",
+                    nama: "Rekayasa Perangkat Lunak",
+                    ikon: "fa-code",
+                    singkat: "Fokus pada pemrograman aplikasi web, mobile Android, desain UI/UX, serta pengelolaan basis data modern.",
+                    deskripsi: "Rekayasa Perangkat Lunak (RPL) mencetak developer muda yang mampu menganalisis kebutuhan perangkat lunak, merancang antarmuka pengguna, menulis kode program yang bersih, dan menguji aplikasi siap pakai.",
+                    kompetensi: [
+                        "Full-Stack Web Development (HTML, JS, PHP/Node.js)",
+                        "Pengembangan Aplikasi Mobile Android",
+                        "Desain Antarmuka Pengguna (UI/UX Design)",
+                        "Manajemen Basis Data (MySQL & PostgreSQL)"
+                    ],
+                    karir: "Web Developer, Mobile App Developer, UI/UX Designer, Software Quality Assurance, Freelance Programmer."
+                },
+                {
+                    kode: "AKL",
+                    nama: "Akuntansi dan Keuangan Lembaga",
+                    ikon: "fa-calculator",
+                    singkat: "Menguasai penyusunan laporan keuangan perusahaan, perpajakan, audit dasar, dan aplikasi akuntansi digital.",
+                    deskripsi: "Program keahlian Akuntansi dan Keuangan Lembaga (AKL) mempersiapkan tenaga teknis akuntansi yang teliti, jujur, dan mahir mengoperasikan perangkat lunak akuntansi modern maupun administrasi perpajakan.",
+                    kompetensi: [
+                        "Siklus Akuntansi Perusahaan Jasa, Dagang & Manufaktur",
+                        "Komputer Akuntansi (MYOB / Accurate & Spreadsheet)",
+                        "Administrasi Perpajakan & e-Faktur",
+                        "Pengelolaan Kas Kecil & Perbankan Dasar"
+                    ],
+                    karir: "Staf Akuntansi, Admin Keuangan, Staf Perpajakan, Teller Perbankan, Kasir & Auditor Junior."
+                },
+                {
+                    kode: "TKRO",
+                    nama: "Teknik Kendaraan Ringan Otomotif",
+                    ikon: "fa-car-side",
+                    singkat: "Keahlian perawatan berkala, perbaikan mesin bensin/diesel, sistem kelistrikan otomotif, dan teknologi EFI.",
+                    deskripsi: "Teknik Kendaraan Ringan Otomotif (TKRO) melatih siswa melakukan diagnosis kerusakan, perawatan berkala, dan perbaikan sistem mekanik maupun elektronik pada kendaraan roda empat sesuai standar bengkel resmi.",
+                    kompetensi: [
+                        "Pemeliharaan Mesin Kendaraan Ringan & Sistem EFI",
+                        "Sistem Pemindah Tenaga (Transmisi Manual & Matic)",
+                        "Kelistrikan Otomotif & Sistem AC Kendaraan",
+                        "Penggunaan Engine Scanner & Alat Ukur Presisi"
+                    ],
+                    karir: "Mekanik Bengkel Resmi (ATPM), Service Advisor, Teknisi Quality Control Industri Otomotif, Wirausaha Bengkel."
+                },
+                {
+                    kode: "MPLB",
+                    nama: "Manajemen Perkantoran dan Layanan Bisnis",
+                    ikon: "fa-building-user",
+                    singkat: "Mempelajari tata kelola administrasi modern, korespondensi digital, kearsipan elektronik, dan layanan pelanggan.",
+                    deskripsi: "Manajemen Perkantoran dan Layanan Bisnis (MPLB) mencetak tenaga administrasi profesional yang cakap berkomunikasi, mahir teknologi perkantoran digital, dan memahami tata kelola layanan bisnis modern.",
+                    kompetensi: [
+                        "Otomatisasi Tata Kelola Perkantoran Digital",
+                        "Korespondensi Bahasa Indonesia & Inggris Bisnis",
+                        "Manajemen Kearsipan Elektronik & Dokumen",
+                        "Public Relations & Pelayanan Prima (Customer Service)"
+                    ],
+                    karir: "Sekretaris Junior, Staf Administrasi Perkantoran, Resepsionis, Customer Service Officer, Staf HRD."
+                }
+            ];
+
+            // Render Kartu Jurusan
+            const jurusanGrid = document.getElementById('jurusan-grid');
+            dataJurusan.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl p-6 border border-slate-200 hover:border-amber-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl transition">
+                                <i class="fa-solid ${item.ikon}"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-slate-100 text-navy-900 font-heading font-bold text-xs">${item.kode}</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900 group-hover:text-navy-800 mb-2.5">${item.nama}</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">${item.singkat}</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-navy-800 group-hover:text-amber-600 transition">
+                        <span>Lihat Detail Kompetensi</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                    </div>
+                `;
+                card.addEventListener('click', () => bukaModalJurusan(item));
+                jurusanGrid.appendChild(card);
+            });
+
+            // Logika Modal Jurusan
+            const jurusanModal = document.getElementById('jurusan-modal');
+            const closeJurusanBtn = document.getElementById('close-jurusan-modal');
+            const btnTutupJurusan = document.getElementById('btn-tutup-jurusan');
+            const btnDaftarJurusan = document.getElementById('btn-daftar-jurusan');
+
+            function bukaModalJurusan(item) {
+                document.getElementById('modal-jurusan-icon').innerHTML = `<i class="fa-solid ${item.ikon}"></i>`;
+                document.getElementById('modal-jurusan-code').textContent = `Program Keahlian • ${item.kode}`;
+                document.getElementById('modal-jurusan-title').textContent = item.nama;
+                document.getElementById('modal-jurusan-desc').textContent = item.deskripsi;
+                document.getElementById('modal-jurusan-career').textContent = item.karir;
+
+                const skillsList = document.getElementById('modal-jurusan-skills');
+                skillsList.innerHTML = item.kompetensi.map(skill => `
+                    <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                        <i class="fa-solid fa-check text-amber-500 mt-0.5 shrink-0"></i>
+                        <span>${skill}</span>
+                    </li>
+                `).join('');
+
+                // Otomatis pilih jurusan di form PPDB jika user klik "Daftar Jurusan Ini"
+                btnDaftarJurusan.onclick = () => {
+                    tutupModalJurusan();
+                    const selectJurusan1 = document.getElementById('jurusan1');
+                    const fullOptionText = `${item.nama} (${item.kode})`;
+                    selectJurusan1.value = fullOptionText;
+                };
+
+                jurusanModal.classList.remove('hidden');
+                jurusanModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function tutupModalJurusan() {
+                jurusanModal.classList.add('hidden');
+                jurusanModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+
+            closeJurusanBtn.addEventListener('click', tutupModalJurusan);
+            btnTutupJurusan.addEventListener('click', tutupModalJurusan);
+            jurusanModal.addEventListener('click', (e) => {
+                if (e.target === jurusanModal) tutupModalJurusan();
+            });
+
+            // ==========================================
+            // 2. DATA BERITA & FILTER KATEGORI
+            // ==========================================
+            const dataBerita = [
+                {
+                    id: 1,
+                    kategori: "Prestasi",
+                    tanggal: "12 November 2026",
+                    judul: "Tim RPL SMK Bina Mandiri Raih Juara 1 Lomba Kompetensi Siswa (LKS) Tingkat Provinsi",
+                    ringkasan: "Membanggakan! Siswa jurusan Rekayasa Perangkat Lunak berhasil menyisihkan 35 peserta lain dalam bidang Web Technologies.",
+                    gambar: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80",
+                    konten: [
+                        "Tim delegasi Rekayasa Perangkat Lunak (RPL) SMK Bina Mandiri kembali menorehkan prestasi gemilang dengan meraih medali emas (Juara 1) pada ajang Lomba Kompetensi Siswa (LKS) SMK Tingkat Provinsi tahun ini.",
+                        "Dalam perlombaan yang berlangsung selama tiga hari tersebut, peserta ditantang membangun sistem informasi manajemen terintegrasi berbasis web dengan standar keamanan dan kecepatan tinggi.",
+                        "Kepala Sekolah memberikan apresiasi tinggi kepada siswa dan guru pembimbing yang telah berlatih intensif selama empat bulan terakhir. Selanjutnya, tim akan mewakili provinsi menuju LKS Tingkat Nasional."
+                    ]
+                },
+                {
+                    id: 2,
+                    kategori: "Kegiatan",
+                    tanggal: "04 November 2026",
+                    judul: "Kunjungan Industri & Penandatanganan MoU dengan 12 Perusahaan Teknologi dan Otomotif",
+                    ringkasan: "Memperkuat link and match kurikulum industri, SMK Bina Mandiri resmi menjalin kerja sama penempatan PKL dan rekrutmen lulusan.",
+                    gambar: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80",
+                    konten: [
+                        "Sebagai wujud komitmen sebagai SMK Pusat Keunggulan, SMK Bina Mandiri menggelar acara Penandatanganan Nota Kesepahaman (MoU) bersama 12 mitra industri strategis dari sektor teknologi informasi, manufaktur otomotif, dan perbankan.",
+                        "Kerja sama ini mencakup sinkronisasi kurikulum ajar, program guru tamu dari praktisi industri, pemagangan siswa (PKL) bersertifikat, hingga rekrutmen langsung melalui Bursa Kerja Khusus (BKK) sekolah.",
+                        "Diharapkan kolaborasi ini semakin meningkatkan keterserapan lulusan SMK Bina Mandiri di dunia kerja sebelum masa kelulusan tiba."
+                    ]
+                },
+                {
+                    id: 3,
+                    kategori: "Pengumuman",
+                    tanggal: "28 Oktober 2026",
+                    judul: "Jadwal Uji Kompetensi Keahlian (UKK) & Sertifikasi BNSP Kelas XII Semester Genap",
+                    ringkasan: "Informasi penting bagi seluruh siswa kelas XII mengenai persiapan portofolio, pra-UKK, dan jadwal asesmen bersama LSP.",
+                    gambar: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80",
+                    konten: [
+                        "Diberitahukan kepada seluruh peserta didik kelas XII dari semua kompetensi keahlian (TKJ, RPL, AKL, TKRO, dan MPLB) bahwa pelaksanaan Uji Kompetensi Keahlian (UKK) bekerja sama dengan Lembaga Sertifikasi Profesi (LSP) akan dimulai bulan depan.",
+                        "Seluruh siswa wajib mengikuti kegiatan Pra-UKK dan melengkapi berkas administrasi pendaftaran asesmen melalui Ketua Program Keahlian masing-masing paling lambat akhir bulan ini.",
+                        "Sertifikat kompetensi berlogo Garuda dari BNSP yang diperoleh dari ujian ini akan menjadi bekal penting melamar pekerjaan."
+                    ]
+                }
+            ];
+
+            const newsGrid = document.getElementById('news-grid');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            function renderBerita(kategoriFilter = 'Semua') {
+                newsGrid.innerHTML = '';
+                const filtered = kategoriFilter === 'Semua' 
+                    ? dataBerita 
+                    : dataBerita.filter(b => b.kategori === kategoriFilter);
+
+                filtered.forEach(item => {
+                    const card = document.createElement('article');
+                    card.className = "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group";
+                    card.innerHTML = `
+                        <div>
+                            <div class="relative h-48 overflow-hidden bg-navy-900">
+                                <img src="${item.gambar}" 
+                                     onerror="this.src='https://placehold.co/700x400/0F172A/F59E0B?text=Berita+SMK+Bina+Mandiri'" 
+                                     alt="${item.judul}" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-navy-900/90 text-amber-400 text-xs font-bold backdrop-blur-sm">
+                                    ${item.kategori}
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+                                    <i class="fa-regular fa-calendar text-amber-500"></i>
+                                    <span>${item.tanggal}</span>
+                                </div>
+                                <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-navy-800 leading-snug mb-2.5 line-clamp-2">
+                                    ${item.judul}
+                                </h3>
+                                <p class="text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                                    ${item.ringkasan}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button type="button" class="read-news-btn inline-flex items-center gap-2 text-xs font-bold text-navy-800 hover:text-amber-600 transition">
+                                <span>Baca Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    `;
+                    card.querySelector('.read-news-btn').addEventListener('click', () => bukaModalBerita(item));
+                    newsGrid.appendChild(card);
+                });
+            }
+
+            // Event Listener Filter Berita
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-navy-900', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                    });
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                    btn.classList.add('bg-navy-900', 'text-white', 'shadow-sm');
+                    
+                    renderBerita(btn.dataset.filter);
+                });
+            });
+
+            // Modal Berita
+            const newsModal = document.getElementById('news-modal');
+            const closeNewsBtn = document.getElementById('close-news-modal');
+
+            function bukaModalBerita(item) {
+                const imgEl = document.getElementById('modal-news-img');
+                imgEl.src = item.gambar;
+                imgEl.onerror = () => { imgEl.src = 'https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri'; };
+                
+                document.getElementById('modal-news-cat').textContent = item.kategori;
+                document.getElementById('modal-news-date').textContent = item.tanggal;
+                document.getElementById('modal-news-title').textContent = item.judul;
+                document.getElementById('modal-news-content').innerHTML = item.konten.map(p => `<p>${p}</p>`).join('');
+
+                newsModal.classList.remove('hidden');
+                newsModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function tutupModalBerita() {
+                newsModal.classList.add('hidden');
+                newsModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+
+            closeNewsBtn.addEventListener('click', tutupModalBerita);
+            newsModal.addEventListener('click', (e) => {
+                if (e.target === newsModal) tutupModalBerita();
+            });
+
+            // Render awal semua berita
+            renderBerita('Semua');
+
+            // ==========================================
+            // 3. FORMULIR PPDB ONLINE & VALIDASI
+            // ==========================================
+            const ppdbForm = document.getElementById('ppdb-form');
+            const successBox = document.getElementById('ppdb-success-box');
+            const regNumberDisplay = document.getElementById('reg-number-display');
+            const regSummaryText = document.getElementById('reg-summary-text');
+            const copyRegBtn = document.getElementById('copy-reg-btn');
+            const resetPpdbBtn = document.getElementById('reset-ppdb-btn');
+
+            function showFieldError(inputEl, show, customMsg = null) {
+                const errorP = inputEl.parentElement.querySelector('.error-msg');
+                if (show) {
+                    inputEl.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+                    if (customMsg && errorP) errorP.textContent = customMsg;
+                    if (errorP) errorP.classList.remove('hidden');
+                } else {
+                    inputEl.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+                    if (errorP) errorP.classList.add('hidden');
+                }
+            }
+
+            ppdbForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                const nama = document.getElementById('nama');
+                const asal = document.getElementById('asal_sekolah');
+                const j1 = document.getElementById('jurusan1');
+                const j2 = document.getElementById('jurusan2');
+                const wa = document.getElementById('whatsapp');
+                const alamat = document.getElementById('alamat');
+
+                // Validasi Nama
+                if (nama.value.trim().length < 3) {
+                    showFieldError(nama, true);
+                    isValid = false;
+                } else {
+                    showFieldError(nama, false);
+                }
+
+                // Validasi Asal Sekolah
+                if (asal.value.trim().length < 3) {
+                    showFieldError(asal, true);
+                    isValid = false;
+                } else {
+                    showFieldError(asal, false);
+                }
+
+                // Validasi Jurusan 1
+                if (!j1.value) {
+                    showFieldError(j1, true);
+                    isValid = false;
+                } else {
+                    showFieldError(j1, false);
+                }
+
+                // Validasi Jurusan 2 (tidak boleh kosong & tidak boleh sama dengan jurusan 1)
+                if (!j2.value) {
+                    showFieldError(j2, true, "Silakan pilih jurusan kedua.");
+                    isValid = false;
+                } else if (j2.value === j1.value) {
+                    showFieldError(j2, true, "Pilihan jurusan 2 harus berbeda dengan jurusan 1.");
+                    isValid = false;
+                } else {
+                    showFieldError(j2, false);
+                }
+
+                // Validasi Nomor WhatsApp (hanya angka, minimal 10 digit)
+                const cleanWa = wa.value.replace(/\D/g, '');
+                if (cleanWa.length < 10 || cleanWa.length > 15) {
+                    showFieldError(wa, true);
+                    isValid = false;
+                } else {
+                    showFieldError(wa, false);
+                }
+
+                // Validasi Alamat
+                if (alamat.value.trim().length < 5) {
+                    showFieldError(alamat, true);
+                    isValid = false;
+                } else {
+                    showFieldError(alamat, false);
+                }
+
+                if (!isValid) return;
+
+                // Generate Nomor Pendaftaran Otomatis
+                const randomDigits = Math.floor(1000 + Math.random() * 9000);
+                const regCode = `PPDB-BM-2026-${randomDigits}`;
+
+                regNumberDisplay.textContent = regCode;
+                regSummaryText.innerHTML = `Atas nama <strong>${nama.value.trim()}</strong> (${asal.value.trim()}) — Pilihan 1: <strong>${j1.value}</strong>.`;
+
+                // Tampilkan Notifikasi & Sembunyikan Form Sementara
+                ppdbForm.classList.add('hidden');
+                successBox.classList.remove('hidden');
+                successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // Tombol Salin Kode Registrasi
+            copyRegBtn.addEventListener('click', () => {
+                const textToCopy = regNumberDisplay.textContent;
+                const tempInput = document.createElement('input');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                const originalHtml = copyRegBtn.innerHTML;
+                copyRegBtn.innerHTML = `<i class="fa-solid fa-check mr-1"></i> Tersalin!`;
+                copyRegBtn.classList.replace('bg-navy-900', 'bg-emerald-600');
+                setTimeout(() => {
+                    copyRegBtn.innerHTML = originalHtml;
+                    copyRegBtn.classList.replace('bg-emerald-600', 'bg-navy-900');
+                }, 2000);
+            });
+
+            // Reset Form PPDB
+            resetPpdbBtn.addEventListener('click', () => {
+                ppdbForm.reset();
+                successBox.classList.add('hidden');
+                ppdbForm.classList.remove('hidden');
+            });
+
+            // ==========================================
+            // 4. NAVIGASI MOBILE & ANIMASI SCROLL
+            // ==========================================
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                });
+            });
+
+            // Intersection Observer untuk animasi muncul saat di-scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

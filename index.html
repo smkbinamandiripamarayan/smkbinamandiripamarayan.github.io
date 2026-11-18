@@ -372,6 +372,7 @@
     </section>
 
     <!-- 7. FORMULIR PENDAFTARAN PPDB ONLINE -->
+   <!-- 7. FORMULIR PENDAFTARAN PPDB ONLINE -->
     <section id="ppdb" class="py-20 bg-navy-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-amber-500 blur-3xl"></div>
@@ -383,37 +384,126 @@
                 <div class="lg:col-span-5 space-y-6 fade-in-up">
                     <span class="inline-block px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">PPDB Tahun Ajaran Baru</span>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl leading-tight">
-                        Daftar Online Mudah & Cepat Tanpa Antre
+                        Daftar Online Langsung ke WhatsApp Panitia
                     </h2>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Segera amankan kursimu di SMK Bina Mandiri. Isi formulir pendaftaran di samping untuk mendapatkan nomor registrasi resmi dan informasi jadwal seleksi/daftar ulang.
+                        Segera amankan kursimu di SMK Bina Mandiri. Isi formulir pendaftaran di samping, dan data akan langsung terkirim secara otomatis ke WhatsApp Panitia PPDB.
                     </p>
 
                     <div class="space-y-4 pt-2">
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">1</div>
                             <div>
-                                <h4 class="font-heading font-bold text-base text-white">Isi Formulir Online</h4>
-                                <p class="text-xs text-slate-400">Lengkapi biodata diri dan pilih maksimal 2 program keahlian.</p>
+                                <h4 class="font-heading font-bold text-base text-white">Isi Formulir Lengkap</h4>
+                                <p class="text-xs text-slate-400">Lengkapi nama, asal sekolah, jurusan, dan nomor kontak.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">2</div>
                             <div>
-                                <h4 class="font-heading font-bold text-base text-white">Dapatkan Nomor Pendaftaran</h4>
-                                <p class="text-xs text-slate-400">Sistem otomatis menerbitkan bukti & kode pendaftaran unik.</p>
+                                <h4 class="font-heading font-bold text-base text-white">Kirim via WhatsApp</h4>
+                                <p class="text-xs text-slate-400">Tekan tombol daftar untuk membuka chat WhatsApp otomatis.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-amber-500 text-navy-900 font-bold flex items-center justify-center shrink-0 text-sm">3</div>
                             <div>
-                                <h4 class="font-heading font-bold text-base text-white">Verifikasi Berkas & Wawancara</h4>
-                                <p class="text-xs text-slate-400">Panitia PPDB akan menghubungi melalui WhatsApp terdaftar.</p>
+                                <h4 class="font-heading font-bold text-base text-white">Konfirmasi & Daftar Ulang</h4>
+                                <p class="text-xs text-slate-400">Panitia akan membalas dan memandu proses selanjutnya.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Form Card -->
+                <div class="lg:col-span-7 fade-in-up">
+                    <div class="bg-white text-slate-800 rounded-2xl p-6 sm:p-9 shadow-2xl">
+                        <h3 class="font-heading font-extrabold text-2xl text-navy-900 mb-1">Formulir Pendaftaran Calon Siswa</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 mb-6">Pastikan seluruh data diisi dengan benar sebelum dikirim.</p>
+
+                        <!-- Form Element -->
+                        <form id="ppdb-form" onsubmit="kirimKeWhatsApp(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nama" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+                                    <input type="text" id="nama" name="nama" required placeholder="Contoh: Budi Santoso"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                </div>
+
+                                <div>
+                                    <label for="asal_sekolah" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Asal Sekolah (SMP/MTs) <span class="text-red-500">*</span></label>
+                                    <input type="text" id="asal_sekolah" name="asal_sekolah" required placeholder="Contoh: SMP Negeri 1 Mandiri"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="jurusan" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Pilihan Program Keahlian <span class="text-red-500">*</span></label>
+                                    <select id="jurusan" name="jurusan" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent bg-white">
+                                        <option value="Teknik Komputer dan Jaringan (TKJ)">Teknik Komputer dan Jaringan (TKJ)</option>
+                                        <option value="Pengembangan Perangkat Lunak (PPLG)">Pengembangan Perangkat Lunak (PPLG)</option>
+                                        <option value="Teknik Kendaraan Ringan (TKR)">Teknik Kendaraan Ringan (TKR)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="no_hp" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">No. WhatsApp Aktif (Siswa/Ortu) <span class="text-red-500">*</span></label>
+                                    <input type="tel" id="no_hp" name="no_hp" required placeholder="Contoh: 081234567890"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="alamat" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Alamat Tempat Tinggal</label>
+                                <textarea id="alamat" name="alamat" rows="2" placeholder="Contoh: Kp. Pamarayan, Serang"
+                                          class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-800 focus:border-transparent"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-900 font-heading font-extrabold text-base shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Kirim Pendaftaran via WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 7. FORMULIR PENDAFTARAN PPDB ONLINE (Bagian Section PPDB selesai di sini) -->
+    <section id="ppdb" class="py-20 bg-navy-900 text-white relative overflow-hidden">
+        <!-- ... (isi kode form PPDB) ... -->
+    </section>
+
+    <!-- (Opsional jika ada footer atau bagian lain di bawahnya) -->
+
+    <!-- LETAKKAN SCRIPT INI DI SINI (Tepat sebelum tag penutup </body>) -->
+    <script>
+    function kirimKeWhatsApp(event) {
+        event.preventDefault();
+        
+        let nama = document.getElementById('nama').value;
+        let asalSekolah = document.getElementById('asal_sekolah').value;
+        let jurusan = document.getElementById('jurusan').value;
+        let noHp = document.getElementById('no_hp').value;
+        let alamat = document.getElementById('alamat').value;
+        
+        // GANTI NOMOR DI BAWAH INI DENGAN NOMOR WHATSAPP ASLI PANITIA SEKOLAH
+        let nomorAdmin = "6285217330133"; 
+        
+        let pesan = `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar secara online:%0A%0A` +
+                    `- Nama Lengkap: *${nama}*%0A` +
+                    `- Asal Sekolah: *${asalSekolah}*%0A` +
+                    `- Pilihan Jurusan: *${jurusan}*%0A` +
+                    `- No. WhatsApp: *${noHp}*%0A` +
+                    `- Alamat: *${alamat}*%0A%0A` +
+                    `Mohon informasikan tahapan selanjutnya. Terima kasih!`;
+                    
+        window.open(`https://wa.me/${nomorAdmin}?text=${pesan}`, '_blank');
+    }
+    </script>
+</body>
+</html>
                 <!-- Form Card -->
                 <div class="lg:col-span-7 fade-in-up">
                     <div class="bg-white text-slate-800 rounded-2xl p-6 sm:p-9 shadow-2xl">

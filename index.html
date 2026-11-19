@@ -604,38 +604,139 @@
         </div>
     </section>
 
+    <!-- BURSA KERJA KHUSUS (BKK) SMK BINA MANDIRI -->
+    <section id="bkk" class="py-20 bg-slate-50 text-slate-800 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Bursa Kerja Khusus</span>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-navy-900 mt-1">Info Lowongan & Penyaluran Kerja BKK</h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-1.5">
+                        Fasilitas resmi penghubung siswa dan alumni SMK Bina Mandiri Pamarayan dengan mitra dunia usaha dan industri.
+                    </p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-navy-900 shadow-2xs">
+                    Lowongan Aktif: <span id="bkk-total-lok" class="text-amber-600">4</span> Posisi
+                </div>
+            </div>
+
+            <!-- Filter Pencarian BKK -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 grid grid-cols-1 md:grid-cols-12 gap-3.5">
+                <div class="md:col-span-6 relative">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 text-sm"></i>
+                    <input id="bkk-search" type="text" placeholder="Cari posisi, perusahaan, atau lokasi..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-navy-900 text-sm">
+                </div>
+                <div class="md:col-span-3">
+                    <select id="bkk-filter-jurusan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-navy-900 text-sm bg-white">
+                        <option value="ALL">Semua Jurusan</option>
+                        <option value="TKJ / Jaringan">TKJ / Jaringan</option>
+                        <option value="Teknik / Industri">Teknik / Industri</option>
+                        <option value="Administrasi / Bisnis">Administrasi / Bisnis</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <select id="bkk-filter-tipe" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-navy-900 text-sm bg-white">
+                        <option value="ALL">Semua Tipe Kerja</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Kontrak / Operator">Kontrak / Operator</option>
+                        <option value="Magang / PKL">Magang / PKL</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Daftar Lowongan -->
+            <div id="bkk-lowongan-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14"></div>
+            <div id="bkk-empty" class="hidden text-center py-10 bg-white rounded-2xl border border-slate-200 mb-14">
+                <p class="font-bold text-slate-700 text-sm">Lowongan tidak ditemukan untuk filter tersebut.</p>
+                <button id="bkk-reset-btn" type="button" class="mt-2 text-xs font-bold text-amber-600 hover:underline">Tampilkan Semua Lowongan</button>
+            </div>
+
+            <!-- Form Lamaran BKK Terintegrasi WhatsApp -->
+            <div class="grid lg:grid-cols-12 gap-8 items-start bg-navy-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl">
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="inline-block text-xs font-extrabold uppercase tracking-wider text-amber-400">Registrasi & Lamaran BKK</span>
+                    <h3 class="font-heading text-2xl font-extrabold leading-snug">Kirim Data Lamaran Langsung ke Admin BKK</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Lengkapi data pelamar di samping. Pesan lamaran akan otomatis diarahkan ke WhatsApp BKK SMK Bina Mandiri untuk proses verifikasi dan informasi seleksi.
+                    </p>
+
+                    <div class="bg-navy-950/70 border border-white/10 rounded-2xl p-4 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-bold uppercase tracking-wider text-amber-400">Riwayat Lamaran (Lokal)</p>
+                            <button id="bkk-clear-riwayat" type="button" class="text-[11px] text-slate-400 hover:text-red-300">Bersihkan</button>
+                        </div>
+                        <ul id="bkk-riwayat-list" class="space-y-2 text-xs text-slate-300">
+                            <li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white text-slate-800 rounded-2xl p-6 sm:p-7">
+                    <form onsubmit="kirimLamaranBKK(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="bkk_nama" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Nama Lengkap *</label>
+                                <input id="bkk_nama" type="text" required placeholder="Nama lengkap pelamar" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm">
+                            </div>
+                            <div>
+                                <label for="bkk_wa" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">No. WhatsApp Pelamar *</label>
+                                <input id="bkk_wa" type="tel" required placeholder="08xxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="bkk_jurusan" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Jurusan *</label>
+                                <select id="bkk_jurusan" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm bg-white">
+                                    <option value="">-- Pilih Jurusan --</option>
+                                    <option value="TKJ / Jaringan">TKJ / Jaringan</option>
+                                    <option value="Teknik / Industri">Teknik / Industri</option>
+                                    <option value="Administrasi / Bisnis">Administrasi / Bisnis</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="bkk_lulus" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Tahun Lulus / Kelas *</label>
+                                <input id="bkk_lulus" type="text" required placeholder="Contoh: 2025 atau XII" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="bkk_posisi" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Posisi yang Dilamar *</label>
+                            <select id="bkk_posisi" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm bg-white">
+                                <option value="">-- Pilih Lowongan --</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="bkk_catatan" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Keahlian / Pengalaman Singkat</label>
+                            <textarea id="bkk_catatan" rows="2" placeholder="Tuliskan skill, sertifikat, atau pengalaman PKL/kerja..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-amber-400 hover:bg-amber-300 text-navy-950 font-extrabold py-3.5 px-6 rounded-xl shadow-md transition inline-flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Kirim Lamaran ke WhatsApp BKK</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 8. KONTAK & FOOTER LENGKAP -->
     <footer id="kontak" class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
-                <!-- Kolom 1: Identitas Sekolah -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-navy-900 flex items-center justify-center">
-                            <i class="fa-solid fa-graduation-cap text-lg"></i>
-                        </div>
+                        <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="w-10 h-10 object-contain bg-white rounded-xl p-1">
                         <span class="font-heading font-extrabold text-xl text-white tracking-tight">SMK BINA MANDIRI</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed">
                         Membangun generasi vokasi yang siap kerja, santun, dan inovatif melalui pembelajaran berbasis industri dan teknologi terapan.
                     </p>
-                    <div class="flex items-center gap-3 pt-2">
-                        <a href="#kontak" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#kontak" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                        <a href="#kontak" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#kontak" aria-label="TikTok" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-slate-300 hover:text-navy-900 flex items-center justify-center transition">
-                            <i class="fa-brands fa-tiktok"></i>
-                        </a>
-                    </div>
                 </div>
 
-                <!-- Kolom 2: Tautan Cepat -->
                 <div class="lg:col-span-2 space-y-3">
                     <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Tautan Cepat</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -644,11 +745,11 @@
                         <li><a href="#jurusan" class="hover:text-amber-400 transition">Program Keahlian</a></li>
                         <li><a href="#fasilitas" class="hover:text-amber-400 transition">Fasilitas Sekolah</a></li>
                         <li><a href="#berita" class="hover:text-amber-400 transition">Berita & Agenda</a></li>
+                        <li><a href="#bkk" class="hover:text-amber-400 transition">BKK</a></li>
                         <li><a href="#ppdb" class="hover:text-amber-400 transition">PPDB Online</a></li>
                     </ul>
                 </div>
 
-                <!-- Kolom 3: Informasi Kontak -->
                 <div class="lg:col-span-3 space-y-3">
                     <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Hubungi Kami</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
@@ -664,14 +765,9 @@
                             <i class="fa-solid fa-envelope text-amber-500 shrink-0"></i>
                             <span>info@smkbinamandiripamarayan.github.io</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-clock text-amber-500 mt-1 shrink-0"></i>
-                            <span>Senin – Jumat: 07.00 – 16.00 WIB<br>Sabtu: 07.30 – 13.00 WIB</span>
-                        </li>
                     </ul>
                 </div>
 
-                <!-- Kolom 4: Peta Lokasi Placeholder -->
                 <div class="lg:col-span-3 space-y-3">
                     <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider">Lokasi Kampus</h4>
                     <div class="rounded-xl overflow-hidden border border-slate-800 bg-navy-900 h-40 relative flex flex-col items-center justify-center p-4 text-center">
@@ -690,7 +786,7 @@
 
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                 <p>&copy; 2026 SMK Bina Mandiri. Hak Cipta Dilindungi Undang-Undang.</p>
-                <p>Dikembangkan untuk Pendidikan Vokasi Indonesia.</p>
+                <p>https://smkbinamandiripamarayan.github.io/</p>
             </div>
         </div>
     </footer>
@@ -706,7 +802,7 @@
                         <h3 id="modal-jurusan-title" class="font-heading font-bold text-lg sm:text-xl leading-snug"></h3>
                     </div>
                 </div>
-                <button id="close-jurusan-modal" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                <button id="close-jurusan-modal" type="button" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -724,7 +820,7 @@
                     <p id="modal-jurusan-career" class="text-xs sm:text-sm text-slate-600"></p>
                 </div>
                 <div class="pt-2 flex justify-end gap-3">
-                    <button id="btn-tutup-jurusan" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50">Tutup</button>
+                    <button id="btn-tutup-jurusan" type="button" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50">Tutup</button>
                     <a href="#ppdb" id="btn-daftar-jurusan" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 text-sm font-bold shadow-sm transition">Daftar Jurusan Ini</a>
                 </div>
             </div>
@@ -736,7 +832,7 @@
         <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl">
             <div class="relative h-56 bg-navy-900">
                 <img id="modal-news-img" src="" alt="Gambar Berita" class="w-full h-full object-cover">
-                <button id="close-news-modal" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-navy-900/80 hover:bg-navy-900 text-white flex items-center justify-center transition">
+                <button id="close-news-modal" type="button" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-navy-900/80 hover:bg-navy-900 text-white flex items-center justify-center transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 <span id="modal-news-cat" class="absolute bottom-4 left-6 px-3 py-1 rounded-full bg-amber-500 text-navy-900 text-xs font-bold"></span>
@@ -752,235 +848,234 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT MURNI UNTUK INTERAKTIVITAS LENGKAP -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // ==========================================
-            // 1. DATA JURUSAN (PROGRAM KEAHLIAN)
-            // ==========================================
+        document.addEventListener("DOMContentLoaded", () => {
+            const NOMOR_WA_PPDB = "6285217330133";
+            const NOMOR_WA_BKK_ADMIN = "6285217330133";
+
+            const mobileBtn = document.getElementById("mobile-menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const menuIcon = document.getElementById("menu-icon");
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener("click", () => {
+                    mobileMenu.classList.toggle("hidden");
+                    if (menuIcon) {
+                        menuIcon.classList.toggle("fa-bars");
+                        menuIcon.classList.toggle("fa-xmark");
+                    }
+                });
+
+                document.querySelectorAll(".mobile-link").forEach((link) => {
+                    link.addEventListener("click", () => {
+                        mobileMenu.classList.add("hidden");
+                        if (menuIcon) {
+                            menuIcon.classList.add("fa-bars");
+                            menuIcon.classList.remove("fa-xmark");
+                        }
+                    });
+                });
+            }
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) entry.target.classList.add("visible");
+                    });
+                },
+                { threshold: 0.1 }
+            );
+            document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
+
             const dataJurusan = [
                 {
                     kode: "TKJ",
                     nama: "Teknik Komputer dan Jaringan",
                     ikon: "fa-network-wired",
-                    singkat: "Mempelajari perakitan komputer, instalasi jaringan LAN/WAN, administrasi server, serta keamanan siber dan cloud.",
-                    deskripsi: "Program keahlian Teknik Komputer dan Jaringan (TKJ) membekali siswa dengan keterampilan merancang, membangun, mengelola, dan mengamankan infrastruktur jaringan komputer skala kecil hingga enterprise.",
+                    singkat: "Mempelajari perakitan komputer, instalasi jaringan LAN/WAN, administrasi server, serta keamanan jaringan.",
+                    deskripsi: "Program keahlian Teknik Komputer dan Jaringan (TKJ) membekali siswa dengan keterampilan merancang, membangun, mengelola, dan mengamankan jaringan komputer.",
                     kompetensi: [
-                        "Administrasi Sistem Jaringan (Linux & Windows Server)",
-                        "Konfigurasi Router & Switch (MikroTik & Cisco)",
+                        "Administrasi Sistem Jaringan",
+                        "Konfigurasi Router & Switch",
                         "Instalasi Fiber Optik & Jaringan Nirkabel",
-                        "Dasar Keamanan Siber & Cloud Computing"
+                        "Keamanan Jaringan & Perawatan Perangkat"
                     ],
-                    karir: "Network Engineer, System Administrator, IT Support Specialist, Teknisi Fiber Optik, Wirausaha Layanan Internet."
-                },
-                {
-                    kode: "RPL",
-                    nama: "Rekayasa Perangkat Lunak",
-                    ikon: "fa-code",
-                    singkat: "Fokus pada pemrograman aplikasi web, mobile Android, desain UI/UX, serta pengelolaan basis data modern.",
-                    deskripsi: "Rekayasa Perangkat Lunak (RPL) mencetak developer muda yang mampu menganalisis kebutuhan perangkat lunak, merancang antarmuka pengguna, menulis kode program yang bersih, dan menguji aplikasi siap pakai.",
-                    kompetensi: [
-                        "Full-Stack Web Development (HTML, JS, PHP/Node.js)",
-                        "Pengembangan Aplikasi Mobile Android",
-                        "Desain Antarmuka Pengguna (UI/UX Design)",
-                        "Manajemen Basis Data (MySQL & PostgreSQL)"
-                    ],
-                    karir: "Web Developer, Mobile App Developer, UI/UX Designer, Software Quality Assurance, Freelance Programmer."
-                },
-                {
-                    kode: "AKL",
-                    nama: "Akuntansi dan Keuangan Lembaga",
-                    ikon: "fa-calculator",
-                    singkat: "Menguasai penyusunan laporan keuangan perusahaan, perpajakan, audit dasar, dan aplikasi akuntansi digital.",
-                    deskripsi: "Program keahlian Akuntansi dan Keuangan Lembaga (AKL) mempersiapkan tenaga teknis akuntansi yang teliti, jujur, dan mahir mengoperasikan perangkat lunak akuntansi modern maupun administrasi perpajakan.",
-                    kompetensi: [
-                        "Siklus Akuntansi Perusahaan Jasa, Dagang & Manufaktur",
-                        "Komputer Akuntansi (MYOB / Accurate & Spreadsheet)",
-                        "Administrasi Perpajakan & e-Faktur",
-                        "Pengelolaan Kas Kecil & Perbankan Dasar"
-                    ],
-                    karir: "Staf Akuntansi, Admin Keuangan, Staf Perpajakan, Teller Perbankan, Kasir & Auditor Junior."
-                },
-                {
-                    kode: "TKRO",
-                    nama: "Teknik Kendaraan Ringan Otomotif",
-                    ikon: "fa-car-side",
-                    singkat: "Keahlian perawatan berkala, perbaikan mesin bensin/diesel, sistem kelistrikan otomotif, dan teknologi EFI.",
-                    deskripsi: "Teknik Kendaraan Ringan Otomotif (TKRO) melatih siswa melakukan diagnosis kerusakan, perawatan berkala, dan perbaikan sistem mekanik maupun elektronik pada kendaraan roda empat sesuai standar bengkel resmi.",
-                    kompetensi: [
-                        "Pemeliharaan Mesin Kendaraan Ringan & Sistem EFI",
-                        "Sistem Pemindah Tenaga (Transmisi Manual & Matic)",
-                        "Kelistrikan Otomotif & Sistem AC Kendaraan",
-                        "Penggunaan Engine Scanner & Alat Ukur Presisi"
-                    ],
-                    karir: "Mekanik Bengkel Resmi (ATPM), Service Advisor, Teknisi Quality Control Industri Otomotif, Wirausaha Bengkel."
+                    karir: "Network Engineer, System Administrator, IT Support Specialist, Teknisi Jaringan."
                 },
                 {
                     kode: "MPLB",
                     nama: "Manajemen Perkantoran dan Layanan Bisnis",
                     ikon: "fa-building-user",
                     singkat: "Mempelajari tata kelola administrasi modern, korespondensi digital, kearsipan elektronik, dan layanan pelanggan.",
-                    deskripsi: "Manajemen Perkantoran dan Layanan Bisnis (MPLB) mencetak tenaga administrasi profesional yang cakap berkomunikasi, mahir teknologi perkantoran digital, dan memahami tata kelola layanan bisnis modern.",
+                    deskripsi: "Manajemen Perkantoran dan Layanan Bisnis (MPLB) mencetak tenaga administrasi profesional yang cakap berkomunikasi dan mahir teknologi perkantoran.",
                     kompetensi: [
-                        "Otomatisasi Tata Kelola Perkantoran Digital",
-                        "Korespondensi Bahasa Indonesia & Inggris Bisnis",
-                        "Manajemen Kearsipan Elektronik & Dokumen",
-                        "Public Relations & Pelayanan Prima (Customer Service)"
+                        "Tata Kelola Perkantoran Digital",
+                        "Korespondensi & Administrasi Bisnis",
+                        "Manajemen Kearsipan & Dokumen",
+                        "Pelayanan Prima & Hubungan Masyarakat"
                     ],
-                    karir: "Sekretaris Junior, Staf Administrasi Perkantoran, Resepsionis, Customer Service Officer, Staf HRD."
+                    karir: "Sekretaris Junior, Staf Administrasi Perkantoran, Resepsionis, Customer Service."
                 }
             ];
 
-            // Render Kartu Jurusan
-            const jurusanGrid = document.getElementById('jurusan-grid');
-            dataJurusan.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl p-6 border border-slate-200 hover:border-amber-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer";
-                card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl transition">
-                                <i class="fa-solid ${item.ikon}"></i>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-slate-100 text-navy-900 font-heading font-bold text-xs">${item.kode}</span>
-                        </div>
-                        <h3 class="font-heading font-bold text-xl text-navy-900 group-hover:text-navy-800 mb-2.5">${item.nama}</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed mb-6">${item.singkat}</p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-navy-800 group-hover:text-amber-600 transition">
-                        <span>Lihat Detail Kompetensi</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
-                    </div>
-                `;
-                card.addEventListener('click', () => bukaModalJurusan(item));
-                jurusanGrid.appendChild(card);
-            });
-
-            // Logika Modal Jurusan
-            const jurusanModal = document.getElementById('jurusan-modal');
-            const closeJurusanBtn = document.getElementById('close-jurusan-modal');
-            const btnTutupJurusan = document.getElementById('btn-tutup-jurusan');
-            const btnDaftarJurusan = document.getElementById('btn-daftar-jurusan');
+            const jurusanGrid = document.getElementById("jurusan-grid");
+            const jurusanModal = document.getElementById("jurusan-modal");
+            const closeJurusanBtn = document.getElementById("close-jurusan-modal");
+            const btnTutupJurusan = document.getElementById("btn-tutup-jurusan");
 
             function bukaModalJurusan(item) {
-                document.getElementById('modal-jurusan-icon').innerHTML = `<i class="fa-solid ${item.ikon}"></i>`;
-                document.getElementById('modal-jurusan-code').textContent = `Program Keahlian • ${item.kode}`;
-                document.getElementById('modal-jurusan-title').textContent = item.nama;
-                document.getElementById('modal-jurusan-desc').textContent = item.deskripsi;
-                document.getElementById('modal-jurusan-career').textContent = item.karir;
-
-                const skillsList = document.getElementById('modal-jurusan-skills');
-                skillsList.innerHTML = item.kompetensi.map(skill => `
+                if (!jurusanModal) return;
+                document.getElementById("modal-jurusan-icon").innerHTML = `<i class="fa-solid ${item.ikon}"></i>`;
+                document.getElementById("modal-jurusan-code").textContent = `Program Keahlian • ${item.kode}`;
+                document.getElementById("modal-jurusan-title").textContent = item.nama;
+                document.getElementById("modal-jurusan-desc").textContent = item.deskripsi;
+                document.getElementById("modal-jurusan-career").textContent = item.karir;
+                document.getElementById("modal-jurusan-skills").innerHTML = item.kompetensi
+                    .map(
+                        (skill) => `
                     <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
                         <i class="fa-solid fa-check text-amber-500 mt-0.5 shrink-0"></i>
                         <span>${skill}</span>
                     </li>
-                `).join('');
-
-                // Otomatis pilih jurusan di form PPDB jika user klik "Daftar Jurusan Ini"
-                btnDaftarJurusan.onclick = () => {
-                    tutupModalJurusan();
-                    const selectJurusan1 = document.getElementById('jurusan1');
-                    const fullOptionText = `${item.nama} (${item.kode})`;
-                    selectJurusan1.value = fullOptionText;
-                };
-
-                jurusanModal.classList.remove('hidden');
-                jurusanModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
+                `
+                    )
+                    .join("");
+                jurusanModal.classList.remove("hidden");
+                jurusanModal.classList.add("flex");
+                document.body.style.overflow = "hidden";
             }
 
             function tutupModalJurusan() {
-                jurusanModal.classList.add('hidden');
-                jurusanModal.classList.remove('flex');
-                document.body.style.overflow = '';
+                if (!jurusanModal) return;
+                jurusanModal.classList.add("hidden");
+                jurusanModal.classList.remove("flex");
+                document.body.style.overflow = "";
             }
 
-            closeJurusanBtn.addEventListener('click', tutupModalJurusan);
-            btnTutupJurusan.addEventListener('click', tutupModalJurusan);
-            jurusanModal.addEventListener('click', (e) => {
+            closeJurusanBtn?.addEventListener("click", tutupModalJurusan);
+            btnTutupJurusan?.addEventListener("click", tutupModalJurusan);
+            jurusanModal?.addEventListener("click", (e) => {
                 if (e.target === jurusanModal) tutupModalJurusan();
             });
 
-            // ==========================================
-            // 2. DATA BERITA & FILTER KATEGORI
-            // ==========================================
+            if (jurusanGrid) {
+                jurusanGrid.innerHTML = "";
+                dataJurusan.forEach((item) => {
+                    const card = document.createElement("div");
+                    card.className = "bg-white rounded-2xl p-6 border border-slate-200 hover:border-amber-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer fade-in-up visible";
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl transition">
+                                    <i class="fa-solid ${item.ikon}"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-slate-100 text-navy-900 font-heading font-bold text-xs">${item.kode}</span>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-navy-900 mb-2.5">${item.nama}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">${item.singkat}</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-navy-800 group-hover:text-amber-600 transition">
+                            <span>Lihat Detail Kompetensi</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    `;
+                    card.addEventListener("click", () => bukaModalJurusan(item));
+                    jurusanGrid.appendChild(card);
+                });
+            }
+
             const dataBerita = [
                 {
                     id: 1,
-                    kategori: "Prestasi",
-                    tanggal: "12 November 2026",
-                    judul: "Tim RPL SMK Bina Mandiri Raih Juara 1 Lomba Kompetensi Siswa (LKS) Tingkat Provinsi",
-                    ringkasan: "Membanggakan! Siswa jurusan Rekayasa Perangkat Lunak berhasil menyisihkan 35 peserta lain dalam bidang Web Technologies.",
+                    kategori: "Pengumuman",
+                    tanggal: "Tahun Ajaran Baru",
+                    judul: "Penerimaan Peserta Didik Baru (PPDB) SMK Bina Mandiri Dibuka",
+                    ringkasan: "Pendaftaran calon siswa baru SMK Bina Mandiri Pamarayan telah dibuka. Lengkapi formulir PPDB online melalui website.",
                     gambar: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80",
                     konten: [
-                        "Tim delegasi Rekayasa Perangkat Lunak (RPL) SMK Bina Mandiri kembali menorehkan prestasi gemilang dengan meraih medali emas (Juara 1) pada ajang Lomba Kompetensi Siswa (LKS) SMK Tingkat Provinsi tahun ini.",
-                        "Dalam perlombaan yang berlangsung selama tiga hari tersebut, peserta ditantang membangun sistem informasi manajemen terintegrasi berbasis web dengan standar keamanan dan kecepatan tinggi.",
-                        "Kepala Sekolah memberikan apresiasi tinggi kepada siswa dan guru pembimbing yang telah berlatih intensif selama empat bulan terakhir. Selanjutnya, tim akan mewakili provinsi menuju LKS Tingkat Nasional."
+                        "Pendaftaran calon peserta didik baru di SMK Bina Mandiri Pamarayan telah dibuka untuk program keahlian unggulan.",
+                        "Calon siswa dapat mengisi formulir pendaftaran online secara langsung dan terhubung dengan panitia PPDB melalui WhatsApp."
                     ]
                 },
                 {
                     id: 2,
                     kategori: "Kegiatan",
-                    tanggal: "04 November 2026",
-                    judul: "Kunjungan Industri & Penandatanganan MoU dengan 12 Perusahaan Teknologi dan Otomotif",
-                    ringkasan: "Memperkuat link and match kurikulum industri, SMK Bina Mandiri resmi menjalin kerja sama penempatan PKL dan rekrutmen lulusan.",
+                    tanggal: "Agenda Akademik",
+                    judul: "Penguatan Praktik Kejuruan & Kemitraan Industri",
+                    ringkasan: "Pembelajaran praktik siswa diarahkan pada penguasaan keterampilan teknis dan kesiapan kerja di dunia industri.",
                     gambar: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80",
                     konten: [
-                        "Sebagai wujud komitmen sebagai SMK Pusat Keunggulan, SMK Bina Mandiri menggelar acara Penandatanganan Nota Kesepahaman (MoU) bersama 12 mitra industri strategis dari sektor teknologi informasi, manufaktur otomotif, dan perbankan.",
-                        "Kerja sama ini mencakup sinkronisasi kurikulum ajar, program guru tamu dari praktisi industri, pemagangan siswa (PKL) bersertifikat, hingga rekrutmen langsung melalui Bursa Kerja Khusus (BKK) sekolah.",
-                        "Diharapkan kolaborasi ini semakin meningkatkan keterserapan lulusan SMK Bina Mandiri di dunia kerja sebelum masa kelulusan tiba."
+                        "SMK Bina Mandiri memperkuat pembelajaran praktik berbasis kompetensi agar siswa terbiasa dengan standar kerja industri.",
+                        "Kerja sama dengan dunia usaha dan industri juga mendukung pelaksanaan PKL serta penyaluran karir lulusan."
                     ]
                 },
                 {
                     id: 3,
-                    kategori: "Pengumuman",
-                    tanggal: "28 Oktober 2026",
-                    judul: "Jadwal Uji Kompetensi Keahlian (UKK) & Sertifikasi BNSP Kelas XII Semester Genap",
-                    ringkasan: "Informasi penting bagi seluruh siswa kelas XII mengenai persiapan portofolio, pra-UKK, dan jadwal asesmen bersama LSP.",
+                    kategori: "Prestasi",
+                    tanggal: "BKK SMK Bina Mandiri",
+                    judul: "Fasilitasi Penyaluran Kerja & Info Lowongan Melalui BKK",
+                    ringkasan: "Bursa Kerja Khusus membantu menyalurkan informasi lowongan dan pendaftaran pelamar bagi siswa maupun alumni.",
                     gambar: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80",
                     konten: [
-                        "Diberitahukan kepada seluruh peserta didik kelas XII dari semua kompetensi keahlian (TKJ, RPL, AKL, TKRO, dan MPLB) bahwa pelaksanaan Uji Kompetensi Keahlian (UKK) bekerja sama dengan Lembaga Sertifikasi Profesi (LSP) akan dimulai bulan depan.",
-                        "Seluruh siswa wajib mengikuti kegiatan Pra-UKK dan melengkapi berkas administrasi pendaftaran asesmen melalui Ketua Program Keahlian masing-masing paling lambat akhir bulan ini.",
-                        "Sertifikat kompetensi berlogo Garuda dari BNSP yang diperoleh dari ujian ini akan menjadi bekal penting melamar pekerjaan."
+                        "Melalui layanan Bursa Kerja Khusus (BKK), siswa dan alumni dapat memantau lowongan kerja dan mengirimkan lamaran secara terarah.",
+                        "Admin BKK memandu proses verifikasi dan informasi seleksi bersama perusahaan mitra."
                     ]
                 }
             ];
 
-            const newsGrid = document.getElementById('news-grid');
-            const filterBtns = document.querySelectorAll('.filter-btn');
+            const newsGrid = document.getElementById("news-grid");
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const newsModal = document.getElementById("news-modal");
+            const closeNewsBtn = document.getElementById("close-news-modal");
 
-            function renderBerita(kategoriFilter = 'Semua') {
-                newsGrid.innerHTML = '';
-                const filtered = kategoriFilter === 'Semua' 
-                    ? dataBerita 
-                    : dataBerita.filter(b => b.kategori === kategoriFilter);
+            function bukaModalBerita(item) {
+                if (!newsModal) return;
+                const imgEl = document.getElementById("modal-news-img");
+                imgEl.src = item.gambar;
+                imgEl.onerror = () => {
+                    imgEl.src = "https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri";
+                };
+                document.getElementById("modal-news-cat").textContent = item.kategori;
+                document.getElementById("modal-news-date").textContent = item.tanggal;
+                document.getElementById("modal-news-title").textContent = item.judul;
+                document.getElementById("modal-news-content").innerHTML = item.konten.map((p) => `<p>${p}</p>`).join("");
+                newsModal.classList.remove("hidden");
+                newsModal.classList.add("flex");
+                document.body.style.overflow = "hidden";
+            }
 
-                filtered.forEach(item => {
-                    const card = document.createElement('article');
+            function tutupModalBerita() {
+                if (!newsModal) return;
+                newsModal.classList.add("hidden");
+                newsModal.classList.remove("flex");
+                document.body.style.overflow = "";
+            }
+
+            closeNewsBtn?.addEventListener("click", tutupModalBerita);
+            newsModal?.addEventListener("click", (e) => {
+                if (e.target === newsModal) tutupModalBerita();
+            });
+
+            function renderBerita(kategoriFilter = "Semua") {
+                if (!newsGrid) return;
+                newsGrid.innerHTML = "";
+                const filtered = kategoriFilter === "Semua" ? dataBerita : dataBerita.filter((b) => b.kategori === kategoriFilter);
+                filtered.forEach((item) => {
+                    const card = document.createElement("article");
                     card.className = "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group";
                     card.innerHTML = `
                         <div>
                             <div class="relative h-48 overflow-hidden bg-navy-900">
-                                <img src="${item.gambar}" 
-                                     onerror="this.src='https://placehold.co/700x400/0F172A/F59E0B?text=Berita+SMK+Bina+Mandiri'" 
-                                     alt="${item.judul}" 
-                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-navy-900/90 text-amber-400 text-xs font-bold backdrop-blur-sm">
-                                    ${item.kategori}
-                                </span>
+                                <img src="${item.gambar}" onerror="this.src='https://placehold.co/700x400/0F172A/F59E0B?text=Berita+SMK+Bina+Mandiri'" alt="${item.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-navy-900/90 text-amber-400 text-xs font-bold">${item.kategori}</span>
                             </div>
                             <div class="p-6">
                                 <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
                                     <i class="fa-regular fa-calendar text-amber-500"></i>
                                     <span>${item.tanggal}</span>
                                 </div>
-                                <h3 class="font-heading font-bold text-lg text-navy-900 group-hover:text-navy-800 leading-snug mb-2.5 line-clamp-2">
-                                    ${item.judul}
-                                </h3>
-                                <p class="text-sm text-slate-600 line-clamp-3 leading-relaxed">
-                                    ${item.ringkasan}
-                                </p>
+                                <h3 class="font-heading font-bold text-lg text-navy-900 leading-snug mb-2.5">${item.judul}</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">${item.ringkasan}</p>
                             </div>
                         </div>
                         <div class="px-6 pb-6">
@@ -990,228 +1085,53 @@
                             </button>
                         </div>
                     `;
-                    card.querySelector('.read-news-btn').addEventListener('click', () => bukaModalBerita(item));
+                    card.querySelector(".read-news-btn")?.addEventListener("click", () => bukaModalBerita(item));
                     newsGrid.appendChild(card);
                 });
             }
 
-            // Event Listener Filter Berita
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-navy-900', 'text-white', 'shadow-sm');
-                        b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            filterBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach((b) => {
+                        b.classList.remove("bg-navy-900", "text-white", "shadow-sm");
+                        b.classList.add("bg-white", "text-slate-600", "border", "border-slate-200");
                     });
-                    btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-                    btn.classList.add('bg-navy-900', 'text-white', 'shadow-sm');
-                    
+                    btn.classList.remove("bg-white", "text-slate-600", "border", "border-slate-200");
+                    btn.classList.add("bg-navy-900", "text-white", "shadow-sm");
                     renderBerita(btn.dataset.filter);
                 });
             });
 
-            // Modal Berita
-            const newsModal = document.getElementById('news-modal');
-            const closeNewsBtn = document.getElementById('close-news-modal');
+            renderBerita("Semua");
 
-            function bukaModalBerita(item) {
-                const imgEl = document.getElementById('modal-news-img');
-                imgEl.src = item.gambar;
-                imgEl.onerror = () => { imgEl.src = 'https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri'; };
-                
-                document.getElementById('modal-news-cat').textContent = item.kategori;
-                document.getElementById('modal-news-date').textContent = item.tanggal;
-                document.getElementById('modal-news-title').textContent = item.judul;
-                document.getElementById('modal-news-content').innerHTML = item.konten.map(p => `<p>${p}</p>`).join('');
-
-                newsModal.classList.remove('hidden');
-                newsModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
+            function normalisasiWA(no) {
+                let clean = (no || "").replace(/\D/g, "");
+                if (clean.startsWith("0")) clean = "62" + clean.slice(1);
+                return clean;
             }
 
-            function tutupModalBerita() {
-                newsModal.classList.add('hidden');
-                newsModal.classList.remove('flex');
-                document.body.style.overflow = '';
-            }
-
-            closeNewsBtn.addEventListener('click', tutupModalBerita);
-            newsModal.addEventListener('click', (e) => {
-                if (e.target === newsModal) tutupModalBerita();
-            });
-
-            // Render awal semua berita
-            renderBerita('Semua');
-
-            // ==========================================
-            // 3. FORMULIR PPDB ONLINE & VALIDASI
-            // ==========================================
-            const ppdbForm = document.getElementById('ppdb-form');
-            const successBox = document.getElementById('ppdb-success-box');
-            const regNumberDisplay = document.getElementById('reg-number-display');
-            const regSummaryText = document.getElementById('reg-summary-text');
-            const copyRegBtn = document.getElementById('copy-reg-btn');
-            const resetPpdbBtn = document.getElementById('reset-ppdb-btn');
-
-            function showFieldError(inputEl, show, customMsg = null) {
-                const errorP = inputEl.parentElement.querySelector('.error-msg');
-                if (show) {
-                    inputEl.classList.add('border-red-500', 'ring-1', 'ring-red-500');
-                    if (customMsg && errorP) errorP.textContent = customMsg;
-                    if (errorP) errorP.classList.remove('hidden');
-                } else {
-                    inputEl.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
-                    if (errorP) errorP.classList.add('hidden');
-                }
-            }
-
-            ppdbForm.addEventListener('submit', (e) => {
+            const ppdbForm = document.getElementById("ppdb-form");
+            ppdbForm?.addEventListener("submit", (e) => {
                 e.preventDefault();
-                let isValid = true;
+                const nama = document.getElementById("nama")?.value.trim() || "";
+                const asalSekolah = document.getElementById("asal_sekolah")?.value.trim() || "";
+                const jurusan = document.getElementById("jurusan")?.value || "";
+                const noHp = normalisasiWA(document.getElementById("no_hp")?.value.trim() || "");
+                const alamat = document.getElementById("alamat")?.value.trim() || "-";
 
-                const nama = document.getElementById('nama');
-                const asal = document.getElementById('asal_sekolah');
-                const j1 = document.getElementById('jurusan1');
-                const j2 = document.getElementById('jurusan2');
-                const wa = document.getElementById('whatsapp');
-                const alamat = document.getElementById('alamat');
+                const pesan =
+                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
+                    `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
+                    `- Asal Sekolah: *${encodeURIComponent(asalSekolah)}*%0A` +
+                    `- Pilihan Jurusan: *${encodeURIComponent(jurusan)}*%0A` +
+                    `- No. WA: *${encodeURIComponent(noHp)}*%0A` +
+                    `- Alamat: *${encodeURIComponent(alamat)}*`;
 
-                // Validasi Nama
-                if (nama.value.trim().length < 3) {
-                    showFieldError(nama, true);
-                    isValid = false;
-                } else {
-                    showFieldError(nama, false);
-                }
-
-                // Validasi Asal Sekolah
-                if (asal.value.trim().length < 3) {
-                    showFieldError(asal, true);
-                    isValid = false;
-                } else {
-                    showFieldError(asal, false);
-                }
-
-                // Validasi Jurusan 1
-                if (!j1.value) {
-                    showFieldError(j1, true);
-                    isValid = false;
-                } else {
-                    showFieldError(j1, false);
-                }
-
-                // Validasi Jurusan 2 (tidak boleh kosong & tidak boleh sama dengan jurusan 1)
-                if (!j2.value) {
-                    showFieldError(j2, true, "Silakan pilih jurusan kedua.");
-                    isValid = false;
-                } else if (j2.value === j1.value) {
-                    showFieldError(j2, true, "Pilihan jurusan 2 harus berbeda dengan jurusan 1.");
-                    isValid = false;
-                } else {
-                    showFieldError(j2, false);
-                }
-
-                // Validasi Nomor WhatsApp (hanya angka, minimal 10 digit)
-                const cleanWa = wa.value.replace(/\D/g, '');
-                if (cleanWa.length < 10 || cleanWa.length > 15) {
-                    showFieldError(wa, true);
-                    isValid = false;
-                } else {
-                    showFieldError(wa, false);
-                }
-
-                // Validasi Alamat
-                if (alamat.value.trim().length < 5) {
-                    showFieldError(alamat, true);
-                    isValid = false;
-                } else {
-                    showFieldError(alamat, false);
-                }
-
-                if (!isValid) return;
-
-                // Generate Nomor Pendaftaran Otomatis
-                const randomDigits = Math.floor(1000 + Math.random() * 9000);
-                const regCode = `PPDB-BM-2026-${randomDigits}`;
-
-                regNumberDisplay.textContent = regCode;
-                regSummaryText.innerHTML = `Atas nama <strong>${nama.value.trim()}</strong> (${asal.value.trim()}) — Pilihan 1: <strong>${j1.value}</strong>.`;
-
-                // Tampilkan Notifikasi & Sembunyikan Form Sementara
-                ppdbForm.classList.add('hidden');
-                successBox.classList.remove('hidden');
-                successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                window.open(`https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`, "_blank", "noopener,noreferrer");
             });
 
-            // Tombol Salin Kode Registrasi
-            copyRegBtn.addEventListener('click', () => {
-                const textToCopy = regNumberDisplay.textContent;
-                const tempInput = document.createElement('input');
-                tempInput.value = textToCopy;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-
-                const originalHtml = copyRegBtn.innerHTML;
-                copyRegBtn.innerHTML = `<i class="fa-solid fa-check mr-1"></i> Tersalin!`;
-                copyRegBtn.classList.replace('bg-navy-900', 'bg-emerald-600');
-                setTimeout(() => {
-                    copyRegBtn.innerHTML = originalHtml;
-                    copyRegBtn.classList.replace('bg-emerald-600', 'bg-navy-900');
-                }, 2000);
-            });
-
-            // Reset Form PPDB
-            resetPpdbBtn.addEventListener('click', () => {
-                ppdbForm.reset();
-                successBox.classList.add('hidden');
-                ppdbForm.classList.remove('hidden');
-            });
-
-            // ==========================================
-            // 4. NAVIGASI MOBILE & ANIMASI SCROLL
-            // ==========================================
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                const isHidden = mobileMenu.classList.contains('hidden');
-                if (isHidden) {
-                    mobileMenu.classList.remove('hidden');
-                    menuIcon.classList.replace('fa-bars', 'fa-xmark');
-                } else {
-                    mobileMenu.classList.add('hidden');
-                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
-                }
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
-                });
-            });
-
-            // Intersection Observer untuk animasi muncul saat di-scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-
-            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-        });
-        <script>
-        (function () {
-            // GANTI DENGAN NOMOR WHATSAPP ADMIN BKK (FORMAT 62, TANPA 0 DI DEPAN)
-            const NOMOR_WA_BKK_ADMIN = "6285217330133";
+            // FITUR BKK
             const BKK_STORAGE_KEY = "smkbm_bkk_riwayat_v1";
-
             const bkkLowongan = [
                 {
                     posisi: "Network & IT Support Technician",
@@ -1256,154 +1176,147 @@
             const totalLokEl = document.getElementById("bkk-total-lok");
             const riwayatListEl = document.getElementById("bkk-riwayat-list");
 
-            if (!gridEl || !posisiSelectEl) return;
+            if (gridEl && posisiSelectEl) {
+                if (totalLokEl) totalLokEl.textContent = bkkLowongan.length;
 
-            totalLokEl.textContent = bkkLowongan.length;
-
-            bkkLowongan.forEach((item) => {
-                const opt = document.createElement("option");
-                const label = `${item.posisi} - ${item.perusahaan}`;
-                opt.value = label;
-                opt.textContent = label;
-                posisiSelectEl.appendChild(opt);
-            });
-
-            window.bkkPilihPosisi = function (posisiLabel) {
-                posisiSelectEl.value = posisiLabel;
-                document.getElementById("bkk_nama").focus();
-            };
-
-            function renderBkkLowongan() {
-                const q = searchEl.value.trim().toLowerCase();
-                const jur = jurusanEl.value;
-                const tip = tipeEl.value;
-
-                const filtered = bkkLowongan.filter((item) => {
-                    const matchQ =
-                        !q ||
-                        item.posisi.toLowerCase().includes(q) ||
-                        item.perusahaan.toLowerCase().includes(q) ||
-                        item.lokasi.toLowerCase().includes(q);
-                    const matchJur = jur === "ALL" || item.jurusan === jur;
-                    const matchTip = tip === "ALL" || item.tipe === tip;
-                    return matchQ && matchJur && matchTip;
+                bkkLowongan.forEach((item) => {
+                    const opt = document.createElement("option");
+                    const label = `${item.posisi} - ${item.perusahaan}`;
+                    opt.value = label;
+                    opt.textContent = label;
+                    posisiSelectEl.appendChild(opt);
                 });
 
-                gridEl.innerHTML = "";
-                if (filtered.length === 0) {
-                    emptyEl.classList.remove("hidden");
-                    return;
-                }
-                emptyEl.classList.add("hidden");
+                window.bkkPilihPosisi = function (posisiLabel) {
+                    posisiSelectEl.value = posisiLabel;
+                    document.getElementById("bkk_nama")?.focus();
+                };
 
-                filtered.forEach((item) => {
-                    const labelPosisi = `${item.posisi} - ${item.perusahaan}`;
-                    const card = document.createElement("div");
-                    card.className = "bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs flex flex-col justify-between";
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800">${item.jurusan}</span>
-                                <span class="text-xs font-semibold text-slate-500">${item.tipe}</span>
+                function renderBkkLowongan() {
+                    const q = (searchEl?.value || "").trim().toLowerCase();
+                    const jur = jurusanEl?.value || "ALL";
+                    const tip = tipeEl?.value || "ALL";
+
+                    const filtered = bkkLowongan.filter((item) => {
+                        const matchQ =
+                            !q ||
+                            item.posisi.toLowerCase().includes(q) ||
+                            item.perusahaan.toLowerCase().includes(q) ||
+                            item.lokasi.toLowerCase().includes(q);
+                        const matchJur = jur === "ALL" || item.jurusan === jur;
+                        const matchTip = tip === "ALL" || item.tipe === tip;
+                        return matchQ && matchJur && matchTip;
+                    });
+
+                    gridEl.innerHTML = "";
+                    if (filtered.length === 0) {
+                        emptyEl?.classList.remove("hidden");
+                        return;
+                    }
+                    emptyEl?.classList.add("hidden");
+
+                    filtered.forEach((item) => {
+                        const labelPosisi = `${item.posisi} - ${item.perusahaan}`;
+                        const card = document.createElement("div");
+                        card.className = "bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs flex flex-col justify-between";
+                        card.innerHTML = `
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800">${item.jurusan}</span>
+                                    <span class="text-xs font-semibold text-slate-500">${item.tipe}</span>
+                                </div>
+                                <h4 class="font-heading text-lg font-extrabold text-navy-900">${item.posisi}</h4>
+                                <p class="text-sm font-semibold text-slate-600 mt-0.5">${item.perusahaan}</p>
+                                <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>${item.lokasi}</p>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-3">${item.ringkasan}</p>
                             </div>
-                            <h4 class="text-lg font-extrabold text-navy-900">${item.posisi}</h4>
-                            <p class="text-sm font-semibold text-slate-600 mt-0.5">${item.perusahaan}</p>
-                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>${item.lokasi}</p>
-                            <p class="text-xs sm:text-sm text-slate-600 mt-3">${item.ringkasan}</p>
-                        </div>
-                        <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
-                            <button type="button" onclick="bkkPilihPosisi('${labelPosisi.replace(/'/g, "\\'")}')" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
-                                Pilih Posisi Ini
-                            </button>
-                        </div>
-                    `;
-                    gridEl.appendChild(card);
-                });
-            }
-
-            function loadBkkRiwayat() {
-                try {
-                    return JSON.parse(localStorage.getItem(BKK_STORAGE_KEY)) || [];
-                } catch {
-                    return [];
+                            <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                                <button type="button" onclick="bkkPilihPosisi('${labelPosisi.replace(/'/g, "\\'")}')" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                    Pilih Posisi Ini
+                                </button>
+                            </div>
+                        `;
+                        gridEl.appendChild(card);
+                    });
                 }
-            }
 
-            function renderBkkRiwayat() {
-                const items = loadBkkRiwayat();
-                if (items.length === 0) {
-                    riwayatListEl.innerHTML = '<li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>';
-                    return;
+                function loadBkkRiwayat() {
+                    try {
+                        return JSON.parse(localStorage.getItem(BKK_STORAGE_KEY)) || [];
+                    } catch {
+                        return [];
+                    }
                 }
-                riwayatListEl.innerHTML = items
-                    .map(
-                        (it) => `
-                    <li class="bg-navy-900/80 border border-white/10 rounded-xl p-2.5">
-                        <p class="font-bold text-white">${it.nama} <span class="text-amber-400 font-normal">(${it.tgl})</span></p>
-                        <p class="text-slate-300 truncate">${it.posisi}</p>
-                    </li>
-                `
-                    )
-                    .join("");
-            }
 
-            function normWa(num) {
-                let d = num.replace(/\D/g, "");
-                if (d.startsWith("0")) d = "62" + d.slice(1);
-                return d;
-            }
+                function renderBkkRiwayat() {
+                    if (!riwayatListEl) return;
+                    const items = loadBkkRiwayat();
+                    if (items.length === 0) {
+                        riwayatListEl.innerHTML = '<li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>';
+                        return;
+                    }
+                    riwayatListEl.innerHTML = items
+                        .map(
+                            (it) => `
+                        <li class="bg-navy-900/80 border border-white/10 rounded-xl p-2.5">
+                            <p class="font-bold text-white">${it.nama} <span class="text-amber-400 font-normal">(${it.tgl})</span></p>
+                            <p class="text-slate-300 truncate">${it.posisi}</p>
+                        </li>
+                    `
+                        )
+                        .join("");
+                }
 
-            window.kirimLamaranBKK = function (event) {
-                event.preventDefault();
-                const nama = document.getElementById("bkk_nama").value.trim();
-                const wa = normWa(document.getElementById("bkk_wa").value.trim());
-                const jurusan = document.getElementById("bkk_jurusan").value;
-                const lulus = document.getElementById("bkk_lulus").value.trim();
-                const posisi = document.getElementById("bkk_posisi").value;
-                const catatan = document.getElementById("bkk_catatan").value.trim() || "-";
+                window.kirimLamaranBKK = function (event) {
+                    event.preventDefault();
+                    const nama = document.getElementById("bkk_nama")?.value.trim() || "";
+                    const wa = normalisasiWA(document.getElementById("bkk_wa")?.value.trim() || "");
+                    const jurusan = document.getElementById("bkk_jurusan")?.value || "";
+                    const lulus = document.getElementById("bkk_lulus")?.value.trim() || "";
+                    const posisi = document.getElementById("bkk_posisi")?.value || "";
+                    const catatan = document.getElementById("bkk_catatan")?.value.trim() || "-";
 
-                const prev = loadBkkRiwayat();
-                prev.unshift({
-                    nama,
-                    posisi,
-                    tgl: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short" })
+                    const prev = loadBkkRiwayat();
+                    prev.unshift({
+                        nama,
+                        posisi,
+                        tgl: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short" })
+                    });
+                    localStorage.setItem(BKK_STORAGE_KEY, JSON.stringify(prev.slice(0, 5)));
+                    renderBkkRiwayat();
+
+                    const teks =
+                        `Halo Admin BKK SMK Bina Mandiri, saya mengajukan lamaran:%0A%0A` +
+                        `- Nama: *${encodeURIComponent(nama)}*%0A` +
+                        `- No. WA: *${encodeURIComponent(wa)}*%0A` +
+                        `- Jurusan: *${encodeURIComponent(jurusan)}*%0A` +
+                        `- Tahun Lulus / Kelas: *${encodeURIComponent(lulus)}*%0A` +
+                        `- Posisi: *${encodeURIComponent(posisi)}*%0A` +
+                        `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
+
+                    window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
+                };
+
+                searchEl?.addEventListener("input", renderBkkLowongan);
+                jurusanEl?.addEventListener("change", renderBkkLowongan);
+                tipeEl?.addEventListener("change", renderBkkLowongan);
+
+                document.getElementById("bkk-reset-btn")?.addEventListener("click", () => {
+                    if (searchEl) searchEl.value = "";
+                    if (jurusanEl) jurusanEl.value = "ALL";
+                    if (tipeEl) tipeEl.value = "ALL";
+                    renderBkkLowongan();
                 });
-                localStorage.setItem(BKK_STORAGE_KEY, JSON.stringify(prev.slice(0, 5)));
-                renderBkkRiwayat();
 
-                const teks =
-                    `Halo Admin BKK SMK Bina Mandiri, saya mengajukan lamaran:%0A%0A` +
-                    `- Nama: *${encodeURIComponent(nama)}*%0A` +
-                    `- No. WA: *${encodeURIComponent(wa)}*%0A` +
-                    `- Jurusan: *${encodeURIComponent(jurusan)}*%0A` +
-                    `- Tahun Lulus / Kelas: *${encodeURIComponent(lulus)}*%0A` +
-                    `- Posisi: *${encodeURIComponent(posisi)}*%0A` +
-                    `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
+                document.getElementById("bkk-clear-riwayat")?.addEventListener("click", () => {
+                    localStorage.removeItem(BKK_STORAGE_KEY);
+                    renderBkkRiwayat();
+                });
 
-                window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
-            };
-
-            searchEl.addEventListener("input", renderBkkLowongan);
-            jurusanEl.addEventListener("change", renderBkkLowongan);
-            tipeEl.addEventListener("change", renderBkkLowongan);
-
-            document.getElementById("bkk-reset-btn").addEventListener("click", () => {
-                searchEl.value = "";
-                jurusanEl.value = "ALL";
-                tipeEl.value = "ALL";
                 renderBkkLowongan();
-            });
-
-            document.getElementById("bkk-clear-riwayat").addEventListener("click", () => {
-                localStorage.removeItem(BKK_STORAGE_KEY);
                 renderBkkRiwayat();
-            });
-
-            renderBkkLowongan();
-            renderBkkRiwayat();
-        })();
-    </script>
-</body>
+            }
+        });
     </script>
 </body>
 </html>

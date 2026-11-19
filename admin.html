@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin | SMK Bina Mandiri</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9}textarea,input{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px;background:white}button{border-radius:10px;padding:10px 14px;font-weight:700}</style>
+</head>
+<body class="text-slate-800">
+<header class="bg-slate-900 text-white px-5 py-5"><div class="max-w-6xl mx-auto flex flex-wrap justify-between gap-3 items-center"><div><p class="text-amber-400 text-sm font-bold">PANEL PENGELOLAAN</p><h1 class="text-2xl font-extrabold">SMK BINA MANDIRI</h1></div><a class="text-sm underline" href="index.html">← Kembali ke website</a></div></header>
+<main class="max-w-6xl mx-auto p-5 space-y-5">
+<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm"><b>Catatan penting:</b> versi ini menyimpan draf di browser/perangkat yang sedang digunakan (localStorage), bukan database online. Data tidak otomatis tampil di perangkat pengunjung lain dan dapat hilang jika data browser dihapus. Jangan masukkan data pribadi/sensitif siswa. Untuk admin online multi-perangkat diperlukan backend atau proses publikasi melalui GitHub.</div>
+<section class="bg-white rounded-2xl p-5 shadow-sm"><h2 class="font-bold text-lg mb-3">Pilih modul</h2><div id="tabs" class="flex flex-wrap gap-2"></div></section>
+<section class="grid md:grid-cols-2 gap-5">
+<div class="bg-white rounded-2xl p-5 shadow-sm space-y-3">
+<h2 id="formTitle" class="font-bold text-lg">Tambah konten</h2>
+<label class="block text-sm font-semibold">Judul / Nama<input id="title" placeholder="Masukkan judul atau nama"></label>
+<label class="block text-sm font-semibold">Keterangan<textarea id="description" rows="4" placeholder="Isi informasi"></textarea></label>
+<label class="block text-sm font-semibold">Tautan (opsional)<input id="url" placeholder="https://..."></label>
+<div class="flex flex-wrap gap-2"><button id="save" class="bg-blue-700 text-white">Simpan draf</button><button id="clear" class="bg-slate-200">Kosongkan</button></div><p id="status" class="text-sm text-emerald-700"></p>
+</div>
+<div class="bg-white rounded-2xl p-5 shadow-sm"><div class="flex justify-between items-center gap-3 mb-3"><h2 class="font-bold text-lg">Daftar draf</h2><span id="count" class="text-xs text-slate-500"></span></div><div id="items" class="space-y-3 text-sm"></div></div>
+</section>
+<section class="bg-white rounded-2xl p-5 shadow-sm space-y-3"><h2 class="font-bold text-lg">Cadangkan / pindahkan data</h2><p class="text-sm text-slate-600">Ekspor data menjadi file JSON sebagai cadangan. Impor file JSON ini saat membuka panel admin dari browser lain. Impor akan mengganti data draf lokal yang ada.</p><div class="flex flex-wrap gap-2"><button id="export" class="bg-emerald-700 text-white">Ekspor JSON</button><label class="bg-slate-200 rounded-xl px-4 py-2 font-bold cursor-pointer">Impor JSON<input id="import" type="file" accept="application/json" class="hidden"></label><button id="wipe" class="bg-red-100 text-red-700">Hapus semua draf lokal</button></div></section>
+</main>
+<script>
+const modules=['PPDB','BKK','Berita & Agenda','Galeri','Akademik','Perpustakaan','Alumni'];
+let active=modules[0],data=JSON.parse(localStorage.getItem('smbm_admin_drafts')||'{}'),editing=null;
+const $=id=>document.getElementById(id);
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function saveStore(){localStorage.setItem('smbm_admin_drafts',JSON.stringify(data));renderItems()}
+function clearForm(){$('title').value='';$('description').value='';$('url').value='';$('formTitle').textContent='Tambah konten';$('status').textContent='';editing=null}
+function renderTabs(){$('tabs').innerHTML=modules.map(m=>'<button data-m="'+m+'" class="'+(m===active?'bg-blue-700 text-white':'bg-slate-100')+'">'+m+'</button>').join('');document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{active=b.dataset.m;clearForm();renderTabs();renderItems()})}
+function renderItems(){const arr=data[active]||[];$('count').textContent=arr.length+' item';$('items').innerHTML=arr.length?arr.map((x,i)=>'<article class="border rounded-xl p-3"><div class="font-bold">'+esc(x.title)+'</div><p class="text-slate-600 my-1">'+esc(x.description)+'</p>'+(x.url?'<a class="text-blue-700 underline break-all" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.url)+'</a>':'')+'<div class="flex gap-2 mt-3"><button class="bg-amber-100" data-edit="'+i+'">Edit</button><button class="bg-red-100 text-red-700" data-del="'+i+'">Hapus</button></div></article>').join(''):'<p class="text-slate-500">Belum ada draf pada modul ini.</p>';
+document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{let i=+b.dataset.edit,x=arr[i];editing=i;$('title').value=x.title;$('description').value=x.description;$('url').value=x.url||'';$('formTitle').textContent='Edit konten';window.scrollTo({top:250,behavior:'smooth'})});
+document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Hapus draf ini?')){arr.splice(+b.dataset.del,1);saveStore()}})}
+$('save').onclick=()=>{let title=$('title').value.trim();if(!title){$('status').textContent='Judul wajib diisi.';return}let item={title,description:$('description').value.trim(),url:$('url').value.trim(),updatedAt:new Date().toISOString()};data[active]=data[active]||[];if(editing===null)data[active].push(item);else data[active][editing]=item;saveStore();clearForm();$('status').textContent='Draf tersimpan di browser ini.'};
+$('clear').onclick=clearForm;
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='draf-smk-bina-mandiri.json';a.click();URL.revokeObjectURL(a.href)};
+$('import').onchange=async e=>{try{let parsed=JSON.parse(await e.target.files[0].text());if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw Error();data=parsed;saveStore();alert('Data berhasil diimpor ke browser ini.')}catch{alert('File JSON tidak valid.')}e.target.value=''};
+$('wipe').onclick=()=>{if(confirm('Yakin menghapus seluruh draf dari browser ini?')){data={};saveStore();clearForm()}};
+renderTabs();renderItems();
+</script>
+</body></html>

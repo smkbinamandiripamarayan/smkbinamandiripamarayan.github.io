@@ -604,10 +604,10 @@
         </div>
     </section>
 
-    <!-- BURSA KERJA KHUSUS (BKK) SMK BINA MANDIRI -->
+  <!-- BURSA KERJA KHUSUS (BKK) SMK BINA MANDIRI -->
     <section id="bkk" class="py-20 bg-slate-50 text-slate-800 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                 <div>
                     <span class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Bursa Kerja Khusus</span>
                     <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-navy-900 mt-1">Info Lowongan & Penyaluran Kerja BKK</h2>
@@ -616,12 +616,46 @@
                     </p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-navy-900 shadow-2xs">
-                    Lowongan Aktif: <span id="bkk-total-lok" class="text-amber-600">4</span> Posisi
+                    Lowongan Mitra BKK: <span id="bkk-total-lok" class="text-amber-600">0</span> Posisi
                 </div>
             </div>
 
-            <!-- Filter Pencarian BKK -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 grid grid-cols-1 md:grid-cols-12 gap-3.5">
+            <!-- Pintasan Pencarian Langsung ke JobStreet -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-extrabold uppercase tracking-wider text-navy-900">Portal Lowongan Kerja Eksternal (JobStreet)</p>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            Telusuri lowongan kerja terbaru di wilayah Banten dan sekitarnya langsung melalui situs resmi JobStreet:
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <a href="https://id.jobstreet.com/id/jobs-in-serang-banten" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold transition">
+                            <span>Lowongan Serang</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <a href="https://id.jobstreet.com/id/jobs-in-cikande-banten" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 hover:border-navy-900 text-navy-900 text-xs font-bold transition">
+                            <span>Area Cikande</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <a href="https://id.jobstreet.com/id/jobs-in-cilegon-banten" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 hover:border-navy-900 text-navy-900 text-xs font-bold transition">
+                            <span>Area Cilegon</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <a href="https://id.jobstreet.com/id/jobs-in-tangerang-banten" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 hover:border-navy-900 text-navy-900 text-xs font-bold transition">
+                            <span>Area Tangerang</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Pencarian (Muncul otomatis jika ada lowongan BKK) -->
+            <div id="bkk-filter-bar" class="hidden bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 grid grid-cols-1 md:grid-cols-12 gap-3.5">
                 <div class="md:col-span-6 relative">
                     <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 text-sm"></i>
                     <input id="bkk-search" type="text" placeholder="Cari posisi, perusahaan, atau lokasi..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-navy-900 text-sm">
@@ -630,8 +664,8 @@
                     <select id="bkk-filter-jurusan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-navy-900 text-sm bg-white">
                         <option value="ALL">Semua Jurusan</option>
                         <option value="TKJ / Jaringan">TKJ / Jaringan</option>
-                        <option value="Teknik / Industri">Teknik / Industri</option>
                         <option value="Administrasi / Bisnis">Administrasi / Bisnis</option>
+                        <option value="Teknik / Industri">Teknik / Industri</option>
                     </select>
                 </div>
                 <div class="md:col-span-3">
@@ -644,29 +678,35 @@
                 </div>
             </div>
 
-            <!-- Daftar Lowongan -->
+            <!-- Daftar Lowongan Mitra BKK -->
             <div id="bkk-lowongan-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14"></div>
-            <div id="bkk-empty" class="hidden text-center py-10 bg-white rounded-2xl border border-slate-200 mb-14">
-                <p class="font-bold text-slate-700 text-sm">Lowongan tidak ditemukan untuk filter tersebut.</p>
-                <button id="bkk-reset-btn" type="button" class="mt-2 text-xs font-bold text-amber-600 hover:underline">Tampilkan Semua Lowongan</button>
+            <div id="bkk-empty" class="text-center py-10 px-6 bg-white rounded-2xl border border-slate-200 mb-14">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 text-navy-900 flex items-center justify-center mx-auto mb-3 text-lg">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <p class="font-heading font-bold text-slate-800 text-base">Belum Ada Lowongan Mitra BKK yang Dipublikasikan</p>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto mt-1">
+                    Silakan gunakan tombol portal JobStreet di atas untuk melihat lowongan terbaru, atau daftarkan data diri Anda di formulir BKK di bawah ini agar dihubungi saat ada rekrutmen mitra industri.
+                </p>
+                <button id="bkk-reset-btn" type="button" class="hidden mt-3 text-xs font-bold text-amber-600 hover:underline">Reset Filter Pencarian</button>
             </div>
 
-            <!-- Form Lamaran BKK Terintegrasi WhatsApp -->
+            <!-- Form Registrasi / Pelamar BKK Terintegrasi WhatsApp -->
             <div class="grid lg:grid-cols-12 gap-8 items-start bg-navy-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl">
                 <div class="lg:col-span-5 space-y-4">
-                    <span class="inline-block text-xs font-extrabold uppercase tracking-wider text-amber-400">Registrasi & Lamaran BKK</span>
-                    <h3 class="font-heading text-2xl font-extrabold leading-snug">Kirim Data Lamaran Langsung ke Admin BKK</h3>
+                    <span class="inline-block text-xs font-extrabold uppercase tracking-wider text-amber-400">Database & Registrasi BKK</span>
+                    <h3 class="font-heading text-2xl font-extrabold leading-snug">Daftarkan Data Pencari Kerja ke Admin BKK</h3>
                     <p class="text-slate-300 text-sm leading-relaxed">
-                        Lengkapi data pelamar di samping. Pesan lamaran akan otomatis diarahkan ke WhatsApp BKK SMK Bina Mandiri untuk proses verifikasi dan informasi seleksi.
+                        Isi formulir di samping untuk mendaftarkan diri ke database BKK SMK Bina Mandiri atau mengajukan lamaran kerja melalui WhatsApp resmi BKK.
                     </p>
 
                     <div class="bg-navy-950/70 border border-white/10 rounded-2xl p-4 space-y-2.5">
                         <div class="flex items-center justify-between">
-                            <p class="text-xs font-bold uppercase tracking-wider text-amber-400">Riwayat Lamaran (Lokal)</p>
+                            <p class="text-xs font-bold uppercase tracking-wider text-amber-400">Riwayat Pendaftaran (Lokal)</p>
                             <button id="bkk-clear-riwayat" type="button" class="text-[11px] text-slate-400 hover:text-red-300">Bersihkan</button>
                         </div>
                         <ul id="bkk-riwayat-list" class="space-y-2 text-xs text-slate-300">
-                            <li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>
+                            <li class="text-slate-400 italic">Belum ada riwayat tersimpan.</li>
                         </ul>
                     </div>
                 </div>
@@ -689,22 +729,24 @@
                                 <label for="bkk_jurusan" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Jurusan *</label>
                                 <select id="bkk_jurusan" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm bg-white">
                                     <option value="">-- Pilih Jurusan --</option>
-                                    <option value="TKJ / Jaringan">TKJ / Jaringan</option>
-                                    <option value="Teknik / Industri">Teknik / Industri</option>
-                                    <option value="Administrasi / Bisnis">Administrasi / Bisnis</option>
+                                    <option value="TKJ / Jaringan">Teknik Komputer dan Jaringan (TKJ)</option>
+                                    <option value="Administrasi / Bisnis">Manajemen Perkantoran dan Layanan Bisnis (MPLB)</option>
                                     <option value="Lainnya">Lainnya</option>
                                 </select>
                             </div>
                             <div>
                                 <label for="bkk_lulus" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Tahun Lulus / Kelas *</label>
-                                <input id="bkk_lulus" type="text" required placeholder="Contoh: 2025 atau XII" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm">
+                                <input id="bkk_lulus" type="text" required placeholder="Contoh: 2026 atau XII" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label for="bkk_posisi" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Posisi yang Dilamar *</label>
+                            <label for="bkk_posisi" class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Minat Bidang / Posisi *</label>
                             <select id="bkk_posisi" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-navy-900 text-sm bg-white">
-                                <option value="">-- Pilih Lowongan --</option>
+                                <option value="Pendaftaran Database Pencari Kerja BKK">Pendaftaran Database Pencari Kerja BKK</option>
+                                <option value="Bidang IT / Jaringan / Komputer">Bidang IT / Jaringan / Komputer</option>
+                                <option value="Bidang Administrasi / Perkantoran">Bidang Administrasi / Perkantoran</option>
+                                <option value="Bidang Industri / Operator / Umum">Bidang Industri / Operator / Umum</option>
                             </select>
                         </div>
 
@@ -715,14 +757,13 @@
 
                         <button type="submit" class="w-full bg-amber-400 hover:bg-amber-300 text-navy-950 font-extrabold py-3.5 px-6 rounded-xl shadow-md transition inline-flex items-center justify-center gap-2 text-sm">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Kirim Lamaran ke WhatsApp BKK</span>
+                            <span>Kirim Data ke WhatsApp BKK</span>
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- 8. KONTAK & FOOTER LENGKAP -->
     <footer id="kontak" class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1132,60 +1173,34 @@
 
             // FITUR BKK
             const BKK_STORAGE_KEY = "smkbm_bkk_riwayat_v1";
-            const bkkLowongan = [
-                {
-                    posisi: "Network & IT Support Technician",
-                    perusahaan: "PT Mitra Konektif Nusantara",
-                    lokasi: "Serang - Banten",
-                    jurusan: "TKJ / Jaringan",
-                    tipe: "Full Time",
-                    ringkasan: "Instalasi jaringan lokal, perawatan perangkat komputer, dan dukungan teknis operasional."
-                },
-                {
-                    posisi: "Operator Produksi & QC",
-                    perusahaan: "PT Prima Industri Banten",
-                    lokasi: "Cikande / Serang - Banten",
-                    jurusan: "Teknik / Industri",
-                    tipe: "Kontrak / Operator",
-                    ringkasan: "Pengoperasian lini produksi sesuai prosedur K3 serta pengecekan kualitas hasil produksi."
-                },
-                {
-                    posisi: "Staf Administrasi & Arsip",
-                    perusahaan: "CV Karya Mandiri Sejahtera",
-                    lokasi: "Rangkasbitung / Lebak",
-                    jurusan: "Administrasi / Bisnis",
-                    tipe: "Full Time",
-                    ringkasan: "Pengelolaan administrasi surat-menyurat, rekap data, dan pengarsipan dokumen."
-                },
-                {
-                    posisi: "Teknisi Perangkat & Jaringan",
-                    perusahaan: "PT Solusi Teknika Mandiri",
-                    lokasi: "Banten",
-                    jurusan: "TKJ / Jaringan",
-                    tipe: "Magang / PKL",
-                    ringkasan: "Perawatan perangkat keras, instalasi aplikasi, dan pendokumentasian teknis lapangan."
-                }
-            ];
+            const bkkLowongan = [];
 
             const gridEl = document.getElementById("bkk-lowongan-grid");
             const emptyEl = document.getElementById("bkk-empty");
+            const filterBarEl = document.getElementById("bkk-filter-bar");
             const searchEl = document.getElementById("bkk-search");
             const jurusanEl = document.getElementById("bkk-filter-jurusan");
             const tipeEl = document.getElementById("bkk-filter-tipe");
             const posisiSelectEl = document.getElementById("bkk_posisi");
             const totalLokEl = document.getElementById("bkk-total-lok");
             const riwayatListEl = document.getElementById("bkk-riwayat-list");
+            const resetBtnEl = document.getElementById("bkk-reset-btn");
 
             if (gridEl && posisiSelectEl) {
                 if (totalLokEl) totalLokEl.textContent = bkkLowongan.length;
 
-                bkkLowongan.forEach((item) => {
-                    const opt = document.createElement("option");
-                    const label = `${item.posisi} - ${item.perusahaan}`;
-                    opt.value = label;
-                    opt.textContent = label;
-                    posisiSelectEl.appendChild(opt);
-                });
+                if (bkkLowongan.length > 0) {
+                    filterBarEl?.classList.remove("hidden");
+                    bkkLowongan.forEach((item) => {
+                        const opt = document.createElement("option");
+                        const label = `${item.posisi} - ${item.perusahaan}`;
+                        opt.value = label;
+                        opt.textContent = label;
+                        posisiSelectEl.appendChild(opt);
+                    });
+                } else {
+                    gridEl.classList.add("hidden");
+                }
 
                 window.bkkPilihPosisi = function (posisiLabel) {
                     posisiSelectEl.value = posisiLabel;
@@ -1209,8 +1224,17 @@
                     });
 
                     gridEl.innerHTML = "";
+                    if (bkkLowongan.length === 0) {
+                        gridEl.classList.add("hidden");
+                        emptyEl?.classList.remove("hidden");
+                        resetBtnEl?.classList.add("hidden");
+                        return;
+                    }
+
+                    gridEl.classList.remove("hidden");
                     if (filtered.length === 0) {
                         emptyEl?.classList.remove("hidden");
+                        resetBtnEl?.classList.remove("hidden");
                         return;
                     }
                     emptyEl?.classList.add("hidden");
@@ -1252,7 +1276,7 @@
                     if (!riwayatListEl) return;
                     const items = loadBkkRiwayat();
                     if (items.length === 0) {
-                        riwayatListEl.innerHTML = '<li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>';
+                        riwayatListEl.innerHTML = '<li class="text-slate-400 italic">Belum ada riwayat tersimpan.</li>';
                         return;
                     }
                     riwayatListEl.innerHTML = items
@@ -1301,7 +1325,7 @@
                 jurusanEl?.addEventListener("change", renderBkkLowongan);
                 tipeEl?.addEventListener("change", renderBkkLowongan);
 
-                document.getElementById("bkk-reset-btn")?.addEventListener("click", () => {
+                resetBtnEl?.addEventListener("click", () => {
                     if (searchEl) searchEl.value = "";
                     if (jurusanEl) jurusanEl.value = "ALL";
                     if (tipeEl) tipeEl.value = "ALL";

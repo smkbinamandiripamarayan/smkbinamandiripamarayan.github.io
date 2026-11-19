@@ -1206,6 +1206,204 @@
 
             document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
         });
+        <script>
+        (function () {
+            // GANTI DENGAN NOMOR WHATSAPP ADMIN BKK (FORMAT 62, TANPA 0 DI DEPAN)
+            const NOMOR_WA_BKK_ADMIN = "6285217330133";
+            const BKK_STORAGE_KEY = "smkbm_bkk_riwayat_v1";
+
+            const bkkLowongan = [
+                {
+                    posisi: "Network & IT Support Technician",
+                    perusahaan: "PT Mitra Konektif Nusantara",
+                    lokasi: "Serang - Banten",
+                    jurusan: "TKJ / Jaringan",
+                    tipe: "Full Time",
+                    ringkasan: "Instalasi jaringan lokal, perawatan perangkat komputer, dan dukungan teknis operasional."
+                },
+                {
+                    posisi: "Operator Produksi & QC",
+                    perusahaan: "PT Prima Industri Banten",
+                    lokasi: "Cikande / Serang - Banten",
+                    jurusan: "Teknik / Industri",
+                    tipe: "Kontrak / Operator",
+                    ringkasan: "Pengoperasian lini produksi sesuai prosedur K3 serta pengecekan kualitas hasil produksi."
+                },
+                {
+                    posisi: "Staf Administrasi & Arsip",
+                    perusahaan: "CV Karya Mandiri Sejahtera",
+                    lokasi: "Rangkasbitung / Lebak",
+                    jurusan: "Administrasi / Bisnis",
+                    tipe: "Full Time",
+                    ringkasan: "Pengelolaan administrasi surat-menyurat, rekap data, dan pengarsipan dokumen."
+                },
+                {
+                    posisi: "Teknisi Perangkat & Jaringan",
+                    perusahaan: "PT Solusi Teknika Mandiri",
+                    lokasi: "Banten",
+                    jurusan: "TKJ / Jaringan",
+                    tipe: "Magang / PKL",
+                    ringkasan: "Perawatan perangkat keras, instalasi aplikasi, dan pendokumentasian teknis lapangan."
+                }
+            ];
+
+            const gridEl = document.getElementById("bkk-lowongan-grid");
+            const emptyEl = document.getElementById("bkk-empty");
+            const searchEl = document.getElementById("bkk-search");
+            const jurusanEl = document.getElementById("bkk-filter-jurusan");
+            const tipeEl = document.getElementById("bkk-filter-tipe");
+            const posisiSelectEl = document.getElementById("bkk_posisi");
+            const totalLokEl = document.getElementById("bkk-total-lok");
+            const riwayatListEl = document.getElementById("bkk-riwayat-list");
+
+            if (!gridEl || !posisiSelectEl) return;
+
+            totalLokEl.textContent = bkkLowongan.length;
+
+            bkkLowongan.forEach((item) => {
+                const opt = document.createElement("option");
+                const label = `${item.posisi} - ${item.perusahaan}`;
+                opt.value = label;
+                opt.textContent = label;
+                posisiSelectEl.appendChild(opt);
+            });
+
+            window.bkkPilihPosisi = function (posisiLabel) {
+                posisiSelectEl.value = posisiLabel;
+                document.getElementById("bkk_nama").focus();
+            };
+
+            function renderBkkLowongan() {
+                const q = searchEl.value.trim().toLowerCase();
+                const jur = jurusanEl.value;
+                const tip = tipeEl.value;
+
+                const filtered = bkkLowongan.filter((item) => {
+                    const matchQ =
+                        !q ||
+                        item.posisi.toLowerCase().includes(q) ||
+                        item.perusahaan.toLowerCase().includes(q) ||
+                        item.lokasi.toLowerCase().includes(q);
+                    const matchJur = jur === "ALL" || item.jurusan === jur;
+                    const matchTip = tip === "ALL" || item.tipe === tip;
+                    return matchQ && matchJur && matchTip;
+                });
+
+                gridEl.innerHTML = "";
+                if (filtered.length === 0) {
+                    emptyEl.classList.remove("hidden");
+                    return;
+                }
+                emptyEl.classList.add("hidden");
+
+                filtered.forEach((item) => {
+                    const labelPosisi = `${item.posisi} - ${item.perusahaan}`;
+                    const card = document.createElement("div");
+                    card.className = "bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs flex flex-col justify-between";
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800">${item.jurusan}</span>
+                                <span class="text-xs font-semibold text-slate-500">${item.tipe}</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-navy-900">${item.posisi}</h4>
+                            <p class="text-sm font-semibold text-slate-600 mt-0.5">${item.perusahaan}</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>${item.lokasi}</p>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-3">${item.ringkasan}</p>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                            <button type="button" onclick="bkkPilihPosisi('${labelPosisi.replace(/'/g, "\\'")}')" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                Pilih Posisi Ini
+                            </button>
+                        </div>
+                    `;
+                    gridEl.appendChild(card);
+                });
+            }
+
+            function loadBkkRiwayat() {
+                try {
+                    return JSON.parse(localStorage.getItem(BKK_STORAGE_KEY)) || [];
+                } catch {
+                    return [];
+                }
+            }
+
+            function renderBkkRiwayat() {
+                const items = loadBkkRiwayat();
+                if (items.length === 0) {
+                    riwayatListEl.innerHTML = '<li class="text-slate-400 italic">Belum ada riwayat lamaran tersimpan.</li>';
+                    return;
+                }
+                riwayatListEl.innerHTML = items
+                    .map(
+                        (it) => `
+                    <li class="bg-navy-900/80 border border-white/10 rounded-xl p-2.5">
+                        <p class="font-bold text-white">${it.nama} <span class="text-amber-400 font-normal">(${it.tgl})</span></p>
+                        <p class="text-slate-300 truncate">${it.posisi}</p>
+                    </li>
+                `
+                    )
+                    .join("");
+            }
+
+            function normWa(num) {
+                let d = num.replace(/\D/g, "");
+                if (d.startsWith("0")) d = "62" + d.slice(1);
+                return d;
+            }
+
+            window.kirimLamaranBKK = function (event) {
+                event.preventDefault();
+                const nama = document.getElementById("bkk_nama").value.trim();
+                const wa = normWa(document.getElementById("bkk_wa").value.trim());
+                const jurusan = document.getElementById("bkk_jurusan").value;
+                const lulus = document.getElementById("bkk_lulus").value.trim();
+                const posisi = document.getElementById("bkk_posisi").value;
+                const catatan = document.getElementById("bkk_catatan").value.trim() || "-";
+
+                const prev = loadBkkRiwayat();
+                prev.unshift({
+                    nama,
+                    posisi,
+                    tgl: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short" })
+                });
+                localStorage.setItem(BKK_STORAGE_KEY, JSON.stringify(prev.slice(0, 5)));
+                renderBkkRiwayat();
+
+                const teks =
+                    `Halo Admin BKK SMK Bina Mandiri, saya mengajukan lamaran:%0A%0A` +
+                    `- Nama: *${encodeURIComponent(nama)}*%0A` +
+                    `- No. WA: *${encodeURIComponent(wa)}*%0A` +
+                    `- Jurusan: *${encodeURIComponent(jurusan)}*%0A` +
+                    `- Tahun Lulus / Kelas: *${encodeURIComponent(lulus)}*%0A` +
+                    `- Posisi: *${encodeURIComponent(posisi)}*%0A` +
+                    `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
+
+                window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
+            };
+
+            searchEl.addEventListener("input", renderBkkLowongan);
+            jurusanEl.addEventListener("change", renderBkkLowongan);
+            tipeEl.addEventListener("change", renderBkkLowongan);
+
+            document.getElementById("bkk-reset-btn").addEventListener("click", () => {
+                searchEl.value = "";
+                jurusanEl.value = "ALL";
+                tipeEl.value = "ALL";
+                renderBkkLowongan();
+            });
+
+            document.getElementById("bkk-clear-riwayat").addEventListener("click", () => {
+                localStorage.removeItem(BKK_STORAGE_KEY);
+                renderBkkRiwayat();
+            });
+
+            renderBkkLowongan();
+            renderBkkRiwayat();
+        })();
+    </script>
+</body>
     </script>
 </body>
 </html>

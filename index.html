@@ -83,6 +83,35 @@
         .nav-trigger:hover, details[open] > .nav-trigger { background:#F1F5F9; color:#1E3A8A; }
         .nav-trigger .chev { font-size:.625rem; color:#94A3B8; transition:transform .25s ease, color .2s; }
         details[open] > .nav-trigger .chev { transform:rotate(180deg); color:#F59E0B; }
+        /* Latar belakang animasi halaman utama */
+        .hero-bg { overflow:hidden; }
+        .hero-aurora { position:absolute; inset:-20%; background:
+            radial-gradient(40% 35% at 20% 25%, rgba(59,130,246,.35), transparent 70%),
+            radial-gradient(35% 30% at 80% 20%, rgba(245,158,11,.28), transparent 70%),
+            radial-gradient(45% 40% at 60% 85%, rgba(14,165,233,.25), transparent 70%);
+            animation:auroraMove 18s ease-in-out infinite alternate; }
+        @keyframes auroraMove { 0% { transform:translate3d(-3%,-2%,0) scale(1); } 50% { transform:translate3d(3%,2%,0) scale(1.08); } 100% { transform:translate3d(-2%,3%,0) scale(1.03); } }
+        .hero-blob { position:absolute; border-radius:9999px; filter:blur(64px); opacity:.35; will-change:transform; }
+        .hero-blob-1 { width:24rem; height:24rem; top:-6rem; right:-5rem; background:#F59E0B; animation:blobFloat1 14s ease-in-out infinite; }
+        .hero-blob-2 { width:22rem; height:22rem; bottom:-4rem; left:2rem; background:#3B82F6; animation:blobFloat2 17s ease-in-out infinite; }
+        .hero-blob-3 { width:16rem; height:16rem; top:35%; left:42%; background:#06B6D4; opacity:.2; animation:blobFloat3 20s ease-in-out infinite; }
+        @keyframes blobFloat1 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-60px,50px) scale(1.15); } }
+        @keyframes blobFloat2 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(70px,-40px) scale(1.12); } }
+        @keyframes blobFloat3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-80px,-30px) scale(1.25); } }
+        .hero-grid { position:absolute; inset:0; opacity:.5;
+            background-image:linear-gradient(rgba(148,163,184,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.10) 1px, transparent 1px);
+            background-size:48px 48px;
+            -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 78%); mask-image:radial-gradient(ellipse at center, #000 30%, transparent 78%);
+            animation:gridDrift 24s linear infinite; }
+        @keyframes gridDrift { from { background-position:0 0, 0 0; } to { background-position:48px 48px, 48px 48px; } }
+        .hero-sweep { position:absolute; top:0; bottom:0; width:40%; left:-40%;
+            background:linear-gradient(100deg, transparent, rgba(255,255,255,.06), transparent);
+            transform:skewX(-18deg); animation:heroSweep 9s ease-in-out infinite; }
+        @keyframes heroSweep { 0% { left:-45%; } 60%,100% { left:115%; } }
+        .hero-dot { position:absolute; bottom:-12px; width:var(--s); height:var(--s); border-radius:9999px; background:rgba(255,255,255,.55); box-shadow:0 0 10px rgba(255,255,255,.55); opacity:0; animation:dotRise var(--d) linear infinite; }
+        .hero-dot.amber { background:#FBBF24; box-shadow:0 0 12px rgba(251,191,36,.8); }
+        @keyframes dotRise { 0% { transform:translateY(0) translateX(0); opacity:0; } 10% { opacity:.9; } 50% { transform:translateY(-300px) translateX(14px); } 90% { opacity:.7; } 100% { transform:translateY(-640px) translateX(-10px); opacity:0; } }
+        @media (prefers-reduced-motion: reduce) { .hero-aurora, .hero-blob, .hero-grid, .hero-sweep, .hero-dot { animation:none; } .hero-dot { opacity:.5; } }
         /* Logo & nama sekolah: efek menyala */
         .logo-glow { animation:logoPulse 2.8s ease-in-out infinite; }
         .logo-glow::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%); background-size:250% 100%; background-position:150% 0; animation:logoSweep 3.6s ease-in-out infinite; pointer-events:none; }
@@ -225,10 +254,34 @@
     </header>
     <!-- 2. HERO SECTION -->
     <section id="beranda" class="page-slide relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-navy-900 text-white overflow-hidden">
-        <!-- Dekorasi Latar -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500 blur-3xl"></div>
-            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-blue-500 blur-3xl"></div>
+        <!-- Latar belakang animasi -->
+        <div class="hero-bg absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="hero-aurora"></div>
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-blob hero-blob-3"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-sweep"></div>
+            <div class="hero-dots">
+                <span class="hero-dot amber" style="left:43%;--s:4px;--d:17s;animation-delay:-20s"></span>
+                <span class="hero-dot" style="left:8%;--s:3px;--d:19s;animation-delay:-3s"></span>
+                <span class="hero-dot" style="left:48%;--s:3px;--d:19s;animation-delay:-6s"></span>
+                <span class="hero-dot amber" style="left:6%;--s:3px;--d:17s;animation-delay:-13s"></span>
+                <span class="hero-dot" style="left:10%;--s:4px;--d:12s;animation-delay:-17s"></span>
+                <span class="hero-dot" style="left:56%;--s:3px;--d:20s;animation-delay:-3s"></span>
+                <span class="hero-dot amber" style="left:30%;--s:3px;--d:20s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:52%;--s:3px;--d:14s;animation-delay:-1s"></span>
+                <span class="hero-dot" style="left:73%;--s:4px;--d:15s;animation-delay:-13s"></span>
+                <span class="hero-dot amber" style="left:20%;--s:3px;--d:20s;animation-delay:-9s"></span>
+                <span class="hero-dot" style="left:73%;--s:4px;--d:12s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:75%;--s:4px;--d:16s;animation-delay:-3s"></span>
+                <span class="hero-dot amber" style="left:72%;--s:3px;--d:20s;animation-delay:-1s"></span>
+                <span class="hero-dot" style="left:81%;--s:4px;--d:18s;animation-delay:-17s"></span>
+                <span class="hero-dot" style="left:56%;--s:5px;--d:18s;animation-delay:-18s"></span>
+                <span class="hero-dot amber" style="left:60%;--s:5px;--d:15s;animation-delay:-7s"></span>
+                <span class="hero-dot" style="left:25%;--s:4px;--d:12s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:40%;--s:6px;--d:16s;animation-delay:-14s"></span>
+            </div>
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

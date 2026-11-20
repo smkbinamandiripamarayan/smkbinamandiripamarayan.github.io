@@ -876,6 +876,68 @@
                 </div>
             </div>
 
+            <!-- Lowongan Otomatis (JobStreet & lainnya) diurutkan dari lokasi terdekat sekolah -->
+            <div id="bkk-auto" class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                    <div>
+                        <p class="text-xs font-extrabold uppercase tracking-wider text-navy-900">Lowongan Terbaru Dekat Sekolah</p>
+                        <p id="bkk-auto-info" class="text-xs text-slate-500 mt-1">Memuat lowongan...</p>
+                    </div>
+                    <select id="bkk-auto-radius" class="px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-navy-900">
+                        <option value="15">Radius 15 km</option>
+                        <option value="30">Radius 30 km</option>
+                        <option value="60" selected>Radius 60 km</option>
+                        <option value="9999">Semua jarak</option>
+                    </select>
+                </div>
+                <div id="bkk-auto-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                <p id="bkk-auto-empty" class="hidden text-sm text-slate-500 text-center py-6">Belum ada lowongan pada radius ini. Coba perluas radius atau gunakan tombol portal di bawah.</p>
+            </div>
+            <script>
+            (function () {
+                var grid = document.getElementById("bkk-auto-grid");
+                var info = document.getElementById("bkk-auto-info");
+                var empty = document.getElementById("bkk-auto-empty");
+                var sel = document.getElementById("bkk-auto-radius");
+                if (!grid) return;
+                var data = [];
+                function esc(s) {
+                    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+                        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+                    });
+                }
+                function render() {
+                    var r = parseInt(sel.value, 10);
+                    var list = data.filter(function (x) { return x.jarak_km <= r; });
+                    grid.innerHTML = list.map(function (x) {
+                        var aman = /^https?:\/\//.test(x.link) ? x.link : "#";
+                        return '<div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between">' +
+                            '<div><div class="flex items-center justify-between gap-2 mb-2">' +
+                            '<span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800">' + (x.jarak_perkiraan ? "±" : "") + esc(x.jarak_km) + ' km dari sekolah</span>' +
+                            '<span class="text-xs text-slate-500">' + esc(x.sumber) + '</span></div>' +
+                            '<h4 class="font-heading text-base font-extrabold text-navy-900">' + esc(x.posisi) + '</h4>' +
+                            '<p class="text-sm font-semibold text-slate-600">' + esc(x.perusahaan) + '</p>' +
+                            '<p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>' + esc(x.lokasi) + (x.tipe ? ' · ' + esc(x.tipe) : '') + '</p>' +
+                            (x.ringkasan ? '<p class="text-xs text-slate-600 mt-2">' + esc(x.ringkasan) + '</p>' : '') + '</div>' +
+                            '<div class="mt-4 pt-3 border-t border-slate-100 flex justify-end"><a href="' + esc(aman) + '" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition">Lihat &amp; Lamar</a></div></div>';
+                    }).join("");
+                    empty.classList.toggle("hidden", list.length > 0 || data.length === 0 && false);
+                    if (list.length === 0) empty.classList.remove("hidden"); else empty.classList.add("hidden");
+                }
+                fetch("lowongan.json?v=" + Date.now()).then(function (r) { return r.json(); }).then(function (j) {
+                    data = (j.lowongan || []).slice().sort(function (a, b) { return a.jarak_km - b.jarak_km; });
+                    if (j.diperbarui) {
+                        var t = new Date(j.diperbarui).toLocaleString("id-ID", { dateStyle: "long", timeStyle: "short" });
+                        info.textContent = "Otomatis dari JobStreet dan portal lain, urut dari yang terdekat. Diperbarui " + t + ".";
+                    } else {
+                        info.textContent = "Lowongan otomatis akan tampil setelah pembaruan pertama dijalankan.";
+                    }
+                    render();
+                }).catch(function () { info.textContent = "Lowongan otomatis belum dapat dimuat."; });
+                sel.addEventListener("change", render);
+            })();
+            </script>
+
             <!-- Filter Pencarian (Muncul otomatis jika ada lowongan BKK) -->
             <div id="bkk-filter-bar" class="hidden bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 grid grid-cols-1 md:grid-cols-12 gap-3.5">
                 <div class="md:col-span-6 relative">

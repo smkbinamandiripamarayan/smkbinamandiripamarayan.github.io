@@ -996,17 +996,25 @@ berbudaya dan intelektual.</span>
 
             // Pertahankan tampilan awal Beranda; menu lain dibuka sebagai halaman/slide terpisah.
             const pageIds = ["beranda", "profil", "jurusan", "fasilitas", "berita", "ppdb", "bkk", "kontak"];
+            // Sub menu Profil: membuka halaman Profil lalu menggulir ke bagian yang dipilih.
+            const subPages = { "sejarah": "profil", "data-sekolah": "profil", "guru": "profil" };
             const showPage = (pageId, updateHistory = true) => {
-                const targetId = pageIds.includes(pageId) ? pageId : "beranda";
+                const subTarget = subPages[pageId] ? document.getElementById(pageId) : null;
+                const targetId = subTarget ? subPages[pageId] : (pageIds.includes(pageId) ? pageId : "beranda");
+                const hashId = subTarget ? pageId : targetId;
                 pageIds.forEach((id) => {
                     const page = document.getElementById(id);
                     if (page) page.classList.toggle("active", id === targetId);
                 });
-                if (updateHistory) history.pushState({ page: targetId }, "", `#${targetId}`);
-                window.scrollTo({ top: 0, behavior: "instant" });
+                if (updateHistory) history.pushState({ page: hashId }, "", `#${hashId}`);
                 if (targetId !== "beranda") {
                     const target = document.getElementById(targetId);
                     if (target) target.querySelectorAll(".fade-in-up").forEach((el) => el.classList.add("visible"));
+                }
+                if (subTarget) {
+                    subTarget.scrollIntoView({ behavior: "instant", block: "start" });
+                } else {
+                    window.scrollTo({ top: 0, behavior: "instant" });
                 }
             };
 
@@ -1028,7 +1036,7 @@ berbudaya dan intelektual.</span>
                 const link = event.target.closest('a[href^="#"]');
                 if (!link) return;
                 const pageId = link.getAttribute("href").slice(1);
-                if (!pageIds.includes(pageId)) return;
+                if (!pageIds.includes(pageId) && !subPages[pageId]) return;
                 event.preventDefault();
                 document.querySelectorAll("header details[open]").forEach((item) => { item.open = false; });
                 showPage(pageId);

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Bina Mandiri - Pendidikan Vokasi Unggul & Siap Kerja</title>
+    <meta name="description" content="Website resmi SMK Bina Mandiri Pamarayan. Informasi sekolah, program keahlian, berita, PPDB online, dan Bursa Kerja Khusus (BKK).">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" type="image/png" href="Logosmkbinamandiri.png">
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -998,16 +1001,32 @@ berbudaya dan intelektual.</span>
             });
 
             renderBerita("Semua");
+            if (window.SMKBackend?.ready) {
+                window.SMKBackend.getNews().then((rows) => {
+                    if (!rows.length) return; // Pertahankan berita bawaan bila database belum diisi.
+                    dataBerita.splice(0, dataBerita.length, ...rows.map((row) => ({
+                        id: row.id, kategori: row.kategori, tanggal: row.tanggal,
+                        judul: row.judul, ringkasan: row.ringkasan,
+                        gambar: row.gambar || "https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri",
+                        konten: [row.ringkasan]
+                    })));
+                    renderBerita("Semua");
+                });
+            }
 
             const NOMOR_WA_PPDB = "6285217330133";
             const ppdbForm = document.getElementById("ppdb-form");
-            ppdbForm?.addEventListener("submit", (e) => {
+            ppdbForm?.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 const nama = document.getElementById("nama")?.value.trim() || "";
                 const asalSekolah = document.getElementById("asal_sekolah")?.value.trim() || "";
                 const jurusan = document.getElementById("ppdb-jurusan")?.value || "";
                 const noHp = normalisasiWA(document.getElementById("no_hp")?.value.trim() || "");
                 const alamat = document.getElementById("alamat")?.value.trim() || "-";
+                if (window.SMKBackend?.ready) {
+                    const hasil = await window.SMKBackend.insertPPDB({ nama, asal_sekolah: asalSekolah, jurusan, no_hp: noHp, alamat });
+                    if (!hasil.ok) console.warn("Data PPDB belum tersimpan di database; WhatsApp tetap dibuka.");
+                }
                 const pesan =
                     `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
                     `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
@@ -1026,7 +1045,7 @@ berbudaya dan intelektual.</span>
 
             // FITUR BKK
             const BKK_STORAGE_KEY = "smkbm_bkk_riwayat_v1";
-            const bkkLowongan = [];
+            let bkkLowongan = [];
 
             const gridEl = document.getElementById("bkk-lowongan-grid");
             const emptyEl = document.getElementById("bkk-empty");
@@ -1144,7 +1163,7 @@ berbudaya dan intelektual.</span>
                         .join("");
                 }
 
-                window.kirimLamaranBKK = function (event) {
+                window.kirimLamaranBKK = async function (event) {
                     event.preventDefault();
                     const nama = document.getElementById("bkk_nama")?.value.trim() || "";
                     const wa = normalisasiWA(document.getElementById("bkk_wa")?.value.trim() || "");
@@ -1152,6 +1171,10 @@ berbudaya dan intelektual.</span>
                     const lulus = document.getElementById("bkk_lulus")?.value.trim() || "";
                     const posisi = document.getElementById("bkk_posisi")?.value || "";
                     const catatan = document.getElementById("bkk_catatan")?.value.trim() || "-";
+                    if (window.SMKBackend?.ready) {
+                        const hasil = await window.SMKBackend.insertBKK({ nama, no_wa: wa, jurusan, tahun_lulus: lulus, posisi, catatan });
+                        if (!hasil.ok) console.warn("Data BKK belum tersimpan di database; WhatsApp tetap dibuka.");
+                    }
 
                     const prev = loadBkkRiwayat();
                     prev.unshift({
@@ -1192,6 +1215,23 @@ berbudaya dan intelektual.</span>
 
                 renderBkkLowongan();
                 renderBkkRiwayat();
+                if (window.SMKBackend?.ready) {
+                    window.SMKBackend.getLowongan().then((rows) => {
+                        bkkLowongan = rows;
+                        if (totalLokEl) totalLokEl.textContent = bkkLowongan.length;
+                        if (bkkLowongan.length) {
+                            filterBarEl?.classList.remove("hidden");
+                            posisiSelectEl.innerHTML = '<option value="Pendaftaran Database Pencari Kerja BKK">Pendaftaran Database Pencari Kerja BKK</option>';
+                            bkkLowongan.forEach((item) => {
+                                const opt = document.createElement("option");
+                                opt.value = `${item.posisi} - ${item.perusahaan}`;
+                                opt.textContent = opt.value;
+                                posisiSelectEl.appendChild(opt);
+                            });
+                        }
+                        renderBkkLowongan();
+                    });
+                }
             }
         });
     </script>

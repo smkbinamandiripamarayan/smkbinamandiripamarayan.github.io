@@ -4,7 +4,7 @@
  * Hanya gunakan anon/publishable key di website publik. Jangan pernah menaruh service_role key di sini.
  */
 (() => {
-  const SUPABASE_URL = "https://gjywhnfxsjohnmslcduv.supabase.co/rest/v1/";
+  const SUPABASE_URL = "https://gjywhnfxsjohnmslcduv.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_oYPWNun4dT2uGkJcTF76hg__iVRM4j2";
   let client = null;
   const configured = () => window.supabase && SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("ISI_") && !SUPABASE_ANON_KEY.includes("ISI_");

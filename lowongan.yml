@@ -1,0 +1,23 @@
+name: Perbarui lowongan BKK
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # tiap 6 jam
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/fetch-lowongan.mjs
+        env:
+          JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
+      - name: Commit jika ada perubahan
+        run: |
+          git config user.name "bkk-bot"
+          git config user.email "bkk-bot@users.noreply.github.com"
+          git add lowongan.json
+          git diff --cached --quiet || (git commit -m "Perbarui lowongan BKK" && git push)

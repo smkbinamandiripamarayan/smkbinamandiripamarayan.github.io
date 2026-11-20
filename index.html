@@ -61,6 +61,14 @@
             backdrop-filter: blur(4px);
         }
     </style>
+
+    <style>
+        /* Navigasi halaman bergaya slide: hanya satu bagian utama tampil setiap saat. */
+        .page-slide { display: none; }
+        .page-slide.active { display: block; animation: pageSlideIn .28s ease-out both; }
+        @keyframes pageSlideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+        @media (prefers-reduced-motion: reduce) { .page-slide.active { animation: none; } }
+    </style>
 </head>
 <body class="antialiased selection:bg-amber-500 selection:text-white">
 
@@ -149,7 +157,7 @@
         </div>
     </header>
     <!-- 2. HERO SECTION -->
-    <section id="beranda" class="relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-navy-900 text-white overflow-hidden">
+    <section id="beranda" class="page-slide relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-navy-900 text-white overflow-hidden">
         <!-- Dekorasi Latar -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500 blur-3xl"></div>
@@ -224,7 +232,7 @@
     </section>
 
     <!-- 3. PROFIL SEKOLAH (SAMBUTAN KEPALA SEKOLAH, VISI & MISI) -->
-    <section id="profil" class="py-20 bg-white">
+    <section id="profil" class="page-slide py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
                 <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Tentang Kami</span>
@@ -306,7 +314,7 @@ berbudaya dan intelektual.</span>
     </section>
 
     <!-- 4. PROGRAM KEAHLIAN / JURUSAN -->
-    <section id="jurusan" class="py-20 bg-slate-50 border-y border-slate-200/70">
+    <section id="jurusan" class="page-slide py-20 bg-slate-50 border-y border-slate-200/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14 fade-in-up">
                 <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Kompetensi Keahlian</span>
@@ -322,7 +330,7 @@ berbudaya dan intelektual.</span>
     </section>
 
     <!-- 5. FASILITAS & KEUNGGULAN SEKOLAH -->
-    <section id="fasilitas" class="py-20 bg-white">
+    <section id="fasilitas" class="page-slide py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4 fade-in-up">
                 <div class="max-w-2xl">
@@ -381,7 +389,7 @@ berbudaya dan intelektual.</span>
     </section>
 
     <!-- 6. BERITA & PENGUMUMAN TERBARU -->
-    <section id="berita" class="py-20 bg-slate-50 border-t border-slate-200/70">
+    <section id="berita" class="page-slide py-20 bg-slate-50 border-t border-slate-200/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 fade-in-up">
                 <div>
@@ -406,7 +414,7 @@ berbudaya dan intelektual.</span>
     </section>
 
     <!-- 7. FORMULIR PENDAFTARAN PPDB ONLINE -->
-    <section id="ppdb" class="py-20 bg-navy-900 text-white relative overflow-hidden">
+    <section id="ppdb" class="page-slide py-20 bg-navy-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-amber-500 blur-3xl"></div>
         </div>
@@ -504,7 +512,7 @@ berbudaya dan intelektual.</span>
     </section>
 
   <!-- BURSA KERJA KHUSUS (BKK) SMK BINA MANDIRI -->
-    <section id="bkk" class="py-20 bg-slate-50 text-slate-800 border-t border-slate-200">
+    <section id="bkk" class="page-slide py-20 bg-slate-50 text-slate-800 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                 <div>
@@ -664,7 +672,7 @@ berbudaya dan intelektual.</span>
         </div>
     </section>
     <!-- 8. KONTAK & FOOTER LENGKAP -->
-    <footer id="kontak" class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-slate-800">
+    <footer id="kontak" class="page-slide bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
                 <div class="lg:col-span-4 space-y-4">
@@ -790,6 +798,34 @@ berbudaya dan intelektual.</span>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const NOMOR_WA_BKK_ADMIN = "6285217330133";
+
+            // Pertahankan tampilan awal Beranda; menu lain dibuka sebagai halaman/slide terpisah.
+            const pageIds = ["beranda", "profil", "jurusan", "fasilitas", "berita", "ppdb", "bkk", "kontak"];
+            const showPage = (pageId, updateHistory = true) => {
+                const targetId = pageIds.includes(pageId) ? pageId : "beranda";
+                pageIds.forEach((id) => {
+                    const page = document.getElementById(id);
+                    if (page) page.classList.toggle("active", id === targetId);
+                });
+                if (updateHistory) history.pushState({ page: targetId }, "", `#${targetId}`);
+                window.scrollTo({ top: 0, behavior: "instant" });
+                if (targetId !== "beranda") {
+                    const target = document.getElementById(targetId);
+                    if (target) target.querySelectorAll(".fade-in-up").forEach((el) => el.classList.add("visible"));
+                }
+            };
+
+            // Seluruh tautan menu internal membuka slide, bukan menggulir halaman.
+            document.addEventListener("click", (event) => {
+                const link = event.target.closest('a[href^="#"]');
+                if (!link) return;
+                const pageId = link.getAttribute("href").slice(1);
+                if (!pageIds.includes(pageId)) return;
+                event.preventDefault();
+                showPage(pageId);
+            });
+            window.addEventListener("popstate", () => showPage(location.hash.slice(1), false));
+            showPage(location.hash.slice(1) || "beranda", false);
 
             const mobileBtn = document.getElementById("mobile-menu-btn");
             const mobileMenu = document.getElementById("mobile-menu");

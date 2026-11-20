@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin | SMK Bina Mandiri</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9}input,textarea{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:12px;background:#fff;color:#0f172a}button{border-radius:12px;padding:10px 14px;font-weight:700}button:focus,input:focus,textarea:focus{outline:2px solid #60a5fa;outline-offset:1px}
+</style>
+</head>
+<body class="text-slate-800">
+<header class="bg-slate-950 text-white px-4 py-5"><div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3"><div><p class="text-amber-400 text-xs font-bold tracking-widest">ADMIN • CONTENT MANAGER</p><h1 class="text-2xl font-extrabold">SMK BINA MANDIRI</h1><p class="text-slate-400 text-sm mt-1">Pengelolaan konten website sekolah</p></div><a class="underline text-sm" href="index.html">← Lihat website</a></div></header>
+<main class="max-w-6xl mx-auto p-4 md:p-6 space-y-5">
+<div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-sm text-amber-900"><b>Mode lokal:</b> Saat ini data tersimpan di browser/perangkat ini saja (localStorage), belum tersambung ke database online. Jangan masukkan data pribadi sensitif siswa.</div>
+<section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-slate-500">Total draf</p><p id="total" class="text-2xl font-black mt-1">0</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-slate-500">Modul dikelola</p><p class="text-2xl font-black mt-1">7</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-slate-500">Penyimpanan</p><p class="text-lg font-bold mt-1">Browser lokal</p></div>
+<div class="bg-white rounded-2xl p-4 shadow-sm"><p class="text-xs text-slate-500">Database online</p><p class="text-lg font-bold text-amber-700 mt-1">Belum aktif</p></div>
+</section>
+<section class="bg-white rounded-2xl p-4 shadow-sm"><h2 class="font-bold mb-3">Pilih modul pengelolaan</h2><div id="tabs" class="flex flex-wrap gap-2"></div></section>
+<section class="grid lg:grid-cols-2 gap-4">
+<div class="bg-white rounded-2xl p-5 shadow-sm space-y-3">
+<h2 id="formTitle" class="font-bold text-lg">Tambah konten baru</h2>
+<label class="block text-sm font-semibold">Judul / Nama<input id="title" placeholder="Masukkan judul konten"></label>
+<label class="block text-sm font-semibold">Keterangan<textarea id="description" rows="5" placeholder="Informasi, isi berita, keterangan..."></textarea></label>
+<label class="block text-sm font-semibold">Tautan (opsional)<input id="url" type="url" placeholder="https://..."></label>
+<div class="flex flex-wrap gap-2"><button id="save" class="bg-blue-700 text-white">Simpan draf</button><button id="clear" class="bg-slate-100">Reset form</button></div><p id="status" class="text-sm text-emerald-700" aria-live="polite"></p>
+</div>
+<div class="bg-white rounded-2xl p-5 shadow-sm"><div class="flex items-center justify-between gap-2 mb-3"><h2 class="font-bold text-lg">Konten modul</h2><span id="count" class="text-xs text-slate-500"></span></div><div id="items" class="space-y-3 text-sm"></div></div>
+</section>
+<section class="bg-white rounded-2xl p-5 shadow-sm space-y-3"><h2 class="font-bold text-lg">Backup & pemindahan data</h2><p class="text-sm text-slate-600">Ekspor draf sebagai JSON untuk cadangan. Impor akan mengganti draf lokal yang tersimpan pada browser ini.</p><div class="flex flex-wrap gap-2"><button id="export" class="bg-emerald-700 text-white">Ekspor backup JSON</button><label class="bg-slate-100 rounded-xl px-4 py-2 font-bold cursor-pointer">Impor backup<input id="import" type="file" accept="application/json" class="hidden"></label><button id="wipe" class="bg-red-100 text-red-700">Hapus semua draf lokal</button></div></section>
+<footer class="text-center text-xs text-slate-500 py-3">SMK Bina Mandiri • Panel Admin versi awal • Penyimpanan lokal</footer>
+</main>
+<script>
+const modules=['PPDB','BKK','Berita & Agenda','Galeri','Akademik','Perpustakaan','Alumni'];
+let active=modules[0],data=JSON.parse(localStorage.getItem('smbm_admin_drafts')||'{}'),editing=null;
+const $=id=>document.getElementById(id);
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function saveStore(){localStorage.setItem('smbm_admin_drafts',JSON.stringify(data));renderItems();updateTotal()}
+function updateTotal(){ $('total').textContent=modules.reduce((n,m)=>n+(data[m]||[]).length,0)}
+function clearForm(){$('title').value='';$('description').value='';$('url').value='';$('formTitle').textContent='Tambah konten baru';$('status').textContent='';editing=null}
+function renderTabs(){$('tabs').innerHTML=modules.map(m=>'<button data-m="'+esc(m)+'" class="'+(m===active?'bg-blue-700 text-white':'bg-slate-100 text-slate-700')+'">'+esc(m)+'</button>').join('');document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{active=b.dataset.m;clearForm();renderTabs();renderItems()})}
+function renderItems(){const arr=data[active]||[];$('count').textContent=arr.length+' konten';$('items').innerHTML=arr.length?arr.map((x,i)=>'<article class="border border-slate-200 rounded-xl p-3"><div class="font-bold">'+esc(x.title)+'</div><p class="text-slate-600 my-1 whitespace-pre-wrap">'+esc(x.description)+'</p>'+(x.url?'<a class="text-blue-700 underline break-all" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.url)+'</a>':'')+'<div class="flex gap-2 mt-3"><button class="bg-amber-100" data-edit="'+i+'">Edit</button><button class="bg-red-100 text-red-700" data-del="'+i+'">Hapus</button></div></article>').join(''):'<p class="text-slate-500">Belum ada draf pada modul ini.</p>';
+document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{let i=+b.dataset.edit,x=arr[i];editing=i;$('title').value=x.title;$('description').value=x.description;$('url').value=x.url||'';$('formTitle').textContent='Edit konten';window.scrollTo({top:0,behavior:'smooth'})});
+document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Hapus draf ini?')){arr.splice(+b.dataset.del,1);saveStore()}})}
+$('save').onclick=()=>{let title=$('title').value.trim();if(!title){$('status').textContent='Judul wajib diisi.';return}let item={title,description:$('description').value.trim(),url:$('url').value.trim(),updatedAt:new Date().toISOString()};data[active]=data[active]||[];if(editing===null)data[active].push(item);else data[active][editing]=item;saveStore();clearForm();$('status').textContent='Draf tersimpan di browser ini.'};
+$('clear').onclick=clearForm;
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-draf-smk-bina-mandiri.json';a.click();URL.revokeObjectURL(a.href)};
+$('import').onchange=async e=>{try{let parsed=JSON.parse(await e.target.files[0].text());if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw Error();data=parsed;saveStore();alert('Backup berhasil diimpor ke browser ini.')}catch{alert('File JSON tidak valid.')}e.target.value=''};
+$('wipe').onclick=()=>{if(confirm('Yakin menghapus seluruh draf lokal?')){data={};saveStore();clearForm()}};
+renderTabs();renderItems();updateTotal();
+</script>
+</body></html>

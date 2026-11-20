@@ -240,6 +240,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Berita terbaru di halaman pertama (diisi JavaScript) -->
+            <div id="home-news" class="mt-14 lg:mt-20"></div>
         </div>
     </section>
 
@@ -1353,6 +1356,74 @@ berbudaya dan intelektual.</span>
                 });
             }
 
+            // === Berita terbaru di Beranda ===
+            const NAMA_BULAN = { januari: 0, februari: 1, maret: 2, april: 3, mei: 4, juni: 5, juli: 6, agustus: 7, september: 8, oktober: 9, november: 10, desember: 11 };
+            const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+            // Membaca tanggal dari teks seperti "12–14 Agustus 2026" atau "26 Oktober–08 November 2026".
+            // Bila ada rentang, dipakai tanggal terakhir. Teks tanpa tanggal jelas (mis. "Dokumentasi Kegiatan Sekolah") dianggap tidak bertanggal.
+            function bacaTanggalBerita(teks) {
+                const t = String(teks ?? "");
+                const re = /(\d{1,2})\s+(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)\s+(\d{4})/gi;
+                let terakhir = null, m;
+                while ((m = re.exec(t)) !== null) {
+                    const d = new Date(Number(m[3]), NAMA_BULAN[m[2].toLowerCase()], Number(m[1]));
+                    if (!terakhir || d > terakhir) terakhir = d;
+                }
+                if (!terakhir && /^\d{4}-\d{2}-\d{2}/.test(t)) {
+                    const d = new Date(t.slice(0, 10) + "T00:00:00");
+                    if (!isNaN(d)) terakhir = d;
+                }
+                return terakhir;
+            }
+
+            function beritaPalingBaru() {
+                const bertanggal = dataBerita
+                    .map((item) => {
+                        let d = bacaTanggalBerita(item.tanggal);
+                        if (!d && item.created_at) {
+                            const c = new Date(item.created_at);
+                            if (!isNaN(c)) d = c;
+                        }
+                        return { item, d };
+                    })
+                    .filter((x) => x.d);
+                if (!bertanggal.length) return null;
+                bertanggal.sort((a, b) => b.d - a.d);
+                return bertanggal[0].item;
+            }
+
+            function renderBeritaTerbaru() {
+                const box = document.getElementById("home-news");
+                if (!box) return;
+                const item = beritaPalingBaru();
+                if (!item) { box.innerHTML = ""; return; }
+                box.innerHTML = `
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="font-heading font-bold text-xl text-white">Berita terbaru</h2>
+                        <a href="#berita" class="text-sm font-semibold text-amber-400 hover:text-amber-300 transition">Lihat semua berita</a>
+                    </div>
+                    <article class="bg-white text-slate-800 rounded-2xl overflow-hidden shadow-xl grid md:grid-cols-12">
+                        <div class="md:col-span-5 h-56 md:h-auto bg-navy-800">
+                            <img src="${esc(item.gambar)}" onerror="this.src='https://placehold.co/700x400/0F172A/F59E0B?text=Berita+SMK+Bina+Mandiri'" alt="${esc(item.judul)}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:col-span-7 p-6 sm:p-8 flex flex-col justify-center">
+                            <div class="flex flex-wrap items-center gap-3 text-xs mb-3">
+                                <span class="px-3 py-1 rounded-full bg-navy-900 text-amber-400 font-bold">${esc(item.kategori)}</span>
+                                <span class="text-slate-500"><i class="fa-regular fa-calendar text-amber-500 mr-1.5"></i>${esc(item.tanggal)}</span>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl sm:text-2xl text-navy-900 leading-snug mb-3">${esc(item.judul)}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-5">${esc(item.ringkasan)}</p>
+                            <button type="button" class="home-news-read self-start inline-flex items-center gap-2 text-sm font-bold text-navy-800 hover:text-amber-600 transition">
+                                <span>Baca Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>`;
+                box.querySelector(".home-news-read")?.addEventListener("click", () => bukaModalBerita(item));
+            }
+            // === akhir Berita terbaru di Beranda ===
+
             filterBtns.forEach((btn) => {
                 btn.addEventListener("click", () => {
                     filterBtns.forEach((b) => {
@@ -1366,16 +1437,18 @@ berbudaya dan intelektual.</span>
             });
 
             renderBerita("Semua");
+            renderBeritaTerbaru();
             if (window.SMKBackend?.ready) {
                 window.SMKBackend.getNews().then((rows) => {
                     if (!rows.length) return; // Pertahankan berita bawaan bila database belum diisi.
                     dataBerita.push(...rows.map((row) => ({
-                        id: row.id, kategori: row.kategori, tanggal: row.tanggal,
+                        id: row.id, kategori: row.kategori, tanggal: row.tanggal, created_at: row.created_at,
                         judul: row.judul, ringkasan: row.ringkasan,
                         gambar: row.gambar || "https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri",
                         konten: [row.ringkasan]
                     })));
                     renderBerita("Semua");
+                    renderBeritaTerbaru();
                 });
             }
 

@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-20T16:31:44.538Z",
+  "diperbarui": "2026-11-20T18:44:40.297Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -67,18 +67,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor Produksi",
-      "perusahaan": "PT Citra Mahasurya Industries",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Pimpin operasional produksi harian, koordinasikan tim, dan pastikan target tercapai dengan efisien, tepat waktu, serta sesuai standar kualitas.",
-      "link": "https://id.jobstreet.com/id/job/96015192",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T03:50:39Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Kepala Gudang Cikande",
       "perusahaan": "Pengiklan Anonim",
       "lokasi": "Cikande, Banten",
@@ -87,6 +75,18 @@
       "link": "https://id.jobstreet.com/id/job/96000900",
       "sumber": "JobStreet",
       "tanggal": "2026-11-19T11:24:02Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Supervisor Produksi",
+      "perusahaan": "PT Citra Mahasurya Industries",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Pimpin operasional produksi harian, koordinasikan tim, dan pastikan target tercapai dengan efisien, tepat waktu, serta sesuai standar kualitas.",
+      "link": "https://id.jobstreet.com/id/job/96015192",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-20T03:50:39Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -151,18 +151,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor Warehouse FG & Delivery",
-      "perusahaan": "Cipta Mortar Utama",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "The position will oversee the supply chain of warehouse FG and Delivery",
-      "link": "https://id.jobstreet.com/id/job/95998259",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-19T08:41:46Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Quality Assurance & Technical Service Executive - Flexible Packaging",
       "perusahaan": "Polyplex Films Indonesia",
       "lokasi": "Cikande, Banten",
@@ -175,14 +163,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Leader/Supervisor Maintenance (Mechanic)",
-      "perusahaan": "Dongsuh Indonesia",
+      "posisi": "Supervisor Warehouse FG & Delivery",
+      "perusahaan": "Cipta Mortar Utama",
       "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Profesional dalam kegiatan mechanical maintenance untuk memastikan operasional produksi berjalan optimal",
-      "link": "https://id.jobstreet.com/id/job/95713668",
+      "tipe": "Kontrak",
+      "ringkasan": "The position will oversee the supply chain of warehouse FG and Delivery",
+      "link": "https://id.jobstreet.com/id/job/95998259",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-05T06:47:02Z",
+      "tanggal": "2026-11-19T08:41:46Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -195,6 +183,18 @@
       "link": "https://id.jobstreet.com/id/job/95824694",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T04:09:16Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Leader/Supervisor Maintenance (Mechanic)",
+      "perusahaan": "Dongsuh Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Profesional dalam kegiatan mechanical maintenance untuk memastikan operasional produksi berjalan optimal",
+      "link": "https://id.jobstreet.com/id/job/95713668",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-05T06:47:02Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -367,6 +367,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "HRGA & Legal",
+      "perusahaan": "PT Megah Tapes Indonesia",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Pimpin pengelolaan HR, legal, general affairs, dan aset untuk mendukung operasional perusahaan yang efektif.",
+      "link": "https://id.jobstreet.com/id/job/95834004",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-11T09:31:23Z",
+      "jarak_km": 34,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "HRD",
       "perusahaan": "Unipower Technology Indonesia",
       "lokasi": "Cikupa, Banten",
@@ -523,18 +535,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Brand Assistant (YUNTH)",
-      "perusahaan": "Talent International",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengelola performa sales YUNTH dan koordinasi lintas tim untuk mendukung pertumbuhan brand.",
-      "link": "https://id.jobstreet.com/id/job/95775924",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-09T04:56:48Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin Finance (Internship)",
       "perusahaan": "ICAN Education",
       "lokasi": "Tangerang, Banten",
@@ -547,6 +547,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Brand Assistant (YUNTH)",
+      "perusahaan": "Talent International",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengelola performa sales YUNTH dan koordinasi lintas tim untuk mendukung pertumbuhan brand.",
+      "link": "https://id.jobstreet.com/id/job/95775924",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-09T04:56:48Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "ERP Entry Data Intern",
       "perusahaan": "PT Vosen Pratita Kemindo",
       "lokasi": "Tangerang Selatan, Banten",
@@ -555,30 +567,6 @@
       "link": "https://id.jobstreet.com/id/job/95745713",
       "sumber": "JobStreet",
       "tanggal": "2026-11-06T07:41:17Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "HELPER OFFSET",
-      "perusahaan": "Pengiklan Anonim",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Membantu operator mesin offset dalam menjalankan proses produksi. Menyiapkan dan menyediakan bahan baku kertas atau karton sesuai kebutuhan produksi.",
-      "link": "https://id.jobstreet.com/id/job/96015241",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T03:51:42Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "HR Generalist Supervisor",
-      "perusahaan": "Panorama JTB Tours Indonesia",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "HR Generalist manages recruitment, employee relations, benefits administration, compliance, and performance management.",
-      "link": "https://id.jobstreet.com/id/job/95848056",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T02:16:23Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -603,6 +591,18 @@
       "link": "https://id.jobstreet.com/id/job/95694108",
       "sumber": "JobStreet",
       "tanggal": "2026-11-04T08:56:42Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HR Generalist Supervisor",
+      "perusahaan": "Panorama JTB Tours Indonesia",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "HR Generalist manages recruitment, employee relations, benefits administration, compliance, and performance management.",
+      "link": "https://id.jobstreet.com/id/job/95848056",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-20T02:16:23Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

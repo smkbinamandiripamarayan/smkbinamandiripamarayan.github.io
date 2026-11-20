@@ -1,0 +1,6 @@
+Paket pembaruan website SMK Bina Mandiri Pamarayan.
+
+1. Unggah index.html dan folder foto-kegiatan beserta seluruh isinya ke direktori website yang sama.
+2. Pertahankan file website lain yang sudah ada, termasuk kepalasekolah.jpeg, Logosmkbinamandiri.png, dan berkas konfigurasi/backend.
+3. Delapan foto yang dikirim ditampilkan sebagai berita dengan narasi pada bagian Berita & Agenda Sekolah.
+4. Foto kepala sekolah tidak diubah. Fitur lain tetap dipertahankan.

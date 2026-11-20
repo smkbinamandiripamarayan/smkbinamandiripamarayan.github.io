@@ -112,6 +112,7 @@
         .hero-dot.amber { background:#FBBF24; box-shadow:0 0 12px rgba(251,191,36,.8); }
         @keyframes dotRise { 0% { transform:translateY(0) translateX(0); opacity:0; } 10% { opacity:.9; } 50% { transform:translateY(-300px) translateX(14px); } 90% { opacity:.7; } 100% { transform:translateY(-640px) translateX(-10px); opacity:0; } }
         @media (prefers-reduced-motion: reduce) { .hero-aurora, .hero-blob, .hero-grid, .hero-sweep, .hero-dot { animation:none; } .hero-dot { opacity:.5; } }
+        #mobile-menu summary::-webkit-details-marker { display:none; }
         /* Logo & nama sekolah: efek menyala */
         .logo-glow { animation:logoPulse 2.8s ease-in-out infinite; }
         .logo-glow::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%); background-size:250% 100%; background-position:150% 0; animation:logoSweep 3.6s ease-in-out infinite; pointer-events:none; }
@@ -215,17 +216,17 @@
         </div>
 
         <!-- Menu Navigasi Mobile dengan Dropdown -->
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-3 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto">
             <details class="group rounded-xl">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50">Beranda <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-4 border-l-2 border-amber-400 pl-3 pb-2">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-house text-xs"></i>Beranda</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
                     <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Halaman Utama</a>
                     <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Sambutan Kepala Sekolah</a>
                 </div>
             </details>
             <details class="group rounded-xl">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50">Profil <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-4 border-l-2 border-amber-400 pl-3 pb-2">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-school text-xs"></i>Profil</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
                     <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Profil Sekolah</a>
                     <a href="#sejarah" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Sejarah Singkat</a>
                     <a href="#data-sekolah" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Data Sekolah</a>
@@ -235,8 +236,8 @@
                 </div>
             </details>
             <details class="group rounded-xl">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50">Informasi <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-4 border-l-2 border-amber-400 pl-3 pb-2">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-xs"></i>Informasi</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
                     <a href="#berita" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Berita & Agenda</a>
                     <a href="#bkk" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Bursa Kerja Khusus (BKK)</a>
                     <a href="#kontak" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Kontak Sekolah</a>

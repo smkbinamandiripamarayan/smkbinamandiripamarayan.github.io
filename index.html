@@ -68,6 +68,12 @@
         .page-slide.active { display: block; animation: pageSlideIn .28s ease-out both; }
         @keyframes pageSlideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
         @media (prefers-reduced-motion: reduce) { .page-slide.active { animation: none; } }
+
+        /* Dropdown navigasi: satu menu terbuka pada satu waktu agar tidak bertumpuk. */
+        header nav details { position: relative; }
+        header nav details > div { z-index: 100; white-space: nowrap; }
+        header nav details[open] { z-index: 100; }
+        #mobile-menu details[open] { background: #f8fafc; }
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500 selection:text-white">
@@ -815,13 +821,27 @@ berbudaya dan intelektual.</span>
                 }
             };
 
+            // Dropdown desktop/mobile bersifat eksklusif: membuka satu menu akan menutup menu lain.
+            document.querySelectorAll("header nav details, #mobile-menu details").forEach((item) => {
+                item.addEventListener("toggle", () => {
+                    if (!item.open) return;
+                    const group = item.closest("nav, #mobile-menu");
+                    if (!group) return;
+                    group.querySelectorAll("details[open]").forEach((other) => {
+                        if (other !== item) other.open = false;
+                    });
+                });
+            });
+
             // Seluruh tautan menu internal membuka slide, bukan menggulir halaman.
+            // Setelah pilihan diklik, semua dropdown ditutup agar tidak menutupi konten.
             document.addEventListener("click", (event) => {
                 const link = event.target.closest('a[href^="#"]');
                 if (!link) return;
                 const pageId = link.getAttribute("href").slice(1);
                 if (!pageIds.includes(pageId)) return;
                 event.preventDefault();
+                document.querySelectorAll("header details[open]").forEach((item) => { item.open = false; });
                 showPage(pageId);
             });
             window.addEventListener("popstate", () => showPage(location.hash.slice(1), false));

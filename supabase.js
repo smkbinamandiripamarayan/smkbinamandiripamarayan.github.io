@@ -164,7 +164,7 @@
       const unavailable = requireClient();
       if (unavailable) return unavailable;
       try {
-        const { error } = await client.from("ppdb_applications").update({ status }).eq("id", id);
+        const { error } = await client.from("ppdb").update({ status }).eq("id", id);
         return error ? failure(error) : { ok: true };
       } catch (error) { return failure(error); }
     },
@@ -173,7 +173,7 @@
       const unavailable = requireClient();
       if (unavailable) return unavailable;
       try {
-        const names = ["ppdb_applications", "bkk_applications", "bkk_vacancies", "school_news"];
+        const names = ["ppdb", "bkk_applications", "bkk_vacancies", "school_news"];
         const results = await Promise.all(names.map(name =>
           client.from(name).select("*").order("created_at", { ascending: false }).limit(300)
         ));
@@ -195,7 +195,17 @@
       const unavailable = requireClient();
       if (unavailable) return { ok: false, reason: "not_configured", message: unavailable.message };
       try {
-        const { error } = await client.from("ppdb_applications").insert(data);
+        // Pemetaan mengikuti struktur tabel public.ppdb yang sudah ada di proyek sekolah.
+        const row = {
+          nama: data.nama,
+          nisn: data.nisn || null,
+          asal_sekolah: data.asal_sekolah,
+          jurusan: data.jurusan,
+          alamat: data.alamat || null,
+          telepon: data.telepon || data.no_hp || null,
+          email: data.email || null
+        };
+        const { error } = await client.from("ppdb").insert(row);
         return error ? { ok: false, error, message: error.message } : { ok: true };
       } catch (error) { return { ok: false, error, message: error.message }; }
     },

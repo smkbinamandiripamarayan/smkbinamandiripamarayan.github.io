@@ -1176,10 +1176,27 @@ berbudaya dan intelektual.</span>
                 const jurusan = document.getElementById("ppdb-jurusan")?.value || "";
                 const noHp = normalisasiWA(document.getElementById("no_hp")?.value.trim() || "");
                 const alamat = document.getElementById("alamat")?.value.trim() || "-";
-                if (window.SMKBackend?.ready) {
-                    const hasil = await window.SMKBackend.insertPPDB({ nama, asal_sekolah: asalSekolah, jurusan, no_hp: noHp, alamat });
-                    if (!hasil.ok) console.warn("Data PPDB belum tersimpan di database; WhatsApp tetap dibuka.");
+                if (!window.SMKBackend?.ready) {
+                    alert("Pendaftaran belum dapat disimpan karena koneksi database belum siap. Silakan coba beberapa saat lagi atau hubungi panitia.");
+                    return;
                 }
+
+                // Siapkan tab WhatsApp secara sinkron agar tidak diblokir browser setelah proses simpan.
+                const tabWhatsApp = window.open("about:blank", "_blank");
+                const hasil = await window.SMKBackend.insertPPDB({
+                    nama,
+                    asal_sekolah: asalSekolah,
+                    jurusan,
+                    telepon: noHp,
+                    alamat
+                });
+                if (!hasil.ok) {
+                    if (tabWhatsApp && !tabWhatsApp.closed) tabWhatsApp.close();
+                    console.error("Gagal menyimpan pendaftaran PPDB:", hasil.error || hasil.message);
+                    alert("Data belum berhasil disimpan ke database. WhatsApp tidak dibuka agar pendaftaran tidak dianggap berhasil.\n\nPesan: " + (hasil.message || "Periksa koneksi atau izin tabel Supabase."));
+                    return;
+                }
+
                 const pesan =
                     `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
                     `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
@@ -1187,7 +1204,12 @@ berbudaya dan intelektual.</span>
                     `- Pilihan Program Keahlian: *${encodeURIComponent(jurusan)}*%0A` +
                     `- No. WhatsApp: *${encodeURIComponent(noHp)}*%0A` +
                     `- Alamat: *${encodeURIComponent(alamat)}*`;
-                window.open(`https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`, "_blank", "noopener,noreferrer");
+                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`;
+                if (tabWhatsApp && !tabWhatsApp.closed) {
+                    tabWhatsApp.location.href = urlWhatsApp;
+                } else {
+                    alert("Data berhasil disimpan, tetapi browser memblokir tab WhatsApp. Silakan hubungi panitia melalui WhatsApp.");
+                }
             });
 
             function normalisasiWA(no) {

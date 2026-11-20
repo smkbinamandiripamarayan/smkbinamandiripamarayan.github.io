@@ -1,6 +1,24 @@
-Paket pembaruan website SMK Bina Mandiri Pamarayan.
+PERBAIKAN PPDB SMK BINA MANDIRI
 
-1. Unggah index.html dan folder foto-kegiatan beserta seluruh isinya ke direktori website yang sama.
-2. Pertahankan file website lain yang sudah ada, termasuk kepalasekolah.jpeg, Logosmkbinamandiri.png, dan berkas konfigurasi/backend.
-3. Delapan foto yang dikirim ditampilkan sebagai berita dengan narasi pada bagian Berita & Agenda Sekolah.
-4. Foto kepala sekolah tidak diubah. Fitur lain tetap dipertahankan.
+File yang diganti di repositori GitHub Pages (folder utama/root):
+1. index.html
+2. admin.html
+3. supabase.js
+
+Langkah:
+- Unduh ZIP ini dan ekstrak.
+- Di repositori GitHub, buka masing-masing file lama.
+- Ganti isi file lama dengan file revisi bernama sama (atau upload/replace ketiga file di folder utama).
+- Commit perubahan.
+- Tunggu GitHub Pages selesai memperbarui situs.
+- Uji pendaftaran dengan data percobaan, lalu cek tabel public.ppdb dan halaman admin.
+
+Perubahan:
+- Form PPDB menyimpan ke tabel public.ppdb.
+- Nomor WhatsApp dipetakan ke kolom telepon.
+- Admin membaca data dari tabel ppdb dan menampilkan telepon.
+- WhatsApp hanya dibuka setelah penyimpanan database berhasil.
+- Tampilan index dan layout admin dipertahankan.
+
+Catatan penting:
+File ini tidak mengubah kebijakan keamanan (RLS) Supabase. Jika setelah dipasang muncul pesan izin/permission/RLS, pemilik proyek perlu membuat policy INSERT untuk anon pada tabel ppdb, serta policy SELECT/UPDATE untuk akun admin yang sah. Jangan pernah menaruh service_role key di file JavaScript publik.

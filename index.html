@@ -246,13 +246,13 @@
     <!-- 3. PROFIL SEKOLAH (SAMBUTAN KEPALA SEKOLAH, VISI & MISI) -->
     <section id="profil" class="page-slide py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+            <div data-pv="utama" class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
                 <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Tentang Kami</span>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Profil SMK Bina Mandiri</h2>
                 <p class="text-slate-600 mt-3 text-sm sm:text-base">Berkomitmen menghadirkan pendidikan kejuruan berkualitas tinggi yang relevan dengan perkembangan teknologi dan kebutuhan industri masa kini.</p>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
+            <div data-pv="utama" class="grid lg:grid-cols-12 gap-10 items-start">
                 <!-- Sambutan Kepala Sekolah -->
                 <div class="lg:col-span-6 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 fade-in-up">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
@@ -324,9 +324,9 @@ berbudaya dan intelektual.</span>
             </div>
 
             <!-- Tambahan profil: sejarah, data sekolah, guru dan tenaga kependidikan -->
-            <div class="mt-20 grid lg:grid-cols-12 gap-10 items-start fade-in-up">
+            <div id="profil-tambahan" class="hidden space-y-16 fade-in-up">
                 <!-- Sejarah singkat -->
-                <div id="sejarah" class="lg:col-span-5 scroll-mt-28">
+                <div id="sejarah" data-pv="sejarah" class="hidden max-w-3xl mx-auto">
                     <h3 class="font-heading font-bold text-xl text-navy-900 mb-6">Sejarah singkat</h3>
                     <ol class="relative border-l-2 border-slate-200 ml-2 space-y-8">
                         <li class="pl-6 relative">
@@ -353,7 +353,7 @@ berbudaya dan intelektual.</span>
                 </div>
 
                 <!-- Data sekolah -->
-                <div id="data-sekolah" class="lg:col-span-7 scroll-mt-28">
+                <div id="data-sekolah" data-pv="data-sekolah" class="hidden max-w-4xl mx-auto">
                     <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Data sekolah</h3>
                     <dl class="grid sm:grid-cols-2 gap-x-8 border-t border-slate-200 mt-4">
                         <div class="py-3 border-b border-slate-200">
@@ -402,7 +402,7 @@ berbudaya dan intelektual.</span>
             </div>
 
             <!-- Guru dan tenaga kependidikan -->
-            <div id="guru" class="mt-16 fade-in-up scroll-mt-28">
+            <div id="guru" data-pv="guru" class="hidden fade-in-up">
                 <h3 class="font-heading font-bold text-xl text-navy-900 mb-6">Guru dan tenaga kependidikan</h3>
                 <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
@@ -1006,16 +1006,19 @@ berbudaya dan intelektual.</span>
                     const page = document.getElementById(id);
                     if (page) page.classList.toggle("active", id === targetId);
                 });
+                // Di dalam Profil hanya satu tampilan yang muncul: utama (sambutan, visi, misi) atau salah satu sub menu.
+                const profilView = subTarget ? pageId : "utama";
+                document.querySelectorAll("#profil [data-pv]").forEach((el) => {
+                    el.classList.toggle("hidden", el.dataset.pv !== profilView);
+                });
+                const profilExtra = document.getElementById("profil-tambahan");
+                if (profilExtra) profilExtra.classList.toggle("hidden", profilView !== "sejarah" && profilView !== "data-sekolah");
                 if (updateHistory) history.pushState({ page: hashId }, "", `#${hashId}`);
                 if (targetId !== "beranda") {
                     const target = document.getElementById(targetId);
                     if (target) target.querySelectorAll(".fade-in-up").forEach((el) => el.classList.add("visible"));
                 }
-                if (subTarget) {
-                    subTarget.scrollIntoView({ behavior: "instant", block: "start" });
-                } else {
-                    window.scrollTo({ top: 0, behavior: "instant" });
-                }
+                window.scrollTo({ top: 0, behavior: "instant" });
             };
 
             // Dropdown desktop/mobile bersifat eksklusif: membuka satu menu akan menutup menu lain.

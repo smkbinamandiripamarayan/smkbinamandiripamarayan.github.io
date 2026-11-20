@@ -141,6 +141,26 @@
         #navbar.scrolled #navbar-bar { background:#fff; box-shadow:0 14px 44px -16px rgba(15,23,42,.18); }
         @media (prefers-reduced-motion: reduce) { .nav-panel { animation:none; } .btn-shine::after { transition:none; } }
     </style>
+
+    <style>
+        /* Latar halaman selain Beranda: tidak lagi putih, memakai gradasi biru lembut yang bergerak pelan. */
+        body { background-color: #DBEAFE; }
+        #profil, #jurusan, #fasilitas, #berita, #bkk {
+            background: linear-gradient(120deg, #DBEAFE 0%, #E0F2FE 30%, #FEF3C7 60%, #DBEAFE 100%) !important;
+            background-size: 240% 240% !important;
+            animation: bgGeser 22s ease-in-out infinite;
+        }
+        #profil.page-slide.active, #jurusan.page-slide.active, #fasilitas.page-slide.active,
+        #berita.page-slide.active, #bkk.page-slide.active {
+            animation: pageSlideIn .28s ease-out both, bgGeser 22s ease-in-out infinite;
+        }
+        @keyframes bgGeser { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @media (prefers-reduced-motion: reduce) {
+            #profil, #jurusan, #fasilitas, #berita, #bkk,
+            #profil.page-slide.active, #jurusan.page-slide.active, #fasilitas.page-slide.active,
+            #berita.page-slide.active, #bkk.page-slide.active { animation: none; }
+        }
+    </style>
 </head>
 <body class="antialiased selection:bg-amber-500 selection:text-white">
 

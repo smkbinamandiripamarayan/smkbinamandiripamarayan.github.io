@@ -78,11 +78,16 @@
 
     <style>
         /* Navbar premium: tombol menu, dropdown, tombol aksi */
-        .nav-trigger { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1rem; border-radius:9999px; font-size:.875rem; font-weight:600; color:#334155; transition:background .2s, color .2s; }
+        .nav-trigger { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1rem; border-radius:9999px; font-size:.875rem; font-weight:600; color:#64748B; transition:background .2s, color .2s; }
         .nav-trigger::-webkit-details-marker { display:none; }
-        .nav-trigger:hover, details[open] > .nav-trigger { background:rgba(15,23,42,.06); color:#1E3A8A; }
+        .nav-trigger:hover, details[open] > .nav-trigger { background:#F1F5F9; color:#1E3A8A; }
         .nav-trigger .chev { font-size:.625rem; color:#94A3B8; transition:transform .25s ease, color .2s; }
         details[open] > .nav-trigger .chev { transform:rotate(180deg); color:#F59E0B; }
+        .nav-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.15rem; border-radius:9999px; font-weight:800; font-size:.875rem; color:#fff; }
+        .nav-btn::-webkit-details-marker { display:none; }
+        .nav-btn .chev { font-size:.6rem; opacity:.85; transition:transform .25s ease; }
+        details[open] > .nav-btn .chev { transform:rotate(180deg); }
+        details[open] > .nav-btn { filter:brightness(1.06); }
         .nav-panel { left:50%; transform:translateX(-50%); animation:navPanelIn .18s ease-out both; }
         @keyframes navPanelIn { from { opacity:0; transform:translate(-50%,-8px); } to { opacity:1; transform:translate(-50%,0); } }
         .nav-item { display:flex; align-items:center; gap:.75rem; border-radius:.75rem; padding:.55rem .75rem; font-size:.875rem; font-weight:500; color:#334155; transition:background .15s, color .15s, padding .15s; }
@@ -92,7 +97,7 @@
         .btn-shine { position:relative; overflow:hidden; }
         .btn-shine::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform:translateX(-120%); transition:transform .7s ease; pointer-events:none; }
         .btn-shine:hover::after { transform:translateX(120%); }
-        #navbar.scrolled #navbar-bar { background:rgba(255,255,255,.92); box-shadow:0 14px 44px -16px rgba(15,23,42,.28); }
+        #navbar.scrolled #navbar-bar { background:#fff; box-shadow:0 14px 44px -16px rgba(15,23,42,.18); }
         @media (prefers-reduced-motion: reduce) { .nav-panel { animation:none; } .btn-shine::after { transition:none; } }
     </style>
 </head>
@@ -102,7 +107,7 @@
     <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <!-- Garis emas tipis di bagian atas -->
         <div class="h-[3px] bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600"></div>
-        <div id="navbar-bar" class="bg-white/85 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_10px_40px_-14px_rgba(15,23,42,0.14)] transition-all duration-300">
+        <div id="navbar-bar" class="bg-white border-b border-slate-200/70 shadow-[0_10px_40px_-14px_rgba(15,23,42,0.10)] transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-[77px]">
                     <!-- Logo & Nama Sekolah -->
@@ -119,16 +124,16 @@
                     </a>
 
                     <!-- Menu Navigasi Desktop dengan Dropdown -->
-                    <nav class="hidden lg:flex items-center gap-1.5">
+                    <nav class="hidden xl:flex items-center gap-2.5">
                         <details class="relative">
-                            <summary class="nav-trigger list-none cursor-pointer">Beranda <i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-house text-xs"></i><span>Beranda</span><i class="chev fa-solid fa-chevron-down"></i></summary>
                             <div class="nav-panel absolute top-full mt-3 min-w-64 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
                                 <a href="#beranda" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-house"></i></span>Halaman Utama</a>
                                 <a href="#profil" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-user-tie"></i></span>Sambutan Kepala Sekolah</a>
                             </div>
                         </details>
                         <details class="relative">
-                            <summary class="nav-trigger list-none cursor-pointer">Profil <i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-school text-xs"></i><span>Profil</span><i class="chev fa-solid fa-chevron-down"></i></summary>
                             <div class="nav-panel absolute top-full mt-3 min-w-72 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
                                 <a href="#profil" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-school"></i></span>Profil Sekolah</a>
                                 <a href="#sejarah" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-clock-rotate-left"></i></span>Sejarah Singkat</a>
@@ -139,7 +144,7 @@
                             </div>
                         </details>
                         <details class="relative">
-                            <summary class="nav-trigger list-none cursor-pointer">Informasi <i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-circle-info text-xs"></i><span>Informasi</span><i class="chev fa-solid fa-chevron-down"></i></summary>
                             <div class="nav-panel absolute top-full mt-3 min-w-64 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
                                 <a href="#berita" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-newspaper"></i></span>Berita & Agenda</a>
                                 <a href="#bkk" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-briefcase"></i></span>Bursa Kerja Khusus (BKK)</a>
@@ -147,12 +152,10 @@
                             </div>
                         </details>
 
-                        <span class="mx-2 h-6 w-px bg-slate-200"></span>
-
-                        <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="btn-ghost group inline-flex items-center gap-2 rounded-full border border-navy-900/15 bg-white px-5 py-2.5 text-sm font-semibold text-navy-900 shadow-sm transition hover:-translate-y-0.5 hover:border-navy-900 hover:bg-navy-900 hover:text-white hover:shadow-lg hover:shadow-navy-900/20">
-                            <i class="fa-solid fa-layer-group text-[13px] text-amber-500 group-hover:text-amber-400"></i>
+                                                <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="btn-shine group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 px-5 py-2.5 font-heading font-extrabold text-sm text-white shadow-lg shadow-sky-500/30 ring-1 ring-sky-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-sky-500/40">
+                            <i class="fa-solid fa-layer-group text-xs"></i>
                             <span>Aplikasi SMK</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
                         </a>
                         <a href="#ppdb" class="btn-shine group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-6 py-2.5 font-heading font-extrabold text-sm text-navy-900 shadow-lg shadow-amber-500/30 ring-1 ring-amber-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-500/40">
                             <i class="fa-solid fa-graduation-cap"></i>
@@ -163,7 +166,7 @@
 
                     <!-- Hamburger -->
                     <div class="flex items-center gap-3">
-                        <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-navy-900 shadow-sm hover:bg-slate-50 focus:outline-none">
+                        <button id="mobile-menu-btn" aria-label="Buka Menu" class="xl:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-navy-900 shadow-sm hover:bg-slate-50 focus:outline-none">
                             <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
                         </button>
                     </div>
@@ -172,7 +175,7 @@
         </div>
 
         <!-- Menu Navigasi Mobile dengan Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto">
             <details class="group rounded-xl">
                 <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50">Beranda <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i></summary>
                 <div class="ml-4 border-l-2 border-amber-400 pl-3 pb-2">
@@ -203,8 +206,8 @@
                 <a href="#ppdb" class="mobile-link btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-5 py-3 font-heading font-extrabold text-sm text-navy-900 shadow-lg shadow-amber-500/30 ring-1 ring-amber-300/70">
                     <i class="fa-solid fa-graduation-cap"></i><span>Daftar PPDB Online</span>
                 </a>
-                <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full border border-navy-900/20 bg-white px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-navy-900 hover:text-white transition">
-                    <i class="fa-solid fa-layer-group text-[13px] text-amber-500"></i><span>Aplikasi SMK</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+                <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 px-5 py-3 font-heading font-extrabold text-sm text-white shadow-lg shadow-sky-500/30 ring-1 ring-sky-300/70">
+                    <i class="fa-solid fa-layer-group text-xs"></i><span>Aplikasi SMK</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
             </div>
         </div>

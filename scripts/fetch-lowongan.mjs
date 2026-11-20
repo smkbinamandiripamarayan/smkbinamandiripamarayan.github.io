@@ -1,6 +1,6 @@
 // Mengambil lowongan kerja (Jooble + JobStreet) lalu menyimpannya ke lowongan.json
 // Dijalankan otomatis oleh GitHub Actions (.github/workflows/lowongan.yml). Node 20+.
-import { readFile, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 
 // ====== PENGATURAN ======
 // Koordinat sekolah (PERIKSA di Google Maps lalu sesuaikan bila perlu)
@@ -10,15 +10,23 @@ const MAKS_LOWONGAN = 60;
 const LOKASI_CARI = ["Serang", "Cikande", "Kragilan", "Cilegon", "Balaraja", "Tangerang", "Rangkasbitung"];
 const JOOBLE_KEY = process.env.JOOBLE_API_KEY || "";
 
+// Judul yang dibuang (umumnya butuh pengalaman lama / S1). Ubah sesuai kebutuhan.
+const JUDUL_DIBUANG = /\b(manager|manajer|head|director|direktur|specialist|engineer|senior|dept)\b/i;
+// Ringkasan yang menyebut syarat pendidikan tinggi ikut dibuang.
+const SYARAT_TINGGI = /\b(S1|S2|sarjana|bachelor'?s?|degree)\b/i;
+
 // Perkiraan koordinat wilayah (untuk menghitung jarak dari teks lokasi lowongan)
 const WILAYAH = {
   pamarayan: [-6.22, 106.19], jawilan: [-6.23, 106.24], kopo: [-6.25, 106.15], ciruas: [-6.15, 106.23],
   walantaka: [-6.15, 106.18], kibin: [-6.16, 106.20], kragilan: [-6.17, 106.25], cikande: [-6.20, 106.30],
   serang: [-6.12, 106.15], kramatwatu: [-6.06, 106.10], cilegon: [-6.00, 106.01], merak: [-5.93, 106.01],
   anyer: [-6.05, 105.92], bojonegara: [-5.99, 106.05], balaraja: [-6.20, 106.44], cikupa: [-6.23, 106.50],
-  curug: [-6.25, 106.56], jatiuwung: [-6.18, 106.59], tangerang: [-6.18, 106.63], serpong: [-6.30, 106.67],
-  rangkasbitung: [-6.35, 106.25], pandeglang: [-6.31, 106.10], banten: [-6.30, 106.15],
+  curug: [-6.25, 106.56], bitung: [-6.22, 106.57], jatiuwung: [-6.18, 106.59], tangerang: [-6.18, 106.63],
+  serpong: [-6.30, 106.67], rangkasbitung: [-6.35, 106.25], pandeglang: [-6.31, 106.10],
+  kosambi: [-6.07, 106.65], pagedangan: [-6.29, 106.61], tigaraksa: [-6.26, 106.46], pamulang: [-6.34, 106.74],
 };
+// Lokasi pusat Banten, hanya dipakai bila lokasi lowongan cuma tertulis "Banten"
+const FALLBACK_BANTEN = [-6.30, 106.15];
 
 const rad = (d) => (d * Math.PI) / 180;
 function jarakKm(lat1, lon1, lat2, lon2) {
@@ -33,8 +41,9 @@ function koordinat(teks, fallback) {
   if (kunci) return { c: WILAYAH[kunci], perkiraan: false };
   // lokasi tak dikenal hanya dipakai bila kosong atau jelas berada di Banten
   if (t && !t.includes("banten")) return null;
-  const f = WILAYAH[(fallback || "").toLowerCase()];
-  return f ? { c: f, perkiraan: true } : null;
+  // tulisan "Banten" saja: pakai lokasi pencarian, tandai sebagai perkiraan
+  const f = WILAYAH[(fallback || "").toLowerCase()] || FALLBACK_BANTEN;
+  return { c: f, perkiraan: true };
 }
 const bersih = (s) => String(s ?? "").replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 
@@ -82,6 +91,7 @@ galat.forEach((g) => console.warn("Peringatan:", g));
 const unik = new Map();
 for (const x of semua) {
   if (!x.posisi || !/^https?:\/\//.test(x.link || "")) continue;
+  if (JUDUL_DIBUANG.test(x.posisi) || SYARAT_TINGGI.test(x.ringkasan || "")) continue;
   const kunci = `${x.posisi}|${x.perusahaan}`.toLowerCase();
   if (unik.has(kunci)) continue;
   const k = koordinat(x.lokasi, x._q);

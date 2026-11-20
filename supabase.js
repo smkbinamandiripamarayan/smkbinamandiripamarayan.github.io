@@ -172,48 +172,23 @@
     async adminData() {
       const unavailable = requireClient();
       if (unavailable) return unavailable;
-
-      // PPDB adalah data utama dashboard. Ambil secara mandiri agar error
-      // pada tabel BKK/berita tidak membuat daftar pendaftar ikut gagal.
       try {
-        const { data: ppdb, error: ppdbError } = await client
-          .from("ppdb")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(300);
-
-        if (ppdbError) return failure(ppdbError);
-
-        // Data tambahan bersifat opsional. Jika tabelnya belum tersedia,
-        // namanya berbeda, atau RLS menolak akses, dashboard PPDB tetap tampil.
-        const loadOptional = async (table) => {
-          try {
-            const { data, error } = await client
-              .from(table)
-              .select("*")
-              .order("created_at", { ascending: false })
-              .limit(300);
-            if (error) {
-              console.warn(`Data tambahan ${table} tidak dapat dimuat:`, error.message);
-              return [];
-            }
-            return data || [];
-          } catch (error) {
-            console.warn(`Gagal memuat data tambahan ${table}:`, error);
-            return [];
+        const names = ["ppdb", "bkk_applications", "bkk_vacancies", "school_news"];
+        const results = await Promise.all(names.map(name =>
+          client.from(name).select("*").order("created_at", { ascending: false }).limit(300)
+        ));
+        const failed = results.find(result => result.error);
+        if (failed) return failure(failed.error);
+        return {
+          ok: true,
+          data: {
+            ppdb: results[0].data || [],
+            bkk: results[1].data || [],
+            jobs: results[2].data || [],
+            news: results[3].data || []
           }
         };
-
-        const [bkk, jobs, news] = await Promise.all([
-          loadOptional("bkk_applications"),
-          loadOptional("bkk_vacancies"),
-          loadOptional("school_news")
-        ]);
-
-        return { ok: true, data: { ppdb: ppdb || [], bkk, jobs, news } };
-      } catch (error) {
-        return failure(error);
-      }
+      } catch (error) { return failure(error); }
     },
 
     async insertPPDB(data) {

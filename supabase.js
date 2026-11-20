@@ -197,17 +197,14 @@
       try {
         // Pemetaan mengikuti struktur tabel public.ppdb yang sudah ada di proyek sekolah.
         const row = {
-          nama: String(data.nama || "").trim(),
-          nisn: data.nisn ? String(data.nisn).trim() : null,
-          asal_sekolah: String(data.asal_sekolah || "").trim(),
-          jurusan: String(data.jurusan || "").trim(),
-          alamat: data.alamat ? String(data.alamat).trim() : null,
-          telepon: String(data.telepon || data.no_hp || "").trim(),
-          email: data.email ? String(data.email).trim() : null
+          nama: data.nama,
+          nisn: data.nisn || null,
+          asal_sekolah: data.asal_sekolah,
+          jurusan: data.jurusan,
+          alamat: data.alamat || null,
+          telepon: data.telepon || data.no_hp || null,
+          email: data.email || null
         };
-        if (!row.nama || !row.asal_sekolah || !row.jurusan || !row.telepon) {
-          return { ok: false, message: "Nama, asal sekolah, jurusan, dan nomor WhatsApp wajib diisi." };
-        }
         const { error } = await client.from("ppdb").insert(row);
         return error ? { ok: false, error, message: error.message } : { ok: true };
       } catch (error) { return { ok: false, error, message: error.message }; }

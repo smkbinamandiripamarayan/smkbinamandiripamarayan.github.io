@@ -173,19 +173,38 @@
       const unavailable = requireClient();
       if (unavailable) return unavailable;
       try {
-        const names = ["ppdb", "bkk_applications", "bkk_vacancies", "school_news"];
-        const results = await Promise.all(names.map(name =>
-          client.from(name).select("*").order("created_at", { ascending: false }).limit(300)
-        ));
-        const failed = results.find(result => result.error);
-        if (failed) return failure(failed.error);
+        // PPDB adalah data utama. Kegagalan tabel BKK/lowongan/berita
+        // tidak boleh membuat daftar pendaftar PPDB ikut gagal ditampilkan.
+        const readTable = async (table) => {
+          try {
+            const { data, error } = await client.from(table)
+              .select("*").order("created_at", { ascending: false }).limit(300);
+            if (error) {
+              console.warn(`Tidak dapat membaca tabel ${table}:`, error.message);
+              return { data: [], error };
+            }
+            return { data: data || [], error: null };
+          } catch (error) {
+            console.warn(`Gagal membaca tabel ${table}:`, error);
+            return { data: [], error };
+          }
+        };
+
+        const ppdbResult = await readTable("ppdb");
+        if (ppdbResult.error) return failure(ppdbResult.error);
+
+        const [bkkResult, jobsResult, newsResult] = await Promise.all([
+          readTable("bkk_applications"),
+          readTable("bkk_vacancies"),
+          readTable("school_news")
+        ]);
         return {
           ok: true,
           data: {
-            ppdb: results[0].data || [],
-            bkk: results[1].data || [],
-            jobs: results[2].data || [],
-            news: results[3].data || []
+            ppdb: ppdbResult.data,
+            bkk: bkkResult.data,
+            jobs: jobsResult.data,
+            news: newsResult.data
           }
         };
       } catch (error) { return failure(error); }
@@ -195,17 +214,7 @@
       const unavailable = requireClient();
       if (unavailable) return { ok: false, reason: "not_configured", message: unavailable.message };
       try {
-        // Pemetaan mengikuti struktur tabel public.ppdb yang sudah ada di proyek sekolah.
-        const row = {
-          nama: data.nama,
-          nisn: data.nisn || null,
-          asal_sekolah: data.asal_sekolah,
-          jurusan: data.jurusan,
-          alamat: data.alamat || null,
-          telepon: data.telepon || data.no_hp || null,
-          email: data.email || null
-        };
-        const { error } = await client.from("ppdb").insert(row);
+        const { error } = await client.from("ppdb").insert(data);
         return error ? { ok: false, error, message: error.message } : { ok: true };
       } catch (error) { return { ok: false, error, message: error.message }; }
     },

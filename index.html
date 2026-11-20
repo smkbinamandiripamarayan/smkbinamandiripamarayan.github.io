@@ -739,7 +739,7 @@ berbudaya dan intelektual.</span>
             </div>
 
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <p>© 2026 SMK Bina Mandiri. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>&copy; 2026 SMK Bina Mandiri. Hak Cipta Dilindungi Undang-Undang.</p>
                 <p>https://smkbinamandiripamarayan.github.io/</p>
             </div>
         </div>
@@ -801,8 +801,6 @@ berbudaya dan intelektual.</span>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const NOMOR_WA_BKK_ADMIN = "6285217330133";
@@ -1200,13 +1198,13 @@ berbudaya dan intelektual.</span>
                 }
 
                 const pesan =
-                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:\n\n` +
-                    `- Nama Lengkap: *${nama}*\n` +
-                    `- Asal Sekolah: *${asalSekolah}*\n` +
-                    `- Pilihan Program Keahlian: *${jurusan}*\n` +
-                    `- No. WhatsApp: *${noHp}*\n` +
-                    `- Alamat: *${alamat}*`;
-                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${encodeURIComponent(pesan)}`;
+                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
+                    `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
+                    `- Asal Sekolah: *${encodeURIComponent(asalSekolah)}*%0A` +
+                    `- Pilihan Program Keahlian: *${encodeURIComponent(jurusan)}*%0A` +
+                    `- No. WhatsApp: *${encodeURIComponent(noHp)}*%0A` +
+                    `- Alamat: *${encodeURIComponent(alamat)}*`;
+                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`;
                 if (tabWhatsApp && !tabWhatsApp.closed) {
                     tabWhatsApp.location.href = urlWhatsApp;
                 } else {
@@ -1363,15 +1361,15 @@ berbudaya dan intelektual.</span>
                     renderBkkRiwayat();
 
                     const teks =
-                        `Halo Admin BKK SMK Bina Mandiri, saya mengajukan lamaran:\n\n` +
-                        `- Nama: *${nama}*\n` +
-                        `- No. WA: *${wa}*\n` +
-                        `- Jurusan: *${jurusan}*\n` +
-                        `- Tahun Lulus / Kelas: *${lulus}*\n` +
-                        `- Posisi: *${posisi}*\n` +
-                        `- Keahlian / Catatan: *${catatan}*`;
+                        `Halo Admin BKK SMK Bina Mandiri, saya mengajukan lamaran:%0A%0A` +
+                        `- Nama: *${encodeURIComponent(nama)}*%0A` +
+                        `- No. WA: *${encodeURIComponent(wa)}*%0A` +
+                        `- Jurusan: *${encodeURIComponent(jurusan)}*%0A` +
+                        `- Tahun Lulus / Kelas: *${encodeURIComponent(lulus)}*%0A` +
+                        `- Posisi: *${encodeURIComponent(posisi)}*%0A` +
+                        `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
 
-                    window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${encodeURIComponent(teks)}`, "_blank", "noopener,noreferrer");
+                    window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
                 };
 
                 searchEl?.addEventListener("input", renderBkkLowongan);
@@ -1412,5 +1410,7 @@ berbudaya dan intelektual.</span>
             }
         });
     </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 </body>
 </html>

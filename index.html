@@ -83,6 +83,17 @@
         .nav-trigger:hover, details[open] > .nav-trigger { background:#F1F5F9; color:#1E3A8A; }
         .nav-trigger .chev { font-size:.625rem; color:#94A3B8; transition:transform .25s ease, color .2s; }
         details[open] > .nav-trigger .chev { transform:rotate(180deg); color:#F59E0B; }
+        /* Logo & nama sekolah: efek menyala */
+        .logo-glow { animation:logoPulse 2.8s ease-in-out infinite; }
+        .logo-glow::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%); background-size:250% 100%; background-position:150% 0; animation:logoSweep 3.6s ease-in-out infinite; pointer-events:none; }
+        .logo-img { animation:logoImgGlow 2.8s ease-in-out infinite; }
+        @keyframes logoPulse { 0%,100% { box-shadow:0 0 0 0 rgba(245,158,11,.0), 0 2px 8px rgba(15,23,42,.10); } 50% { box-shadow:0 0 0 4px rgba(245,158,11,.14), 0 0 22px 3px rgba(245,158,11,.45); } }
+        @keyframes logoImgGlow { 0%,100% { filter:drop-shadow(0 0 0 rgba(245,158,11,0)); } 50% { filter:drop-shadow(0 0 6px rgba(245,158,11,.75)); } }
+        @keyframes logoSweep { 0% { background-position:150% 0; } 55%,100% { background-position:-50% 0; } }
+        .brand-glow { background:linear-gradient(90deg, #0F172A 0%, #1E3A8A 30%, #F59E0B 50%, #1E3A8A 70%, #0F172A 100%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; animation:brandShine 4s linear infinite, brandGlow 2.8s ease-in-out infinite; }
+        @keyframes brandShine { 0% { background-position:100% 0; } 100% { background-position:-150% 0; } }
+        @keyframes brandGlow { 0%,100% { filter:drop-shadow(0 0 0 rgba(245,158,11,0)); } 50% { filter:drop-shadow(0 0 7px rgba(245,158,11,.55)); } }
+        @media (prefers-reduced-motion: reduce) { .logo-glow, .logo-glow::after, .logo-img, .brand-glow { animation:none; } }
         .nav-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.15rem; border-radius:9999px; font-weight:800; font-size:.875rem; color:#fff; }
         .nav-btn::-webkit-details-marker { display:none; }
         .nav-btn .chev { font-size:.6rem; opacity:.85; transition:transform .25s ease; }
@@ -112,11 +123,11 @@
                 <div class="flex justify-between items-center h-[77px]">
                     <!-- Logo & Nama Sekolah -->
                     <a href="#beranda" class="flex items-center gap-3.5 group">
-                        <span class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 ring-1 ring-slate-200 shadow-sm group-hover:shadow-md group-hover:ring-amber-400/60 transition">
-                            <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="w-9 h-9 object-contain">
+                        <span class="logo-glow relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 ring-1 ring-amber-300/70">
+                            <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="logo-img w-12 h-12 object-contain">
                         </span>
                         <div>
-                            <span class="font-heading font-extrabold text-[21px] tracking-tight leading-none block bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 bg-clip-text text-transparent">SMK BINA MANDIRI</span>
+                            <span class="brand-glow font-heading font-extrabold text-[21px] tracking-tight leading-none block">SMK BINA MANDIRI</span>
                             <span class="mt-1 flex items-center gap-1.5 text-[10.5px] font-semibold text-slate-500 tracking-[0.18em] uppercase">
                                 <span class="w-4 h-px bg-amber-500"></span>Unggul • Kompeten • Berkarakter
                             </span>

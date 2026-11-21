@@ -1750,7 +1750,8 @@
                 });
             }
 
-            const NOMOR_WA_PPDB = "6285217330133";
+            // Pendaftaran PPDB dikirim ke GRUP WhatsApp. Ganti link ini jika grupnya berubah.
+            const LINK_GRUP_PPDB = "https://chat.whatsapp.com/GvcBJdgxPx3DiTVuIXAiJj";
             const ppdbForm = document.getElementById("ppdb-form");
             ppdbForm?.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -1766,6 +1767,25 @@
 
                 // Siapkan tab WhatsApp secara sinkron agar tidak diblokir browser setelah proses simpan.
                 const tabWhatsApp = window.open("about:blank", "_blank");
+                // Link grup tidak bisa menerima teks otomatis, jadi pesan disalin agar pendaftar tinggal menempelkannya.
+                const teksPendaftaran =
+                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:\n\n` +
+                    `- Nama Lengkap: *${nama}*\n` +
+                    `- Asal Sekolah: *${asalSekolah}*\n` +
+                    `- Pilihan Program Keahlian: *${jurusan}*\n` +
+                    `- No. WhatsApp: *${noHp}*\n` +
+                    `- Alamat: *${alamat}*`;
+                const salinPesan = (async () => {
+                    try { await navigator.clipboard.writeText(teksPendaftaran); return true; }
+                    catch (e) {
+                        try {
+                            const ta = document.createElement("textarea");
+                            ta.value = teksPendaftaran; ta.style.cssText = "position:fixed;opacity:0";
+                            document.body.appendChild(ta); ta.select();
+                            const ok = document.execCommand("copy"); ta.remove(); return ok;
+                        } catch (e2) { return false; }
+                    }
+                })();
                 const hasil = await window.SMKBackend.insertPPDB({
                     nama,
                     asal_sekolah: asalSekolah,
@@ -1780,19 +1800,19 @@
                     return;
                 }
 
-                const pesan =
-                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
-                    `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
-                    `- Asal Sekolah: *${encodeURIComponent(asalSekolah)}*%0A` +
-                    `- Pilihan Program Keahlian: *${encodeURIComponent(jurusan)}*%0A` +
-                    `- No. WhatsApp: *${encodeURIComponent(noHp)}*%0A` +
-                    `- Alamat: *${encodeURIComponent(alamat)}*`;
-                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`;
+                const tersalin = await salinPesan;
                 if (tabWhatsApp && !tabWhatsApp.closed) {
-                    tabWhatsApp.location.href = urlWhatsApp;
+                    tabWhatsApp.location.href = LINK_GRUP_PPDB;
                 } else {
-                    alert("Data berhasil disimpan, tetapi browser memblokir tab WhatsApp. Silakan hubungi panitia melalui WhatsApp.");
+                    window.location.href = LINK_GRUP_PPDB;
                 }
+                setTimeout(() => {
+                    if (tersalin) {
+                        alert("Data pendaftaran sudah tersimpan.\n\nPesan pendaftaran sudah disalin. Di grup WhatsApp, tempel (paste) pesannya lalu kirim.");
+                    } else {
+                        prompt("Data pendaftaran sudah tersimpan. Salin pesan ini lalu tempel di grup WhatsApp:", teksPendaftaran);
+                    }
+                }, 500);
             });
 
             function normalisasiWA(no) {

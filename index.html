@@ -147,8 +147,38 @@
         .btn-shine { position:relative; overflow:hidden; }
         .btn-shine::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform:translateX(-120%); transition:transform .7s ease; pointer-events:none; }
         .btn-shine:hover::after { transform:translateX(120%); }
-        #navbar.scrolled #navbar-bar { background:#fff; box-shadow:0 14px 44px -16px rgba(15,23,42,.18); }
         @media (prefers-reduced-motion: reduce) { .nav-panel { animation:none; } .btn-shine::after { transition:none; } }
+
+        /* ===== Header modern: latar navy bergradasi, lebih besar ===== */
+        #navbar-bar {
+            background:
+                radial-gradient(55% 150% at 6% 0%, rgba(245,158,11,.24), transparent 62%),
+                radial-gradient(45% 170% at 94% 100%, rgba(56,189,248,.26), transparent 62%),
+                linear-gradient(100deg, #0A1230 0%, #12297A 50%, #0A1230 100%);
+            box-shadow: 0 20px 50px -22px rgba(2,6,23,.6);
+        }
+        #navbar-bar::after {
+            content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; pointer-events:none;
+            background:linear-gradient(90deg, transparent, rgba(251,191,36,.75), rgba(125,211,252,.65), transparent);
+        }
+        #navbar.scrolled #navbar-bar {
+            background: linear-gradient(100deg, rgba(7,12,34,.93), rgba(15,38,100,.93));
+            -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%);
+            box-shadow: 0 18px 44px -18px rgba(2,6,23,.65);
+        }
+        #navbar-inner { height:84px; transition:height .3s ease; }
+        @media (min-width:1024px) { #navbar-inner { height:100px; } }
+        #navbar.scrolled #navbar-inner { height:76px; }
+        @media (min-width:1024px) { #navbar.scrolled #navbar-inner { height:90px; } }
+        .brand-glow { background:linear-gradient(90deg, #FFFFFF 0%, #FDE68A 30%, #F59E0B 50%, #FDE68A 70%, #FFFFFF 100%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+        .nav-btn { padding:.72rem 1.3rem; font-size:.95rem; }
+        #navbar nav > a.btn-shine { padding:.78rem 1.6rem; font-size:.95rem; }
+        /* Beri ruang agar isi halaman tidak tertutup header yang lebih tinggi */
+        #profil.page-slide, #jurusan.page-slide, #fasilitas.page-slide, #berita.page-slide, #ppdb.page-slide, #bkk.page-slide { padding-top:6.5rem; }
+        @media (min-width:1024px) {
+            #profil.page-slide, #jurusan.page-slide, #fasilitas.page-slide, #berita.page-slide, #ppdb.page-slide, #bkk.page-slide { padding-top:8rem; }
+            #beranda.page-slide { padding-top:9rem; }
+        }
     </style>
 
     <style>
@@ -177,18 +207,18 @@
     <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <!-- Garis emas tipis di bagian atas -->
         <div class="h-[3px] bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600"></div>
-        <div id="navbar-bar" class="bg-white border-b border-slate-200/70 shadow-[0_10px_40px_-14px_rgba(15,23,42,0.10)] transition-all duration-300">
+        <div id="navbar-bar" class="relative border-b border-white/10 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-[77px]">
+                <div id="navbar-inner" class="flex justify-between items-center">
                     <!-- Logo & Nama Sekolah -->
                     <a href="#beranda" class="flex items-center gap-3.5 group">
-                        <span class="logo-glow relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 ring-1 ring-amber-300/70">
-                            <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="logo-img w-12 h-12 object-contain">
+                        <span class="logo-glow relative flex items-center justify-center w-[60px] h-[60px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-gradient-to-br from-white to-sky-50 ring-2 ring-amber-300/80">
+                            <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="logo-img w-[48px] h-[48px] sm:w-14 sm:h-14 object-contain">
                         </span>
                         <div>
-                            <span class="brand-glow font-heading font-extrabold text-[21px] tracking-tight leading-none block">SMK BINA MANDIRI</span>
-                            <span class="mt-1 flex items-center gap-1.5 text-[10.5px] font-semibold text-slate-500 tracking-[0.18em] uppercase">
-                                <span class="w-4 h-px bg-amber-500"></span>Terbaik • Tercepat • Terarah
+                            <span class="brand-glow font-heading font-extrabold text-[18px] sm:text-[22px] lg:text-[24px] tracking-tight leading-none block">SMK BINA MANDIRI</span>
+                            <span class="mt-1.5 flex items-center gap-1.5 text-[9px] sm:text-[11px] font-semibold text-sky-200/90 tracking-[0.1em] sm:tracking-[0.18em] uppercase">
+                                <span class="hidden sm:block w-5 h-px bg-amber-400"></span>Terbaik • Tercepat • Terarah
                             </span>
                         </div>
                     </a>
@@ -238,7 +268,7 @@
 
                     <!-- Hamburger -->
                     <div class="flex items-center gap-3">
-                        <button id="mobile-menu-btn" aria-label="Buka Menu" class="xl:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-navy-900 shadow-sm hover:bg-slate-50 focus:outline-none">
+                        <button id="mobile-menu-btn" aria-label="Buka Menu" class="xl:hidden w-12 h-12 flex items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus:outline-none">
                             <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
                         </button>
                     </div>
@@ -247,7 +277,7 @@
         </div>
 
         <!-- Menu Navigasi Mobile dengan Dropdown -->
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-3 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-3 shadow-2xl max-h-[calc(100vh-6.5rem)] overflow-y-auto">
             <details class="group rounded-xl">
                 <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-house text-xs"></i>Beranda</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
                 <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">

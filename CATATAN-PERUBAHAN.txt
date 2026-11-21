@@ -5,7 +5,9 @@ Ekstrak ZIP ini, lalu upload/replace file-file di bawah ke folder utama (root) r
 Struktur folder sama dengan repositori, jadi foto-kegiatan/ masuk ke folder foto-kegiatan/ yang sudah ada.
 
 FILE YANG BERUBAH
-- index.html   : email footer jadi smkbinamandiri15@gmail.com (bisa diklik), "Terakreditasi Unggul" jadi "Akreditasi Sekolah",
+- index.html   : HEADER BARU (latar navy bergradasi dengan cahaya emas/biru, bukan putih polos; logo, nama sekolah, dan tombol menu lebih besar;
+                 mengecil sedikit & berefek kaca saat halaman digulir; jarak isi halaman disesuaikan agar tidak tertutup header),
+                 email footer jadi smkbinamandiri15@gmail.com (bisa diklik), "Terakreditasi Unggul" jadi "Akreditasi Sekolah",
                  statistik beranda diganti fakta (2014 Tahun Berdiri, 2 Program Keahlian, B Akreditasi),
                  ditambah canonical + Open Graph + Twitter card (pratinjau tautan di WhatsApp)
 - admin.html   : ditambah noindex agar halaman admin tidak muncul di Google

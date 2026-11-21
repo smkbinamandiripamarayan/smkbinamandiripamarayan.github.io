@@ -1929,9 +1929,17 @@
                     const lulus = document.getElementById("bkk_lulus")?.value.trim() || "";
                     const posisi = document.getElementById("bkk_posisi")?.value || "";
                     const catatan = document.getElementById("bkk_catatan")?.value.trim() || "-";
+                    // Pesan galat sementara untuk pengecekan. Setelah BKK beres, ubah TAMPIL_GALAT_BKK menjadi false.
+                    const TAMPIL_GALAT_BKK = true;
+                    let pesanGalatBkk = "";
                     if (window.SMKBackend?.ready) {
                         const hasil = await window.SMKBackend.insertBKK({ nama, no_wa: wa, jurusan, tahun_lulus: lulus, posisi, catatan });
-                        if (!hasil.ok) console.warn("Data BKK belum tersimpan di database; WhatsApp tetap dibuka.");
+                        if (!hasil.ok) {
+                            console.warn("Data BKK belum tersimpan di database; WhatsApp tetap dibuka.");
+                            pesanGalatBkk = hasil.message || "Penyebab tidak diketahui";
+                        }
+                    } else {
+                        pesanGalatBkk = "Koneksi database belum siap.";
                     }
 
                     const prev = loadBkkRiwayat();
@@ -1953,6 +1961,9 @@
                         `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
 
                     window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
+                    if (TAMPIL_GALAT_BKK && pesanGalatBkk) {
+                        setTimeout(() => alert("PENGECEKAN: data BKK belum tersimpan di database.\n\nPesan: " + pesanGalatBkk), 400);
+                    }
                 };
 
                 searchEl?.addEventListener("input", renderBkkLowongan);

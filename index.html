@@ -337,7 +337,7 @@
     <script>
         (function () {
             var MAPEL_PEMBELAJARAN = [
-                { nama: "Koding dan Kecerdasan Artifisial", ikon: "fa-robot", href: "media-pembelajaran.html?mapel=koding-ai&v=4" }
+                { nama: "Koding dan Kecerdasan Artifisial", ikon: "fa-robot", href: "media-pembelajaran.html?mapel=koding-ai&v=5" }
                 // , { nama: "Nama Mapel Baru", ikon: "fa-book", href: "media-pembelajaran.html?mapel=nama-mapel" }
             ];
             var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
@@ -932,6 +932,10 @@
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
                                 <span>Kirim Pendaftaran via WhatsApp</span>
                             </button>
+                            <a href="https://chat.whatsapp.com/GvcBJdgxPx3DiTVuIXAiJj" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-extrabold text-base shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-users text-lg"></i>
+                                <span>Grup PPDB</span>
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -1750,8 +1754,7 @@
                 });
             }
 
-            // Pendaftaran PPDB dikirim ke GRUP WhatsApp. Ganti link ini jika grupnya berubah.
-            const LINK_GRUP_PPDB = "https://chat.whatsapp.com/GvcBJdgxPx3DiTVuIXAiJj";
+            const NOMOR_WA_PPDB = "6285217330133";
             const ppdbForm = document.getElementById("ppdb-form");
             ppdbForm?.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -1767,25 +1770,6 @@
 
                 // Siapkan tab WhatsApp secara sinkron agar tidak diblokir browser setelah proses simpan.
                 const tabWhatsApp = window.open("about:blank", "_blank");
-                // Link grup tidak bisa menerima teks otomatis, jadi pesan disalin agar pendaftar tinggal menempelkannya.
-                const teksPendaftaran =
-                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:\n\n` +
-                    `- Nama Lengkap: *${nama}*\n` +
-                    `- Asal Sekolah: *${asalSekolah}*\n` +
-                    `- Pilihan Program Keahlian: *${jurusan}*\n` +
-                    `- No. WhatsApp: *${noHp}*\n` +
-                    `- Alamat: *${alamat}*`;
-                const salinPesan = (async () => {
-                    try { await navigator.clipboard.writeText(teksPendaftaran); return true; }
-                    catch (e) {
-                        try {
-                            const ta = document.createElement("textarea");
-                            ta.value = teksPendaftaran; ta.style.cssText = "position:fixed;opacity:0";
-                            document.body.appendChild(ta); ta.select();
-                            const ok = document.execCommand("copy"); ta.remove(); return ok;
-                        } catch (e2) { return false; }
-                    }
-                })();
                 const hasil = await window.SMKBackend.insertPPDB({
                     nama,
                     asal_sekolah: asalSekolah,
@@ -1800,19 +1784,19 @@
                     return;
                 }
 
-                const tersalin = await salinPesan;
+                const pesan =
+                    `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
+                    `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
+                    `- Asal Sekolah: *${encodeURIComponent(asalSekolah)}*%0A` +
+                    `- Pilihan Program Keahlian: *${encodeURIComponent(jurusan)}*%0A` +
+                    `- No. WhatsApp: *${encodeURIComponent(noHp)}*%0A` +
+                    `- Alamat: *${encodeURIComponent(alamat)}*`;
+                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`;
                 if (tabWhatsApp && !tabWhatsApp.closed) {
-                    tabWhatsApp.location.href = LINK_GRUP_PPDB;
+                    tabWhatsApp.location.href = urlWhatsApp;
                 } else {
-                    window.location.href = LINK_GRUP_PPDB;
+                    alert("Data berhasil disimpan, tetapi browser memblokir tab WhatsApp. Silakan hubungi panitia melalui WhatsApp.");
                 }
-                setTimeout(() => {
-                    if (tersalin) {
-                        alert("Data pendaftaran sudah tersimpan.\n\nPesan pendaftaran sudah disalin. Di grup WhatsApp, tempel (paste) pesannya lalu kirim.");
-                    } else {
-                        prompt("Data pendaftaran sudah tersimpan. Salin pesan ini lalu tempel di grup WhatsApp:", teksPendaftaran);
-                    }
-                }, 500);
             });
 
             function normalisasiWA(no) {

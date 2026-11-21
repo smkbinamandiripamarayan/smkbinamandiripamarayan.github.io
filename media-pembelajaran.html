@@ -252,11 +252,23 @@ var user=null;
 function bacaUser(){try{return JSON.parse(sessionStorage.getItem('mp_user'))}catch(e){return null}}
 function simpanUser(u){try{sessionStorage.setItem('mp_user',JSON.stringify(u))}catch(e){}}
 function hapusUser(){try{sessionStorage.removeItem('mp_user')}catch(e){}}
+/* KOTAK STATUS SEMENTARA (untuk pengecekan). Setelah semua beres, ubah TAMPIL_STATUS menjadi false. */
+var TAMPIL_STATUS=true;
+function statusSimpan(pesan,ok){if(!TAMPIL_STATUS)return;
+ var el=document.getElementById('statusSimpan');
+ if(!el){el=document.createElement('div');el.id='statusSimpan';el.setAttribute('role','status');
+  el.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:200;max-width:520px;margin:0 auto;padding:10px 14px;border-radius:10px;font:600 13px/1.4 system-ui,sans-serif;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3)';
+  document.body.appendChild(el)}
+ el.style.background=ok?'#15803d':'#b91c1c';el.textContent=pesan;
+ clearTimeout(el._t);if(ok)el._t=setTimeout(function(){el.remove()},4000);}
 function catat(aktivitas,detail){if(!user)return;
  /* Simpan ke Supabase (tabel siswa_media) agar tampil di admin.html */
- try{if(window.SMKBackend&&window.SMKBackend.ready){
+ try{
+  if(!(window.SMKBackend&&window.SMKBackend.ready)){statusSimpan('Gagal: koneksi Supabase belum siap (supabase.js tidak termuat atau belum diperbarui).',false)}
+  else{
   window.SMKBackend.insertSiswaMedia({nama:user.nama,kelas:user.kelas,nisn:user.nis,mapel:MAPEL,aktivitas:String(aktivitas).slice(0,120),detail:String(detail||'').slice(0,300)})
-   .then(function(r){if(!r.ok)console.warn('Data siswa belum tersimpan:',r.message)});}}catch(e){}
+   .then(function(r){if(r.ok)statusSimpan('Data tersimpan ✓ ('+aktivitas+')',true);else{console.warn('Data siswa belum tersimpan:',r.message);statusSimpan('Gagal menyimpan: '+(r.message||'tidak diketahui'),false)}});}
+ }catch(e){statusSimpan('Gagal: '+e.message,false)}
  if(!LOG_URL)return;
  try{fetch(LOG_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
   body:JSON.stringify({aktivitas:aktivitas,nama:user.nama,kelas:user.kelas,nis:user.nis,detail:detail||''})}).catch(function(){})}catch(e){}}

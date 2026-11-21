@@ -144,6 +144,7 @@ pre.code{margin:12px 0 0;font-size:17px;line-height:1.5}
   <div class="lg-err" id="lgErr" role="alert"></div>
   <button class="btn pri" type="submit">Masuk</button>
   <p class="lg-note">Nama, kelas, dan NIS dicatat agar guru mengetahui siapa yang mengakses media pembelajaran dan hasil kuisnya.</p>
+  <p id="lgVer" role="status" style="margin-top:8px;font:600 12px/1.4 system-ui,sans-serif"></p>
  </form>
 </div>
 
@@ -371,6 +372,10 @@ document.getElementById('lgForm').onsubmit=function(e){e.preventDefault();
  err.textContent='';user={nama:nama,kelas:kelas,nis:nis};simpanUser(user);catat('Login');terapkanLogin();};
 document.getElementById('logout').onclick=function(){catat('Logout');user=null;hapusUser();
  document.getElementById('lgForm').reset();location.hash='';terapkanLogin();};
+(function(){var el=document.getElementById('lgVer');if(!el)return;
+ if(!TAMPIL_STATUS){el.remove();return}
+ var ok=!!(window.SMKBackend&&window.SMKBackend.ready);
+ el.textContent='Versi pencatatan Supabase · '+(ok?'koneksi siap ✓':'koneksi BELUM siap ✗');el.style.color=ok?'#15803d':'#b91c1c';})();
 user=bacaUser();terapkanLogin();
 </script>
 

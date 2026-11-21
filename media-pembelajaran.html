@@ -241,7 +241,7 @@ function actLisensi(box){
  box.appendChild(h('h3',{text:'Lisensi yang cocok',style:'margin:18px 0 10px'}));box.appendChild(out);upd();}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js?v=3"></script>
+<script src="supabase.js?v=4"></script>
 <script>
 /* ===== PENGATURAN PENCATATAN AKSES SISWA =====
    Isi LOG_URL dengan alamat Web App Google Apps Script (lihat file apps-script-log-akses.gs).
@@ -254,7 +254,7 @@ function bacaUser(){try{return JSON.parse(sessionStorage.getItem('mp_user'))}cat
 function simpanUser(u){try{sessionStorage.setItem('mp_user',JSON.stringify(u))}catch(e){}}
 function hapusUser(){try{sessionStorage.removeItem('mp_user')}catch(e){}}
 /* KOTAK STATUS SEMENTARA (untuk pengecekan). Setelah semua beres, ubah TAMPIL_STATUS menjadi false. */
-var TAMPIL_STATUS=true;
+var TAMPIL_STATUS=false;
 function statusSimpan(pesan,ok){if(!TAMPIL_STATUS)return;
  var el=document.getElementById('statusSimpan');
  if(!el){el=document.createElement('div');el.id='statusSimpan';el.setAttribute('role','status');

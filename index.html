@@ -337,7 +337,7 @@
     <script>
         (function () {
             var MAPEL_PEMBELAJARAN = [
-                { nama: "Koding dan Kecerdasan Artifisial", ikon: "fa-robot", href: "media-pembelajaran.html?mapel=koding-ai&v=3" }
+                { nama: "Koding dan Kecerdasan Artifisial", ikon: "fa-robot", href: "media-pembelajaran.html?mapel=koding-ai&v=4" }
                 // , { nama: "Nama Mapel Baru", ikon: "fa-book", href: "media-pembelajaran.html?mapel=nama-mapel" }
             ];
             var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
@@ -1930,7 +1930,7 @@
                     const posisi = document.getElementById("bkk_posisi")?.value || "";
                     const catatan = document.getElementById("bkk_catatan")?.value.trim() || "-";
                     // Pesan galat sementara untuk pengecekan. Setelah BKK beres, ubah TAMPIL_GALAT_BKK menjadi false.
-                    const TAMPIL_GALAT_BKK = true;
+                    const TAMPIL_GALAT_BKK = false;
                     let pesanGalatBkk = "";
                     if (window.SMKBackend?.ready) {
                         const hasil = await window.SMKBackend.insertBKK({ nama, no_wa: wa, jurusan, tahun_lulus: lulus, posisi, catatan });

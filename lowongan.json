@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-21T12:35:55.605Z",
+  "diperbarui": "2026-11-21T18:28:00.438Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -63,6 +63,18 @@
       "link": "https://id.jobstreet.com/id/job/95763210",
       "sumber": "JobStreet",
       "tanggal": "2026-11-08T16:03:07Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Logistics Staff",
+      "perusahaan": "JAVA.Co Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengatur perencanaan rute, utilisasi armada, dan jadwal pengiriman untuk memastikan efisiensi biaya serta ketepatan waktu distribusi.",
+      "link": "https://id.jobstreet.com/id/job/96037185",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T13:33:45Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -187,14 +199,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor HRD",
-      "perusahaan": "PT Baria Bulk Terminal",
+      "posisi": "Leader Maintenance (Instrument)",
+      "perusahaan": "Dongsuh Indonesia",
       "lokasi": "Cikande, Banten",
       "tipe": "Full time",
-      "ringkasan": "Bertanggung jawab mengawasi dan mengoordinasikan pengelolaan sumber daya manusia, rekrutmen, pelatihan, evaluasi, hubungan industrial, dan lainnya.",
-      "link": "https://id.jobstreet.com/id/job/95783235",
+      "ringkasan": "Profesional dalam bidang instrument untuk memastikan operasional produksi berjalan optimal",
+      "link": "https://id.jobstreet.com/id/job/95716744",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-09T10:05:06Z",
+      "tanggal": "2026-11-05T06:48:33Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -211,18 +223,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Leader Maintenance (Instrument)",
-      "perusahaan": "Dongsuh Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Profesional dalam bidang instrument untuk memastikan operasional produksi berjalan optimal",
-      "link": "https://id.jobstreet.com/id/job/95716744",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-05T06:48:33Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Logistic Supervisor",
       "perusahaan": "United Waru Biscuit Manufactory",
       "lokasi": "Cikande, Banten",
@@ -231,6 +231,18 @@
       "link": "https://id.jobstreet.com/id/job/95656200",
       "sumber": "JobStreet",
       "tanggal": "2026-11-03T03:30:32Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Supervisor HRD",
+      "perusahaan": "PT Baria Bulk Terminal",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab mengawasi dan mengoordinasikan pengelolaan sumber daya manusia, rekrutmen, pelatihan, evaluasi, hubungan industrial, dan lainnya.",
+      "link": "https://id.jobstreet.com/id/job/95783235",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-09T10:05:06Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -307,66 +319,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "HRS & LGA Supervisor",
-      "perusahaan": "JSIDJF - PT Sadikun Niagamas Raya",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Mengelola seluruh operasional SDM, implementasi K3 (HSE), legalitas hukum perusahaan, serta pengawasan fasilitas dan aset.",
-      "link": "https://id.jobstreet.com/id/job/95439409",
-      "sumber": "JobStreet",
-      "tanggal": "2026-10-22T09:27:36Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Supervisor Warehouse",
-      "perusahaan": "Dover Chemical",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Manage and supervise all warehouse operations, including receiving, storage, inventory control, and operational projects, to ensure smooth operations.",
-      "link": "https://id.jobstreet.com/id/job/95947022",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-17T07:57:24Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Long Term Contract Staff (Contract)",
-      "perusahaan": "Krakatau Posco",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Manage outsourced admin services for leading steel manufacturer. Competitive salary, medical/dental benefits, and career growth opportunities.",
-      "link": "https://id.jobstreet.com/id/job/95940196",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-17T04:15:07Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "KEPALA POS MOTORCYCLE - BANTEN",
-      "perusahaan": "Mega Central Finance",
-      "lokasi": "Banten",
-      "tipe": "Full time",
-      "ringkasan": "-",
-      "link": "https://id.jobstreet.com/id/job/95923130",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-16T09:21:13Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": true
-    },
-    {
-      "posisi": "HC Operation Officer",
-      "perusahaan": "Ciputra Group",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mendukung kegiatan operasional perusahaan serta pekerjaan terkait kepegawaian agar berjalan efektif dan efisien sesuai dengan prosedur",
-      "link": "https://id.jobstreet.com/id/job/95945058",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-17T06:50:05Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Staff HRGA",
       "perusahaan": "PT Nice Yummy Food",
       "lokasi": "Banten",
@@ -389,6 +341,66 @@
       "tanggal": "2026-11-12T06:13:29Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Social Media Intern: Data Enthusiast",
+      "perusahaan": "Noethera",
+      "lokasi": "Banten",
+      "tipe": "Full time",
+      "ringkasan": "Track, analyze, and report social media performance so the team knows what to improve next. What we’re looking for Comfort with data: spreadsheets,...",
+      "link": "https://id.jobstreet.com/id/job/95883705",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-13T10:07:00Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Supervisor Warehouse",
+      "perusahaan": "Dover Chemical",
+      "lokasi": "Cilegon, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Manage and supervise all warehouse operations, including receiving, storage, inventory control, and operational projects, to ensure smooth operations.",
+      "link": "https://id.jobstreet.com/id/job/95947022",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-17T07:57:24Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "KEPALA POS MOTORCYCLE - BANTEN",
+      "perusahaan": "Mega Central Finance",
+      "lokasi": "Banten",
+      "tipe": "Full time",
+      "ringkasan": "-",
+      "link": "https://id.jobstreet.com/id/job/95923130",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-16T09:21:13Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Long Term Contract Staff (Contract)",
+      "perusahaan": "Krakatau Posco",
+      "lokasi": "Cilegon, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Manage outsourced admin services for leading steel manufacturer. Competitive salary, medical/dental benefits, and career growth opportunities.",
+      "link": "https://id.jobstreet.com/id/job/95940196",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-17T04:15:07Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HC Operation Officer",
+      "perusahaan": "Ciputra Group",
+      "lokasi": "Cilegon, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mendukung kegiatan operasional perusahaan serta pekerjaan terkait kepegawaian agar berjalan efektif dan efisien sesuai dengan prosedur",
+      "link": "https://id.jobstreet.com/id/job/95945058",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-17T06:50:05Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Supervisor QA/QC",
@@ -583,18 +595,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Pengawas Sipil",
-      "perusahaan": "PT Permata Bangun Kharisma",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
-      "link": "https://id.jobstreet.com/id/job/96034631",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-21T04:09:03Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "HRGA Generalist",
       "perusahaan": "PT Meta Inertia Indonesia",
       "lokasi": "Tangerang Selatan, Banten",
@@ -631,6 +631,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Pengawas Sipil",
+      "perusahaan": "PT Permata Bangun Kharisma",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
+      "link": "https://id.jobstreet.com/id/job/96034631",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T04:09:03Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Human Resources Admin",
       "perusahaan": "CV Sinar Karya Globalindo",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -655,18 +667,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Staff dan Admin Gudang",
-      "perusahaan": "Melody Non Woven Indonesia",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Kami mencari individu yang teliti, bertanggung jawab, dan siap berkembang bersama perusahaan yang terus bertumbuh",
-      "link": "https://id.jobstreet.com/id/job/95758469",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-07T09:13:50Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Production Engineering Supervisor",
       "perusahaan": "Matahari Leisure",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -679,14 +679,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor Digital Marketing",
-      "perusahaan": "PT Sinaran Harindo Pratama",
-      "lokasi": "Kecamatan Tangerang, Banten",
+      "posisi": "Staff dan Admin Gudang",
+      "perusahaan": "Melody Non Woven Indonesia",
+      "lokasi": "Kabupaten Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Supervise digital marketing strategy and team across multiple platforms to drive brand awareness and sales.",
-      "link": "https://id.jobstreet.com/id/job/95987251",
+      "ringkasan": "Kami mencari individu yang teliti, bertanggung jawab, dan siap berkembang bersama perusahaan yang terus bertumbuh",
+      "link": "https://id.jobstreet.com/id/job/95758469",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-21T01:45:06Z",
+      "tanggal": "2026-11-07T09:13:50Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

@@ -6,6 +6,15 @@
     <title>SMK Bina Mandiri - Pendidikan Vokasi Unggul & Siap Kerja</title>
     <meta name="description" content="Website resmi SMK Bina Mandiri Pamarayan. Informasi sekolah, program keahlian, berita, PPDB online, dan Bursa Kerja Khusus (BKK).">
     <meta name="theme-color" content="#0F172A">
+    <link rel="canonical" href="https://smkbinamandiripamarayan.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="SMK Bina Mandiri Pamarayan">
+    <meta property="og:title" content="SMK Bina Mandiri Pamarayan - Pendidikan Vokasi Unggul &amp; Siap Kerja">
+    <meta property="og:description" content="Website resmi SMK Bina Mandiri Pamarayan. Informasi sekolah, program keahlian, berita, PPDB online, dan Bursa Kerja Khusus (BKK).">
+    <meta property="og:url" content="https://smkbinamandiripamarayan.github.io/">
+    <meta property="og:image" content="https://smkbinamandiripamarayan.github.io/foto-kegiatan/sambutan-pelepasan-siswa.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="Logosmkbinamandiri.png">
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,6 +50,20 @@
         }
     </script>
     <style>
+        /* Foto asli kampus sebagai latar hero; konten dan fungsi halaman tetap sama. */
+        #beranda .hero-bg {
+            background-image: linear-gradient(90deg, rgba(7, 18, 40, .88) 0%, rgba(7, 18, 40, .72) 48%, rgba(7, 18, 40, .38) 100%), url("foto-sekolah-utama.jpg");
+            background-size: cover;
+            background-position: center 52%;
+            background-repeat: no-repeat;
+        }
+        #beranda .hero-aurora, #beranda .hero-blob,
+        #beranda .hero-grid, #beranda .hero-sweep { opacity: .12; }
+        #beranda .hero-dots { opacity: .25; }
+        @media (max-width: 640px) {
+            #beranda .hero-bg { background-position: center center; }
+        }
+
         /* Animasi halus dan kustomisasi scrollbar */
         body {
             background-color: #F8FAFC;
@@ -75,141 +98,404 @@
         header nav details[open] { z-index: 100; }
         #mobile-menu details[open] { background: #f8fafc; }
     </style>
+
+    <style>
+        /* Navbar premium: tombol menu, dropdown, tombol aksi */
+        .nav-trigger { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1rem; border-radius:9999px; font-size:.875rem; font-weight:600; color:#64748B; transition:background .2s, color .2s; }
+        .nav-trigger::-webkit-details-marker { display:none; }
+        .nav-trigger:hover, details[open] > .nav-trigger { background:#F1F5F9; color:#1E3A8A; }
+        .nav-trigger .chev { font-size:.625rem; color:#94A3B8; transition:transform .25s ease, color .2s; }
+        details[open] > .nav-trigger .chev { transform:rotate(180deg); color:#F59E0B; }
+        /* Latar belakang animasi halaman utama */
+        .hero-bg { overflow:hidden; }
+        .hero-aurora { position:absolute; inset:-20%; background:
+            radial-gradient(40% 35% at 20% 25%, rgba(59,130,246,.35), transparent 70%),
+            radial-gradient(35% 30% at 80% 20%, rgba(245,158,11,.28), transparent 70%),
+            radial-gradient(45% 40% at 60% 85%, rgba(14,165,233,.25), transparent 70%);
+            animation:auroraMove 18s ease-in-out infinite alternate; }
+        @keyframes auroraMove { 0% { transform:translate3d(-3%,-2%,0) scale(1); } 50% { transform:translate3d(3%,2%,0) scale(1.08); } 100% { transform:translate3d(-2%,3%,0) scale(1.03); } }
+        .hero-blob { position:absolute; border-radius:9999px; filter:blur(64px); opacity:.35; will-change:transform; }
+        .hero-blob-1 { width:24rem; height:24rem; top:-6rem; right:-5rem; background:#F59E0B; animation:blobFloat1 14s ease-in-out infinite; }
+        .hero-blob-2 { width:22rem; height:22rem; bottom:-4rem; left:2rem; background:#3B82F6; animation:blobFloat2 17s ease-in-out infinite; }
+        .hero-blob-3 { width:16rem; height:16rem; top:35%; left:42%; background:#06B6D4; opacity:.2; animation:blobFloat3 20s ease-in-out infinite; }
+        @keyframes blobFloat1 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-60px,50px) scale(1.15); } }
+        @keyframes blobFloat2 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(70px,-40px) scale(1.12); } }
+        @keyframes blobFloat3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-80px,-30px) scale(1.25); } }
+        .hero-grid { position:absolute; inset:0; opacity:.5;
+            background-image:linear-gradient(rgba(148,163,184,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.10) 1px, transparent 1px);
+            background-size:48px 48px;
+            -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 78%); mask-image:radial-gradient(ellipse at center, #000 30%, transparent 78%);
+            animation:gridDrift 24s linear infinite; }
+        @keyframes gridDrift { from { background-position:0 0, 0 0; } to { background-position:48px 48px, 48px 48px; } }
+        .hero-sweep { position:absolute; top:0; bottom:0; width:40%; left:-40%;
+            background:linear-gradient(100deg, transparent, rgba(255,255,255,.06), transparent);
+            transform:skewX(-18deg); animation:heroSweep 9s ease-in-out infinite; }
+        @keyframes heroSweep { 0% { left:-45%; } 60%,100% { left:115%; } }
+        .hero-dot { position:absolute; bottom:-12px; width:var(--s); height:var(--s); border-radius:9999px; background:rgba(255,255,255,.55); box-shadow:0 0 10px rgba(255,255,255,.55); opacity:0; animation:dotRise var(--d) linear infinite; }
+        .hero-dot.amber { background:#FBBF24; box-shadow:0 0 12px rgba(251,191,36,.8); }
+        @keyframes dotRise { 0% { transform:translateY(0) translateX(0); opacity:0; } 10% { opacity:.9; } 50% { transform:translateY(-300px) translateX(14px); } 90% { opacity:.7; } 100% { transform:translateY(-640px) translateX(-10px); opacity:0; } }
+        @media (prefers-reduced-motion: reduce) { .hero-aurora, .hero-blob, .hero-grid, .hero-sweep, .hero-dot { animation:none; } .hero-dot { opacity:.5; } }
+        #mobile-menu summary::-webkit-details-marker { display:none; }
+        /* Logo & nama sekolah: efek menyala */
+        .logo-glow { animation:logoPulse 2.8s ease-in-out infinite; }
+        .logo-glow::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%); background-size:250% 100%; background-position:150% 0; animation:logoSweep 3.6s ease-in-out infinite; pointer-events:none; }
+        .logo-img { animation:logoImgGlow 2.8s ease-in-out infinite; }
+        @keyframes logoPulse { 0%,100% { box-shadow:0 0 0 0 rgba(245,158,11,.0), 0 2px 8px rgba(15,23,42,.10); } 50% { box-shadow:0 0 0 4px rgba(245,158,11,.14), 0 0 22px 3px rgba(245,158,11,.45); } }
+        @keyframes logoImgGlow { 0%,100% { filter:drop-shadow(0 0 0 rgba(245,158,11,0)); } 50% { filter:drop-shadow(0 0 6px rgba(245,158,11,.75)); } }
+        @keyframes logoSweep { 0% { background-position:150% 0; } 55%,100% { background-position:-50% 0; } }
+        .brand-glow { background:linear-gradient(90deg, #0F172A 0%, #1E3A8A 30%, #F59E0B 50%, #1E3A8A 70%, #0F172A 100%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; animation:brandShine 4s linear infinite, brandGlow 2.8s ease-in-out infinite; }
+        @keyframes brandShine { 0% { background-position:100% 0; } 100% { background-position:-150% 0; } }
+        @keyframes brandGlow { 0%,100% { filter:drop-shadow(0 0 0 rgba(245,158,11,0)); } 50% { filter:drop-shadow(0 0 7px rgba(245,158,11,.55)); } }
+        @media (prefers-reduced-motion: reduce) { .logo-glow, .logo-glow::after, .logo-img, .brand-glow { animation:none; } }
+        .nav-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.15rem; border-radius:9999px; font-weight:800; font-size:.875rem; color:#fff; }
+        .nav-btn::-webkit-details-marker { display:none; }
+        .nav-btn .chev { font-size:.6rem; opacity:.85; transition:transform .25s ease; }
+        details[open] > .nav-btn .chev { transform:rotate(180deg); }
+        details[open] > .nav-btn { filter:brightness(1.06); }
+        .nav-panel { left:50%; transform:translateX(-50%); animation:navPanelIn .18s ease-out both; }
+        @keyframes navPanelIn { from { opacity:0; transform:translate(-50%,-8px); } to { opacity:1; transform:translate(-50%,0); } }
+        .nav-item { display:flex; align-items:center; gap:.75rem; border-radius:.75rem; padding:.55rem .75rem; font-size:.875rem; font-weight:500; color:#334155; transition:background .15s, color .15s, padding .15s; }
+        .nav-item:hover { background:#F8FAFC; color:#1E3A8A; padding-left:.95rem; }
+        .nav-ico { display:flex; align-items:center; justify-content:center; width:2rem; height:2rem; flex-shrink:0; border-radius:.55rem; background:#F1F5F9; color:#1E3A8A; font-size:.8rem; transition:background .15s, color .15s; }
+        .nav-item:hover .nav-ico { background:#F59E0B; color:#0F172A; }
+        .btn-shine { position:relative; overflow:hidden; }
+        .btn-shine::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform:translateX(-120%); transition:transform .7s ease; pointer-events:none; }
+        .btn-shine:hover::after { transform:translateX(120%); }
+        @media (prefers-reduced-motion: reduce) { .nav-panel { animation:none; } .btn-shine::after { transition:none; } }
+
+        /* ===== Header modern: latar navy bergradasi, lebih besar ===== */
+        #navbar-bar {
+            background:
+                radial-gradient(55% 150% at 6% 0%, rgba(245,158,11,.24), transparent 62%),
+                radial-gradient(45% 170% at 94% 100%, rgba(56,189,248,.26), transparent 62%),
+                linear-gradient(100deg, #0A1230 0%, #12297A 50%, #0A1230 100%);
+            box-shadow: 0 20px 50px -22px rgba(2,6,23,.6);
+        }
+        #navbar-bar::after {
+            content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; pointer-events:none;
+            background:linear-gradient(90deg, transparent, rgba(251,191,36,.75), rgba(125,211,252,.65), transparent);
+        }
+        #navbar.scrolled #navbar-bar {
+            background: linear-gradient(100deg, rgba(7,12,34,.93), rgba(15,38,100,.93));
+            -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%);
+            box-shadow: 0 18px 44px -18px rgba(2,6,23,.65);
+        }
+        #navbar-inner { height:84px; transition:height .3s ease; }
+        @media (min-width:1024px) { #navbar-inner { height:100px; } }
+        #navbar.scrolled #navbar-inner { height:76px; }
+        @media (min-width:1024px) { #navbar.scrolled #navbar-inner { height:90px; } }
+        .brand-glow { background:linear-gradient(90deg, #FFFFFF 0%, #FDE68A 30%, #F59E0B 50%, #FDE68A 70%, #FFFFFF 100%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+        .nav-btn { padding:.72rem 1.3rem; font-size:.95rem; }
+        #navbar nav > a.btn-shine { padding:.78rem 1.6rem; font-size:.95rem; }
+        /* Beri ruang agar isi halaman tidak tertutup header yang lebih tinggi */
+        #profil.page-slide, #jurusan.page-slide, #fasilitas.page-slide, #berita.page-slide, #ppdb.page-slide, #bkk.page-slide { padding-top:6.5rem; }
+        @media (min-width:1024px) {
+            #profil.page-slide, #jurusan.page-slide, #fasilitas.page-slide, #berita.page-slide, #ppdb.page-slide, #bkk.page-slide { padding-top:8rem; }
+            #beranda.page-slide { padding-top:9rem; }
+        }
+    </style>
+
+    <style>
+        /* Latar halaman selain Beranda: tidak lagi putih, memakai gradasi biru lembut yang bergerak pelan. */
+        body { background-color: #DBEAFE; }
+        #profil, #jurusan, #fasilitas, #berita, #bkk {
+            background: linear-gradient(120deg, #DBEAFE 0%, #E0F2FE 30%, #FEF3C7 60%, #DBEAFE 100%) !important;
+            background-size: 240% 240% !important;
+            animation: bgGeser 22s ease-in-out infinite;
+        }
+        #profil.page-slide.active, #jurusan.page-slide.active, #fasilitas.page-slide.active,
+        #berita.page-slide.active, #bkk.page-slide.active {
+            animation: pageSlideIn .28s ease-out both, bgGeser 22s ease-in-out infinite;
+        }
+        @keyframes bgGeser { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @media (prefers-reduced-motion: reduce) {
+            #profil, #jurusan, #fasilitas, #berita, #bkk,
+            #profil.page-slide.active, #jurusan.page-slide.active, #fasilitas.page-slide.active,
+            #berita.page-slide.active, #bkk.page-slide.active { animation: none; }
+        }
+    </style>
+    <style>
+        /* Submenu Media Pembelajaran */
+        .mp-toggle { cursor:pointer; background:transparent; border:0; }
+        .mp-toggle[aria-expanded="true"] .mp-chev { transform:rotate(180deg); color:#F59E0B; }
+        .mp-toggle[aria-expanded="true"] { background:#F8FAFC; color:#1E3A8A; }
+    </style>
 </head>
 <body class="antialiased selection:bg-amber-500 selection:text-white">
 
    <!-- 1. NAVBAR RESPONSIF -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo & Nama Sekolah -->
-                <a href="#beranda" class="flex items-center gap-3 group">
-                    <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="w-11 h-11 object-contain">
-                    <div>
-                        <span class="font-heading font-extrabold text-xl tracking-tight text-navy-900 block leading-none">SMK BINA MANDIRI</span>
-                        <span class="text-[11px] font-medium text-slate-500 tracking-wider uppercase">Unggul • Kompeten • Berkarakter</span>
-                    </div>
-                </a>
-
-               <!-- Menu Navigasi Desktop dengan Dropdown -->
-                <nav class="hidden lg:flex items-center gap-6">
-                    <details class="relative">
-                        <summary class="list-none cursor-pointer text-sm font-semibold text-slate-700 hover:text-navy-800 transition flex items-center gap-2 py-3">Beranda <i class="fa-solid fa-chevron-down text-[10px]"></i></summary>
-                        <div class="absolute left-0 top-full z-50 min-w-56 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
-                            <a href="#beranda" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Halaman Utama</a>
-                            <a href="#profil" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Sambutan & Profil</a>
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <!-- Garis emas tipis di bagian atas -->
+        <div class="h-[3px] bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600"></div>
+        <div id="navbar-bar" class="relative border-b border-white/10 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="navbar-inner" class="flex justify-between items-center">
+                    <!-- Logo & Nama Sekolah -->
+                    <a href="#beranda" class="flex items-center gap-3.5 group">
+                        <span class="logo-glow relative flex items-center justify-center w-[60px] h-[60px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-gradient-to-br from-white to-sky-50 ring-2 ring-amber-300/80">
+                            <img src="Logosmkbinamandiri.png" alt="Logo SMK Bina Mandiri" class="logo-img w-[48px] h-[48px] sm:w-14 sm:h-14 object-contain">
+                        </span>
+                        <div>
+                            <span class="brand-glow font-heading font-extrabold text-[18px] sm:text-[22px] lg:text-[24px] tracking-tight leading-none block">SMK BINA MANDIRI</span>
+                            <span class="mt-1.5 flex items-center gap-1.5 text-[9px] sm:text-[11px] font-semibold text-sky-200/90 tracking-[0.1em] sm:tracking-[0.18em] uppercase">
+                                <span class="hidden sm:block w-5 h-px bg-amber-400"></span>Terbaik • Tercepat • Terarah
+                            </span>
                         </div>
-                    </details>
-                    <details class="relative">
-                        <summary class="list-none cursor-pointer text-sm font-semibold text-slate-700 hover:text-navy-800 transition flex items-center gap-2 py-3">Profil <i class="fa-solid fa-chevron-down text-[10px]"></i></summary>
-                        <div class="absolute left-0 top-full z-50 min-w-60 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
-                            <a href="#profil" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Profil Sekolah</a>
-                            <a href="#jurusan" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Program Keahlian</a>
-                            <a href="#fasilitas" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Fasilitas & Keunggulan</a>
-                        </div>
-                    </details>
-                    <details class="relative">
-                        <summary class="list-none cursor-pointer text-sm font-semibold text-slate-700 hover:text-navy-800 transition flex items-center gap-2 py-3">Informasi <i class="fa-solid fa-chevron-down text-[10px]"></i></summary>
-                        <div class="absolute left-0 top-full z-50 min-w-60 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
-                            <a href="#berita" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Berita & Agenda</a>
-                            <a href="#bkk" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Bursa Kerja Khusus (BKK)</a>
-                            <a href="#kontak" class="block rounded-lg px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-navy-800">Kontak Sekolah</a>
-                        </div>
-                    </details>
-                    <a href="#ppdb" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-navy-900 font-heading font-bold text-sm px-4 py-2 rounded-xl shadow-sm transition">Daftar PPDB</a>
-                    <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 hover:text-amber-600 transition">
-                        <span>Aplikasi SMK</span><i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
                     </a>
-                </nav>
 
-                <!-- Tombol CTA & Hamburger -->
-                <div class="flex items-center gap-3">
-                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2.5 rounded-xl text-navy-900 hover:bg-slate-100 focus:outline-none">
-                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-                    </button>
+                    <!-- Menu Navigasi Desktop dengan Dropdown -->
+                    <nav class="hidden xl:flex items-center gap-2.5">
+                        <details class="relative">
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-house text-xs"></i><span>Beranda</span><i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <div class="nav-panel absolute top-full mt-3 min-w-64 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
+                                <a href="#beranda" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-house"></i></span>Halaman Utama</a>
+                                <a href="#profil" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-user-tie"></i></span>Sambutan Kepala Sekolah</a>
+                            </div>
+                        </details>
+                        <details class="relative">
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-school text-xs"></i><span>Profil</span><i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <div class="nav-panel absolute top-full mt-3 min-w-72 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
+                                <a href="#sejarah" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-clock-rotate-left"></i></span>Sejarah Singkat</a>
+                                <a href="#data-sekolah" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-clipboard-list"></i></span>Data Sekolah</a>
+                                <a href="#guru" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-users"></i></span>Guru & Tenaga Kependidikan</a>
+                                <a href="#jurusan" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-laptop-code"></i></span>Program Keahlian</a>
+                                <a href="#fasilitas" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-building-columns"></i></span>Fasilitas & Keunggulan</a>
+                            </div>
+                        </details>
+                        <details class="relative">
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"><i class="fa-solid fa-circle-info text-xs"></i><span>Informasi</span><i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <div class="nav-panel absolute top-full mt-3 min-w-64 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
+                                <a href="#berita" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-newspaper"></i></span>Berita & Agenda</a>
+                                <a href="#bkk" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-briefcase"></i></span>Bursa Kerja Khusus (BKK)</a>
+                                <a href="#kontak" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-location-dot"></i></span>Kontak Sekolah</a>
+                            </div>
+                        </details>
+
+                        <details class="relative">
+                            <summary class="nav-btn btn-shine group list-none cursor-pointer font-heading bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 shadow-lg shadow-sky-500/30 ring-1 ring-sky-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-sky-500/40"><i class="fa-solid fa-layer-group text-xs"></i><span>Aplikasi SMK</span><i class="chev fa-solid fa-chevron-down"></i></summary>
+                            <div class="nav-panel absolute top-full mt-3 min-w-80 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-2xl shadow-slate-900/10">
+                                <div class="mp-group">
+                                    <button type="button" class="mp-toggle nav-item group w-full text-left" aria-expanded="false" aria-controls="mp-list-desktop"><span class="nav-ico"><i class="fa-solid fa-chalkboard-user"></i></span><span class="flex-1">Media Pembelajaran</span><i class="mp-chev fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i></button>
+                                    <div id="mp-list-desktop" class="mp-list hidden ml-5 mt-1 mb-1 pl-3 border-l-2 border-amber-400"></div>
+                                </div>
+                                <a href="https://script.google.com/macros/s/AKfycbyuiEkcmo0Kp9-FRudqcjk9oQf1OwDZB8cnCQ1uavZ1dTZUVOm8PPcRvQVW8PPCqHvDig/exec" target="_blank" rel="noopener noreferrer" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-book-open-reader"></i></span>Perpustakaan Digital</a>
+                                <a href="https://script.google.com/macros/s/AKfycbwkWBsq47wSPoFJz1nes6wNT8y2IfvDpf1f3524710Qh4pyVoJ5C_NZdWbOGahEG-8q/exec" target="_blank" rel="noopener noreferrer" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-id-card"></i></span>Kartu Siswa</a>
+                                <a href="https://script.google.com/macros/s/AKfycbwf-amS9zHYh7d2xPrIX_8Nb3kdYjJDcnga1wtJ4vzQPSLYE3ZsQAM54pqO_m-iX_Tw/exec" target="_blank" rel="noopener noreferrer" class="nav-item group"><span class="nav-ico"><i class="fa-solid fa-file-circle-check"></i></span>SKL-SBM</a>
+                            </div>
+                        </details>
+                        <a href="#ppdb" class="btn-shine group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-6 py-2.5 font-heading font-extrabold text-sm text-navy-900 shadow-lg shadow-amber-500/30 ring-1 ring-amber-300/70 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-500/40">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Daftar PPDB</span>
+                            <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </nav>
+
+                    <!-- Hamburger -->
+                    <div class="flex items-center gap-3">
+                        <button id="mobile-menu-btn" aria-label="Buka Menu" class="xl:hidden w-12 h-12 flex items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20 focus:outline-none">
+                            <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
-       <!-- Menu Navigasi Mobile dengan Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
-            <details class="group rounded-lg">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Beranda <i class="fa-solid fa-chevron-down text-xs transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-3 border-l-2 border-amber-300 pl-3 pb-2">
-                    <a href="#beranda" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Halaman Utama</a>
-                    <a href="#profil" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Sambutan & Profil</a>
+        <!-- Menu Navigasi Mobile dengan Dropdown -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 px-4 pt-4 pb-6 space-y-3 shadow-2xl max-h-[calc(100vh-6.5rem)] overflow-y-auto">
+            <details class="group rounded-xl">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-house text-xs"></i>Beranda</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
+                    <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Halaman Utama</a>
+                    <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Sambutan Kepala Sekolah</a>
                 </div>
             </details>
-            <details class="group rounded-lg">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Profil <i class="fa-solid fa-chevron-down text-xs transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-3 border-l-2 border-amber-300 pl-3 pb-2">
-                    <a href="#profil" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Profil Sekolah</a>
-                    <a href="#jurusan" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Program Keahlian</a>
-                    <a href="#fasilitas" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Fasilitas & Keunggulan</a>
+            <details class="group rounded-xl">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-school text-xs"></i>Profil</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
+                    <a href="#sejarah" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Sejarah Singkat</a>
+                    <a href="#data-sekolah" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Data Sekolah</a>
+                    <a href="#guru" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Guru & Tenaga Kependidikan</a>
+                    <a href="#jurusan" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Program Keahlian</a>
+                    <a href="#fasilitas" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Fasilitas & Keunggulan</a>
                 </div>
             </details>
-            <details class="group rounded-lg">
-                <summary class="list-none cursor-pointer flex items-center justify-between px-4 py-3 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50">Informasi <i class="fa-solid fa-chevron-down text-xs transition-transform group-open:rotate-180"></i></summary>
-                <div class="ml-3 border-l-2 border-amber-300 pl-3 pb-2">
-                    <a href="#berita" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Berita & Agenda</a>
-                    <a href="#bkk" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Bursa Kerja Khusus (BKK)</a>
-                    <a href="#kontak" class="mobile-link block px-4 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-50">Kontak Sekolah</a>
+            <details class="group rounded-xl">
+                <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg shadow-blue-500/30 ring-1 ring-blue-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-xs"></i>Informasi</span><i class="fa-solid fa-chevron-down text-[10px] opacity-90 transition-transform group-open:rotate-180"></i></summary>
+                <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
+                    <a href="#berita" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Berita & Agenda</a>
+                    <a href="#bkk" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Bursa Kerja Khusus (BKK)</a>
+                    <a href="#kontak" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Kontak Sekolah</a>
                 </div>
             </details>
-            <a href="#ppdb" class="mobile-link block px-4 py-3 rounded-lg text-sm font-semibold text-navy-900 bg-amber-100 hover:bg-amber-200">Daftar PPDB Online</a>
-            <a href="https://s.id/sms_smkbinamandiri" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-lg text-sm font-semibold text-navy-800 hover:bg-slate-50">
-                <span>Aplikasi SMK</span><i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-            </a>
+            <div class="pt-3 grid gap-2.5">
+                <a href="#ppdb" class="mobile-link btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-5 py-3 font-heading font-extrabold text-sm text-navy-900 shadow-lg shadow-amber-500/30 ring-1 ring-amber-300/70">
+                    <i class="fa-solid fa-graduation-cap"></i><span>Daftar PPDB Online</span>
+                </a>
+                <details class="group rounded-xl">
+                    <summary class="btn-shine list-none cursor-pointer flex items-center justify-between gap-2 px-5 py-3 rounded-full font-heading font-extrabold text-sm text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 shadow-lg shadow-sky-500/30 ring-1 ring-sky-300/70"><span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-xs"></i>Aplikasi SMK</span><i class="fa-solid fa-chevron-down text-xs transition-transform group-open:rotate-180"></i></summary>
+                    <div class="ml-4 mt-2 border-l-2 border-amber-400 pl-3 pb-2">
+                        <div class="mp-group">
+                            <button type="button" class="mp-toggle flex w-full items-center justify-between px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800" aria-expanded="false" aria-controls="mp-list-mobile"><span>Media Pembelajaran</span><i class="mp-chev fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i></button>
+                            <div id="mp-list-mobile" class="mp-list hidden ml-4 pl-3 border-l-2 border-amber-400"></div>
+                        </div>
+                        <a href="https://script.google.com/macros/s/AKfycbyuiEkcmo0Kp9-FRudqcjk9oQf1OwDZB8cnCQ1uavZ1dTZUVOm8PPcRvQVW8PPCqHvDig/exec" target="_blank" rel="noopener noreferrer" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Perpustakaan Digital</a>
+                        <a href="https://script.google.com/macros/s/AKfycbwkWBsq47wSPoFJz1nes6wNT8y2IfvDpf1f3524710Qh4pyVoJ5C_NZdWbOGahEG-8q/exec" target="_blank" rel="noopener noreferrer" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">Kartu Siswa</a>
+                        <a href="https://script.google.com/macros/s/AKfycbwf-amS9zHYh7d2xPrIX_8Nb3kdYjJDcnga1wtJ4vzQPSLYE3ZsQAM54pqO_m-iX_Tw/exec" target="_blank" rel="noopener noreferrer" class="mobile-link block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800">SKL-SBM</a>
+                    </div>
+                </details>
+            </div>
         </div>
     </header>
-    <!-- 2. HERO SECTION: FOTO ASLI SMK BINA MANDIRI PAMARAYAN -->
-    <section id="beranda" class="page-slide relative min-h-[620px] lg:min-h-[680px] flex items-center pt-28 pb-16 text-white overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="foto-sekolah-utama.jpg" alt="Gedung dan lapangan SMK Bina Mandiri Pamarayan" class="w-full h-full object-cover object-center">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/65 to-slate-950/25"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-slate-950/15"></div>
-        </div>
-        <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl space-y-6">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/30 text-amber-300 text-xs sm:text-sm font-bold tracking-wide backdrop-blur-sm">
-                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                    WEBSITE RESMI SEKOLAH
-                </div>
-                <p class="text-amber-300 font-semibold tracking-[.18em] uppercase text-sm sm:text-base">Unggul • Kompeten • Berkarakter</p>
-                <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight">
-                    SMK BINA MANDIRI <span class="text-amber-400">PAMARAYAN</span>
-                </h1>
-                <p class="text-slate-100 text-base sm:text-xl max-w-2xl leading-relaxed">
-                    Membangun generasi yang kompeten, berkarakter, dan siap menghadapi dunia kerja serta masa depan.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <a href="#ppdb" class="px-7 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-center shadow-lg transition">Informasi PPDB</a>
-                    <a href="#profil" class="px-7 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/40 text-white font-semibold text-center backdrop-blur-sm transition">Profil Sekolah</a>
-                </div>
-                <div class="flex flex-wrap gap-x-7 gap-y-3 pt-5 text-sm text-white/90">
-                    <span><i class="fa-solid fa-location-dot text-amber-300 mr-2"></i>Pamarayan, Kabupaten Serang</span>
-                    <span><i class="fa-solid fa-graduation-cap text-amber-300 mr-2"></i>Pendidikan Vokasi</span>
-                </div>
+    <!-- DAFTAR MAPEL MEDIA PEMBELAJARAN
+         Untuk menambah mapel baru: salin satu baris { ... } di bawah, lalu ubah nama, ikon, dan href. -->
+    <script>
+        (function () {
+            var MAPEL_PEMBELAJARAN = [
+                { nama: "Koding dan Kecerdasan Artifisial", ikon: "fa-robot", href: "media-pembelajaran.html?mapel=koding-ai&v=5" }
+                // , { nama: "Nama Mapel Baru", ikon: "fa-book", href: "media-pembelajaran.html?mapel=nama-mapel" }
+            ];
+            var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+            var desktop = MAPEL_PEMBELAJARAN.map(function (m) {
+                return '<a href="' + esc(m.href) + '" target="_blank" rel="noopener" class="nav-item group"><span class="nav-ico"><i class="fa-solid ' + esc(m.ikon) + '"></i></span>' + esc(m.nama) + '</a>';
+            }).join("");
+            var mobile = MAPEL_PEMBELAJARAN.map(function (m) {
+                return '<a href="' + esc(m.href) + '" target="_blank" rel="noopener" class="mobile-link flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-navy-800"><i class="fa-solid ' + esc(m.ikon) + ' w-4 text-center text-amber-500 text-xs"></i>' + esc(m.nama) + '</a>';
+            }).join("");
+            var elD = document.getElementById("mp-list-desktop");
+            var elM = document.getElementById("mp-list-mobile");
+            if (elD) elD.innerHTML = desktop;
+            if (elM) elM.innerHTML = mobile;
+
+            document.querySelectorAll(".mp-toggle").forEach(function (btn) {
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var list = document.getElementById(btn.getAttribute("aria-controls"));
+                    if (!list) return;
+                    var open = btn.getAttribute("aria-expanded") === "true";
+                    btn.setAttribute("aria-expanded", open ? "false" : "true");
+                    list.classList.toggle("hidden", open);
+                });
+            });
+        })();
+    </script>
+    <!-- 2. HERO SECTION -->
+    <section id="beranda" class="page-slide relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-navy-900 text-white overflow-hidden">
+        <!-- Latar belakang animasi -->
+        <div class="hero-bg absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="hero-aurora"></div>
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-blob hero-blob-3"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-sweep"></div>
+            <div class="hero-dots">
+                <span class="hero-dot amber" style="left:43%;--s:4px;--d:17s;animation-delay:-20s"></span>
+                <span class="hero-dot" style="left:8%;--s:3px;--d:19s;animation-delay:-3s"></span>
+                <span class="hero-dot" style="left:48%;--s:3px;--d:19s;animation-delay:-6s"></span>
+                <span class="hero-dot amber" style="left:6%;--s:3px;--d:17s;animation-delay:-13s"></span>
+                <span class="hero-dot" style="left:10%;--s:4px;--d:12s;animation-delay:-17s"></span>
+                <span class="hero-dot" style="left:56%;--s:3px;--d:20s;animation-delay:-3s"></span>
+                <span class="hero-dot amber" style="left:30%;--s:3px;--d:20s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:52%;--s:3px;--d:14s;animation-delay:-1s"></span>
+                <span class="hero-dot" style="left:73%;--s:4px;--d:15s;animation-delay:-13s"></span>
+                <span class="hero-dot amber" style="left:20%;--s:3px;--d:20s;animation-delay:-9s"></span>
+                <span class="hero-dot" style="left:73%;--s:4px;--d:12s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:75%;--s:4px;--d:16s;animation-delay:-3s"></span>
+                <span class="hero-dot amber" style="left:72%;--s:3px;--d:20s;animation-delay:-1s"></span>
+                <span class="hero-dot" style="left:81%;--s:4px;--d:18s;animation-delay:-17s"></span>
+                <span class="hero-dot" style="left:56%;--s:5px;--d:18s;animation-delay:-18s"></span>
+                <span class="hero-dot amber" style="left:60%;--s:5px;--d:15s;animation-delay:-7s"></span>
+                <span class="hero-dot" style="left:25%;--s:4px;--d:12s;animation-delay:-18s"></span>
+                <span class="hero-dot" style="left:40%;--s:6px;--d:16s;animation-delay:-14s"></span>
             </div>
         </div>
-        <div class="absolute bottom-0 inset-x-0 h-2 bg-gradient-to-r from-blue-900 via-amber-400 to-blue-900"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Konten Kiri -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800/80 border border-blue-700/50 text-amber-400 text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        PENERIMAAN PESERTA DIDIK BARU (PPDB) TELAH DIBUKA
+                    </div>
+                    
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-[52px] leading-tight tracking-tight">
+                        Mencetak Generasi <span class="text-amber-400">Vokasi Unggul</span>, Kompeten & Siap Kerja
+                    </h1>
+                    
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        SMK Bina Mandiri memadukan kurikulum berbasis industri, fasilitas praktik modern, dan pembinaan karakter untuk mempersiapkan lulusan yang siap bersaing di dunia kerja maupun berwirausaha.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#ppdb" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-900 font-heading font-bold text-base shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 text-center">
+                            Daftar Sekarang
+                        </a>
+                        <a href="#jurusan" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-semibold text-base transition text-center">
+                            Jelajahi Jurusan
+                        </a>
+                    </div>
+
+                    <!-- Statistik Singkat -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 mt-8">
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">2014</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Tahun Berdiri</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">2</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Program Keahlian</div>
+                        </div>
+                        <div>
+                            <div class="font-heading font-extrabold text-2xl sm:text-3xl text-amber-400">B</div>
+                            <div class="text-xs sm:text-sm text-slate-400 mt-1">Akreditasi Sekolah</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Kanan -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-800 bg-navy-800">
+                        <img src="foto-kegiatan/sambutan-pelepasan-siswa.jpg" 
+                             onerror="this.src='https://placehold.co/800x600/1E3A8A/FFFFFF?text=Siswa+Praktik+SMK+Bina+Mandiri'" 
+                             alt="Sambutan pada acara perpisahan dan pelepasan siswa kelas XII SMK Bina Mandiri" 
+                             class="w-full h-[360px] sm:h-[420px] object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent p-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-amber-500 text-navy-900 flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-white">SMK Pusat Keunggulan</p>
+                                    <p class="text-xs text-slate-300">Sertifikasi Kompetensi BNSP & Industri</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Berita terbaru di halaman pertama (diisi JavaScript) -->
+            <div id="home-news" class="mt-14 lg:mt-20"></div>
+        </div>
     </section>
 
     <!-- 3. PROFIL SEKOLAH (SAMBUTAN KEPALA SEKOLAH, VISI & MISI) -->
     <section id="profil" class="page-slide py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+            <div data-pv="utama" class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
                 <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Tentang Kami</span>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-navy-900 mt-2">Profil SMK Bina Mandiri</h2>
                 <p class="text-slate-600 mt-3 text-sm sm:text-base">Berkomitmen menghadirkan pendidikan kejuruan berkualitas tinggi yang relevan dengan perkembangan teknologi dan kebutuhan industri masa kini.</p>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
+            <div data-pv="utama" class="max-w-3xl mx-auto">
                 <!-- Sambutan Kepala Sekolah -->
-                <div class="lg:col-span-6 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 fade-in-up">
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
-                        <img src="kepalasekolah.jpeg" alt="Kepala Sekolah SMK Bina Mandiri"class="w-full h-80 object-cover rounded-xl">
-                        <div class="text-center sm:text-left">
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 fade-in-up">
+                    <div class="flex flex-col items-center gap-5 mb-6">
+                        <img src="kepalasekolah.jpeg" alt="Kepala Sekolah SMK Bina Mandiri" class="w-full max-w-md h-auto rounded-xl">
+                        <div class="text-center">
                             <span class="inline-block px-3 py-1 rounded-full bg-navy-900 text-amber-400 text-xs font-semibold mb-2">Sambutan Kepala Sekolah</span>
                             <h3 class="font-heading font-bold text-xl text-navy-900">Sudiran, S.Pd.</h3>
                             <p class="text-xs text-slate-500 font-medium">Kepala SMK Bina Mandiri</p>
@@ -225,54 +511,245 @@
                         <p>
                             Kami terus memperkuat sinergi dengan dunia usaha dan dunia industri (DUDI) melalui penyelarasan kurikulum, program magang terstruktur, serta sertifikasi keahlian agar setiap lulusan mampu langsung berkarya maupun melanjutkan pendidikan tinggi.
                         </p>
-                    </div>
-                </div>
-
-                <!-- Visi & Misi -->
-                <div class="lg:col-span-6 space-y-6 fade-in-up">
-                    <!-- Kartu Visi -->
-                    <div class="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-navy-900 flex items-center justify-center">
-                                <i class="fa-solid fa-eye text-lg"></i>
-                            </div>
-                            <h3 class="font-heading font-bold text-xl">Visi Sekolah</h3>
-                        </div>
-                        <p class="text-slate-200 text-sm sm:text-base leading-relaxed font-medium">
-                            “Terwujudnya Insan Pendidikan yang Berakhlak Mulia,Religius, Berbudaya dan Intelektual”
+                        <p>
+                            SMK Bina Mandiri berada di bawah naungan Yayasan Bhakti Nusantara dan saat ini menyelenggarakan dua program keahlian, yaitu Teknik Komputer dan Jaringan (TKJ) serta Manajemen Perkantoran dan Layanan Bisnis (MPLB). Melalui pembelajaran dengan Kurikulum Merdeka untuk SMK, kami berupaya membekali peserta didik dengan pengetahuan, keterampilan, dan sikap kerja yang dibutuhkan di dunia usaha maupun dunia industri.
+                        </p>
+                        <p>
+                            Pendidikan di sekolah ini tidak hanya berfokus pada kemampuan teknis. Kami meyakini bahwa keahlian harus berjalan seiring dengan akhlak mulia, religiusitas, kedisiplinan, dan sikap saling menghargai. Karena itu, pembiasaan karakter seperti sholat berjamaah, kegiatan kepramukaan, dan berbagai ekstrakurikuler terus kami hidupkan agar peserta didik tumbuh menjadi pribadi yang tangguh, mandiri, dan bertanggung jawab.
+                        </p>
+                        <p>
+                            Melalui Bursa Kerja Khusus (BKK), sekolah juga berusaha membantu peserta didik dan alumni agar lebih mudah terhubung dengan peluang kerja. Kami berharap setiap lulusan mampu menjadi insan yang kompeten, berkarakter, dan siap menghadapi tantangan di masa depan.
+                        </p>
+                        <p>
+                            Keberhasilan pendidikan tentu tidak dapat dicapai sendiri. Kami mengajak seluruh peserta didik, orang tua, dewan guru, tenaga kependidikan, alumni, serta mitra dunia usaha dan dunia industri untuk terus bergandengan tangan membangun SMK Bina Mandiri menjadi sekolah yang semakin baik dan bermanfaat bagi masyarakat.
+                        </p>
+                        <p>
+                            Bagi kami, sekolah bukan sekadar tempat menuntut ilmu, melainkan rumah kedua bagi peserta didik. Di sinilah mereka belajar mengenal potensi diri, menemukan minat dan bakat, membangun kepercayaan diri, serta menyiapkan langkah menuju cita-cita. Setiap peserta didik memiliki keunikan dan kemampuan yang berbeda, dan tugas kami sebagai pendidik adalah mendampingi mereka agar tumbuh sesuai potensinya masing-masing.
+                        </p>
+                        <p>
+                            Perkembangan teknologi informasi yang begitu cepat menuntut dunia pendidikan untuk terus beradaptasi. Melalui program keahlian Teknik Komputer dan Jaringan, kami mengajak peserta didik memahami dasar-dasar perangkat komputer, jaringan, dan pemanfaatan teknologi secara bijak. Sementara melalui program keahlian Manajemen Perkantoran dan Layanan Bisnis, peserta didik dilatih untuk terampil dalam administrasi, pengelolaan dokumen, komunikasi, dan pelayanan yang profesional. Kedua program keahlian ini kami harapkan dapat menjadi bekal yang bermanfaat bagi masa depan mereka.
+                        </p>
+                        <p>
+                            Kami menyadari bahwa dunia kerja saat ini tidak hanya menilai kemampuan teknis, tetapi juga sikap kerja. Kejujuran, tanggung jawab, kedisiplinan, kemampuan bekerja sama, serta semangat untuk terus belajar adalah nilai-nilai yang sangat dibutuhkan. Oleh sebab itu, kami berupaya menanamkan nilai-nilai tersebut dalam kegiatan belajar sehari-hari, baik di dalam kelas, di laboratorium dan ruang praktik, maupun dalam kegiatan di luar kelas.
+                        </p>
+                        <p>
+                            Kepada para peserta didik, kami berpesan agar terus bersemangat belajar, menjaga sopan santun, menghormati guru dan orang tua, serta berani mencoba hal-hal baru. Jangan ragu untuk bertanya, berlatih, dan mengikuti kegiatan yang dapat mengasah kemampuan, karena setiap pengalaman akan menjadi bekal berharga. Jadikan setiap tantangan sebagai kesempatan untuk tumbuh menjadi pribadi yang lebih baik.
+                        </p>
+                        <p>
+                            Kepada para guru dan tenaga kependidikan, kami menyampaikan terima kasih atas dedikasi, kesabaran, dan keikhlasan dalam mendidik serta membimbing peserta didik. Semoga setiap ilmu yang diberikan menjadi amal yang bermanfaat dan terus mengalir kebaikannya.
+                        </p>
+                        <p>
+                            Kepada para orang tua dan wali murid, kami mengucapkan terima kasih atas kepercayaan yang diberikan kepada SMK Bina Mandiri. Pendidikan anak adalah tanggung jawab bersama antara sekolah, keluarga, dan masyarakat. Dukungan, doa, serta komunikasi yang baik dari orang tua sangat berarti dalam membantu putra-putri kita meraih keberhasilan.
+                        </p>
+                        <p>
+                            Kepada Yayasan Bhakti Nusantara, para alumni, dunia usaha dan dunia industri, serta seluruh pihak yang telah memberikan dukungan, kami mengucapkan terima kasih. Kami juga membuka pintu selebar-lebarnya bagi kerja sama, masukan, dan saran yang membangun demi peningkatan mutu layanan pendidikan di SMK Bina Mandiri.
+                        </p>
+                        <p>
+                            Kepada para calon peserta didik baru beserta orang tua, kami mengundang Anda untuk mengenal lebih dekat SMK Bina Mandiri melalui website ini. Silakan menjelajahi informasi mengenai profil sekolah, program keahlian, berita kegiatan, Bursa Kerja Khusus, hingga pendaftaran peserta didik baru. Kami berharap informasi di website ini dapat membantu Anda dalam menentukan pilihan pendidikan terbaik.
+                        </p>
+                        <p>
+                            Akhir kata, kami menyadari bahwa SMK Bina Mandiri masih terus berproses dan memiliki banyak hal yang perlu dibenahi. Namun dengan niat yang tulus, kerja sama yang baik, dan semangat untuk terus berbenah, kami optimis dapat terus berkembang dan memberikan yang terbaik bagi peserta didik dan masyarakat. Mari bersama-sama mewujudkan pendidikan kejuruan yang berkualitas, berakhlak mulia, dan bermanfaat bagi bangsa.
+                        </p>
+                        <p>
+                            <em>"Wassalamu’alaikum Warahmatullahi Wabarakatuh."</em>
                         </p>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Kartu Misi -->
-                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-navy-800 text-amber-400 flex items-center justify-center">
-                                <i class="fa-solid fa-bullseye text-lg"></i>
-                            </div>
-                            <h3 class="font-heading font-bold text-xl text-navy-900">Misi Sekolah</h3>
+            <!-- Tambahan profil: sejarah, data sekolah, guru dan tenaga kependidikan -->
+            <div id="profil-tambahan" class="hidden space-y-16 fade-in-up">
+                <!-- Sejarah singkat -->
+                <div id="sejarah" data-pv="sejarah" class="hidden max-w-3xl mx-auto">
+                    <h3 class="font-heading font-bold text-xl text-navy-900 mb-4">Sejarah singkat</h3>
+                    <div class="space-y-3 mb-10">
+                        <p class="text-sm text-slate-600 leading-relaxed">SMK Bina Mandiri merupakan lembaga pendidikan menengah kejuruan swasta yang berada di bawah naungan Yayasan Bhakti Nusantara, berlokasi di Jalan Dahu Km.01, Desa Pasirlimus, Kecamatan Pamarayan, Kabupaten Serang, Provinsi Banten 42179.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">SMK Bina Mandiri didirikan pada tanggal 14 Mei 2014 atas prakarsa dan kepedulian Bapak Jarmin selaku Ketua Yayasan Bhakti Nusantara terhadap pentingnya penyelenggaraan pendidikan kejuruan bagi masyarakat, khususnya dalam mempersiapkan generasi muda agar memiliki pengetahuan, keterampilan, serta kompetensi yang mampu bersaing di dunia kerja maupun dunia usaha.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Dalam perjalanan pendiriannya, SMK Bina Mandiri memperoleh Surat Keputusan (SK) Pendirian pada tanggal 8 Oktober 2014, kemudian mendapatkan Izin Operasional Tetap pada tanggal 10 Desember 2014. Sejak saat itu, SMK Bina Mandiri terus berupaya mengembangkan kualitas pendidikan dan pelayanan kepada masyarakat.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Seiring dengan perkembangan zaman, SMK Bina Mandiri terus berkomitmen untuk mencetak lulusan yang kompeten, berkarakter, mandiri, disiplin, serta siap menghadapi tantangan dunia kerja dan perkembangan teknologi. Saat ini, SMK Bina Mandiri dipimpin oleh Bapak Sudiran, S.Pd., dengan program keahlian Teknik Komputer dan Jaringan (TKJ) serta Manajemen Perkantoran dan Layanan Bisnis (MPLB).</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Dengan semangat kebersamaan dan berlandaskan visi pendidikan, SMK Bina Mandiri senantiasa berupaya menjadi lembaga pendidikan kejuruan yang berkualitas, unggul, dan mampu memberikan kontribusi nyata dalam mencerdaskan kehidupan bangsa serta mempersiapkan sumber daya manusia yang siap menghadapi masa depan.</p>
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-navy-900 mb-4">Tonggak penting</h4>
+                    <ol class="relative border-l-2 border-slate-200 ml-2 space-y-8">
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-2 border-white"></span>
+                            <div class="font-heading font-bold text-navy-900">14 Mei 2014</div>
+                            <p class="text-sm text-slate-600 leading-relaxed mt-1">SMK Bina Mandiri didirikan atas prakarsa Bapak Jarmin, Ketua Yayasan Bhakti Nusantara.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-2 border-white"></span>
+                            <div class="font-heading font-bold text-navy-900">8 Oktober 2014</div>
+                            <p class="text-sm text-slate-600 leading-relaxed mt-1">Surat Keputusan (SK) Pendirian diterbitkan.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-2 border-white"></span>
+                            <div class="font-heading font-bold text-navy-900">10 Desember 2014</div>
+                            <p class="text-sm text-slate-600 leading-relaxed mt-1">Izin Operasional Tetap diterbitkan.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-navy-900 border-2 border-white"></span>
+                            <div class="font-heading font-bold text-navy-900">Sekarang</div>
+                            <p class="text-sm text-slate-600 leading-relaxed mt-1">Dipimpin Bapak Sudiran, S.Pd., dengan program keahlian TKJ dan MPLB.</p>
+                        </li>
+                    </ol>
+                    <div class="mt-10">
+                        <h4 class="font-heading font-bold text-lg text-navy-900 mb-3">Perkembangan hingga kini</h4>
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-600 leading-relaxed">Hingga November 2026, SMK Bina Mandiri memiliki 14 pendidik dan tenaga kependidikan. Pembelajaran berlangsung sehari penuh, lima hari dalam seminggu, dengan Kurikulum Merdeka untuk SMK.</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">Untuk menunjang pembelajaran, sekolah menyediakan laboratorium komputer, ruang praktik siswa untuk masing-masing program keahlian, perpustakaan, dan ruang ibadah.</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">Di luar kelas, peserta didik mengembangkan minat dan bakat melalui kegiatan ekstrakurikuler seperti Pramuka, Paskibra, futsal, dan seni hadroh. Melalui Bursa Kerja Khusus (BKK), sekolah juga membantu peserta didik dan alumni terhubung dengan dunia kerja.</p>
                         </div>
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
-                                <span>Menumbuhkan penghayatan dan pengamalan agama sesuai dengan nilai-nilai ajaran
-agama.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
-                                <span>Membudayakan disiplin dan toleransi.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
-                                <span>Meningkatkan kemampuan peserta didik yang lebih berakhlak mulia, religius,
-berbudaya dan intelektual.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-circle-check text-amber-500 mt-1 shrink-0"></i>
-                                <span>Mengoptimalkan pengembangan minat dan bakat untuk meningkatkan intelektual.</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
+
+                <!-- Data sekolah -->
+                <div id="data-sekolah" data-pv="data-sekolah" class="hidden max-w-4xl mx-auto">
+                    <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Data sekolah</h3>
+                    <dl class="grid sm:grid-cols-2 gap-x-8 border-t border-slate-200 mt-4">
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Nama sekolah</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">SMK Bina Mandiri</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">NPSN</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">69889028</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Status</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">Swasta, dikelola yayasan</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Tanggal berdiri</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">14 Mei 2014</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Kepala sekolah</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">Sudiran, S.Pd.</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Program keahlian</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">TKJ dan MPLB</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Waktu belajar</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">Sehari penuh, 5 hari</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Pendidik dan tenaga kependidikan</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">14 orang</dd>
+                        </div>
+                        <div class="py-3 border-b border-slate-200">
+                            <dt class="text-xs text-slate-500">Alamat</dt>
+                            <dd class="font-semibold text-navy-900 text-sm mt-0.5">Jl. Dahu Km.01, Desa Pasirlimus, Kec. Pamarayan, Kab. Serang, Banten 42179</dd>
+                        </div>
+                    </dl>
+                    <p class="text-xs text-slate-400 mt-3">Sumber: data pokok pendidikan (Dapodik), diunduh 20 November 2026.</p>
+                </div>
+            </div>
+
+            <!-- Guru dan tenaga kependidikan -->
+            <div id="guru" data-pv="guru" class="hidden fade-in-up">
+                <h3 class="font-heading font-bold text-xl text-navy-900 mb-6">Guru dan tenaga kependidikan</h3>
+                <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/sudiran-s-pd.jpg" alt="Foto Sudiran, S.Pd." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Sudiran, S.Pd.</div>
+                            <div class="text-xs text-slate-500">Kepala sekolah</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/tatang-ardiansyah-s-e.jpg" alt="Foto Tatang Ardiansyah, S.E." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Tatang Ardiansyah, S.E.</div>
+                            <div class="text-xs text-slate-500">Wakil kepala sekolah bidang kurikulum</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/supriyati-s-hum.jpg" alt="Foto Supriyati, S.Hum." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Supriyati, S.Hum.</div>
+                            <div class="text-xs text-slate-500">Wakil kepala sekolah bidang kesiswaan</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/rosiah-s-pd.jpg" alt="Foto Rosiah, S.Pd." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Rosiah, S.Pd.</div>
+                            <div class="text-xs text-slate-500">Wakil kepala sekolah bidang humas</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/ida-saidah-s-pd.jpg" alt="Foto Ida Saidah, S.Pd." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Ida Saidah, S.Pd.</div>
+                            <div class="text-xs text-slate-500">Wakil kepala sekolah bidang sarana dan prasarana</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/suhendar-s-kom.jpg" alt="Foto Suhendar, S.Kom." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Suhendar, S.Kom.</div>
+                            <div class="text-xs text-slate-500">Kepala program keahlian</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/sarkilah-s-m.jpg" alt="Foto Sarkilah, S.M." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Sarkilah, S.M.</div>
+                            <div class="text-xs text-slate-500">Kepala perpustakaan</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/wiwin-setiawati-s-pd.jpg" alt="Foto Wiwin Setiawati, S.Pd." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Wiwin Setiawati, S.Pd.</div>
+                            <div class="text-xs text-slate-500">Guru dan wali kelas X MPLB</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/anisah-s-pd-i.jpg" alt="Foto Anisah, S.Pd.I" loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Anisah, S.Pd.I</div>
+                            <div class="text-xs text-slate-500">Guru dan wali kelas XI MPLB</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/arip-saripudin-s-pd-i.jpg" alt="Foto Arip Saripudin, S.Pd.I" loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Arip Saripudin, S.Pd.I</div>
+                            <div class="text-xs text-slate-500">Guru dan wali kelas XII MPLB</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/supian-s-pd-i.jpg" alt="Foto Supian, S.Pd.I" loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Supian, S.Pd.I</div>
+                            <div class="text-xs text-slate-500">Guru</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/kesih-s-pd-i.jpg" alt="Foto Kesih, S.Pd.I" loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Kesih, S.Pd.I</div>
+                            <div class="text-xs text-slate-500">Guru</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <img src="foto-guru/sendi-s-e.jpg" alt="Foto Sendi, S.E." loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-[50%_15%] border-2 border-amber-400 shadow-md bg-[#2975B0]">
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Sendi, S.E.</div>
+                            <div class="text-xs text-slate-500">Tenaga administrasi sekolah</div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <span class="w-24 h-24 shrink-0 rounded-full bg-navy-900 text-amber-400 font-heading font-bold text-2xl flex items-center justify-center border-2 border-amber-400" aria-hidden="true">B</span>
+                        <div class="min-w-0">
+                            <div class="font-heading font-bold text-sm text-navy-900">Bohani</div>
+                            <div class="text-xs text-slate-500">Penjaga sekolah</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -327,8 +804,8 @@ berbudaya dan intelektual.</span>
                     </p>
                 </div>
 
-                <!-- Fasilitas 3 -->
-                <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
+                <!-- Fasilitas 3 (klik membuka halaman BKK) -->
+                <a href="#bkk" aria-label="Buka halaman Bursa Kerja Khusus (BKK)" class="group block cursor-pointer bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
                     <div class="w-12 h-12 rounded-xl bg-navy-900 group-hover:bg-amber-500 text-amber-400 group-hover:text-navy-900 flex items-center justify-center text-xl mb-5 transition">
                         <i class="fa-solid fa-briefcase"></i>
                     </div>
@@ -336,7 +813,8 @@ berbudaya dan intelektual.</span>
                     <p class="text-sm text-slate-600 group-hover:text-slate-300 leading-relaxed transition">
                         Pusat informasi karir, pelatihan wawancara, dan rekrutmen langsung oleh perusahaan mitra sebelum siswa lulus.
                     </p>
-                </div>
+                <span class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-amber-600 group-hover:text-amber-400 transition">Buka Halaman BKK <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i></span>
+                </a>
 
                 <!-- Fasilitas 4 -->
                 <div class="group bg-slate-50 hover:bg-navy-900 rounded-2xl p-6 border border-slate-200 transition-all duration-300 fade-in-up">
@@ -468,6 +946,10 @@ berbudaya dan intelektual.</span>
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
                                 <span>Kirim Pendaftaran via WhatsApp</span>
                             </button>
+                            <a href="https://chat.whatsapp.com/GvcBJdgxPx3DiTVuIXAiJj" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-extrabold text-base shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-users text-lg"></i>
+                                <span>Grup PPDB</span>
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -524,6 +1006,68 @@ berbudaya dan intelektual.</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Lowongan Otomatis (JobStreet & lainnya) diurutkan dari lokasi terdekat sekolah -->
+            <div id="bkk-auto" class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                    <div>
+                        <p class="text-xs font-extrabold uppercase tracking-wider text-navy-900">Lowongan Terbaru Dekat Sekolah</p>
+                        <p id="bkk-auto-info" class="text-xs text-slate-500 mt-1">Memuat lowongan...</p>
+                    </div>
+                    <select id="bkk-auto-radius" class="px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-navy-900">
+                        <option value="15">Radius 15 km</option>
+                        <option value="30">Radius 30 km</option>
+                        <option value="60" selected>Radius 60 km</option>
+                        <option value="9999">Semua jarak</option>
+                    </select>
+                </div>
+                <div id="bkk-auto-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                <p id="bkk-auto-empty" class="hidden text-sm text-slate-500 text-center py-6">Belum ada lowongan pada radius ini. Coba perluas radius atau gunakan tombol portal di bawah.</p>
+            </div>
+            <script>
+            (function () {
+                var grid = document.getElementById("bkk-auto-grid");
+                var info = document.getElementById("bkk-auto-info");
+                var empty = document.getElementById("bkk-auto-empty");
+                var sel = document.getElementById("bkk-auto-radius");
+                if (!grid) return;
+                var data = [];
+                function esc(s) {
+                    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+                        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+                    });
+                }
+                function render() {
+                    var r = parseInt(sel.value, 10);
+                    var list = data.filter(function (x) { return x.jarak_km <= r; });
+                    grid.innerHTML = list.map(function (x) {
+                        var aman = /^https?:\/\//.test(x.link) ? x.link : "#";
+                        return '<div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between">' +
+                            '<div><div class="flex items-center justify-between gap-2 mb-2">' +
+                            '<span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800">' + (x.jarak_perkiraan ? "±" : "") + esc(x.jarak_km) + ' km dari sekolah</span>' +
+                            '<span class="text-xs text-slate-500">' + esc(x.sumber) + '</span></div>' +
+                            '<h4 class="font-heading text-base font-extrabold text-navy-900">' + esc(x.posisi) + '</h4>' +
+                            '<p class="text-sm font-semibold text-slate-600">' + esc(x.perusahaan) + '</p>' +
+                            '<p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>' + esc(x.lokasi) + (x.tipe ? ' · ' + esc(x.tipe) : '') + '</p>' +
+                            (x.ringkasan ? '<p class="text-xs text-slate-600 mt-2">' + esc(x.ringkasan) + '</p>' : '') + '</div>' +
+                            '<div class="mt-4 pt-3 border-t border-slate-100 flex justify-end"><a href="' + esc(aman) + '" target="_blank" rel="noopener noreferrer" class="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition">Lihat &amp; Lamar</a></div></div>';
+                    }).join("");
+                    empty.classList.toggle("hidden", list.length > 0 || data.length === 0 && false);
+                    if (list.length === 0) empty.classList.remove("hidden"); else empty.classList.add("hidden");
+                }
+                fetch("lowongan.json?v=" + Date.now()).then(function (r) { return r.json(); }).then(function (j) {
+                    data = (j.lowongan || []).slice().sort(function (a, b) { return a.jarak_km - b.jarak_km; });
+                    if (j.diperbarui) {
+                        var t = new Date(j.diperbarui).toLocaleString("id-ID", { dateStyle: "long", timeStyle: "short" });
+                        info.textContent = "Otomatis dari JobStreet dan portal lain, urut dari yang terdekat. Diperbarui " + t + ".";
+                    } else {
+                        info.textContent = "Lowongan otomatis akan tampil setelah pembaruan pertama dijalankan.";
+                    }
+                    render();
+                }).catch(function () { info.textContent = "Lowongan otomatis belum dapat dimuat."; });
+                sel.addEventListener("change", render);
+            })();
+            </script>
 
             <!-- Filter Pencarian (Muncul otomatis jika ada lowongan BKK) -->
             <div id="bkk-filter-bar" class="hidden bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 grid grid-cols-1 md:grid-cols-12 gap-3.5">
@@ -667,7 +1211,7 @@ berbudaya dan intelektual.</span>
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-location-dot text-amber-500 mt-1 shrink-0"></i>
-                            <span>Jl. Dahu Km.01 Desa Pasirlimus Kec.Pamarayan Kab.Serang - Banten 42178</span>
+                            <span>Jl. Dahu Km.01 Desa Pasirlimus Kec.Pamarayan Kab.Serang - Banten 42179</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-phone text-amber-500 shrink-0"></i>
@@ -675,7 +1219,7 @@ berbudaya dan intelektual.</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-envelope text-amber-500 shrink-0"></i>
-                            <span>info@smkbinamandiripamarayan.github.io</span>
+                            <a href="mailto:smkbinamandiri15@gmail.com" class="hover:text-amber-400 transition-colors">smkbinamandiri15@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -765,18 +1309,29 @@ berbudaya dan intelektual.</span>
 
             // Pertahankan tampilan awal Beranda; menu lain dibuka sebagai halaman/slide terpisah.
             const pageIds = ["beranda", "profil", "jurusan", "fasilitas", "berita", "ppdb", "bkk", "kontak"];
+            // Sub menu Profil: membuka halaman Profil lalu menggulir ke bagian yang dipilih.
+            const subPages = { "sejarah": "profil", "data-sekolah": "profil", "guru": "profil" };
             const showPage = (pageId, updateHistory = true) => {
-                const targetId = pageIds.includes(pageId) ? pageId : "beranda";
+                const subTarget = subPages[pageId] ? document.getElementById(pageId) : null;
+                const targetId = subTarget ? subPages[pageId] : (pageIds.includes(pageId) ? pageId : "beranda");
+                const hashId = subTarget ? pageId : targetId;
                 pageIds.forEach((id) => {
                     const page = document.getElementById(id);
                     if (page) page.classList.toggle("active", id === targetId);
                 });
-                if (updateHistory) history.pushState({ page: targetId }, "", `#${targetId}`);
-                window.scrollTo({ top: 0, behavior: "instant" });
+                // Di dalam Profil hanya satu tampilan yang muncul: utama (sambutan, visi, misi) atau salah satu sub menu.
+                const profilView = subTarget ? pageId : "utama";
+                document.querySelectorAll("#profil [data-pv]").forEach((el) => {
+                    el.classList.toggle("hidden", el.dataset.pv !== profilView);
+                });
+                const profilExtra = document.getElementById("profil-tambahan");
+                if (profilExtra) profilExtra.classList.toggle("hidden", profilView !== "sejarah" && profilView !== "data-sekolah");
+                if (updateHistory) history.pushState({ page: hashId }, "", `#${hashId}`);
                 if (targetId !== "beranda") {
                     const target = document.getElementById(targetId);
                     if (target) target.querySelectorAll(".fade-in-up").forEach((el) => el.classList.add("visible"));
                 }
+                window.scrollTo({ top: 0, behavior: "instant" });
             };
 
             // Dropdown desktop/mobile bersifat eksklusif: membuka satu menu akan menutup menu lain.
@@ -797,7 +1352,7 @@ berbudaya dan intelektual.</span>
                 const link = event.target.closest('a[href^="#"]');
                 if (!link) return;
                 const pageId = link.getAttribute("href").slice(1);
-                if (!pageIds.includes(pageId)) return;
+                if (!pageIds.includes(pageId) && !subPages[pageId]) return;
                 event.preventDefault();
                 document.querySelectorAll("header details[open]").forEach((item) => { item.open = false; });
                 showPage(pageId);
@@ -1018,6 +1573,35 @@ berbudaya dan intelektual.</span>
                         "Keberhasilan tersebut menjadi bukti bahwa kerja sama, kreativitas, kedisiplinan, dan semangat pantang menyerah merupakan bekal penting untuk meraih prestasi.",
                         "Selamat kepada seluruh kontingen Ambalan Srikandi Gudep 18-006. Teruslah menjaga semangat kepramukaan dan mengharumkan nama SMK Bina Mandiri Pamarayan."
                     ]
+                },
+                {
+                    id: 109, kategori: "Kegiatan", tanggal: "26 Oktober–08 November 2026",
+                    judul: "Pelaksanaan Tes Kemampuan Akademik (TKA) di SMK Bina Mandiri Pamarayan",
+                    ringkasan: "Peserta didik mengikuti pelaksanaan Tes Kemampuan Akademik (TKA) di ruang laboratorium komputer dengan tertib dan didampingi oleh guru.",
+                    gambar: "foto-kegiatan/pelaksanaan-tka-2026-1.jpg",
+                    konten: [
+                        "SMK Bina Mandiri Pamarayan melaksanakan Tes Kemampuan Akademik (TKA) pada tanggal 26 Oktober sampai dengan 08 November 2026. Kegiatan ini diikuti oleh peserta didik dengan memanfaatkan fasilitas laboratorium komputer sekolah.",
+                        "Selama pelaksanaan, para siswa mengikuti tes menggunakan perangkat komputer yang telah disiapkan. Guru turut melakukan pendampingan dan pemantauan agar kegiatan berjalan dengan tertib dan lancar.", `<img src="foto-kegiatan/pelaksanaan-tka-2026-2.jpg" alt="Guru mendampingi peserta didik saat pelaksanaan TKA" class="w-full rounded-xl my-2 object-cover">`,
+                        "Melalui pelaksanaan TKA ini, diharapkan peserta didik dapat mengikuti setiap tahapan dengan sungguh-sungguh serta memperoleh hasil yang mencerminkan kemampuan akademik masing-masing. Terima kasih kepada seluruh panitia, guru, dan pihak yang telah mendukung terselenggaranya kegiatan ini."
+                    ]
+                },
+                {
+                    id: 110, kategori: "Kegiatan", tanggal: "Rabu, 11 Februari 2026",
+                    judul: "KUNJUNGAN PENGAWAS SEKOLAH BAPAK ANTO JAYADI KUSUMA, M.Pd. KE SMK BINA MANDIRI",
+                    ringkasan: "SMK Bina Mandiri menerima kunjungan Pengawas Sekolah, Bapak Anto Jayadi Kusuma, M.Pd., dalam rangka pengarahan, pembinaan, serta pendampingan terkait pengelolaan dan pengembangan ruang pendidikan.",
+                    gambar: "foto-kegiatan/kunjungan-pengawas-sekolah-1.jpg",
+                    konten: [
+                        "SMK Bina Mandiri menerima kunjungan Pengawas Sekolah, Bapak Anto Jayadi Kusuma, M.Pd., pada hari Rabu, 11 Februari 2026, dalam rangka memberikan pengarahan, pembinaan, serta pendampingan terkait pengelolaan dan pengembangan ruang pendidikan di lingkungan sekolah.",
+                        "Kunjungan ini menjadi salah satu bentuk perhatian dan dukungan terhadap peningkatan mutu pendidikan, khususnya dalam menciptakan lingkungan belajar yang nyaman, aman, tertata, dan mampu mendukung proses pembelajaran secara optimal.",
+                        "Dalam kesempatan tersebut, Bapak Anto Jayadi Kusuma, M.Pd. memberikan berbagai arahan dan masukan mengenai pentingnya pengelolaan ruang pendidikan yang sesuai dengan kebutuhan peserta didik serta perkembangan dunia pendidikan saat ini.",
+                        "Beliau menyampaikan bahwa ruang pendidikan bukan hanya sekadar tempat berlangsungnya kegiatan belajar mengajar, tetapi juga merupakan bagian penting dalam membangun suasana pembelajaran yang efektif, kreatif, inovatif, dan menyenangkan. Oleh karena itu, setiap fasilitas dan sarana prasarana sekolah perlu dimanfaatkan serta dikelola dengan baik agar dapat memberikan dampak positif terhadap kualitas pembelajaran.",
+                        `<img src="foto-kegiatan/kunjungan-pengawas-sekolah-2.jpg" alt="Foto bersama Pengawas Sekolah dan guru SMK Bina Mandiri" class="w-full rounded-xl my-2 object-cover">`,
+                        "Selain memberikan pengarahan, kunjungan ini juga menjadi kesempatan bagi pihak sekolah untuk melakukan evaluasi terhadap kondisi lingkungan dan fasilitas pendidikan yang tersedia. Berbagai masukan yang diberikan diharapkan dapat menjadi bahan pertimbangan bagi sekolah dalam melakukan pembenahan, peningkatan, serta pengembangan sarana dan prasarana pendidikan secara berkelanjutan.",
+                        "Keluarga besar SMK Bina Mandiri menyambut baik kunjungan dan arahan yang diberikan. Kegiatan ini diharapkan dapat memperkuat komitmen seluruh warga sekolah, mulai dari kepala sekolah, tenaga pendidik, tenaga kependidikan, hingga seluruh unsur terkait, untuk terus meningkatkan kualitas pelayanan pendidikan.",
+                        "Melalui kegiatan pembinaan ini, SMK Bina Mandiri yang berada di bawah naungan Yayasan Bhakti Nusantara berkomitmen untuk terus berbenah dan berkembang menjadi lembaga pendidikan kejuruan yang berkualitas, memiliki lingkungan belajar yang representatif, serta mampu mencetak lulusan yang kompeten, berkarakter, mandiri, dan siap menghadapi tantangan masa depan.",
+                        "Terima kasih kepada Bapak Anto Jayadi Kusuma, M.Pd. atas kunjungan, perhatian, arahan, dan pembinaan yang telah diberikan kepada SMK Bina Mandiri. Semoga sinergi dan kerja sama yang baik ini senantiasa terjalin demi kemajuan pendidikan dan peningkatan mutu sekolah.",
+                        "<strong>SMK BINA MANDIRI – Terus Bergerak, Terus Berbenah, Menuju Pendidikan yang Lebih Berkualitas.</strong>"
+                    ]
                 }
             ];
 
@@ -1088,6 +1672,74 @@ berbudaya dan intelektual.</span>
                 });
             }
 
+            // === Berita terbaru di Beranda ===
+            const NAMA_BULAN = { januari: 0, februari: 1, maret: 2, april: 3, mei: 4, juni: 5, juli: 6, agustus: 7, september: 8, oktober: 9, november: 10, desember: 11 };
+            const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+            // Membaca tanggal dari teks seperti "12–14 Agustus 2026" atau "26 Oktober–08 November 2026".
+            // Bila ada rentang, dipakai tanggal terakhir. Teks tanpa tanggal jelas (mis. "Dokumentasi Kegiatan Sekolah") dianggap tidak bertanggal.
+            function bacaTanggalBerita(teks) {
+                const t = String(teks ?? "");
+                const re = /(\d{1,2})\s+(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)\s+(\d{4})/gi;
+                let terakhir = null, m;
+                while ((m = re.exec(t)) !== null) {
+                    const d = new Date(Number(m[3]), NAMA_BULAN[m[2].toLowerCase()], Number(m[1]));
+                    if (!terakhir || d > terakhir) terakhir = d;
+                }
+                if (!terakhir && /^\d{4}-\d{2}-\d{2}/.test(t)) {
+                    const d = new Date(t.slice(0, 10) + "T00:00:00");
+                    if (!isNaN(d)) terakhir = d;
+                }
+                return terakhir;
+            }
+
+            function beritaPalingBaru() {
+                const bertanggal = dataBerita
+                    .map((item) => {
+                        let d = bacaTanggalBerita(item.tanggal);
+                        if (!d && item.created_at) {
+                            const c = new Date(item.created_at);
+                            if (!isNaN(c)) d = c;
+                        }
+                        return { item, d };
+                    })
+                    .filter((x) => x.d);
+                if (!bertanggal.length) return null;
+                bertanggal.sort((a, b) => b.d - a.d);
+                return bertanggal[0].item;
+            }
+
+            function renderBeritaTerbaru() {
+                const box = document.getElementById("home-news");
+                if (!box) return;
+                const item = beritaPalingBaru();
+                if (!item) { box.innerHTML = ""; return; }
+                box.innerHTML = `
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="font-heading font-bold text-xl text-white">Berita terbaru</h2>
+                        <a href="#berita" class="text-sm font-semibold text-amber-400 hover:text-amber-300 transition">Lihat semua berita</a>
+                    </div>
+                    <article class="bg-white text-slate-800 rounded-2xl overflow-hidden shadow-xl grid md:grid-cols-12">
+                        <div class="md:col-span-5 h-56 md:h-auto bg-navy-800">
+                            <img src="${esc(item.gambar)}" onerror="this.src='https://placehold.co/700x400/0F172A/F59E0B?text=Berita+SMK+Bina+Mandiri'" alt="${esc(item.judul)}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:col-span-7 p-6 sm:p-8 flex flex-col justify-center">
+                            <div class="flex flex-wrap items-center gap-3 text-xs mb-3">
+                                <span class="px-3 py-1 rounded-full bg-navy-900 text-amber-400 font-bold">${esc(item.kategori)}</span>
+                                <span class="text-slate-500"><i class="fa-regular fa-calendar text-amber-500 mr-1.5"></i>${esc(item.tanggal)}</span>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl sm:text-2xl text-navy-900 leading-snug mb-3">${esc(item.judul)}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-5">${esc(item.ringkasan)}</p>
+                            <button type="button" class="home-news-read self-start inline-flex items-center gap-2 text-sm font-bold text-navy-800 hover:text-amber-600 transition">
+                                <span>Baca Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>`;
+                box.querySelector(".home-news-read")?.addEventListener("click", () => bukaModalBerita(item));
+            }
+            // === akhir Berita terbaru di Beranda ===
+
             filterBtns.forEach((btn) => {
                 btn.addEventListener("click", () => {
                     filterBtns.forEach((b) => {
@@ -1101,16 +1753,18 @@ berbudaya dan intelektual.</span>
             });
 
             renderBerita("Semua");
+            renderBeritaTerbaru();
             if (window.SMKBackend?.ready) {
                 window.SMKBackend.getNews().then((rows) => {
                     if (!rows.length) return; // Pertahankan berita bawaan bila database belum diisi.
                     dataBerita.push(...rows.map((row) => ({
-                        id: row.id, kategori: row.kategori, tanggal: row.tanggal,
+                        id: row.id, kategori: row.kategori, tanggal: row.tanggal, created_at: row.created_at,
                         judul: row.judul, ringkasan: row.ringkasan,
                         gambar: row.gambar || "https://placehold.co/700x400/0F172A/F59E0B?text=SMK+Bina+Mandiri",
                         konten: [row.ringkasan]
                     })));
                     renderBerita("Semua");
+                    renderBeritaTerbaru();
                 });
             }
 
@@ -1123,10 +1777,27 @@ berbudaya dan intelektual.</span>
                 const jurusan = document.getElementById("ppdb-jurusan")?.value || "";
                 const noHp = normalisasiWA(document.getElementById("no_hp")?.value.trim() || "");
                 const alamat = document.getElementById("alamat")?.value.trim() || "-";
-                if (window.SMKBackend?.ready) {
-                    const hasil = await window.SMKBackend.insertPPDB({ nama, asal_sekolah: asalSekolah, jurusan, no_hp: noHp, alamat });
-                    if (!hasil.ok) console.warn("Data PPDB belum tersimpan di database; WhatsApp tetap dibuka.");
+                if (!window.SMKBackend?.ready) {
+                    alert("Pendaftaran belum dapat disimpan karena koneksi database belum siap. Silakan coba beberapa saat lagi atau hubungi panitia.");
+                    return;
                 }
+
+                // Siapkan tab WhatsApp secara sinkron agar tidak diblokir browser setelah proses simpan.
+                const tabWhatsApp = window.open("about:blank", "_blank");
+                const hasil = await window.SMKBackend.insertPPDB({
+                    nama,
+                    asal_sekolah: asalSekolah,
+                    jurusan,
+                    telepon: noHp,
+                    alamat
+                });
+                if (!hasil.ok) {
+                    if (tabWhatsApp && !tabWhatsApp.closed) tabWhatsApp.close();
+                    console.error("Gagal menyimpan pendaftaran PPDB:", hasil.error || hasil.message);
+                    alert("Data belum berhasil disimpan ke database. WhatsApp tidak dibuka agar pendaftaran tidak dianggap berhasil.\n\nPesan: " + (hasil.message || "Periksa koneksi atau izin tabel Supabase."));
+                    return;
+                }
+
                 const pesan =
                     `Halo Panitia PPDB SMK Bina Mandiri, saya ingin mendaftar:%0A%0A` +
                     `- Nama Lengkap: *${encodeURIComponent(nama)}*%0A` +
@@ -1134,7 +1805,12 @@ berbudaya dan intelektual.</span>
                     `- Pilihan Program Keahlian: *${encodeURIComponent(jurusan)}*%0A` +
                     `- No. WhatsApp: *${encodeURIComponent(noHp)}*%0A` +
                     `- Alamat: *${encodeURIComponent(alamat)}*`;
-                window.open(`https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`, "_blank", "noopener,noreferrer");
+                const urlWhatsApp = `https://wa.me/${NOMOR_WA_PPDB}?text=${pesan}`;
+                if (tabWhatsApp && !tabWhatsApp.closed) {
+                    tabWhatsApp.location.href = urlWhatsApp;
+                } else {
+                    alert("Data berhasil disimpan, tetapi browser memblokir tab WhatsApp. Silakan hubungi panitia melalui WhatsApp.");
+                }
             });
 
             function normalisasiWA(no) {
@@ -1271,9 +1947,17 @@ berbudaya dan intelektual.</span>
                     const lulus = document.getElementById("bkk_lulus")?.value.trim() || "";
                     const posisi = document.getElementById("bkk_posisi")?.value || "";
                     const catatan = document.getElementById("bkk_catatan")?.value.trim() || "-";
+                    // Pesan galat sementara untuk pengecekan. Setelah BKK beres, ubah TAMPIL_GALAT_BKK menjadi false.
+                    const TAMPIL_GALAT_BKK = false;
+                    let pesanGalatBkk = "";
                     if (window.SMKBackend?.ready) {
                         const hasil = await window.SMKBackend.insertBKK({ nama, no_wa: wa, jurusan, tahun_lulus: lulus, posisi, catatan });
-                        if (!hasil.ok) console.warn("Data BKK belum tersimpan di database; WhatsApp tetap dibuka.");
+                        if (!hasil.ok) {
+                            console.warn("Data BKK belum tersimpan di database; WhatsApp tetap dibuka.");
+                            pesanGalatBkk = hasil.message || "Penyebab tidak diketahui";
+                        }
+                    } else {
+                        pesanGalatBkk = "Koneksi database belum siap.";
                     }
 
                     const prev = loadBkkRiwayat();
@@ -1295,6 +1979,9 @@ berbudaya dan intelektual.</span>
                         `- Keahlian / Catatan: *${encodeURIComponent(catatan)}*`;
 
                     window.open(`https://wa.me/${NOMOR_WA_BKK_ADMIN}?text=${teks}`, "_blank", "noopener,noreferrer");
+                    if (TAMPIL_GALAT_BKK && pesanGalatBkk) {
+                        setTimeout(() => alert("PENGECEKAN: data BKK belum tersimpan di database.\n\nPesan: " + pesanGalatBkk), 400);
+                    }
                 };
 
                 searchEl?.addEventListener("input", renderBkkLowongan);
@@ -1337,5 +2024,15 @@ berbudaya dan intelektual.</span>
     </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
+<script>
+        // Bayangan navbar menguat saat halaman digulir.
+        (function () {
+            var nav = document.getElementById("navbar");
+            if (!nav) return;
+            var update = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+            window.addEventListener("scroll", update, { passive: true });
+            update();
+        })();
+    </script>
 </body>
 </html>

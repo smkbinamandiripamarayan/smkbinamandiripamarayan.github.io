@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Media Pembelajaran KKA</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Papan interaktif: papan tulis biru-hijau, kapur kuning sebagai penanda. Header + dropdown, kartu bab besar. */
+:root{
+  --bg:#eef3f5; --surface:#ffffff; --fg:#0f2128; --muted:#4a606a; --line:#c9d6db;
+  --accent:#0a6a85; --accent-fg:#ffffff; --chalk:#f4b400; --chalk-fg:#2a2000;
+  --ok:#0f7a3d; --okbg:#d9f2e3; --bad:#b3261e; --badbg:#fde3e1;
+  --head:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c181d; --surface:#142830; --fg:#eaf3f6; --muted:#9fb8c1; --line:#2b4650;
+  --accent:#4fc3e0; --accent-fg:#06222b; --chalk:#ffd23f; --chalk-fg:#2a2000;
+  --ok:#6fe3a0; --okbg:#12392a; --bad:#ff8a80; --badbg:#42201d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c181d; --surface:#142830; --fg:#eaf3f6; --muted:#9fb8c1; --line:#2b4650;
+  --accent:#4fc3e0; --accent-fg:#06222b; --chalk:#ffd23f; --chalk-fg:#2a2000;
+  --ok:#6fe3a0; --okbg:#12392a; --bad:#ff8a80; --badbg:#42201d; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 20px/1.55 var(--body);margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--chalk);outline-offset:2px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;text-wrap:balance;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--accent);color:var(--accent-fg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--accent);z-index:30}
+.bar{display:flex;align-items:center;gap:8px;padding-block:8px;flex-wrap:wrap}
+.brand{font:700 22px var(--head);margin-right:auto;display:flex;align-items:center;gap:10px;background:none;border:0;color:inherit;padding:8px 4px;min-height:56px;text-align:left}
+.brand b{background:var(--chalk);color:var(--chalk-fg);border-radius:8px;padding:2px 10px}
+.nb{min-height:56px;padding:0 18px;border-radius:12px;border:2px solid transparent;background:transparent;color:inherit;font-weight:600}
+.nb:hover,.nb[aria-expanded="true"]{background:rgba(255,255,255,.18)}
+.nb.ico{width:56px;padding:0;font-size:24px}
+.dd{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);width:min(440px,92vw);background:var(--surface);color:var(--fg);border:3px solid var(--accent);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.menu a{display:flex;gap:14px;align-items:center;min-height:64px;padding:8px 12px;border-radius:12px;text-decoration:none;color:inherit;font-weight:600;line-height:1.25}
+.menu a:hover,.menu a.on{background:var(--bg)}
+.menu a i{font:700 24px var(--head);font-style:normal;background:var(--chalk);color:var(--chalk-fg);border-radius:10px;min-width:44px;height:44px;display:grid;place-items:center}
+main{padding-block:28px 56px}
+.hero{display:grid;gap:12px;margin-bottom:28px}
+.hero h1{font-size:clamp(32px,5vw,54px)}
+.hero p{color:var(--muted);max-width:70ch;margin:0}
+.chip{display:inline-block;font:600 15px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:18px}
+.card{display:grid;gap:10px;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:22px;min-height:190px;align-content:start;min-width:0}
+button.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .no{font:700 56px/1 var(--head);color:var(--accent)}
+.card h3{font-size:26px}
+.card p{margin:0;color:var(--muted);font-size:18px}
+.crumb{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.btn{min-height:56px;padding:0 22px;border-radius:12px;border:2px solid var(--accent);background:var(--surface);font-weight:600;color:var(--accent)}
+.btn.pri{background:var(--accent);color:var(--accent-fg)}
+.btn:hover{filter:brightness(1.08)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.tab{min-height:60px;padding:0 24px;border-radius:14px;border:2px solid var(--line);background:var(--surface);font:700 20px var(--head)}
+.tab[aria-selected="true"]{background:var(--chalk);color:var(--chalk-fg);border-color:var(--chalk)}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:clamp(16px,3vw,32px)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.concept{border-left:8px solid var(--chalk);background:var(--bg);border-radius:12px;padding:16px 18px;min-width:0}
+.concept h3{font-size:24px;margin-bottom:6px}
+.concept p{margin:0;font-size:19px}
+.opts{display:grid;gap:12px;margin-top:16px}
+.opt{min-height:64px;text-align:left;padding:10px 18px;border-radius:14px;border:2px solid var(--line);background:var(--bg);font-weight:600}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.fb{margin-top:14px;padding:14px 18px;border-radius:12px;background:var(--bg);border:2px dashed var(--line)}
+.q{font:700 28px/1.25 var(--head)}
+.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-weight:600;margin-bottom:12px}
+.prog{height:14px;border-radius:7px;background:var(--line);overflow:hidden;margin-bottom:18px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.bars{display:flex;gap:12px;align-items:flex-end;justify-content:center;height:260px;padding:10px;overflow-x:auto}
+.bar-i{display:grid;gap:6px;justify-items:center;align-content:end;height:100%;width:72px;flex:none}
+.bar-i div{width:100%;background:var(--accent);color:var(--accent-fg);border-radius:10px 10px 0 0;display:grid;place-items:start center;font:700 28px var(--head);padding-top:6px;transition:height .35s}
+.bar-i.min div{background:var(--chalk);color:var(--chalk-fg)}
+.bar-i.done div{background:var(--ok);color:var(--bg)}
+.bar-i span{font:500 16px var(--mono);color:var(--muted)}
+.flip{perspective:900px;min-height:200px}
+.flip button{width:100%;min-height:200px;border:2px solid var(--line);border-radius:18px;padding:18px;background:var(--bg);text-align:left;display:grid;gap:8px;align-content:start}
+.flip button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.flip h3{font-size:24px}.flip p{margin:0;font-size:18px}
+.form{display:grid;gap:14px}
+.form label{font:700 18px var(--head);display:grid;gap:6px}
+.form input,.form textarea,.form select{font:inherit;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:12px 14px;min-height:56px;width:100%}
+.out{font:500 18px/1.6 var(--mono);white-space:pre-wrap;background:var(--bg);border:2px solid var(--accent);border-radius:14px;padding:18px;overflow-wrap:anywhere}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-block;padding:4px 14px;border-radius:99px;background:var(--chalk);color:var(--chalk-fg);font-weight:700}
+.sticky-note{margin-top:18px;color:var(--muted);font-size:17px}
+@media (max-width:560px){body{font-size:18px}.nb.txt{padding:0 12px}.q{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <button class="brand" id="home" aria-label="Beranda"><b>KKA</b> Koding &amp; Kecerdasan Artifisial · Kelas X</button>
+  <button class="nb txt" id="homeNav">Beranda</button>
+  <div class="dd">
+    <button class="nb txt" id="mpBtn" aria-expanded="false" aria-haspopup="true" aria-controls="mpMenu">Media Pembelajaran ▾</button>
+    <nav class="menu" id="mpMenu" hidden aria-label="Daftar bab"></nav>
+  </div>
+  <button class="nb ico" id="fs" aria-label="Layar penuh" title="Layar penuh">⛶</button>
+  <button class="nb ico" id="th" aria-label="Ganti tema terang/gelap" title="Tema">◐</button>
+</div></header>
+<main class="wrap" id="app"></main>
+
+<script>
+var CH=[
+{id:'bab-1',no:1,t:'Berpikir Komputasional',tag:'Memecah masalah, mengenali pola, menyusun algoritma.',
+ intro:'Berpikir komputasional adalah cara menyelesaikan masalah kompleks secara sistematis, sehingga solusinya dapat dijalankan manusia maupun komputer.',
+ con:[
+ ['Dekomposisi','Memecah masalah kompleks menjadi bagian-bagian kecil yang lebih mudah diselesaikan.'],
+ ['Pengenalan Pola','Mencari kesamaan, tren, atau keteraturan pada bagian-bagian masalah.'],
+ ['Abstraksi','Fokus pada informasi penting dan mengabaikan detail yang tidak relevan.'],
+ ['Algoritma','Menyusun langkah-langkah terurut dan jelas untuk menyelesaikan masalah.'],
+ ['Metode 5 Whys','Bertanya "mengapa" berulang kali untuk menemukan akar penyebab masalah.'],
+ ['Graf Rute Tercepat','Simpul (node) = lokasi, sisi (edge) = jalan, bobot = waktu tempuh. Algoritma Dijkstra dan A* mencari jalur terpendek.'],
+ ['Integrasi KA','Perception, Data Representation, Reasoning, dan Learning (misalnya Q-Learning, LSTM) bekerja bersama.']],
+ act:'klas',
+ quiz:[
+ ['Memecah proyek poster menjadi riset, desain, dan cetak adalah contoh…',['Abstraksi','Dekomposisi','Algoritma','Pengenalan pola'],1,'Memecah masalah besar menjadi bagian kecil disebut dekomposisi.'],
+ ['Pada graf rute ke sekolah, "bobot" sisi biasanya menyatakan…',['Nama jalan','Jumlah kendaraan saja','Waktu atau jarak tempuh','Warna peta'],2,'Bobot adalah nilai biaya suatu sisi, misalnya waktu tempuh dalam menit.'],
+ ['Metode 5 Whys bertujuan untuk…',['Mencari akar penyebab masalah','Mengurutkan data','Menggambar flowchart','Menghitung rata-rata'],0,'Pertanyaan "mengapa" yang berulang menggali penyebab utama.'],
+ ['Komponen KA yang mengubah data menjadi bentuk yang dapat diproses mesin adalah…',['Perception','Data Representation','Reasoning','Learning'],1,'Data Representation menyusun data agar dapat diproses.']]},
+{id:'bab-2',no:2,t:'Algoritma dan Pemrograman Lanjut',tag:'Array, pencarian, pengurutan, dan pengenalan machine learning.',
+ intro:'Algoritma lanjut mencakup struktur data array, percabangan dan perulangan bersarang, pencarian, pengurutan, serta dasar machine learning.',
+ con:[
+ ['Sequence, Selection, Looping','Tiga struktur logika dasar: urutan, percabangan (if), dan perulangan (for/while).'],
+ ['Array','Kumpulan data bertipe sama. Indeks dimulai dari 0.'],
+ ['Nested If','Percabangan di dalam percabangan, misalnya predikat nilai: A ≥ 90, B ≥ 75, C ≥ 60, selebihnya D.'],
+ ['Sequential vs Binary Search','Sequential memeriksa satu per satu. Binary search membelah data yang sudah terurut.'],
+ ['Selection & Insertion Sort','Selection mencari nilai terkecil lalu menukar. Insertion menyisipkan elemen ke posisi yang tepat.'],
+ ['Regresi Linear','Contoh buku: tinggi 150–170 cm dengan berat 45–60 kg menghasilkan b = 0,7 dan a = −59,6. Prediksi 175 cm = 62,9 kg.'],
+ ['K-Means','Mengelompokkan data berdasarkan jarak Euclid ke pusat klaster.'],
+ ['Debugging','Tiga jenis kesalahan: syntax error, logic error, dan runtime error.']],
+ act:'sort',
+ quiz:[
+ ['Indeks pertama sebuah array adalah…',['0','1','−1','Tergantung isi'],0,'Indeks array dimulai dari 0.'],
+ ['Syarat wajib binary search adalah data…',['Berupa teks','Sudah terurut','Berjumlah genap','Unik semua'],1,'Binary search hanya bekerja pada data yang sudah terurut.'],
+ ['Nilai 82 mendapat predikat…',['A','B','C','D'],1,'B untuk nilai ≥ 75 dan < 90.'],
+ ['Program berjalan tetapi hasilnya salah. Jenis kesalahannya…',['Syntax error','Logic error','Runtime error','Compile error'],1,'Logic error: sintaks benar, tetapi logikanya keliru.']]},
+{id:'bab-3',no:3,t:'Literasi dan Etika KA',tag:'Profesi, keterampilan, dampak, dan regulasi kecerdasan artifisial.',
+ intro:'Memahami KA tidak cukup dari sisi teknis. Kita juga perlu mengenal profesinya, dampaknya, serta aturan dan etika penggunaannya.',
+ con:[
+ ['Pengenalan Pola','KA mengenali pola pada citra dan suara dari data latih.'],
+ ['Kompetensi UNESCO','12 kompetensi dalam 4 dimensi: Human-Centred Mindset, Ethics of AI, AI Techniques and Applications, AI System Design.'],
+ ['Regulasi','UNESCO 2021, EU AI Act, Strategi Nasional KA 2020–2045, dan SE Kominfo No. 9 Tahun 2023.']],
+ act:'kartu',
+ cards:[
+ ['Data Scientist','Menganalisis data besar untuk menemukan wawasan dan mendukung keputusan.'],
+ ['Machine Learning Engineer','Merancang dan melatih model pembelajaran mesin agar siap dipakai.'],
+ ['AI Research Scientist','Meneliti dan mengembangkan metode baru di bidang KA.'],
+ ['Robotics Engineer','Membangun robot yang memadukan perangkat keras dan KA.'],
+ ['AI Ethics Specialist','Memastikan KA adil, aman, dan bertanggung jawab.'],
+ ['Inklusivitas','Nilai SE Kominfo: KA memberi manfaat bagi semua kelompok.'],
+ ['Aksesibilitas','Nilai SE Kominfo: KA dapat dijangkau dan digunakan banyak orang.'],
+ ['Keamanan dan Privasi','Nilai SE Kominfo: data pengguna dilindungi.'],
+ ['Kemanusiaan','Nilai SE Kominfo: KA menghormati martabat manusia.'],
+ ['Kredibilitas','Nilai SE Kominfo: hasil KA dapat dipercaya.'],
+ ['Akuntabilitas','Nilai SE Kominfo: ada pihak yang bertanggung jawab atas KA.']],
+ quiz:[
+ ['Siapa yang berfokus memastikan KA adil dan bertanggung jawab?',['Data Scientist','Robotics Engineer','AI Ethics Specialist','ML Engineer'],2,'AI Ethics Specialist menjaga aspek etika KA.'],
+ ['SE Kominfo No. 9 Tahun 2023 memuat berapa nilai etika KA?',['3','4','6','12'],2,'Enam nilai: inklusivitas, aksesibilitas, keamanan dan privasi, kemanusiaan, kredibilitas, akuntabilitas.'],
+ ['UNESCO merumuskan kompetensi KA dalam berapa dimensi?',['2','4','6','12'],1,'12 kompetensi dalam 4 dimensi.'],
+ ['Aplikasi mengenali wajah dari foto adalah contoh…',['Pengenalan pola citra','Basis data relasi','Spreadsheet','Compiler'],0,'Mengenali wajah memanfaatkan pola pada citra.']]},
+{id:'bab-4',no:4,t:'Prompt Engineering dan Design Thinking',tag:'Menyusun prompt yang efektif dan merancang solusi berpusat pada manusia.',
+ intro:'Prompt yang baik menghasilkan jawaban KA yang tepat. Design thinking membantu kita merancang solusi yang benar-benar dibutuhkan pengguna.',
+ con:[
+ ['LLM dan Prompt','Large Language Model menghasilkan teks berdasarkan instruksi (prompt) dari pengguna.'],
+ ['Zero, One, Few-shot','Prompt tanpa contoh, dengan satu contoh, atau dengan beberapa contoh.'],
+ ['Jenis Prompt','Direct, role-playing, inverse, contextual, dan multi-turn.'],
+ ['Kerangka PGTC','Persona, Goal, Task, Context.'],
+ ['Bias KA','Bisa berasal dari dataset, algoritma, atau pengguna.'],
+ ['Design Thinking','Lima tahap: Empathize, Define, Ideate, Prototype, Test.']],
+ act:'pgtc',
+ quiz:[
+ ['Huruf P pada PGTC adalah…',['Prompt','Persona','Program','Pola'],1,'Persona, Goal, Task, Context.'],
+ ['Prompt yang memberi beberapa contoh disebut…',['Zero-shot','One-shot','Few-shot','Inverse'],2,'Few-shot menyertakan beberapa contoh.'],
+ ['Tahap pertama design thinking adalah…',['Define','Ideate','Empathize','Test'],2,'Empathize: memahami perasaan dan kebutuhan pengguna.'],
+ ['KA memberi hasil timpang karena data latihnya tidak seimbang. Ini bias…',['Dataset','Algoritma','Pengguna','Perangkat'],0,'Bias dataset muncul dari data yang tidak representatif.']]},
+{id:'bab-5',no:5,t:'Kreativitas dan Etika Konten Media Sosial',tag:'Hak cipta, lisensi Creative Commons, dan etika berkarya digital.',
+ intro:'Membuat konten kreatif berarti juga menghormati karya orang lain, menjaga privasi, dan bertanggung jawab atas jejak digital.',
+ con:[
+ ['Lima Elemen Multimedia','Teks, gambar, audio, video, dan animasi.'],
+ ['Hak Cipta','Diatur dalam UU No. 28 Tahun 2014.'],
+ ['Pelanggaran Etika','Plagiarisme, pelanggaran privasi, cyberbullying, dan disinformasi.'],
+ ['Jejak Digital','Semua aktivitas daring meninggalkan rekam jejak yang sulit dihapus.']],
+ act:'lisensi',
+ quiz:[
+ ['Karya boleh dibagikan ulang dan diubah, tetapi tidak untuk komersial. Lisensi…',['CC BY','CC BY-NC','CC BY-ND','CC BY-SA'],1,'NC berarti NonCommercial.'],
+ ['Mengaku karya orang lain sebagai karya sendiri disebut…',['Remix','Plagiarisme','Parodi','Kurasi'],1,'Itu plagiarisme.'],
+ ['Undang-undang hak cipta di Indonesia adalah UU No. …',['11 Tahun 2008','28 Tahun 2014','27 Tahun 2022','19 Tahun 2016'],1,'UU No. 28 Tahun 2014 tentang Hak Cipta.'],
+ ['Menyebar kabar palsu yang disengaja termasuk…',['Disinformasi','Kolaborasi','Animasi','Enkripsi'],0,'Disinformasi adalah informasi salah yang sengaja disebarkan.']]},
+{id:'bab-6',no:6,t:'Pengelolaan Informasi Digital',tag:'Dari data menjadi kebijaksanaan: basis data, SQL, dan spreadsheet.',
+ intro:'Data yang dikelola dengan baik berubah menjadi informasi, pengetahuan, dan akhirnya kebijaksanaan untuk mengambil keputusan.',
+ con:[
+ ['Data Primer dan Sekunder','Primer dikumpulkan langsung. Sekunder diperoleh dari sumber lain.'],
+ ['Basis Data dan DBMS','Basis data menyimpan data terstruktur. DBMS adalah perangkat lunak pengelolanya.'],
+ ['Kardinalitas','Hubungan antartabel: 1-1, 1-N, dan N-N.'],
+ ['Primary dan Foreign Key','Primary key mengidentifikasi baris unik. Foreign key menghubungkan ke tabel lain.'],
+ ['SQL','DDL (CREATE), DML (INSERT, SELECT, UPDATE), DCL (hak akses).'],
+ ['Spreadsheet','AVERAGE, MAX, MIN, COUNTIF, dan pivot table.']],
+ act:'kartu',
+ cards:[
+ ['Data','Fakta mentah. Contoh: 31, 29, 33.'],
+ ['Informasi','Data yang sudah diolah. Contoh: suhu rata-rata kelas 31 °C.'],
+ ['Pengetahuan','Informasi yang dipahami polanya. Contoh: siang hari ruang kelas selalu lebih panas.'],
+ ['Kebijaksanaan','Pengetahuan yang dipakai mengambil keputusan. Contoh: pasang kipas dan atur jadwal ventilasi.']],
+ quiz:[
+ ['Kolom yang mengidentifikasi setiap baris secara unik adalah…',['Foreign key','Primary key','Atribut','Field'],1,'Primary key bersifat unik.'],
+ ['Perintah SQL untuk menambah data baru adalah…',['SELECT','UPDATE','INSERT','CREATE'],2,'INSERT menambah record.'],
+ ['Satu guru mengajar banyak kelas. Kardinalitasnya…',['1-1','1-N','N-N','0-0'],1,'Satu ke banyak: 1-N.'],
+ ['Fungsi spreadsheet untuk menghitung sel yang memenuhi syarat…',['AVERAGE','MAX','COUNTIF','MIN'],2,'COUNTIF menghitung sel sesuai kriteria.']]}
+];
+</script>
+<script>
+function h(tag,attrs,kids){var e=document.createElement(tag);attrs=attrs||{};
+  for(var k in attrs){if(k==='text')e.textContent=attrs[k];else if(k.slice(0,2)==='on')e[k]=attrs[k];else e.setAttribute(k,attrs[k]);}
+  (kids||[]).forEach(function(c){if(c)e.appendChild(c)});return e;}
+
+/* Aktivitas 1: klasifikasi pilar (Bab 1) */
+var KLAS=[
+ ['Membagi tugas lomba kebersihan menjadi: sapu, pel, buang sampah, rapikan meja.',0],
+ ['Menyadari bahwa tiap Senin jalan menuju sekolah selalu macet pukul 06.45.',1],
+ ['Pada peta rute, hanya menggambar titik rumah, sekolah, dan waktu tempuh tanpa gambar pohon.',2],
+ ['Menulis langkah membuat teh: 1) rebus air, 2) seduh, 3) saring, 4) sajikan.',3],
+ ['Memecah aplikasi absensi menjadi fitur login, daftar siswa, dan laporan.',0],
+ ['Mengamati bahwa nilai ulangan naik setiap kali belajar kelompok.',1]];
+var PIL=['Dekomposisi','Pengenalan Pola','Abstraksi','Algoritma'];
+function actKlas(box){var i=0,s=0;
+ function draw(){box.textContent='';
+  if(i>=KLAS.length){box.appendChild(h('h3',{text:'Selesai: skor '+s+' dari '+KLAS.length}));
+   box.appendChild(h('button',{class:'btn pri',text:'Ulangi',onclick:function(){i=0;s=0;draw()}}));return;}
+  box.appendChild(h('div',{class:'meta'},[h('span',{text:'Pilar manakah ini?'}),h('span',{text:(i+1)+' / '+KLAS.length})]));
+  box.appendChild(h('p',{class:'q',text:KLAS[i][0]}));
+  var o=h('div',{class:'opts'}),fb=h('div',{class:'fb',hidden:'',role:'status'});
+  PIL.forEach(function(p,n){var b=h('button',{class:'opt',text:p,onclick:function(){
+    Array.prototype.forEach.call(o.children,function(x){x.disabled=true});
+    var ok=n===KLAS[i][1];if(ok)s++;b.classList.add(ok?'ok':'bad');
+    if(!ok)o.children[KLAS[i][1]].classList.add('ok');
+    fb.hidden=false;fb.textContent=ok?'Tepat!':'Jawaban yang benar: '+PIL[KLAS[i][1]]+'.';
+    nx.hidden=false;}});o.appendChild(b)});
+  var nx=h('button',{class:'btn pri',text:'Lanjut',hidden:'',onclick:function(){i++;draw()}});
+  box.appendChild(o);box.appendChild(fb);box.appendChild(h('div',{class:'row',style:'margin-top:14px'},[nx]));}
+ draw();}
+
+/* Aktivitas 2: selection sort bertahap (Bab 2) */
+function actSort(box){var A0=[6,3,8,5,2],a,i,j,min,phase,log;
+ function reset(){a=A0.slice();i=0;j=1;min=0;phase=0;log='Array awal: ['+a.join(', ')+']. Tekan "Langkah berikutnya".';draw()}
+ function step(){
+  if(i>=a.length-1){return}
+  if(j<a.length){ if(a[j]<a[min]){min=j;log='Membandingkan indeks '+j+': '+a[j]+' lebih kecil, minimum baru = '+a[j]+'.'}
+   else log='Membandingkan indeks '+j+': '+a[j]+' tidak lebih kecil dari '+a[min]+'.'; j++;}
+  else{ if(min!==i){var t=a[i];a[i]=a[min];a[min]=t;log='Tukar indeks '+i+' dengan indeks '+min+'. Posisi '+i+' sekarang terurut.'}
+   else log='Minimum sudah di posisi '+i+'. Tidak perlu menukar.';
+   i++;min=i;j=i+1; if(i>=a.length-1)log+=' Selesai: ['+a.join(', ')+'].';}
+  draw();}
+ function draw(){box.textContent='';
+  box.appendChild(h('p',{text:'Selection sort pada [6, 3, 8, 5, 2], contoh dari buku. Biru kuning = elemen yang sedang menjadi minimum, hijau = sudah terurut.'}));
+  var bars=h('div',{class:'bars'});
+  a.forEach(function(v,n){var c='bar-i'+(n<i||i>=a.length-1?' done':n===min?' min':'');
+   bars.appendChild(h('div',{class:c},[h('div',{style:'height:'+(v*28)+'px',text:v}),h('span',{text:'idx '+n})]))});
+  box.appendChild(bars);
+  box.appendChild(h('div',{class:'fb',role:'status',text:log}));
+  box.appendChild(h('div',{class:'row',style:'margin-top:14px'},[
+   h('button',{class:'btn pri',text:'Langkah berikutnya',onclick:step}),
+   h('button',{class:'btn',text:'Ulangi',onclick:reset})]));}
+ reset();}
+
+/* Aktivitas 3: kartu ketuk (Bab 3, 6) */
+function actKartu(box,ch){box.appendChild(h('p',{text:'Ketuk kartu untuk melihat penjelasannya.'}));
+ var g=h('div',{class:'cgrid'});
+ ch.cards.forEach(function(c){var d=h('div',{class:'flip'}),b=h('button',{'aria-pressed':'false'},[h('h3',{text:c[0]}),h('p',{text:'Ketuk untuk membuka',style:'color:inherit;opacity:.7'})]);
+  b.onclick=function(){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);b.lastChild.textContent=on?c[1]:'Ketuk untuk membuka'};
+  d.appendChild(b);g.appendChild(d)});box.appendChild(g);}
+
+/* Aktivitas 4: pembuat prompt PGTC (Bab 4) */
+function actPgtc(box){
+ var F=[['Persona','Kamu adalah guru informatika SMA yang sabar.'],['Goal','Siswa kelas X memahami konsep array.'],['Task','Jelaskan array dengan 3 contoh sederhana dan 2 soal latihan.'],['Context','Siswa baru belajar Python dan belum mengenal perulangan.']];
+ var inp={},out=h('div',{class:'out',role:'status'});
+ function upd(){out.textContent=F.map(function(f){return f[0]+': '+(inp[f[0]].value.trim()||'(belum diisi)')}).join('\n')}
+ var form=h('div',{class:'form'});
+ F.forEach(function(f){var t=h('textarea',{rows:'2'});t.value=f[1];t.oninput=upd;inp[f[0]]=t;form.appendChild(h('label',{text:f[0]+' — '+({Persona:'siapa peran KA?',Goal:'apa tujuan akhirnya?',Task:'apa yang harus dikerjakan?',Context:'apa latar belakangnya?'})[f[0]]},[t]))});
+ box.appendChild(h('p',{text:'Susun prompt dengan kerangka PGTC. Ubah isian dan lihat hasil prompt di bawah.'}));
+ box.appendChild(form);box.appendChild(h('h3',{text:'Prompt hasil',style:'margin:18px 0 10px'}));box.appendChild(out);
+ var cp=h('button',{class:'btn',text:'Salin prompt',style:'margin-top:12px',onclick:function(){
+  try{navigator.clipboard.writeText(out.textContent).then(function(){cp.textContent='Tersalin'},function(){cp.textContent='Gagal menyalin'})}catch(e){cp.textContent='Gagal menyalin'}}});
+ box.appendChild(cp);upd();}
+
+/* Aktivitas 5: pemilih lisensi Creative Commons (Bab 5) */
+function actLisensi(box){
+ var s1=h('select',{},[h('option',{value:'y',text:'Ya, boleh diubah/diadaptasi'}),h('option',{value:'sa',text:'Boleh, asal hasilnya berlisensi sama'}),h('option',{value:'n',text:'Tidak boleh diubah'})]);
+ var s2=h('select',{},[h('option',{value:'y',text:'Ya, boleh untuk tujuan komersial'}),h('option',{value:'n',text:'Tidak, nonkomersial saja'})]);
+ var out=h('div',{class:'out',role:'status'});
+ function upd(){var c=s1.value,n=s2.value,code='CC BY'+(n==='n'?'-NC':'')+(c==='sa'?'-SA':c==='n'?'-ND':'');
+  var d={'CC BY':'Bebas dipakai dan diubah, wajib mencantumkan pembuat.','CC BY-SA':'Boleh diubah dan komersial, hasilnya wajib berlisensi sama.','CC BY-ND':'Boleh dibagikan utuh, tidak boleh diubah.','CC BY-NC':'Boleh diubah, tidak untuk komersial.','CC BY-NC-SA':'Tidak komersial, hasil adaptasi berlisensi sama.','CC BY-NC-ND':'Paling ketat: tidak komersial dan tidak boleh diubah.'};
+  out.textContent=code+'\n'+d[code]}
+ s1.onchange=s2.onchange=upd;
+ box.appendChild(h('p',{text:'Kamu pencipta karya. Pilih izin yang kamu berikan, lalu lihat lisensi Creative Commons yang cocok. Pencantuman nama pembuat (BY) selalu wajib.'}));
+ box.appendChild(h('div',{class:'form'},[h('label',{text:'Apakah karya boleh diubah?'},[s1]),h('label',{text:'Apakah boleh dipakai komersial?'},[s2])]));
+ box.appendChild(h('h3',{text:'Lisensi yang cocok',style:'margin:18px 0 10px'}));box.appendChild(out);upd();}
+</script>
+<script>
+var app=document.getElementById('app'),mp=document.getElementById('mpBtn'),mm=document.getElementById('mpMenu');
+function go(id){location.hash=id}
+function menuOpen(o){mm.hidden=!o;mp.setAttribute('aria-expanded',o)}
+CH.forEach(function(c){var a=h('a',{href:'#'+c.id,'data-id':c.id},[h('i',{text:c.no}),h('span',{text:c.t})]);a.onclick=function(){menuOpen(false)};mm.appendChild(a)});
+mp.onclick=function(e){e.stopPropagation();menuOpen(mm.hidden)};
+document.addEventListener('click',function(e){if(!mm.contains(e.target))menuOpen(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){menuOpen(false);mp.focus()}});
+document.getElementById('home').onclick=document.getElementById('homeNav').onclick=function(){go('beranda')};
+document.getElementById('th').onclick=function(){var r=document.documentElement,d=r.getAttribute('data-theme');
+ var dark=d?d==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.setAttribute('data-theme',dark?'light':'dark')};
+document.getElementById('fs').onclick=function(){try{var p=document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(p&&p.catch)p.catch(function(){})}catch(e){}};
+
+function home(){app.textContent='';
+ app.appendChild(h('div',{class:'hero'},[h('span',{class:'chip',text:'Papan Interaktif Digital · Kelas X SMA/MA'}),
+  h('h1',{text:'Koding dan Kecerdasan Artifisial'}),
+  h('p',{text:'Pilih salah satu bab untuk membuka materi, aktivitas interaktif, dan kuis. Dirancang untuk layar sentuh besar di depan kelas.'})]));
+ var g=h('div',{class:'grid'});
+ CH.forEach(function(c){var b=h('button',{class:'card',onclick:function(){go(c.id)}},[h('span',{class:'no',text:'Bab '+c.no}),h('h3',{text:c.t}),h('p',{text:c.tag})]);g.appendChild(b)});
+ app.appendChild(g);
+ app.appendChild(h('p',{class:'sticky-note',text:'Sumber materi: Buku Siswa Koding dan Kecerdasan Artifisial untuk SMA/MA Kelas X, Kemendikdasmen 2025.'}));}
+
+function quiz(box,ch){var i=0,s=0,Q=ch.quiz;
+ function draw(){box.textContent='';
+  if(i>=Q.length){box.appendChild(h('h3',{text:'Skor akhir: '+s+' dari '+Q.length}));
+   box.appendChild(h('p',{text:s===Q.length?'Sempurna. Siap lanjut ke bab berikutnya.':'Baca ulang tab Materi, lalu coba lagi.'}));
+   box.appendChild(h('button',{class:'btn pri',text:'Ulangi kuis',onclick:function(){i=0;s=0;draw()}}));return;}
+  var q=Q[i];
+  box.appendChild(h('div',{class:'meta'},[h('span',{text:'Soal '+(i+1)+' dari '+Q.length}),h('span',{text:'Skor '+s})]));
+  box.appendChild(h('div',{class:'prog'},[h('i',{style:'width:'+(i/Q.length*100)+'%'})]));
+  box.appendChild(h('p',{class:'q',text:q[0]}));
+  var o=h('div',{class:'opts'}),fb=h('div',{class:'fb',hidden:'',role:'status'}),nx=h('button',{class:'btn pri',text:i<Q.length-1?'Soal berikutnya':'Lihat skor',hidden:'',onclick:function(){i++;draw()}});
+  q[1].forEach(function(t,n){var b=h('button',{class:'opt',text:String.fromCharCode(65+n)+'. '+t,onclick:function(){
+   Array.prototype.forEach.call(o.children,function(x){x.disabled=true});
+   var ok=n===q[2];if(ok)s++;b.classList.add(ok?'ok':'bad');o.children[q[2]].classList.add('ok');
+   fb.hidden=false;fb.textContent=(ok?'Benar. ':'Belum tepat. ')+q[3];nx.hidden=false}});o.appendChild(b)});
+  box.appendChild(o);box.appendChild(fb);box.appendChild(h('div',{style:'margin-top:14px'},[nx]));}
+ draw();}
+
+var tabState={};
+function chapter(c){app.textContent='';
+ var tab=tabState[c.id]||0;
+ app.appendChild(h('div',{class:'crumb'},[h('button',{class:'btn',text:'← Semua bab',onclick:function(){go('beranda')}}),h('span',{class:'pill',text:'Bab '+c.no})]));
+ app.appendChild(h('h1',{text:c.t,style:'font-size:clamp(30px,4.5vw,48px)'}));
+ app.appendChild(h('p',{text:c.intro,style:'color:var(--muted);max-width:75ch'}));
+ var tabs=h('div',{class:'tabs',role:'tablist'}),panel=h('div',{class:'panel',role:'tabpanel'});
+ var names=['Materi','Aktivitas','Kuis'];
+ function show(n){tabState[c.id]=n;panel.textContent='';
+  Array.prototype.forEach.call(tabs.children,function(b,k){b.setAttribute('aria-selected',k===n)});
+  if(n===0){var g=h('div',{class:'cgrid'});c.con.forEach(function(x){g.appendChild(h('div',{class:'concept'},[h('h3',{text:x[0]}),h('p',{text:x[1]})]))});panel.appendChild(g)}
+  else if(n===1){var m={klas:actKlas,sort:actSort,kartu:actKartu,pgtc:actPgtc,lisensi:actLisensi};m[c.act](panel,c)}
+  else quiz(panel,c);}
+ names.forEach(function(t,n){tabs.appendChild(h('button',{class:'tab',role:'tab',text:t,onclick:function(){show(n)}}))});
+ app.appendChild(tabs);app.appendChild(panel);
+ var nav=h('div',{class:'row',style:'margin-top:22px;justify-content:space-between'});
+ var p=CH[c.no-2],nx=CH[c.no];
+ nav.appendChild(p?h('button',{class:'btn',text:'← Bab '+p.no,onclick:function(){go(p.id)}}):h('span'));
+ if(nx)nav.appendChild(h('button',{class:'btn pri',text:'Bab '+nx.no+' →',onclick:function(){go(nx.id)}}));
+ app.appendChild(nav);show(tab);}
+
+function route(){var id=(location.hash||'').slice(1),c=CH.filter(function(x){return x.id===id})[0];
+ Array.prototype.forEach.call(mm.children,function(a){a.classList.toggle('on',a.getAttribute('data-id')===id)});
+ if(c)chapter(c);else home();window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);route();
+</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-20T18:44:40.297Z",
+  "diperbarui": "2026-11-21T00:37:47.064Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -103,18 +103,6 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "HSSE Inspector",
-      "perusahaan": "PT Snf Polymers Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Conduct HSSE inspections, ensure safety compliance, and identify workplace risks across manufacturing operations.",
-      "link": "https://id.jobstreet.com/id/job/96019048",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T06:03:36Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Research And Development Staff (RND)",
       "perusahaan": "PT Sumber Kosmetika Indah",
       "lokasi": "Cikande, Banten",
@@ -123,6 +111,18 @@
       "link": "https://id.jobstreet.com/id/job/95641184",
       "sumber": "JobStreet",
       "tanggal": "2026-11-02T08:40:50Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HSSE Inspector",
+      "perusahaan": "PT Snf Polymers Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Conduct HSSE inspections, ensure safety compliance, and identify workplace risks across manufacturing operations.",
+      "link": "https://id.jobstreet.com/id/job/96019048",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-20T06:03:36Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -151,18 +151,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Quality Assurance & Technical Service Executive - Flexible Packaging",
-      "perusahaan": "Polyplex Films Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Responsible for ensuring product quality and compliance with company standards and providing technical support to customers",
-      "link": "https://id.jobstreet.com/id/job/95973977",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-18T09:15:53Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Supervisor Warehouse FG & Delivery",
       "perusahaan": "Cipta Mortar Utama",
       "lokasi": "Cikande, Banten",
@@ -171,6 +159,18 @@
       "link": "https://id.jobstreet.com/id/job/95998259",
       "sumber": "JobStreet",
       "tanggal": "2026-11-19T08:41:46Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Quality Assurance & Technical Service Executive - Flexible Packaging",
+      "perusahaan": "Polyplex Films Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Responsible for ensuring product quality and compliance with company standards and providing technical support to customers",
+      "link": "https://id.jobstreet.com/id/job/95973977",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-18T09:15:53Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -255,6 +255,18 @@
       "link": "https://id.jobstreet.com/id/job/95965385",
       "sumber": "JobStreet",
       "tanggal": "2026-11-18T04:14:02Z",
+      "jarak_km": 30,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HSE Shipyard",
+      "perusahaan": "Indo Shipping Operator",
+      "lokasi": "Bojonegara, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Lindungi keselamatan kerja di galangan kapal. Peluang karir bermakna dengan gaji kompetitif dan pelatihan.",
+      "link": "https://id.jobstreet.com/id/job/95850585",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-12T04:07:34Z",
       "jarak_km": 30,
       "jarak_perkiraan": false
     },
@@ -367,6 +379,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "STAFF ADMINISTRASI ( PPIC )",
+      "perusahaan": "Pengiklan Anonim",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Full time",
+      "ringkasan": "STAFF ADMINISTRASI (PPIC) - ( URGENTLY NEEDED )",
+      "link": "https://id.jobstreet.com/id/job/95998033",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T08:32:14Z",
+      "jarak_km": 34,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "HRGA & Legal",
       "perusahaan": "PT Megah Tapes Indonesia",
       "lokasi": "Cikupa, Banten",
@@ -375,6 +399,18 @@
       "link": "https://id.jobstreet.com/id/job/95834004",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T09:31:23Z",
+      "jarak_km": 34,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Business Admin",
+      "perusahaan": "PT Sinar Eco Mulia Internasional",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Dukung operasional dan administrasi perusahaan dengan kemampuan Mandarin serta keterampilan bisnis yang kuat.",
+      "link": "https://id.jobstreet.com/id/job/95722355",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-05T09:55:16Z",
       "jarak_km": 34,
       "jarak_perkiraan": false
     },
@@ -451,18 +487,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "F&B Service and Product Staff",
-      "perusahaan": "PT Indo Highland Investment",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Hospitality Staff are responsible for delivering excellent service and supporting daily operations.",
-      "link": "https://id.jobstreet.com/id/job/96023727",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T08:44:09Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Human Resources Admin",
       "perusahaan": "CV Sinar Karya Globalindo",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -495,6 +519,18 @@
       "link": "https://id.jobstreet.com/id/job/95850061",
       "sumber": "JobStreet",
       "tanggal": "2026-11-12T03:54:08Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "F&B Service and Product Staff",
+      "perusahaan": "PT Indo Highland Investment",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Hospitality Staff are responsible for delivering excellent service and supporting daily operations.",
+      "link": "https://id.jobstreet.com/id/job/96023727",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-20T08:44:09Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -547,18 +583,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Brand Assistant (YUNTH)",
-      "perusahaan": "Talent International",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengelola performa sales YUNTH dan koordinasi lintas tim untuk mendukung pertumbuhan brand.",
-      "link": "https://id.jobstreet.com/id/job/95775924",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-09T04:56:48Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "ERP Entry Data Intern",
       "perusahaan": "PT Vosen Pratita Kemindo",
       "lokasi": "Tangerang Selatan, Banten",
@@ -571,14 +595,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "HRGA Supervisor",
-      "perusahaan": "Easton Urban Kapital",
-      "lokasi": "Tangerang, Banten",
+      "posisi": "Brand Assistant (YUNTH)",
+      "perusahaan": "Talent International",
+      "lokasi": "Kabupaten Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Lead HR and General Affairs operations while driving recruitment, people development, and operational excellence.",
-      "link": "https://id.jobstreet.com/id/job/95964910",
+      "ringkasan": "Mengelola performa sales YUNTH dan koordinasi lintas tim untuk mendukung pertumbuhan brand.",
+      "link": "https://id.jobstreet.com/id/job/95775924",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-18T03:57:24Z",
+      "tanggal": "2026-11-09T04:56:48Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -591,6 +615,18 @@
       "link": "https://id.jobstreet.com/id/job/95694108",
       "sumber": "JobStreet",
       "tanggal": "2026-11-04T08:56:42Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HRGA Supervisor",
+      "perusahaan": "Easton Urban Kapital",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Lead HR and General Affairs operations while driving recruitment, people development, and operational excellence.",
+      "link": "https://id.jobstreet.com/id/job/95964910",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-18T03:57:24Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

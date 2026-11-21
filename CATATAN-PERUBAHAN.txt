@@ -1,0 +1,22 @@
+PERBAIKAN WEBSITE SMK BINA MANDIRI - 21 November 2026
+
+CARA PASANG
+Ekstrak ZIP ini, lalu upload/replace file-file di bawah ke folder utama (root) repositori GitHub, kemudian commit.
+Struktur folder sama dengan repositori, jadi foto-kegiatan/ masuk ke folder foto-kegiatan/ yang sudah ada.
+
+FILE YANG BERUBAH
+- index.html   : email footer jadi smkbinamandiri15@gmail.com (bisa diklik), "Terakreditasi Unggul" jadi "Akreditasi Sekolah",
+                 statistik beranda diganti fakta (2014 Tahun Berdiri, 2 Program Keahlian, B Akreditasi),
+                 ditambah canonical + Open Graph + Twitter card (pratinjau tautan di WhatsApp)
+- admin.html   : ditambah noindex agar halaman admin tidak muncul di Google
+- robots.txt, sitemap.xml : baru
+- Logosmkbinamandiri.png  : 339 KB -> 55 KB (tampilan tetap sama)
+- foto-kegiatan/ (10 foto): total sekitar 3,3 MB -> sekitar 2,1 MB (2 foto kunjungan-pengawas tidak diubah karena sudah kecil)
+
+YANG HARUS ANDA HAPUS / PINDAHKAN SENDIRI DI GITHUB
+- admin-1.html (versi lama mode lokal, tidak dipakai/ditautkan)
+- PETUNJUK.txt, PANDUAN-INSTALASI.md, supabase-schema.sql (sebaiknya jangan di repo publik)
+
+SETELAH COMMIT
+- Cek tab Actions di GitHub sampai deploy Pages hijau.
+- Daftarkan https://smkbinamandiripamarayan.github.io/ di Google Search Console dan kirim sitemap.xml.

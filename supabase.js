@@ -228,6 +228,34 @@
       } catch (error) { return { ok: false, error, message: error.message }; }
     },
 
+    async insertSiswaMedia(data) {
+      const unavailable = requireClient();
+      if (unavailable) return { ok: false, reason: "not_configured", message: unavailable.message };
+      try {
+        const { error } = await client.from("siswa_media").insert(data);
+        return error ? { ok: false, error, message: error.message } : { ok: true };
+      } catch (error) { return { ok: false, error, message: error.message }; }
+    },
+
+    async getSiswaMedia() {
+      const unavailable = requireClient();
+      if (unavailable) return unavailable;
+      try {
+        const { data, error } = await client.from("siswa_media")
+          .select("*").order("created_at", { ascending: false }).limit(3000);
+        return error ? failure(error) : { ok: true, data: data || [] };
+      } catch (error) { return failure(error); }
+    },
+
+    async deleteSiswaMedia(nisn, mapel) {
+      const unavailable = requireClient();
+      if (unavailable) return unavailable;
+      try {
+        const { error } = await client.from("siswa_media").delete().eq("nisn", nisn).eq("mapel", mapel);
+        return error ? failure(error) : { ok: true };
+      } catch (error) { return failure(error); }
+    },
+
     async getLowongan() {
       const unavailable = requireClient();
       if (unavailable) return [];

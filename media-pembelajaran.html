@@ -239,16 +239,25 @@ function actLisensi(box){
  box.appendChild(h('div',{class:'form'},[h('label',{text:'Apakah karya boleh diubah?'},[s1]),h('label',{text:'Apakah boleh dipakai komersial?'},[s2])]));
  box.appendChild(h('h3',{text:'Lisensi yang cocok',style:'margin:18px 0 10px'}));box.appendChild(out);upd();}
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 <script>
 /* ===== PENGATURAN PENCATATAN AKSES SISWA =====
    Isi LOG_URL dengan alamat Web App Google Apps Script (lihat file apps-script-log-akses.gs).
    Jika dikosongkan, login tetap berjalan tetapi tidak ada data yang dikirim ke guru. */
 var LOG_URL='';
+/* Kode mapel dibaca dari alamat (?mapel=koding-ai). Dipakai admin untuk memisahkan data per mapel. */
+var MAPEL=(new URLSearchParams(location.search).get('mapel')||'koding-ai').slice(0,40);
 var user=null;
 function bacaUser(){try{return JSON.parse(sessionStorage.getItem('mp_user'))}catch(e){return null}}
 function simpanUser(u){try{sessionStorage.setItem('mp_user',JSON.stringify(u))}catch(e){}}
 function hapusUser(){try{sessionStorage.removeItem('mp_user')}catch(e){}}
-function catat(aktivitas,detail){if(!user||!LOG_URL)return;
+function catat(aktivitas,detail){if(!user)return;
+ /* Simpan ke Supabase (tabel siswa_media) agar tampil di admin.html */
+ try{if(window.SMKBackend&&window.SMKBackend.ready){
+  window.SMKBackend.insertSiswaMedia({nama:user.nama,kelas:user.kelas,nisn:user.nis,mapel:MAPEL,aktivitas:String(aktivitas).slice(0,120),detail:String(detail||'').slice(0,300)})
+   .then(function(r){if(!r.ok)console.warn('Data siswa belum tersimpan:',r.message)});}}catch(e){}
+ if(!LOG_URL)return;
  try{fetch(LOG_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
   body:JSON.stringify({aktivitas:aktivitas,nama:user.nama,kelas:user.kelas,nis:user.nis,detail:detail||''})}).catch(function(){})}catch(e){}}
 

@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-21T00:37:47.064Z",
+  "diperbarui": "2026-11-21T06:47:59.651Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -127,18 +127,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Admin Produksi",
-      "perusahaan": "PT Fonusa Agung Mulia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Production administrative role managing data entry, reporting, and documentation using Excel and AX system.",
-      "link": "https://id.jobstreet.com/id/job/95461370",
-      "sumber": "JobStreet",
-      "tanggal": "2026-10-23T06:50:17Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "HR & Payroll Admin (Contract) - Cikande, Banten",
       "perusahaan": "Lemonilo Indonesia Sehat",
       "lokasi": "Cikande, Banten",
@@ -147,6 +135,18 @@
       "link": "https://id.jobstreet.com/id/job/95858567",
       "sumber": "JobStreet",
       "tanggal": "2026-11-12T08:34:41Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Admin Produksi",
+      "perusahaan": "PT Fonusa Agung Mulia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Production administrative role managing data entry, reporting, and documentation using Excel and AX system.",
+      "link": "https://id.jobstreet.com/id/job/95461370",
+      "sumber": "JobStreet",
+      "tanggal": "2026-10-23T06:50:17Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -367,6 +367,18 @@
       "jarak_perkiraan": true
     },
     {
+      "posisi": "KOLEKTOR FIFGROUP (BAYAH,GUNUNG KENCANA,MALIMPING)",
+      "perusahaan": "Fifgroup",
+      "lokasi": "Banten",
+      "tipe": "Full time",
+      "ringkasan": "Gaji kompetitif, bonus insentif, asuransi kesehatan lengkap & peluang karir berkembang di FIFGROUP",
+      "link": "https://id.jobstreet.com/id/job/95412340",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T03:57:35Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": true
+    },
+    {
       "posisi": "Key Account Supervisor",
       "perusahaan": "Indofood",
       "lokasi": "Cikupa, Banten",
@@ -375,18 +387,6 @@
       "link": "https://id.jobstreet.com/id/job/95583214",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T10:45:29Z",
-      "jarak_km": 34,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "STAFF ADMINISTRASI ( PPIC )",
-      "perusahaan": "Pengiklan Anonim",
-      "lokasi": "Cikupa, Banten",
-      "tipe": "Full time",
-      "ringkasan": "STAFF ADMINISTRASI (PPIC) - ( URGENTLY NEEDED )",
-      "link": "https://id.jobstreet.com/id/job/95998033",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-19T08:32:14Z",
       "jarak_km": 34,
       "jarak_perkiraan": false
     },
@@ -487,14 +487,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Human Resources Admin",
-      "perusahaan": "CV Sinar Karya Globalindo",
+      "posisi": "Administrasi Produksi (Admin Staff)",
+      "perusahaan": "PT. Hokang Sukses Sejahtera",
       "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengelola administrasi HR, payroll, rekrutmen, BPJS, serta data dan pencapaian sales.",
-      "link": "https://id.jobstreet.com/id/job/95916370",
+      "tipe": "Kontrak",
+      "ringkasan": "Mendukung kelancaran administrasi dan operasional produksi di perusahaan manufaktur permen.",
+      "link": "https://id.jobstreet.com/id/job/95850061",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-16T05:35:45Z",
+      "tanggal": "2026-11-12T03:54:08Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -511,14 +511,26 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Administrasi Produksi (Admin Staff)",
-      "perusahaan": "PT. Hokang Sukses Sejahtera",
+      "posisi": "Human Resources Admin",
+      "perusahaan": "CV Sinar Karya Globalindo",
       "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Mendukung kelancaran administrasi dan operasional produksi di perusahaan manufaktur permen.",
-      "link": "https://id.jobstreet.com/id/job/95850061",
+      "tipe": "Full time",
+      "ringkasan": "Mengelola administrasi HR, payroll, rekrutmen, BPJS, serta data dan pencapaian sales.",
+      "link": "https://id.jobstreet.com/id/job/95916370",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-12T03:54:08Z",
+      "tanggal": "2026-11-16T05:35:45Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Staff Admin Logistik & Purchasing",
+      "perusahaan": "Berkat Kriya Tritunggal",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab atas pengelolaan stok, operasional logistik, rantai pengiriman, dan pengadaan barang perusahaan secara efisien.",
+      "link": "https://id.jobstreet.com/id/job/95580659",
+      "sumber": "JobStreet",
+      "tanggal": "2026-10-29T08:37:01Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -547,6 +559,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Pengawas Sipil",
+      "perusahaan": "PT Permata Bangun Kharisma",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
+      "link": "https://id.jobstreet.com/id/job/96034631",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T04:09:03Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "HRGA Generalist",
       "perusahaan": "PT Meta Inertia Indonesia",
       "lokasi": "Tangerang Selatan, Banten",
@@ -555,18 +579,6 @@
       "link": "https://id.jobstreet.com/id/job/95834454",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T09:48:06Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Staff Admin Logistik & Purchasing",
-      "perusahaan": "Berkat Kriya Tritunggal",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bertanggung jawab atas pengelolaan stok, operasional logistik, rantai pengiriman, dan pengadaan barang perusahaan secara efisien.",
-      "link": "https://id.jobstreet.com/id/job/95580659",
-      "sumber": "JobStreet",
-      "tanggal": "2026-10-29T08:37:01Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -595,14 +607,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Brand Assistant (YUNTH)",
-      "perusahaan": "Talent International",
+      "posisi": "Office Staff for Kinderfield-Highfield School BSD-2",
+      "perusahaan": "Tunas Tuju Asa",
       "lokasi": "Kabupaten Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Mengelola performa sales YUNTH dan koordinasi lintas tim untuk mendukung pertumbuhan brand.",
-      "link": "https://id.jobstreet.com/id/job/95775924",
+      "ringkasan": "Multiple positions available: Graphic Designer, Correspondence Admin, Minimart Shopkeeper, School Security.",
+      "link": "https://id.jobstreet.com/id/job/95691117",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-09T04:56:48Z",
+      "tanggal": "2026-11-04T07:31:21Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -627,6 +639,18 @@
       "link": "https://id.jobstreet.com/id/job/95964910",
       "sumber": "JobStreet",
       "tanggal": "2026-11-18T03:57:24Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Supervisor Digital Marketing",
+      "perusahaan": "PT Sinaran Harindo Pratama",
+      "lokasi": "Kecamatan Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Supervise digital marketing strategy and team across multiple platforms to drive brand awareness and sales.",
+      "link": "https://id.jobstreet.com/id/job/95987251",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T01:45:06Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

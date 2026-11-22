@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-22T06:46:22.122Z",
+  "diperbarui": "2026-11-22T12:34:37.182Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -159,6 +159,18 @@
       "link": "https://id.jobstreet.com/id/job/96019048",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T06:03:36Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HR Recruitment & Development",
+      "perusahaan": "Toko Bakmi Kita",
+      "lokasi": "Serang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Manage end-to-end recruitment and manpower fulfillment across outlets and departments.",
+      "link": "https://id.jobstreet.com/id/job/95643712",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-02T10:54:01Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -343,16 +355,16 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "HC Operation Officer",
-      "perusahaan": "Ciputra Group",
-      "lokasi": "Cilegon, Banten",
+      "posisi": "KEPALA POS MOTORCYCLE - BANTEN",
+      "perusahaan": "Mega Central Finance",
+      "lokasi": "Banten",
       "tipe": "Full time",
-      "ringkasan": "Mendukung kegiatan operasional perusahaan serta pekerjaan terkait kepegawaian agar berjalan efektif dan efisien sesuai dengan prosedur",
-      "link": "https://id.jobstreet.com/id/job/95945058",
+      "ringkasan": "-",
+      "link": "https://id.jobstreet.com/id/job/95923130",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-17T06:50:05Z",
+      "tanggal": "2026-11-16T09:21:13Z",
       "jarak_km": 32,
-      "jarak_perkiraan": false
+      "jarak_perkiraan": true
     },
     {
       "posisi": "Staff HRGA",
@@ -363,18 +375,6 @@
       "link": "https://id.jobstreet.com/id/job/95806061",
       "sumber": "JobStreet",
       "tanggal": "2026-11-10T08:12:20Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": true
-    },
-    {
-      "posisi": "KEPALA POS MOTORCYCLE - BANTEN",
-      "perusahaan": "Mega Central Finance",
-      "lokasi": "Banten",
-      "tipe": "Full time",
-      "ringkasan": "-",
-      "link": "https://id.jobstreet.com/id/job/95923130",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-16T09:21:13Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
     },
@@ -391,28 +391,16 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Graphic Designer Intern",
-      "perusahaan": "Noethera",
-      "lokasi": "Banten",
+      "posisi": "HC Operation Officer",
+      "perusahaan": "Ciputra Group",
+      "lokasi": "Cilegon, Banten",
       "tipe": "Full time",
-      "ringkasan": "What we’re looking for Proficiency in Adobe Illustrator, Photoshop, or Figma Strong understanding of typography, layout, and color Ability to think...",
-      "link": "https://id.jobstreet.com/id/job/95883709",
+      "ringkasan": "Mendukung kegiatan operasional perusahaan serta pekerjaan terkait kepegawaian agar berjalan efektif dan efisien sesuai dengan prosedur",
+      "link": "https://id.jobstreet.com/id/job/95945058",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-13T10:07:05Z",
+      "tanggal": "2026-11-17T06:50:05Z",
       "jarak_km": 32,
-      "jarak_perkiraan": true
-    },
-    {
-      "posisi": "Video Editor Intern",
-      "perusahaan": "Noethera",
-      "lokasi": "Banten",
-      "tipe": "Full time",
-      "ringkasan": "What we’re looking for Video editing skills: Premiere Pro, CapCut, or equivalent Familiarity with short-form content formats (Reels, TikTok,...",
-      "link": "https://id.jobstreet.com/id/job/95883710",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-13T10:06:58Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": true
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Key Account Supervisor",
@@ -655,14 +643,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Production Engineering Supervisor",
-      "perusahaan": "Matahari Leisure",
-      "lokasi": "Kabupaten Tangerang, Banten",
+      "posisi": "Pengawas Sipil",
+      "perusahaan": "PT Permata Bangun Kharisma",
+      "lokasi": "Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Production Engineering Supervisor designing and refining process flows, leading continuous improvement initiatives and managing production support.",
-      "link": "https://id.jobstreet.com/id/job/95694108",
+      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
+      "link": "https://id.jobstreet.com/id/job/96034631",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-04T08:56:42Z",
+      "tanggal": "2026-11-21T04:09:03Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -675,18 +663,6 @@
       "link": "https://id.jobstreet.com/id/job/95964910",
       "sumber": "JobStreet",
       "tanggal": "2026-11-18T03:57:24Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Pengawas Sipil",
-      "perusahaan": "PT Permata Bangun Kharisma",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
-      "link": "https://id.jobstreet.com/id/job/96034631",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-21T04:09:03Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -724,6 +700,30 @@
       "sumber": "JobStreet",
       "tanggal": "2026-11-09T05:02:11Z",
       "jarak_km": 54,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Admin & Front Office",
+      "perusahaan": "PT Viable Strategies Asia",
+      "lokasi": "Kosambi, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Jadi wajah perusahaan kami! Gaji kompetitif, tunjangan kesehatan, dan lingkungan kerja yang mendukung.",
+      "link": "https://id.jobstreet.com/id/job/95872273",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-13T02:32:53Z",
+      "jarak_km": 54,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "ADMINISTRATION",
+      "perusahaan": "PT Tanditama Mandiri",
+      "lokasi": "Pamulang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengelola data dan komunikasi secara online dengan rapi, cepat, dan teliti. Menjawab pesan pelanggan dan memastikan semua berjalan lancar setiap hari.",
+      "link": "https://id.jobstreet.com/id/job/95937126",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-17T02:53:33Z",
+      "jarak_km": 62,
       "jarak_perkiraan": false
     }
   ]

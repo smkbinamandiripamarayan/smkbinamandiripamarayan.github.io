@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-22T12:34:37.182Z",
+  "diperbarui": "2026-11-22T18:28:56.098Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -91,18 +91,6 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Kepala Gudang Cikande",
-      "perusahaan": "Pengiklan Anonim",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
-      "link": "https://id.jobstreet.com/id/job/96000900",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-19T11:24:02Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Research And Development Staff (RND)",
       "perusahaan": "PT Sumber Kosmetika Indah",
       "lokasi": "Cikande, Banten",
@@ -115,14 +103,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor Produksi",
-      "perusahaan": "PT Citra Mahasurya Industries",
+      "posisi": "Kepala Gudang Cikande",
+      "perusahaan": "Pengiklan Anonim",
       "lokasi": "Cikande, Banten",
       "tipe": "Full time",
-      "ringkasan": "Pimpin operasional produksi harian, koordinasikan tim, dan pastikan target tercapai dengan efisien, tepat waktu, serta sesuai standar kualitas.",
-      "link": "https://id.jobstreet.com/id/job/96015192",
+      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
+      "link": "https://id.jobstreet.com/id/job/96000900",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-20T03:50:39Z",
+      "tanggal": "2026-11-19T11:24:02Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -139,14 +127,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Admin Produksi",
-      "perusahaan": "PT Fonusa Agung Mulia",
+      "posisi": "Supervisor Produksi",
+      "perusahaan": "PT Citra Mahasurya Industries",
       "lokasi": "Cikande, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Production administrative role managing data entry, reporting, and documentation using Excel and AX system.",
-      "link": "https://id.jobstreet.com/id/job/95461370",
+      "tipe": "Full time",
+      "ringkasan": "Pimpin operasional produksi harian, koordinasikan tim, dan pastikan target tercapai dengan efisien, tepat waktu, serta sesuai standar kualitas.",
+      "link": "https://id.jobstreet.com/id/job/96015192",
       "sumber": "JobStreet",
-      "tanggal": "2026-10-23T06:50:17Z",
+      "tanggal": "2026-11-20T03:50:39Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -159,18 +147,6 @@
       "link": "https://id.jobstreet.com/id/job/96019048",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T06:03:36Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "HR Recruitment & Development",
-      "perusahaan": "Toko Bakmi Kita",
-      "lokasi": "Serang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Manage end-to-end recruitment and manpower fulfillment across outlets and departments.",
-      "link": "https://id.jobstreet.com/id/job/95643712",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-02T10:54:01Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -247,6 +223,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Supervisor Warehouse FG & Delivery",
+      "perusahaan": "Cipta Mortar Utama",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "The position will oversee the supply chain of warehouse FG and Delivery",
+      "link": "https://id.jobstreet.com/id/job/95998259",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T08:41:46Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "QA/QC Team Leader",
       "perusahaan": "Hon Chuan Indonesia",
       "lokasi": "Pandeglang, Banten",
@@ -307,6 +295,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Recruitment Staff",
+      "perusahaan": "Nisson Indonesia",
+      "lokasi": "Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Bertanggung jawab terhadap pemenuhan kebutuhan karyawan Melakukan proses seleksi karyawan (administrasi form, posting iklan, screening, psikotes...",
+      "link": "https://id.jobstreet.com/id/job/95854202",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-12T06:13:29Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": true
+    },
+    {
       "posisi": "Supervisor Warehouse",
       "perusahaan": "Dover Chemical",
       "lokasi": "Cilegon, Banten",
@@ -319,14 +319,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Social Media Intern: Data Enthusiast",
-      "perusahaan": "Noethera",
+      "posisi": "Staff HRGA",
+      "perusahaan": "PT Nice Yummy Food",
       "lokasi": "Banten",
       "tipe": "Full time",
-      "ringkasan": "Track, analyze, and report social media performance so the team knows what to improve next. What we’re looking for Comfort with data: spreadsheets,...",
-      "link": "https://id.jobstreet.com/id/job/95883705",
+      "ringkasan": "Kelola HR & administrasi. Gaji kompetitif, asuransi kesehatan, dan program pengembangan karir yang jelas.",
+      "link": "https://id.jobstreet.com/id/job/95806061",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-13T10:07:00Z",
+      "tanggal": "2026-11-10T08:12:20Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
     },
@@ -343,14 +343,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Recruitment Staff",
-      "perusahaan": "Nisson Indonesia",
+      "posisi": "Social Media Intern: Data Enthusiast",
+      "perusahaan": "Noethera",
       "lokasi": "Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Bertanggung jawab terhadap pemenuhan kebutuhan karyawan Melakukan proses seleksi karyawan (administrasi form, posting iklan, screening, psikotes...",
-      "link": "https://id.jobstreet.com/id/job/95854202",
+      "tipe": "Full time",
+      "ringkasan": "Track, analyze, and report social media performance so the team knows what to improve next. What we’re looking for Comfort with data: spreadsheets,...",
+      "link": "https://id.jobstreet.com/id/job/95883705",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-12T06:13:29Z",
+      "tanggal": "2026-11-13T10:07:00Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
     },
@@ -367,40 +367,28 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Staff HRGA",
-      "perusahaan": "PT Nice Yummy Food",
+      "posisi": "Front Office",
+      "perusahaan": "Siloam Hospitals Group",
       "lokasi": "Banten",
       "tipe": "Full time",
-      "ringkasan": "Kelola HR & administrasi. Gaji kompetitif, asuransi kesehatan, dan program pengembangan karir yang jelas.",
-      "link": "https://id.jobstreet.com/id/job/95806061",
+      "ringkasan": "We are seeking a professional and customer-focused Front Office Officer to join our clinic in Ciujung, Indonesia. In this role, you will be the...",
+      "link": "https://id.jobstreet.com/id/job/93733191",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-10T08:12:20Z",
+      "tanggal": "2026-08-03T03:17:31Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
     },
     {
-      "posisi": "KOLEKTOR FIFGROUP (BAYAH,GUNUNG KENCANA,MALIMPING)",
-      "perusahaan": "Fifgroup",
-      "lokasi": "Banten",
+      "posisi": "Personal Assistant",
+      "perusahaan": "Golden Flexible Packaging",
+      "lokasi": "Pakuhaji, Banten",
       "tipe": "Full time",
-      "ringkasan": "Gaji kompetitif, bonus insentif, asuransi kesehatan lengkap & peluang karir berkembang di FIFGROUP",
-      "link": "https://id.jobstreet.com/id/job/95412340",
+      "ringkasan": "Punya insting multitasking yang tajam, tahu cara menggerakkan tim dan bisa tetap tenang di tengah tekanan? mungkin kamu adalah orang yang kami cari!",
+      "link": "https://id.jobstreet.com/id/job/95781378",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-19T03:57:35Z",
+      "tanggal": "2026-11-09T08:29:07Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
-    },
-    {
-      "posisi": "HC Operation Officer",
-      "perusahaan": "Ciputra Group",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mendukung kegiatan operasional perusahaan serta pekerjaan terkait kepegawaian agar berjalan efektif dan efisien sesuai dengan prosedur",
-      "link": "https://id.jobstreet.com/id/job/95945058",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-17T06:50:05Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
     },
     {
       "posisi": "Key Account Supervisor",
@@ -423,6 +411,18 @@
       "link": "https://id.jobstreet.com/id/job/95834004",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T09:31:23Z",
+      "jarak_km": 34,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "STAFF ADMINISTRASI ( PPIC )",
+      "perusahaan": "Pengiklan Anonim",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Full time",
+      "ringkasan": "STAFF ADMINISTRASI (PPIC) - ( URGENTLY NEEDED )",
+      "link": "https://id.jobstreet.com/id/job/95998033",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T08:32:14Z",
       "jarak_km": 34,
       "jarak_perkiraan": false
     },
@@ -547,6 +547,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Human Resources Admin",
+      "perusahaan": "CV Sinar Karya Globalindo",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengelola administrasi HR, payroll, rekrutmen, BPJS, serta data dan pencapaian sales.",
+      "link": "https://id.jobstreet.com/id/job/95916370",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-16T05:35:45Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "F&B Service and Product Staff",
       "perusahaan": "PT Indo Highland Investment",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -571,18 +583,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "HRGA Generalist",
-      "perusahaan": "PT Meta Inertia Indonesia",
-      "lokasi": "Tangerang Selatan, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Own HRGA, hire the right people, and build smarter people operations through AI, automation, and systematic thinking.",
-      "link": "https://id.jobstreet.com/id/job/95834454",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-11T09:48:06Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin Finance (Internship)",
       "perusahaan": "ICAN Education",
       "lokasi": "Tangerang, Banten",
@@ -591,6 +591,18 @@
       "link": "https://id.jobstreet.com/id/job/95832538",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T08:25:57Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "HRGA Generalist",
+      "perusahaan": "PT Meta Inertia Indonesia",
+      "lokasi": "Tangerang Selatan, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Own HRGA, hire the right people, and build smarter people operations through AI, automation, and systematic thinking.",
+      "link": "https://id.jobstreet.com/id/job/95834454",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-11T09:48:06Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -615,18 +627,6 @@
       "link": "https://id.jobstreet.com/id/job/95691117",
       "sumber": "JobStreet",
       "tanggal": "2026-11-04T07:31:21Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Human Resources Admin",
-      "perusahaan": "CV Sinar Karya Globalindo",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengelola administrasi HR, payroll, rekrutmen, BPJS, serta data dan pencapaian sales.",
-      "link": "https://id.jobstreet.com/id/job/95916370",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-16T05:35:45Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -667,18 +667,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "HR Generalist Supervisor",
-      "perusahaan": "Panorama JTB Tours Indonesia",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "HR Generalist manages recruitment, employee relations, benefits administration, compliance, and performance management.",
-      "link": "https://id.jobstreet.com/id/job/95848056",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-20T02:16:23Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Team Leader Operations",
       "perusahaan": "Tsing Digital Technology Sdn Bhd",
       "lokasi": "Tangerang, Banten",
@@ -691,18 +679,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Administrasi",
-      "perusahaan": "Momikawa Trading Indonesia",
-      "lokasi": "Kosambi, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bergabung sebagai Admin Staff untuk mengelola administrasi dan mendukung operasional perusahaan.",
-      "link": "https://id.jobstreet.com/id/job/95776128",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-09T05:02:11Z",
-      "jarak_km": 54,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin & Front Office",
       "perusahaan": "PT Viable Strategies Asia",
       "lokasi": "Kosambi, Banten",
@@ -711,6 +687,18 @@
       "link": "https://id.jobstreet.com/id/job/95872273",
       "sumber": "JobStreet",
       "tanggal": "2026-11-13T02:32:53Z",
+      "jarak_km": 54,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Administrasi",
+      "perusahaan": "Momikawa Trading Indonesia",
+      "lokasi": "Kosambi, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bergabung sebagai Admin Staff untuk mengelola administrasi dan mendukung operasional perusahaan.",
+      "link": "https://id.jobstreet.com/id/job/95776128",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-09T05:02:11Z",
       "jarak_km": 54,
       "jarak_perkiraan": false
     },

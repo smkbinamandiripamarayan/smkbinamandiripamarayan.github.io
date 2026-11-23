@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-23T12:51:56.253Z",
+  "diperbarui": "2026-11-23T18:43:42.532Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -41,6 +41,18 @@
       "tanggal": "2026-11-17T02:50:14Z",
       "jarak_km": 9,
       "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Industrial Relations Staff",
+      "perusahaan": "VIVERE Group",
+      "lokasi": "Pasar Kemis, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Bertanggungjawab terhadap implementasi hubungan industrial secara internal dan external",
+      "link": "https://id.jobstreet.com/id/job/96056770",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-23T06:16:32Z",
+      "jarak_km": 9,
+      "jarak_perkiraan": true
     },
     {
       "posisi": "Admin Project",
@@ -91,18 +103,6 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Staff Admin Logistik (Penempatan Cikande)",
-      "perusahaan": "Altama Surya Anugerah",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bertanggung jawab mengelola administrasi operasional Service Centre",
-      "link": "https://id.jobstreet.com/id/job/96052097",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-23T03:50:15Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Staff Visa",
       "perusahaan": "PT. SEA JAYA INDONESIA",
       "lokasi": "Banten",
@@ -115,14 +115,14 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Research And Development Staff (RND)",
-      "perusahaan": "PT Sumber Kosmetika Indah",
+      "posisi": "Staff Admin Logistik (Penempatan Cikande)",
+      "perusahaan": "Altama Surya Anugerah",
       "lokasi": "Cikande, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "R&D Formulator for cosmetic product development, testing, and formulation.",
-      "link": "https://id.jobstreet.com/id/job/95641184",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab mengelola administrasi operasional Service Centre",
+      "link": "https://id.jobstreet.com/id/job/96052097",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-02T08:40:50Z",
+      "tanggal": "2026-11-23T03:50:15Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -139,14 +139,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Logistics Staff",
-      "perusahaan": "JAVA.Co Indonesia",
+      "posisi": "Research And Development Staff (RND)",
+      "perusahaan": "PT Sumber Kosmetika Indah",
       "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengatur perencanaan rute, utilisasi armada, dan jadwal pengiriman untuk memastikan efisiensi biaya serta ketepatan waktu distribusi.",
-      "link": "https://id.jobstreet.com/id/job/96037185",
+      "tipe": "Kontrak",
+      "ringkasan": "R&D Formulator for cosmetic product development, testing, and formulation.",
+      "link": "https://id.jobstreet.com/id/job/95641184",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-21T13:33:45Z",
+      "tanggal": "2026-11-02T08:40:50Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -171,6 +171,18 @@
       "link": "https://id.jobstreet.com/id/job/96015192",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T03:50:39Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Logistics Staff",
+      "perusahaan": "JAVA.Co Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengatur perencanaan rute, utilisasi armada, dan jadwal pengiriman untuk memastikan efisiensi biaya serta ketepatan waktu distribusi.",
+      "link": "https://id.jobstreet.com/id/job/96037185",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T13:33:45Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -223,18 +235,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Leader/Supervisor Maintenance (Mechanic)",
-      "perusahaan": "Dongsuh Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Profesional dalam kegiatan mechanical maintenance untuk memastikan operasional produksi berjalan optimal",
-      "link": "https://id.jobstreet.com/id/job/95713668",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-05T06:47:02Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Quality Assurance Supervisor",
       "perusahaan": "United Waru Biscuit Manufactory",
       "lokasi": "Cikande, Banten",
@@ -247,14 +247,26 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Logistic Supervisor",
-      "perusahaan": "United Waru Biscuit Manufactory",
+      "posisi": "Leader/Supervisor Maintenance (Mechanic)",
+      "perusahaan": "Dongsuh Indonesia",
       "lokasi": "Cikande, Banten",
       "tipe": "Full time",
-      "ringkasan": "Mencari kandidat Supervisor Logistik yang mampu sesuai dengan visi dan misi perusahaan kami.",
-      "link": "https://id.jobstreet.com/id/job/95656200",
+      "ringkasan": "Profesional dalam kegiatan mechanical maintenance untuk memastikan operasional produksi berjalan optimal",
+      "link": "https://id.jobstreet.com/id/job/95713668",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-03T03:30:32Z",
+      "tanggal": "2026-11-05T06:47:02Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Supervisor HRD",
+      "perusahaan": "PT Baria Bulk Terminal",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab mengawasi dan mengoordinasikan pengelolaan sumber daya manusia, rekrutmen, pelatihan, evaluasi, hubungan industrial, dan lainnya.",
+      "link": "https://id.jobstreet.com/id/job/95783235",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-09T10:05:06Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -403,6 +415,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Staff Admin Warehouse - Warehouse Bitung",
+      "perusahaan": "Astro Indonesia",
+      "lokasi": "Curug Bitung, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Admin gudang bertugas untuk mengelola administrasi, input barang, stock opname, dan surat jalan.",
+      "link": "https://id.jobstreet.com/id/job/95940227",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-17T04:15:35Z",
+      "jarak_km": 42,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Personal Assistant",
       "perusahaan": "JINISO",
       "lokasi": "Pagedangan, Banten",
@@ -499,18 +523,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "BUSINESS DEVELOPMENT",
-      "perusahaan": "CT Advance Technology",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengembangkan bisnis dan meningkatkan penjualan Perusahaan melalui perluasan pasar, pencarian pelanggan baru, serta pengelolaan penjualan ekspor.",
-      "link": "https://id.jobstreet.com/id/job/96052507",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-23T04:01:14Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Personal Assistant to Founder",
       "perusahaan": "PT Gemuk Sehat Bahagia",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -535,6 +547,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "BUSINESS DEVELOPMENT",
+      "perusahaan": "CT Advance Technology",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengembangkan bisnis dan meningkatkan penjualan Perusahaan melalui perluasan pasar, pencarian pelanggan baru, serta pengelolaan penjualan ekspor.",
+      "link": "https://id.jobstreet.com/id/job/96052507",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-23T04:01:14Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Admin Finance (Internship)",
       "perusahaan": "ICAN Education",
       "lokasi": "Tangerang, Banten",
@@ -543,18 +567,6 @@
       "link": "https://id.jobstreet.com/id/job/95832538",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T08:25:57Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Fleet Management Associate",
-      "perusahaan": "Grab",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Join the ID rental fleet team! In fleet team We identify opportunities, fleet supply, maintenance strategies, and secure asset deals with both",
-      "link": "https://id.jobstreet.com/id/job/96053041",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-23T04:16:19Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

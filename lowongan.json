@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-22T18:28:56.098Z",
+  "diperbarui": "2026-11-23T00:35:36.265Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -67,18 +67,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Logistics Staff",
-      "perusahaan": "JAVA.Co Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengatur perencanaan rute, utilisasi armada, dan jadwal pengiriman untuk memastikan efisiensi biaya serta ketepatan waktu distribusi.",
-      "link": "https://id.jobstreet.com/id/job/96037185",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-21T13:33:45Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Staff Visa",
       "perusahaan": "PT. SEA JAYA INDONESIA",
       "lokasi": "Banten",
@@ -89,6 +77,18 @@
       "tanggal": "2026-10-30T10:39:26Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Logistics Staff",
+      "perusahaan": "JAVA.Co Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengatur perencanaan rute, utilisasi armada, dan jadwal pengiriman untuk memastikan efisiensi biaya serta ketepatan waktu distribusi.",
+      "link": "https://id.jobstreet.com/id/job/96037185",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T13:33:45Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Research And Development Staff (RND)",
@@ -643,18 +643,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Pengawas Sipil",
-      "perusahaan": "PT Permata Bangun Kharisma",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
-      "link": "https://id.jobstreet.com/id/job/96034631",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-21T04:09:03Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "HRGA Supervisor",
       "perusahaan": "Easton Urban Kapital",
       "lokasi": "Tangerang, Banten",
@@ -663,6 +651,18 @@
       "link": "https://id.jobstreet.com/id/job/95964910",
       "sumber": "JobStreet",
       "tanggal": "2026-11-18T03:57:24Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Pengawas Sipil",
+      "perusahaan": "PT Permata Bangun Kharisma",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Pimpin tim konstruksi dengan gaji kompetitif, bonus kinerja, dan pengembangan karier berkelanjutan.",
+      "link": "https://id.jobstreet.com/id/job/96034631",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-21T04:09:03Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

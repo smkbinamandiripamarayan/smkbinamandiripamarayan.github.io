@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-25T06:52:09.046Z",
+  "diperbarui": "2026-11-25T12:55:23.509Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -55,6 +55,42 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Formulator Pakan Ternak",
+      "perusahaan": "PT. Kerta Mulya Saripakan",
+      "lokasi": "Serang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Kembangkan formula pakan inovatif dan evaluasi performa produk untuk mendukung kemajuan industri peternakan.",
+      "link": "https://id.jobstreet.com/id/job/96118445",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:29:16Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Digital Marketing",
+      "perusahaan": "PT Putra Berkah Propertindo",
+      "lokasi": "Serang, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Melakukan Promosi Iklan melalui platform adsense, meta, tiktok dll",
+      "link": "https://id.jobstreet.com/id/job/96121071",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T09:14:49Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Quality Control Supervisor",
+      "perusahaan": "JAVA.Co Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab dalam mengawasi seluruh proses pengendalian kualitas pada setiap tahapan produksi, mulai dari bahan baku hingga produk akhir.",
+      "link": "https://id.jobstreet.com/id/job/96118539",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:33:11Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Admin - Bagian produksi Plastik Injection",
       "perusahaan": "CV Sinar Makmur",
       "lokasi": "Pasar Kemis, Banten",
@@ -63,18 +99,6 @@
       "link": "https://id.jobstreet.com/id/job/96061678",
       "sumber": "JobStreet",
       "tanggal": "2026-11-23T09:06:49Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": true
-    },
-    {
-      "posisi": "Staff Visa",
-      "perusahaan": "PT. SEA JAYA INDONESIA",
-      "lokasi": "Banten",
-      "tipe": "Full time",
-      "ringkasan": "staff visa",
-      "link": "https://id.jobstreet.com/id/job/95609764",
-      "sumber": "JobStreet",
-      "tanggal": "2026-10-30T10:39:26Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
     },
@@ -89,6 +113,18 @@
       "tanggal": "2026-10-12T08:34:36Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Staff Visa",
+      "perusahaan": "PT. SEA JAYA INDONESIA",
+      "lokasi": "Banten",
+      "tipe": "Full time",
+      "ringkasan": "staff visa",
+      "link": "https://id.jobstreet.com/id/job/95609764",
+      "sumber": "JobStreet",
+      "tanggal": "2026-10-30T10:39:26Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": true
     },
     {
       "posisi": "SUPERVISOR HRGA FOOD",
@@ -127,18 +163,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Kepala Gudang Cikande",
-      "perusahaan": "Pengiklan Anonim",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
-      "link": "https://id.jobstreet.com/id/job/96000900",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-19T11:24:02Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Part Time Admin",
       "perusahaan": "Harmoni Rasa",
       "lokasi": "Ciledug, Banten",
@@ -149,6 +173,18 @@
       "tanggal": "2026-11-24T08:03:07Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Kepala Gudang Cikande",
+      "perusahaan": "Pengiklan Anonim",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
+      "link": "https://id.jobstreet.com/id/job/96000900",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T11:24:02Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Supervisor Produksi",
@@ -343,15 +379,15 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Supervisor Warehouse",
-      "perusahaan": "Dover Chemical",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Manage and supervise all warehouse operations, including receiving, storage, inventory control, and operational projects, to ensure smooth operations.",
-      "link": "https://id.jobstreet.com/id/job/95947022",
+      "posisi": "Admin Inventory Staff (Temporary)",
+      "perusahaan": "Prambanan Kencana",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Admin Inventory staff untuk masa temporary menggantikan karyawan yang cuti melahirkan, dengan tanggung jawab pengelolaan data gudang.",
+      "link": "https://id.jobstreet.com/id/job/96119077",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-17T07:57:24Z",
-      "jarak_km": 32,
+      "tanggal": "2026-11-25T07:56:03Z",
+      "jarak_km": 34,
       "jarak_perkiraan": false
     },
     {
@@ -376,18 +412,6 @@
       "sumber": "JobStreet",
       "tanggal": "2026-11-05T09:55:16Z",
       "jarak_km": 34,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Staff Admin Warehouse - Warehouse Bitung",
-      "perusahaan": "Astro Indonesia",
-      "lokasi": "Curug Bitung, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Admin gudang bertugas untuk mengelola administrasi, input barang, stock opname, dan surat jalan.",
-      "link": "https://id.jobstreet.com/id/job/95940227",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-17T04:15:35Z",
-      "jarak_km": 42,
       "jarak_perkiraan": false
     },
     {
@@ -511,18 +535,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Recruitment Administrator",
-      "perusahaan": "Ratu Oceania Raya",
-      "lokasi": "Tangerang Selatan, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Support smooth hiring operations through recruitment administration, coordination, reporting, and events.",
-      "link": "https://id.jobstreet.com/id/job/96115894",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-25T05:56:44Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin Sales",
       "perusahaan": "PT Janjora Tria Megah",
       "lokasi": "Tangerang, Banten",
@@ -547,6 +559,30 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Recruitment Administrator",
+      "perusahaan": "Ratu Oceania Raya",
+      "lokasi": "Tangerang Selatan, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Support smooth hiring operations through recruitment administration, coordination, reporting, and events.",
+      "link": "https://id.jobstreet.com/id/job/96115894",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T05:56:44Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Tax Officer",
+      "perusahaan": "Propan Raya Industrial Coating Chemicals",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Melakukan perhitungan, pembayaran, dan pelaporan kewajiban perpajakan perusahaan sesuai dengan peraturan perpajakan yang berlaku.",
+      "link": "https://id.jobstreet.com/id/job/96118165",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:16:43Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "ERP Entry Data Intern",
       "perusahaan": "PT Vosen Pratita Kemindo",
       "lokasi": "Tangerang Selatan, Banten",
@@ -559,26 +595,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Personal Assistant to Founder",
-      "perusahaan": "PT Gemuk Sehat Bahagia",
-      "lokasi": "Kabupaten Tangerang, Banten",
+      "posisi": "Corporate Secretary",
+      "perusahaan": "Lippo General Insurance",
+      "lokasi": "Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Supports the Founder in managing daily personal, household, and light business matters to ensure everything runs smoothly and efficiently",
-      "link": "https://id.jobstreet.com/id/job/95912286",
+      "ringkasan": "Managing corporate governance, regulatory compliance, board activities, and company reporting in accordance with applicable regulations",
+      "link": "https://id.jobstreet.com/id/job/96118075",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-16T03:30:51Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Administrasi Produksi (Admin Staff)",
-      "perusahaan": "PT. Hokang Sukses Sejahtera",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Mendukung kelancaran administrasi dan operasional produksi di perusahaan manufaktur permen.",
-      "link": "https://id.jobstreet.com/id/job/95850061",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-12T03:54:08Z",
+      "tanggal": "2026-11-25T07:13:00Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -615,18 +639,6 @@
       "link": "https://id.jobstreet.com/id/job/95776128",
       "sumber": "JobStreet",
       "tanggal": "2026-11-09T05:02:11Z",
-      "jarak_km": 54,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "HR & Legal Officer",
-      "perusahaan": "Tritunggal Delta Sejahtera",
-      "lokasi": "Kosambi, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Untuk menangani aspek hukum HR, memastikan kepatuhan dokumen ketenagakerjaan dan dokumen administrasi ketenagakerjaan.",
-      "link": "https://id.jobstreet.com/id/job/96094188",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-24T10:39:01Z",
       "jarak_km": 54,
       "jarak_perkiraan": false
     }

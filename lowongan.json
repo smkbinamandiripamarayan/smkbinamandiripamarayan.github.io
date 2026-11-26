@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-26T12:54:18.330Z",
+  "diperbarui": "2026-11-26T18:40:33.795Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -31,18 +31,6 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Staff Admin Pengiriman",
-      "perusahaan": "Miranila Abadi",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bergabung dengan pemain logistik terkemuka, raih peluang karier dan gaji kompetitif serta manfaat menarik!",
-      "link": "https://id.jobstreet.com/id/job/96134064",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T02:07:25Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin Project",
       "perusahaan": "Koperasi Jasa PT Infrastruktur Telekomunikasi Indonesia",
       "lokasi": "Serang, Banten",
@@ -51,6 +39,18 @@
       "link": "https://id.jobstreet.com/id/job/96019908",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T06:28:09Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Staff Admin Pengiriman",
+      "perusahaan": "Miranila Abadi",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bergabung dengan pemain logistik terkemuka, raih peluang karier dan gaji kompetitif serta manfaat menarik!",
+      "link": "https://id.jobstreet.com/id/job/96134064",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T02:07:25Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -103,18 +103,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Formulator Pakan Ternak",
-      "perusahaan": "PT. Kerta Mulya Saripakan",
-      "lokasi": "Serang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Kembangkan formula pakan inovatif dan evaluasi performa produk untuk mendukung kemajuan industri peternakan.",
-      "link": "https://id.jobstreet.com/id/job/96118445",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-25T07:29:16Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin - Bagian produksi Plastik Injection",
       "perusahaan": "CV Sinar Makmur",
       "lokasi": "Pasar Kemis, Banten",
@@ -125,6 +113,18 @@
       "tanggal": "2026-11-23T09:06:49Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Formulator Pakan Ternak",
+      "perusahaan": "PT. Kerta Mulya Saripakan",
+      "lokasi": "Serang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Kembangkan formula pakan inovatif dan evaluasi performa produk untuk mendukung kemajuan industri peternakan.",
+      "link": "https://id.jobstreet.com/id/job/96118445",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:29:16Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Staff Visa",
@@ -175,18 +175,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Personal Assistant",
-      "perusahaan": "Yanfa Renewable Resources",
-      "lokasi": "Kabupaten Serang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Support the director with Mandarin communication, meetings, coordination, and translation.",
-      "link": "https://id.jobstreet.com/id/job/96150178",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T11:38:47Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "SUPERVISOR HRGA FOOD",
       "perusahaan": "AGK Recruitment",
       "lokasi": "Banten",
@@ -197,6 +185,18 @@
       "tanggal": "2026-11-04T07:24:12Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Personal Assistant",
+      "perusahaan": "Yanfa Renewable Resources",
+      "lokasi": "Kabupaten Serang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Support the director with Mandarin communication, meetings, coordination, and translation.",
+      "link": "https://id.jobstreet.com/id/job/96150178",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T11:38:47Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Part Time Admin",
@@ -307,18 +307,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Staf Security (Laki-laki & Perempuan)",
-      "perusahaan": "Adis Dimension Footwear",
-      "lokasi": "Balaraja, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Menjaga keamanan lingkungan perusahaan melalui pengaturan, penjagaan, pengawalan, dan patroli",
-      "link": "https://id.jobstreet.com/id/job/96134989",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T02:16:33Z",
-      "jarak_km": 28,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Staff Administrasi",
       "perusahaan": "PT Finachem Adijaya Prima",
       "lokasi": "Tigaraksa, Banten",
@@ -379,18 +367,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Technical Support – Polyurethane Binder Ink (NPD)",
-      "perusahaan": "Dover Chemical",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Support product applications, customer trials, and technical solutions to enhance customer satisfaction and business growth",
-      "link": "https://id.jobstreet.com/id/job/96141019",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T04:51:27Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "IT dan Web Development",
       "perusahaan": "Sepuluh Sumber Anugrah",
       "lokasi": "Banten",
@@ -401,6 +377,18 @@
       "tanggal": "2026-11-23T06:51:13Z",
       "jarak_km": 32,
       "jarak_perkiraan": true
+    },
+    {
+      "posisi": "Technical Support – Polyurethane Binder Ink (NPD)",
+      "perusahaan": "Dover Chemical",
+      "lokasi": "Cilegon, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Support product applications, customer trials, and technical solutions to enhance customer satisfaction and business growth",
+      "link": "https://id.jobstreet.com/id/job/96141019",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T04:51:27Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": false
     },
     {
       "posisi": "Research and Development (R&D) Refractory / Cement",
@@ -424,6 +412,30 @@
       "sumber": "JobStreet",
       "tanggal": "2026-10-12T08:35:45Z",
       "jarak_km": 32,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Key Account Supervisor",
+      "perusahaan": "Indofood",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Manage key accounts and drive revenue growth while enjoying career development opportunities, a competitive salary, and attractive benefits.",
+      "link": "https://id.jobstreet.com/id/job/95583214",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-20T10:45:29Z",
+      "jarak_km": 34,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Admin Inventory Staff (Temporary)",
+      "perusahaan": "Prambanan Kencana",
+      "lokasi": "Cikupa, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Admin Inventory staff untuk masa temporary menggantikan karyawan yang cuti melahirkan, dengan tanggung jawab pengelolaan data gudang.",
+      "link": "https://id.jobstreet.com/id/job/96119077",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:56:03Z",
+      "jarak_km": 34,
       "jarak_perkiraan": false
     },
     {
@@ -559,18 +571,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Finance intern",
-      "perusahaan": "Saudara Independent Enterprises",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Kami terbuka bagi individu yang memiliki semangat belajar, inisiatif, tanggung jawab, dan keinginan untuk berkembang bersama perusahaan.",
-      "link": "https://id.jobstreet.com/id/job/96078326",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-24T02:23:36Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Technical Service Officer",
       "perusahaan": "Propan Raya Industrial Coating Chemicals",
       "lokasi": "Tangerang, Banten",
@@ -583,18 +583,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "HR & Admin Officer",
-      "perusahaan": "PT Card Easy Indonesia",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Support end-to-end HR and office operations while shaping efficient people processes in a growing company.",
-      "link": "https://id.jobstreet.com/id/job/96138647",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T03:47:21Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Admin Finance (Internship)",
       "perusahaan": "ICAN Education",
       "lokasi": "Tangerang, Banten",
@@ -603,6 +591,42 @@
       "link": "https://id.jobstreet.com/id/job/95832538",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T08:25:57Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Finance intern",
+      "perusahaan": "Saudara Independent Enterprises",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Kami terbuka bagi individu yang memiliki semangat belajar, inisiatif, tanggung jawab, dan keinginan untuk berkembang bersama perusahaan.",
+      "link": "https://id.jobstreet.com/id/job/96078326",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-24T02:23:36Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "ERP Entry Data Intern",
+      "perusahaan": "PT Vosen Pratita Kemindo",
+      "lokasi": "Tangerang Selatan, Banten",
+      "tipe": "Paruh waktu",
+      "ringkasan": "Memasukkan, memverifikasi, dan merekap data ERP Epicor untuk mendukung kebutuhan manajemen.",
+      "link": "https://id.jobstreet.com/id/job/95745713",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-06T07:41:17Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Administrasi Produksi (Admin Staff)",
+      "perusahaan": "PT. Hokang Sukses Sejahtera",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "Mendukung kelancaran administrasi dan operasional produksi di perusahaan manufaktur permen.",
+      "link": "https://id.jobstreet.com/id/job/95850061",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-12T03:54:08Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },

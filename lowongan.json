@@ -1,5 +1,5 @@
 {
-  "diperbarui": "2026-11-26T18:40:33.795Z",
+  "diperbarui": "2026-11-27T00:47:09.327Z",
   "sekolah": {
     "nama": "SMK Bina Mandiri Pamarayan",
     "lat": -6.22,
@@ -115,18 +115,6 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Formulator Pakan Ternak",
-      "perusahaan": "PT. Kerta Mulya Saripakan",
-      "lokasi": "Serang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Kembangkan formula pakan inovatif dan evaluasi performa produk untuk mendukung kemajuan industri peternakan.",
-      "link": "https://id.jobstreet.com/id/job/96118445",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-25T07:29:16Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Staff Visa",
       "perusahaan": "PT. SEA JAYA INDONESIA",
       "lokasi": "Banten",
@@ -139,26 +127,14 @@
       "jarak_perkiraan": true
     },
     {
-      "posisi": "Kepala Gudang Cikande",
-      "perusahaan": "Pengiklan Anonim",
-      "lokasi": "Cikande, Banten",
+      "posisi": "Formulator Pakan Ternak",
+      "perusahaan": "PT. Kerta Mulya Saripakan",
+      "lokasi": "Serang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
-      "link": "https://id.jobstreet.com/id/job/96000900",
+      "ringkasan": "Kembangkan formula pakan inovatif dan evaluasi performa produk untuk mendukung kemajuan industri peternakan.",
+      "link": "https://id.jobstreet.com/id/job/96118445",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-19T11:24:02Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Quality Control Supervisor",
-      "perusahaan": "JAVA.Co Indonesia",
-      "lokasi": "Cikande, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bertanggung jawab dalam mengawasi seluruh proses pengendalian kualitas pada setiap tahapan produksi, mulai dari bahan baku hingga produk akhir.",
-      "link": "https://id.jobstreet.com/id/job/96118539",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-25T07:33:11Z",
+      "tanggal": "2026-11-25T07:29:16Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -175,6 +151,42 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Quality Control Supervisor",
+      "perusahaan": "JAVA.Co Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab dalam mengawasi seluruh proses pengendalian kualitas pada setiap tahapan produksi, mulai dari bahan baku hingga produk akhir.",
+      "link": "https://id.jobstreet.com/id/job/96118539",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T07:33:11Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Kepala Gudang Cikande",
+      "perusahaan": "Pengiklan Anonim",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mengerti tentang gudang bisnis distribusi lalu mengerti tentang ms.excel",
+      "link": "https://id.jobstreet.com/id/job/96000900",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-19T11:24:02Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Personal Assistant",
+      "perusahaan": "PT YANFA RENEWABLE RESOURCES",
+      "lokasi": "Kabupaten Serang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Support the director with Mandarin communication, meetings, coordination, and translation.",
+      "link": "https://id.jobstreet.com/id/job/96150178",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T11:38:47Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "SUPERVISOR HRGA FOOD",
       "perusahaan": "AGK Recruitment",
       "lokasi": "Banten",
@@ -185,18 +197,6 @@
       "tanggal": "2026-11-04T07:24:12Z",
       "jarak_km": 12,
       "jarak_perkiraan": true
-    },
-    {
-      "posisi": "Personal Assistant",
-      "perusahaan": "Yanfa Renewable Resources",
-      "lokasi": "Kabupaten Serang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Support the director with Mandarin communication, meetings, coordination, and translation.",
-      "link": "https://id.jobstreet.com/id/job/96150178",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T11:38:47Z",
-      "jarak_km": 12,
-      "jarak_perkiraan": false
     },
     {
       "posisi": "Part Time Admin",
@@ -231,6 +231,18 @@
       "link": "https://id.jobstreet.com/id/job/96019048",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T06:03:36Z",
+      "jarak_km": 12,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Quality Assurance & Technical Service Executive - Flexible Packaging",
+      "perusahaan": "Polyplex Films Indonesia",
+      "lokasi": "Cikande, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Responsible for ensuring product quality and compliance with company standards and providing technical support to customers",
+      "link": "https://id.jobstreet.com/id/job/95973977",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-18T09:15:53Z",
       "jarak_km": 12,
       "jarak_perkiraan": false
     },
@@ -291,6 +303,18 @@
       "link": "https://id.jobstreet.com/id/job/96104808",
       "sumber": "JobStreet",
       "tanggal": "2026-11-25T00:38:53Z",
+      "jarak_km": 28,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "SALES AND SHIPPING OFFICER",
+      "perusahaan": "NanYang Synergy Sdn Bhd",
+      "lokasi": "Balaraja, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Join our fast-paced team and take charge of sales and shipping as our new Admin. Competitive salary, great benefits, and career growth.",
+      "link": "https://id.jobstreet.com/id/job/96105102",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-25T00:52:33Z",
       "jarak_km": 28,
       "jarak_perkiraan": false
     },
@@ -391,18 +415,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Research and Development (R&D) Refractory / Cement",
-      "perusahaan": "PT IPI SUNIJAYA",
-      "lokasi": "Cilegon, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "R&D role focused on product development, testing, and improvement across manufacturing. R&D Cement R&D Refractory",
-      "link": "https://id.jobstreet.com/id/job/96144875",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T07:06:36Z",
-      "jarak_km": 32,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Operator Produksi",
       "perusahaan": "PT Kayaba Indonesia",
       "lokasi": "Cilegon, Banten",
@@ -415,6 +427,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Research and Development (R&D) Refractory / Cement",
+      "perusahaan": "PT IPI SUNIJAYA",
+      "lokasi": "Cilegon, Banten",
+      "tipe": "Kontrak",
+      "ringkasan": "R&D role focused on product development, testing, and improvement across manufacturing. R&D Cement R&D Refractory",
+      "link": "https://id.jobstreet.com/id/job/96144875",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T07:06:36Z",
+      "jarak_km": 32,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Key Account Supervisor",
       "perusahaan": "Indofood",
       "lokasi": "Cikupa, Banten",
@@ -423,18 +447,6 @@
       "link": "https://id.jobstreet.com/id/job/95583214",
       "sumber": "JobStreet",
       "tanggal": "2026-11-20T10:45:29Z",
-      "jarak_km": 34,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Admin Inventory Staff (Temporary)",
-      "perusahaan": "Prambanan Kencana",
-      "lokasi": "Cikupa, Banten",
-      "tipe": "Kontrak",
-      "ringkasan": "Admin Inventory staff untuk masa temporary menggantikan karyawan yang cuti melahirkan, dengan tanggung jawab pengelolaan data gudang.",
-      "link": "https://id.jobstreet.com/id/job/96119077",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-25T07:56:03Z",
       "jarak_km": 34,
       "jarak_perkiraan": false
     },
@@ -535,18 +547,6 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Executive Secretary & Business Development Analyst",
-      "perusahaan": "Key Distribution Partners",
-      "lokasi": "Kabupaten Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Mengawal administrasi, strategi, kemitraan, dan proyek Direktur Utama untuk mendorong pertumbuhan PPOB.",
-      "link": "https://id.jobstreet.com/id/job/95890964",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-14T01:58:38Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
       "posisi": "Videographer & Editor Internship",
       "perusahaan": "PT. USTINIAN INVEST INDONESIA",
       "lokasi": "Kabupaten Tangerang, Banten",
@@ -559,26 +559,14 @@
       "jarak_perkiraan": false
     },
     {
-      "posisi": "Admin Marketplace & Support",
-      "perusahaan": "CV Fitlife Indonesia",
+      "posisi": "Executive Secretary & Business Development Analyst",
+      "perusahaan": "Key Distribution Partners",
       "lokasi": "Kabupaten Tangerang, Banten",
       "tipe": "Full time",
-      "ringkasan": "Mendukung operasional marketplace dan membantu administrasi terkait ads serta digital marketing.",
-      "link": "https://id.jobstreet.com/id/job/96088673",
+      "ringkasan": "Mengawal administrasi, strategi, kemitraan, dan proyek Direktur Utama untuk mendorong pertumbuhan PPOB.",
+      "link": "https://id.jobstreet.com/id/job/95890964",
       "sumber": "JobStreet",
-      "tanggal": "2026-11-24T07:08:57Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Technical Service Officer",
-      "perusahaan": "Propan Raya Industrial Coating Chemicals",
-      "lokasi": "Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Memberikan training teknis kepada mekanik terkait pengoperasian, perawatan, dan perbaikan mesin.",
-      "link": "https://id.jobstreet.com/id/job/96143917",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-26T06:32:11Z",
+      "tanggal": "2026-11-14T01:58:38Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -591,6 +579,18 @@
       "link": "https://id.jobstreet.com/id/job/95832538",
       "sumber": "JobStreet",
       "tanggal": "2026-11-11T08:25:57Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Admin Marketplace & Support",
+      "perusahaan": "CV Fitlife Indonesia",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Mendukung operasional marketplace dan membantu administrasi terkait ads serta digital marketing.",
+      "link": "https://id.jobstreet.com/id/job/96088673",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-24T07:08:57Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     },
@@ -631,6 +631,30 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Staff Admin Logistik & Purchasing",
+      "perusahaan": "Berkat Kriya Tritunggal",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Bertanggung jawab atas pengelolaan stok, operasional logistik, rantai pengiriman, dan pengadaan barang perusahaan secara efisien.",
+      "link": "https://id.jobstreet.com/id/job/95580659",
+      "sumber": "JobStreet",
+      "tanggal": "2026-10-29T08:37:01Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
+      "posisi": "Personal Assistant to Founder",
+      "perusahaan": "PT Gemuk Sehat Bahagia",
+      "lokasi": "Kabupaten Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Supports the Founder in managing daily personal, household, and light business matters to ensure everything runs smoothly and efficiently",
+      "link": "https://id.jobstreet.com/id/job/95912286",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-16T03:30:51Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Part Time Barista",
       "perusahaan": "PT Kreasi Abadi Jayatama",
       "lokasi": "Kecamatan Tangerang, Banten",
@@ -643,6 +667,18 @@
       "jarak_perkiraan": false
     },
     {
+      "posisi": "Technical Service Officer",
+      "perusahaan": "Propan Raya Industrial Coating Chemicals",
+      "lokasi": "Tangerang, Banten",
+      "tipe": "Full time",
+      "ringkasan": "Memberikan training teknis kepada mekanik terkait pengoperasian, perawatan, dan perbaikan mesin.",
+      "link": "https://id.jobstreet.com/id/job/96143917",
+      "sumber": "JobStreet",
+      "tanggal": "2026-11-26T06:32:11Z",
+      "jarak_km": 49,
+      "jarak_perkiraan": false
+    },
+    {
       "posisi": "Crew Stand Es Teh \"Osman Tea\"",
       "perusahaan": "Winod Ritel Indonesia",
       "lokasi": "Kecamatan Tangerang, Banten",
@@ -651,18 +687,6 @@
       "link": "https://id.jobstreet.com/id/job/95887623",
       "sumber": "JobStreet",
       "tanggal": "2026-11-12T02:30:02Z",
-      "jarak_km": 49,
-      "jarak_perkiraan": false
-    },
-    {
-      "posisi": "Intern Finance",
-      "perusahaan": "Sunshine Food Group",
-      "lokasi": "Kecamatan Tangerang, Banten",
-      "tipe": "Full time",
-      "ringkasan": "Bertanggung jawab membantu aktivitas operasional Finance, meliputi penginputan dan pengarsipan data transaksi keuangan, pemeriksaan serta...",
-      "link": "https://id.jobstreet.com/id/job/96133756",
-      "sumber": "JobStreet",
-      "tanggal": "2026-11-19T03:53:38Z",
       "jarak_km": 49,
       "jarak_perkiraan": false
     }

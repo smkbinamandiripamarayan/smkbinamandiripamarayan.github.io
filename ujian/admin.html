@@ -69,11 +69,9 @@ small,.muted{color:var(--muted)}.stat{font-size:26px;font-weight:850}
 </section>
 <section id="tab-questions" class="card hidden">
 <div class="row"><h3>Bank soal</h3><select id="questionExam" style="max-width:320px"><option value="">Pilih ujian</option></select></div>
-<div id="questionForm" class="hidden">
-<div class="notice">Masukkan soal dan pilihan jawaban. Pilih kunci jawaban yang benar. Kunci disimpan pada tabel kunci_jawaban, bukan pada tabel soal.</div>
 <div class="import-box">
 <h3 style="margin-top:0">Import soal dari Excel atau Word</h3>
-<p class="muted">Upload file .xlsx atau .docx. Soal akan ditampilkan untuk diperiksa terlebih dahulu dan belum masuk database sampai tombol Simpan semua soal ditekan.</p>
+<p class="muted">Pilih ujian pada daftar di atas terlebih dahulu, lalu upload file .xlsx atau .docx. Soal akan ditampilkan untuk diperiksa terlebih dahulu dan belum masuk database sampai tombol Simpan semua soal ditekan.</p>
 <label>File Excel (.xlsx)</label><input type="file" id="excelFile" accept=".xlsx">
 <label>File Word (.docx)</label><input type="file" id="wordFile" accept=".docx">
 <p id="importMsg" class="muted" aria-live="polite">Pilih salah satu file. Format file dijelaskan di bawah.</p>
@@ -91,6 +89,9 @@ BOBOT: 1</pre>
 </details>
 <div id="importPreview" class="preview hidden"></div>
 </div>
+
+<div id="questionForm" class="hidden">
+<div class="notice">Masukkan soal dan pilihan jawaban. Pilih kunci jawaban yang benar. Kunci disimpan pada tabel kunci_jawaban, bukan pada tabel soal.</div>
 <div id="questionEditors"></div>
 <button id="addQuestion" class="secondary">+ Tambah soal</button>
 <button id="saveQuestions">Simpan semua soal</button>
@@ -273,6 +274,7 @@ function showImportPreview(items){
  $('importPreview').classList.remove('hidden');
  const use=document.createElement('button');use.type='button';use.textContent='Gunakan hasil import';use.style.margin='10px 0';use.onclick=()=>{
   if(!importedQuestions)return;
+  if(!$('questionExam').value){$('importMsg').textContent='Pilih ujian terlebih dahulu pada daftar di atas, lalu klik Gunakan hasil import.';return;}
   if(!confirm(`Ganti daftar soal yang sedang tampil dengan ${importedQuestions.length} soal hasil import? Perubahan belum disimpan ke database.`))return;
   questionDraft=importedQuestions.map(q=>({...q}));
   renderQuestionEditors();$('questionMsg').textContent='Hasil import sudah dimasukkan ke editor. Tekan Simpan semua soal untuk menyimpan ke database.';

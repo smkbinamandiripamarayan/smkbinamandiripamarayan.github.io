@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ujian Online | SMK Bina Mandiri Pamarayan</title>
+<meta name="theme-color" content="#123b70">
+<style>
+:root{--navy:#123b70;--blue:#1769aa;--bg:#f3f6fb;--ink:#172337;--muted:#65748b;--line:#e4eaf2;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+header{background:linear-gradient(120deg,#102f59,#1769aa);color:white;padding:22px 18px}
+.wrap{max-width:960px;margin:auto}.brand{font-weight:800;font-size:20px}.sub{opacity:.85;font-size:13px;margin-top:3px}
+main{max-width:960px;margin:24px auto;padding:0 14px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 6px 24px #18365c0b;margin-bottom:16px}
+h1,h2,h3,p{margin-top:0}h1{font-size:23px}h2{font-size:18px}.muted{color:var(--muted)}label{display:block;font-weight:650;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccd6e3;border-radius:10px;font:inherit;background:#fff}
+button{border:0;border-radius:10px;background:var(--blue);color:white;padding:12px 17px;font:700 14px inherit;cursor:pointer}
+button.secondary{background:#eaf1f9;color:var(--navy)}button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.hidden{display:none!important}
+.notice{padding:12px;border-radius:10px;background:#fff7df;color:#79540b;font-size:13px}.status{padding:9px 12px;border-radius:9px;background:#edf7f2;color:#176342;font-size:13px}
+.exam-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.timer{font-size:21px;font-weight:850;color:#b33b36}
+.option{display:flex;gap:10px;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font-weight:400}.option input{width:auto}
+.qnav{display:flex;gap:7px;flex-wrap:wrap}.qnav button{padding:8px 11px;background:#eaf1f9;color:var(--navy)}.qnav button.active{background:var(--navy);color:white}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+@media(max-width:600px){header{padding:18px 14px}.card{padding:16px}main{margin-top:16px}h1{font-size:20px}}
+</style></head>
+<body>
+<header><div class="wrap"><div class="brand">SMK BINA MANDIRI PAMARAYAN</div><div class="sub">Sistem Ujian Online • Kelas XII</div></div></header>
+<main>
+<section id="login" class="card">
+<h1>Selamat Datang</h1><p class="muted">Masuk untuk mengikuti ujian online sekolah.</p>
+<div class="notice">Aplikasi ini merupakan kerangka awal. Hubungkan ke proyek Supabase dan buat akun siswa/admin sebelum digunakan untuk ujian sebenarnya.</div>
+<label for="email">Email / akun</label><input id="email" type="email" autocomplete="username" placeholder="contoh: siswa@sekolah.sch.id">
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password akun">
+<p style="margin-top:16px"><button id="loginBtn">Masuk</button></p><p id="loginMsg" class="muted" aria-live="polite"></p>
+</section>
+<section id="dashboard" class="hidden">
+<div class="card"><div class="exam-head"><div><h1 id="welcome">Dashboard Siswa</h1><div id="studentMeta" class="muted"></div></div><button class="secondary" id="logoutBtn">Keluar</button></div></div>
+<div class="card"><h2>Ujian tersedia</h2><div id="examList" class="grid"><p class="muted">Memuat daftar ujian...</p></div></div>
+</section>
+<section id="work" class="hidden">
+<div class="card exam-head"><div><b id="examTitle">Ujian</b><div class="muted" id="examInfo"></div></div><div class="timer" id="timer">00:00:00</div></div>
+<div class="card"><div class="exam-head"><h2 id="questionCount">Soal 1</h2><span class="muted" id="savedState">Jawaban tersimpan otomatis</span></div><div id="questionText"></div><div id="answers"></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:20px"><button class="secondary" id="prevBtn">Sebelumnya</button><button id="nextBtn">Berikutnya</button></div></div>
+<div class="card"><h3>Nomor soal</h3><div class="qnav" id="questionNav"></div><p class="muted" style="margin:14px 0 0">Periksa kembali jawaban sebelum mengumpulkan.</p><button id="submitBtn" style="margin-top:14px;background:#16845b">Kumpulkan ujian</button></div>
+</section>
+<section id="done" class="card hidden"><h1>Ujian selesai</h1><p>Jawaban ujian telah dikirim. Terima kasih telah mengikuti ujian.</p><button id="backBtn">Kembali ke dashboard</button></section>
+</main><footer>© SMK Bina Mandiri Pamarayan • Sistem Ujian Online</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let sb=null,user=null,profile=null,currentExam=null,questions=[],answers={},attemptId=null,qIndex=0,timerHandle=null,deadline=null;
+function show(id){['login','dashboard','work','done'].forEach(x=>$(x).classList.toggle('hidden',x!==id))}
+function msg(t){$('loginMsg').textContent=t}
+function ready(){return window.APP_CONFIG?.SUPABASE_URL?.startsWith('https://')&&window.APP_CONFIG?.SUPABASE_ANON_KEY&&!window.APP_CONFIG.SUPABASE_ANON_KEY.includes('GANTI')}
+async function init(){
+ if(!ready()){msg('Konfigurasi belum diisi. Buka config.js dan masukkan URL serta anon key Supabase.');return}
+ sb=window.supabase.createClient(APP_CONFIG.SUPABASE_URL,APP_CONFIG.SUPABASE_ANON_KEY);
+ const {data:{session}}=await sb.auth.getSession();if(session)await enter(session.user);
+}
+async function enter(u){
+ user=u;const {data,error}=await sb.from('profiles').select('*').eq('id',u.id).single();
+ if(error||!data){msg('Akun ditemukan, tetapi profil siswa belum dibuat. Hubungi administrator.');return}
+ profile=data;
+ if(data.role==='admin'){location.href='admin.html';return}
+ $('welcome').textContent='Halo, '+(data.full_name||'Siswa');$('studentMeta').textContent=(data.class_name||'Kelas belum diatur')+' • '+(data.student_number||'');
+ show('dashboard');await loadExams();
+}
+async function loadExams(){
+ const now=new Date().toISOString();
+ const {data,error}=await sb.from('exams').select('id,title,subject,duration_minutes,starts_at,ends_at,instructions').eq('is_published',true).order('starts_at');
+ if(error){$('examList').textContent='Gagal memuat ujian: '+error.message;return}
+ const available=(data||[]).filter(e=>new Date(e.starts_at)<=new Date(now)&&new Date(e.ends_at)>=new Date(now));
+ $('examList').innerHTML=available.length?'':'<p class="muted">Belum ada ujian yang sedang dibuka.</p>';
+ available.forEach(e=>{const d=document.createElement('div');d.className='card';d.style.margin=0;d.innerHTML=`<h3>${esc(e.title)}</h3><p class="muted">${esc(e.subject||'Mata pelajaran')} • ${e.duration_minutes} menit</p><button>Mulai ujian</button>`;d.querySelector('button').onclick=()=>startExam(e);$('examList').append(d)});
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function startExam(exam){
+ if(!confirm('Mulai '+exam.title+'? Waktu mulai dihitung setelah ujian dimulai.'))return;
+ currentExam=exam;
+ const {data:prior}=await sb.from('attempts').select('id,status').eq('exam_id',exam.id).eq('student_id',user.id).maybeSingle();
+ if(prior?.status==='submitted'){alert('Ujian ini sudah pernah dikumpulkan.');return}
+ if(prior?.status==='in_progress'){alert('Anda masih memiliki ujian yang sedang berlangsung. Hubungi pengawas untuk bantuan.');return}
+ const {data:qs,error}=await sb.from('questions').select('id,question_text,options,sort_order').eq('exam_id',exam.id).order('sort_order');
+ if(error||!qs?.length){alert('Soal belum tersedia.');return}
+ questions=qs;answers={};qIndex=0;
+ const {data:a,error:ae}=await sb.from('attempts').insert({exam_id:exam.id,student_id:user.id,status:'in_progress'}).select().single();
+ if(ae){alert('Tidak dapat memulai ujian: '+ae.message);return}
+ attemptId=a.id;deadline=Date.now()+exam.duration_minutes*60000;
+ $('examTitle').textContent=exam.title;$('examInfo').textContent=exam.subject||'';show('work');renderQuestion();renderNav();runTimer();
+}
+function renderQuestion(){
+ const q=questions[qIndex];$('questionCount').textContent=`Soal ${qIndex+1} dari ${questions.length}`;$('questionText').textContent=q.question_text;
+ $('answers').innerHTML='';
+ (q.options||[]).forEach((o,i)=>{const label=document.createElement('label');label.className='option';const input=document.createElement('input');input.type='radio';input.name='answer';input.value=String(i);input.checked=answers[q.id]===String(i);input.onchange=()=>saveAnswer(q.id,String(i));label.append(input,document.createTextNode(o));$('answers').append(label)});
+ $('prevBtn').disabled=qIndex===0;$('nextBtn').textContent=qIndex===questions.length-1?'Soal terakhir':'Berikutnya';
+}
+async function saveAnswer(qid,val){
+ answers[qid]=val;$('savedState').textContent='Menyimpan...';
+ const {error}=await sb.from('attempt_answers').upsert({attempt_id:attemptId,question_id:qid,selected_option:Number(val)},{onConflict:'attempt_id,question_id'});
+ $('savedState').textContent=error?'Gagal menyimpan. Periksa koneksi!':'Jawaban tersimpan';
+ renderNav();
+}
+function renderNav(){$('questionNav').innerHTML='';questions.forEach((q,i)=>{const b=document.createElement('button');b.textContent=i+1;b.classList.toggle('active',i===qIndex);b.style.background=answers[q.id]!==undefined?'#d8f0e5':'';b.onclick=()=>{qIndex=i;renderQuestion();renderNav()};$('questionNav').append(b)})}
+function runTimer(){clearInterval(timerHandle);const tick=()=>{const ms=Math.max(0,deadline-Date.now()),s=Math.floor(ms/1000);$('timer').textContent=[Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(x=>String(x).padStart(2,'0')).join(':');if(ms<=0){clearInterval(timerHandle);submitExam(true)}};tick();timerHandle=setInterval(tick,1000)}
+async function submitExam(auto=false){
+ if(!auto&&!confirm('Yakin ingin mengumpulkan ujian?'))return;
+ $('submitBtn').disabled=true;
+ const {error}=await sb.from('attempts').update({status:'submitted',submitted_at:new Date().toISOString()}).eq('id',attemptId);
+ $('submitBtn').disabled=false;
+ if(error){alert('Pengumpulan gagal. Jangan tutup halaman; periksa internet lalu coba lagi. '+error.message);return}
+ clearInterval(timerHandle);show('done');
+}
+$('loginBtn').onclick=async()=>{if(!sb){await init();if(!sb)return}msg('Memeriksa akun...');const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){msg('Login gagal: '+error.message);return}await enter(data.user)};
+$('logoutBtn').onclick=async()=>{await sb.auth.signOut();user=null;show('login')};
+$('prevBtn').onclick=()=>{qIndex--;renderQuestion();renderNav()};$('nextBtn').onclick=()=>{if(qIndex<questions.length-1){qIndex++;renderQuestion();renderNav()}};
+$('submitBtn').onclick=()=>submitExam(false);$('backBtn').onclick=()=>{show('dashboard');loadExams()};
+init();
+</script></body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Ujian | SMK Bina Mandiri</title><style>
+body{margin:0;background:#f3f6fb;color:#172337;font:15px system-ui}header{background:#123b70;color:#fff;padding:22px}main{max-width:1000px;margin:24px auto;padding:0 14px}.card{background:white;border:1px solid #e4eaf2;border-radius:14px;padding:20px;margin-bottom:16px}input,select,textarea{width:100%;padding:11px;border:1px solid #ccd6e3;border-radius:9px;box-sizing:border-box;font:inherit}label{display:block;font-weight:650;margin:12px 0 6px}button{background:#1769aa;color:white;border:0;padding:11px 15px;border-radius:9px;font-weight:700}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #e4eaf2}small{color:#65748b}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.hidden{display:none}
+</style></head><body><header><b>SMK BINA MANDIRI PAMARAYAN</b><div>Panel Administrator Ujian Online</div></header><main>
+<section id="login" class="card"><h2>Login Administrator</h2><label>Email</label><input id="email" type="email"><label>Password</label><input id="password" type="password"><p><button id="loginBtn">Masuk</button></p><p id="msg"></p></section>
+<section id="panel" class="hidden">
+<div class="card"><button id="logout">Keluar</button> <h2>Dashboard Admin</h2><p><small>Panel awal: kelola ujian melalui tabel Supabase. Fitur formulir manajemen lengkap akan dikembangkan setelah koneksi dan struktur data diverifikasi.</small></p></div>
+<div class="card"><h3>Ringkasan ujian</h3><div id="summary">Memuat...</div></div>
+<div class="card"><h3>Daftar ujian</h3><div style="overflow:auto"><table><thead><tr><th>Ujian</th><th>Mata pelajaran</th><th>Durasi</th><th>Status</th></tr></thead><tbody id="exams"></tbody></table></div></div>
+<div class="card"><h3>Hasil pengerjaan</h3><div style="overflow:auto"><table><thead><tr><th>Siswa</th><th>Ujian</th><th>Status</th><th>Mulai</th></tr></thead><tbody id="attempts"></tbody></table></div></div>
+</section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script>
+let sb;const $=x=>document.getElementById(x);function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function init(){if(!APP_CONFIG?.SUPABASE_URL||APP_CONFIG.SUPABASE_URL.includes('GANTI')){$('msg').textContent='Isi konfigurasi Supabase di config.js';return}sb=supabase.createClient(APP_CONFIG.SUPABASE_URL,APP_CONFIG.SUPABASE_ANON_KEY);const {data:{session}}=await sb.auth.getSession();if(session)await load(session.user)}
+async function load(user){const {data:p}=await sb.from('profiles').select('role').eq('id',user.id).single();if(p?.role!=='admin'){ $('msg').textContent='Akun ini bukan administrator.';await sb.auth.signOut();return}
+$('login').classList.add('hidden');$('panel').classList.remove('hidden');
+const {data:e,error}=await sb.from('exams').select('*').order('starts_at',{ascending:false});if(error){$('summary').textContent=error.message;return}
+$('summary').textContent=(e?.length||0)+' ujian terdaftar';
+$('exams').innerHTML=(e||[]).map(x=>`<tr><td>${esc(x.title)}</td><td>${esc(x.subject)}</td><td>${x.duration_minutes} menit</td><td>${x.is_published?'Dipublikasikan':'Draft'}</td></tr>`).join('');
+const {data:a}=await sb.from('attempts').select('id,status,started_at,profiles(full_name),exams(title)').order('started_at',{ascending:false}).limit(100);
+$('attempts').innerHTML=(a||[]).map(x=>`<tr><td>${esc(x.profiles?.full_name)}</td><td>${esc(x.exams?.title)}</td><td>${esc(x.status)}</td><td>${new Date(x.started_at).toLocaleString('id-ID')}</td></tr>`).join('');
+}
+$('loginBtn').onclick=async()=>{const {data,error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error){$('msg').textContent=error.message;return}await load(data.user)};
+$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};init();
+</script></body></html>

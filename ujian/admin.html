@@ -235,16 +235,21 @@ $('saveImportedStudents').onclick=async()=>{
  if(!confirm(`Simpan ${importedStudents.length} data siswa ke Supabase?`))return;
  const btn=$('saveImportedStudents');btn.disabled=true;
  $('studentImportMsg').textContent='Sedang menyimpan data siswa...';
- let saved=0,skipped=0,failed=0;
+ let saved=0,updated=0,failed=0;const details=[];
  for(const s of importedStudents){
   const check=await sb.from('siswa').select('id').eq('nis',s.nis).maybeSingle();
-  if(check.error){failed++;continue}
-  if(check.data){skipped++;continue}
-  const result=await sb.from('siswa').insert(s);
-  if(result.error){failed++;}else{saved++}
+  if(check.error){failed++;details.push(`NIS ${s.nis}: gagal memeriksa data — ${check.error.message}`);continue}
+  let result;
+  if(check.data){
+   result=await sb.from('siswa').update({nama:s.nama,kelas:s.kelas}).eq('id',check.data.id);
+   if(result.error){failed++;details.push(`NIS ${s.nis}: gagal memperbarui — ${result.error.message}`)}else{updated++}
+  }else{
+   result=await sb.from('siswa').insert(s);
+   if(result.error){failed++;details.push(`NIS ${s.nis}: gagal menambah — ${result.error.message}`)}else{saved++}
+  }
  }
  importedStudents=[];$('studentExcelFile').value='';$('studentPreview').classList.add('hidden');
- $('studentImportMsg').textContent=`Selesai. Berhasil: ${saved}, NIS sudah ada: ${skipped}, gagal: ${failed}.`;
+ $('studentImportMsg').textContent=`Selesai. Data baru: ${saved}, diperbarui: ${updated}, gagal: ${failed}. ${details.join(' | ')}`;
  await loadStudents();await loadStats();
 };
 $('refreshStudents').onclick=loadStudents;

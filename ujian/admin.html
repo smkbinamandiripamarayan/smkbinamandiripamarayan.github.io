@@ -400,9 +400,20 @@ $('saveQuestions').onclick=async()=>{
    const {error}=await sb.from('soal').update(payload).eq('id',id);
    if(error){$('questionMsg').textContent='Gagal menyimpan soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
   }else{
-   const {data,error}=await sb.from('soal').insert(payload).select('id').single();
-   if(error){$('questionMsg').textContent='Gagal menambah soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
-   id=data.id;q.id=id;
+   // Cegah bentrok nomor soal: jika nomor untuk ujian ini sudah ada,
+   // perbarui soal tersebut, jangan mencoba INSERT duplikat.
+   const existing=await sb.from('soal').select('id').eq('ujian_id',examId).eq('nomor',i+1).maybeSingle();
+   if(existing.error){$('questionMsg').textContent='Gagal memeriksa soal '+(i+1)+': '+existing.error.message;$('saveQuestions').disabled=false;return}
+   if(existing.data){
+    id=existing.data.id;
+    const {error}=await sb.from('soal').update(payload).eq('id',id);
+    if(error){$('questionMsg').textContent='Gagal memperbarui soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
+    q.id=id;
+   }else{
+    const {data,error}=await sb.from('soal').insert(payload).select('id').single();
+    if(error){$('questionMsg').textContent='Gagal menambah soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
+    id=data.id;q.id=id;
+   }
   }
   const {data:old,error:readError}=await sb.from('kunci_jawaban').select('soal_id').eq('soal_id',id).maybeSingle();
   if(readError){$('questionMsg').textContent='Soal tersimpan tetapi kunci tidak dapat diperiksa: '+readError.message;$('saveQuestions').disabled=false;return}

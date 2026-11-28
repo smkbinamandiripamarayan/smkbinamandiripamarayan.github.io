@@ -1,23 +1,39 @@
-# Aplikasi Ujian Online SMK Bina Mandiri Pamarayan
+APLIKASI UJIAN ONLINE — SMK BINA MANDIRI PAMARAYAN
 
-Isi paket:
-- index.html: halaman login dan ujian siswa (mobile responsive)
-- admin.html: dashboard admin awal
-- config.js: tempat mengisi URL dan anon/public key Supabase
-- schema.sql: skema awal database Supabase
+Perubahan hanya berada di folder ujian/. File website utama, PPDB, BKK,
+berita, dan media pembelajaran tidak diubah.
 
-## Langkah awal
-1. Buat/siapkan proyek Supabase sekolah.
-2. Buka SQL Editor, jalankan `schema.sql`.
-3. Buka `config.js`, isi SUPABASE_URL dan SUPABASE_ANON_KEY.
-4. Buat akun melalui Supabase Authentication > Users.
-5. Buat baris profil pada tabel `profiles` dengan id sama seperti User ID dari Auth.
-   - siswa: role `student`, class_name `XII ...`, student_number NIS.
-   - admin: role `admin`.
-6. Upload file ke GitHub Pages pada folder/subfolder baru, jangan menimpa website sekolah yang sudah ada.
-   Buka `index.html` untuk siswa dan `admin.html` untuk admin.
+FILE
+- index.html : halaman login dan pengerjaan ujian siswa.
+- admin.html : panel admin/guru untuk mengelola ujian, soal, dan hasil.
+- config.js : konfigurasi URL dan anon/public key Supabase.
+- patch-keamanan-ujian.sql : tambahan kebijakan akses dan fungsi penilaian server.
+- schema.sql : skema starter lama, bukan untuk dijalankan ulang pada database yang sudah ada.
 
-## Catatan keamanan
-Paket ini adalah starter untuk pengembangan dan pengujian teknis, belum boleh dipakai untuk ujian resmi.
-Skema SQL menandai titik yang harus disempurnakan: kunci jawaban tidak boleh dikirim ke browser, nilai harus dihitung server-side, waktu dan status ujian harus divalidasi server-side, serta kebijakan RLS perlu diuji.
-Jangan pernah menaruh service_role key di file website.
+PENTING SEBELUM DIPAKAI
+1. Cadangkan database Supabase terlebih dahulu.
+2. Isi ujian/config.js dengan Project URL dan anon/public key yang sama dengan proyek sekolah.
+   Jangan pernah memasukkan service_role key ke file website.
+3. Periksa struktur tabel yang sudah ada. Aplikasi ini mengikuti tabel pada ekspor CSV:
+   guru, siswa, profil, mata_pelajaran, ujian, soal, kunci_jawaban,
+   jawaban_siswa, hasil_ujian.
+4. Jalankan patch-keamanan-ujian.sql di SQL Editor setelah meninjau kebijakan yang ada.
+   Patch ini hanya menyentuh tabel modul ujian dan menambah RPC penilaian.
+5. Buat akun melalui Supabase Authentication. Pastikan profil.profil.id sama dengan
+   Auth User ID; siswa.user_id harus menunjuk ke Auth User ID siswa.
+   Kolom profil.peran harus berisi admin/administrator/guru atau siswa.
+6. Pastikan tanggal ujian, kelas, serta mata pelajaran sudah benar.
+7. Uji menggunakan akun guru/admin dan akun siswa percobaan sebelum ujian sebenarnya.
+
+STATUS / KETERBATASAN
+- Ujian ditampilkan bila ujian.status = 'aktif', jadwal cocok, dan kelas siswa cocok.
+- Penilaian pilihan ganda dilakukan oleh fungsi database kumpulkan_ujian.
+- Kunci jawaban tidak dikirim ke halaman siswa; akses tabel kunci dibatasi untuk pengelola.
+- Jenis soal yang didukung antarmuka ini adalah pilihan ganda A-E.
+- Akun siswa memerlukan baris siswa.user_id yang sesuai dengan Auth User ID.
+- Nilai dihitung dari bobot jawaban benar dibagi total bobot soal.
+
+CATATAN
+File CSV yang diterima hanya menjelaskan nama kolom dan tipe data; tidak memuat
+kebijakan RLS, foreign key, indeks, maupun nilai yang tersimpan. Karena itu, uji
+koneksi dan hak akses pada proyek Supabase sekolah tetap wajib dilakukan.

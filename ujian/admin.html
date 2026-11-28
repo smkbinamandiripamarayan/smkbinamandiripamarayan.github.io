@@ -68,15 +68,18 @@ small,.muted{color:var(--muted)}.stat{font-size:26px;font-weight:850}
 <div class="table-wrap"><table><thead><tr><th>Judul</th><th>Mapel</th><th>Kelas</th><th>Jadwal</th><th>Durasi</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="examRows"></tbody></table></div>
 </section>
 <section id="tab-questions" class="card hidden">
-<div class="row"><h3>Bank soal</h3><select id="questionExam" style="max-width:320px"><option value="">Pilih ujian</option></select></div>
+<h3>Bank Soal per Mata Pelajaran</h3>
+<label>1. Pilih Mata Pelajaran</label><select id="questionSubject"><option value="">Pilih mata pelajaran</option></select>
+<label>2. Pilih Nama Ujian</label><select id="questionExam" disabled><option value="">Pilih mata pelajaran dahulu</option></select>
+<div id="questionInfo" class="notice" style="margin-top:12px">Silakan pilih mata pelajaran dan ujian.</div>
 <div class="import-box">
-<h3 style="margin-top:0">Import soal dari Excel atau Word</h3>
-<p class="muted">Pilih ujian pada daftar di atas terlebih dahulu, lalu upload file .xlsx atau .docx. Soal akan ditampilkan untuk diperiksa terlebih dahulu dan belum masuk database sampai tombol Simpan semua soal ditekan.</p>
-<label>File Excel (.xlsx)</label><input type="file" id="excelFile" accept=".xlsx">
-<label>File Word (.docx)</label><input type="file" id="wordFile" accept=".docx">
-<p id="importMsg" class="muted" aria-live="polite">Pilih salah satu file. Format file dijelaskan di bawah.</p>
+<h3 id="uploadTitle" style="margin-top:0">Upload Soal</h3>
+<p class="muted" id="uploadDescription">Pilih mata pelajaran dan ujian terlebih dahulu.</p>
+<label>Upload file Excel (.xlsx)</label><input type="file" id="excelFile" accept=".xlsx">
+<label>Upload file Word (.docx)</label><input type="file" id="wordFile" accept=".docx">
+<p id="importMsg" class="muted" aria-live="polite">File soal akan diperiksa sebelum disimpan.</p>
 <details><summary><b>Format Excel dan Word</b></summary>
-<p><b>Excel:</b> baris pertama berisi judul kolom: pertanyaan, pilihan_a, pilihan_b, pilihan_c, pilihan_d, pilihan_e, key, bobot.</p>
+<p><b>Excel:</b> baris pertama berisi kolom pertanyaan, pilihan_a, pilihan_b, pilihan_c, pilihan_d, pilihan_e, key, bobot.</p>
 <p><b>Word:</b> setiap soal menggunakan pola berikut:</p>
 <pre style="white-space:pre-wrap;background:#eef3f8;padding:10px;border-radius:8px">SOAL: Apa fungsi utama komputer?
 A. Mengolah data
@@ -85,13 +88,11 @@ C. Mencuci pakaian
 D. Mengisi bahan bakar
 E. Mengangkut barang
 KUNCI: A
-BOBOT: 1</pre>
-</details>
+BOBOT: 1</pre></details>
 <div id="importPreview" class="preview hidden"></div>
 </div>
-
 <div id="questionForm" class="hidden">
-<div class="notice">Masukkan soal dan pilihan jawaban. Pilih kunci jawaban yang benar. Kunci disimpan pada tabel kunci_jawaban, bukan pada tabel soal.</div>
+<div class="notice">Soal berikut khusus untuk ujian yang dipilih. Kunci jawaban disimpan pada tabel kunci_jawaban.</div>
 <div id="questionEditors"></div>
 <button id="addQuestion" class="secondary">+ Tambah soal</button>
 <button id="saveQuestions">Simpan semua soal</button>
@@ -112,63 +113,56 @@ BOBOT: 1</pre>
 'use strict';
 const $=id=>document.getElementById(id);
 let sb,me,role,exams=[],subjects=[],questionDraft=[],importedQuestions=null;
-
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function say(t){$('msg').textContent=t}
 function dt(v){return v?new Date(v).toLocaleString('id-ID'):'—'}
 function isReady(){return window.APP_CONFIG?.SUPABASE_URL?.startsWith('https://')&&window.APP_CONFIG?.SUPABASE_ANON_KEY&&!window.APP_CONFIG.SUPABASE_ANON_KEY.includes('GANTI')}
-
 async function init(){
  if(!isReady()){say('Isi URL dan anon key Supabase pada config.js di folder ujian.');return}
  sb=window.supabase.createClient(APP_CONFIG.SUPABASE_URL,APP_CONFIG.SUPABASE_ANON_KEY);
- const {data:{session}}=await sb.auth.getSession();
- if(session)await enter(session.user);
+ const {data:{session}}=await sb.auth.getSession();if(session)await enter(session.user);
 }
 async function enter(u){
- me=u;
- const {data:p,error}=await sb.from('profil').select('nama,peran').eq('id',u.id).maybeSingle();
+ me=u;const {data:p,error}=await sb.from('profil').select('nama,peran').eq('id',u.id).maybeSingle();
  if(error||!p){say('Profil pengguna tidak ditemukan: '+(error?.message||''));return}
  role=String(p.peran||'').toLowerCase();
  if(!['admin','administrator','guru'].includes(role)){say('Akun ini tidak memiliki akses pengelolaan ujian.');await sb.auth.signOut();return}
- $('login').classList.add('hidden');$('panel').classList.remove('hidden');$('who').textContent=p.nama+' • '+role;
- await loadAll();
+ $('login').classList.add('hidden');$('panel').classList.remove('hidden');$('who').textContent=p.nama+' • '+role;await loadAll();
 }
-async function loadAll(){await Promise.all([loadSubjects(),loadExams(),loadResults(),loadStats()])}
+async function loadAll(){await loadSubjects();await loadExams();await loadResults();await loadStats()}
 async function loadSubjects(){
  const {data,error}=await sb.from('mata_pelajaran').select('id,nama').order('nama');
  if(error){$('formMsg').textContent='Gagal memuat mata pelajaran: '+error.message;return}
  subjects=data||[];
  $('subject').innerHTML=subjects.map(s=>`<option value="${s.id}">${esc(s.nama)}</option>`).join('')||'<option value="">Belum ada mata pelajaran</option>';
+ $('questionSubject').innerHTML='<option value="">Pilih mata pelajaran</option>'+subjects.map(s=>`<option value="${s.id}">${esc(s.nama)}</option>`).join('');
 }
 async function loadExams(){
  const {data,error}=await sb.from('ujian').select('id,judul,kelas,durasi_menit,tanggal_mulai,tanggal_selesai,status,mata_pelajaran_id').order('created_at',{ascending:false});
  if(error){$('examRows').innerHTML=`<tr><td colspan="7">${esc(error.message)}</td></tr>`;return}
  exams=data||[];$('statExams').textContent=exams.length;
- $('examRows').innerHTML=exams.map(e=>`<tr><td>${esc(e.judul)}</td><td>${esc(subjects.find(s=>s.id===e.mata_pelajaran_id)?.nama||'—')}</td><td>${esc(e.kelas)}</td><td>${dt(e.tanggal_mulai)}<br><small>s.d. ${dt(e.tanggal_selesai)}</small></td><td>${e.durasi_menit} menit</td><td>${esc(e.status)}</td><td><button class="secondary" data-edit="${e.id}">Edit</button> <button class="secondary" data-soal="${e.id}">Soal</button></td></tr>`).join('');
- $('questionExam').innerHTML='<option value="">Pilih ujian</option>'+exams.map(e=>`<option value="${e.id}">${esc(e.judul)}</option>`).join('');
+ $('examRows').innerHTML=exams.map(e=>`<tr><td>${esc(e.judul)}</td><td>${esc(subjects.find(s=>String(s.id)===String(e.mata_pelajaran_id))?.nama||'—')}</td><td>${esc(e.kelas)}</td><td>${dt(e.tanggal_mulai)}<br><small>s.d. ${dt(e.tanggal_selesai)}</small></td><td>${e.durasi_menit} menit</td><td>${esc(e.status)}</td><td><button class="secondary" data-edit="${e.id}">Edit</button> <button class="secondary" data-soal="${e.id}">Soal</button></td></tr>`).join('');
  document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editExam(b.dataset.edit));
- document.querySelectorAll('[data-soal]').forEach(b=>{b.onclick=()=>{$('questionExam').value=b.dataset.soal;switchTab('questions');loadQuestionDraft()}});
+ document.querySelectorAll('[data-soal]').forEach(b=>b.onclick=()=>{
+  const e=exams.find(x=>String(x.id)===String(b.dataset.soal));if(!e)return;
+  $('questionSubject').value=e.mata_pelajaran_id||'';updateQuestionExamOptions();$('questionExam').value=e.id;switchTab('questions');loadQuestionDraft();
+ });
+ updateQuestionExamOptions();
 }
 async function loadStats(){
  const [s,r]=await Promise.all([sb.from('siswa').select('id',{count:'exact',head:true}),sb.from('hasil_ujian').select('id',{count:'exact',head:true})]);
  $('statStudents').textContent=s.count??'—';$('statResults').textContent=r.count??'—';
 }
 function clearExamForm(){
- $('examId').value='';['title','className','startAt','endAt'].forEach(x=>$(x).value='');
- $('duration').value=60;$('status').value='draft';$('examForm').classList.remove('hidden');$('formMsg').textContent='';
+ $('examId').value='';['title','className','startAt','endAt'].forEach(x=>$(x).value='');$('duration').value=60;$('status').value='draft';$('examForm').classList.remove('hidden');$('formMsg').textContent='';
 }
 function editExam(id){
- const e=exams.find(x=>String(x.id)===String(id));if(!e)return;
- clearExamForm();$('examId').value=e.id;$('title').value=e.judul;$('className').value=e.kelas;
- $('duration').value=e.durasi_menit;$('subject').value=e.mata_pelajaran_id||'';$('status').value=e.status;
- $('startAt').value=e.tanggal_mulai?new Date(e.tanggal_mulai).toISOString().slice(0,16):'';
- $('endAt').value=e.tanggal_selesai?new Date(e.tanggal_selesai).toISOString().slice(0,16):'';
+ const e=exams.find(x=>String(x.id)===String(id));if(!e)return;clearExamForm();$('examId').value=e.id;$('title').value=e.judul;$('className').value=e.kelas;$('duration').value=e.durasi_menit;$('subject').value=e.mata_pelajaran_id||'';$('status').value=e.status;
+ $('startAt').value=e.tanggal_mulai?new Date(e.tanggal_mulai).toISOString().slice(0,16):'';$('endAt').value=e.tanggal_selesai?new Date(e.tanggal_selesai).toISOString().slice(0,16):'';
 }
-$('newExam').onclick=clearExamForm;
-$('cancelExam').onclick=()=>$('examForm').classList.add('hidden');
+$('newExam').onclick=clearExamForm;$('cancelExam').onclick=()=>$('examForm').classList.add('hidden');
 $('saveExam').onclick=async()=>{
- const id=$('examId').value;
- const payload={judul:$('title').value.trim(),mata_pelajaran_id:$('subject').value||null,kelas:$('className').value.trim(),durasi_menit:Number($('duration').value),tanggal_mulai:$('startAt').value?new Date($('startAt').value).toISOString():null,tanggal_selesai:$('endAt').value?new Date($('endAt').value).toISOString():null,status:$('status').value};
+ const id=$('examId').value,payload={judul:$('title').value.trim(),mata_pelajaran_id:$('subject').value||null,kelas:$('className').value.trim(),durasi_menit:Number($('duration').value),tanggal_mulai:$('startAt').value?new Date($('startAt').value).toISOString():null,tanggal_selesai:$('endAt').value?new Date($('endAt').value).toISOString():null,status:$('status').value};
  if(!payload.judul||!payload.kelas||!payload.durasi_menit){$('formMsg').textContent='Judul, kelas, dan durasi wajib diisi.';return}
  if(payload.tanggal_mulai&&payload.tanggal_selesai&&payload.tanggal_selesai<=payload.tanggal_mulai){$('formMsg').textContent='Waktu selesai harus setelah waktu mulai.';return}
  const res=id?await sb.from('ujian').update(payload).eq('id',id):await sb.from('ujian').insert(payload);
@@ -181,10 +175,21 @@ function switchTab(name){
 }
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
 
+function updateQuestionExamOptions(){
+ const subjectId=$('questionSubject').value,filtered=exams.filter(e=>String(e.mata_pelajaran_id)===String(subjectId));
+ $('questionExam').innerHTML='<option value="">Pilih nama ujian</option>'+filtered.map(e=>`<option value="${e.id}">${esc(e.judul)} - ${esc(e.kelas)}</option>`).join('');
+ $('questionExam').disabled=!subjectId;
+ const name=subjects.find(s=>String(s.id)===String(subjectId))?.nama;
+ $('questionInfo').textContent=subjectId?`${filtered.length} ujian ditemukan untuk ${name}. Pilih ujian untuk melihat dan mengelola soalnya.`:'Silakan pilih mata pelajaran dan ujian.';
+ $('uploadTitle').textContent=subjectId?'Upload Soal '+name:'Upload Soal per Mata Pelajaran';
+ $('uploadDescription').textContent=subjectId?'File yang diunggah akan masuk ke ujian '+name+' yang dipilih.':'Pilih mata pelajaran, lalu pilih nama ujian sebelum mengunggah.';
+ $('questionForm').classList.add('hidden');$('importPreview').classList.add('hidden');$('importMsg').textContent='Pilih ujian terlebih dahulu.';$('excelFile').value='';$('wordFile').value='';importedQuestions=null;
+}
+$('questionSubject').onchange=updateQuestionExamOptions;
 $('questionExam').onchange=loadQuestionDraft;
+
 async function loadQuestionDraft(){
- const id=$('questionExam').value;
- if(!id){$('questionForm').classList.add('hidden');return}
+ const id=$('questionExam').value;if(!id){$('questionForm').classList.add('hidden');return}
  const {data,error}=await sb.from('soal').select('id,pertanyaan,pilihan_a,pilihan_b,pilihan_c,pilihan_d,pilihan_e,nomor').eq('ujian_id',id).order('nomor');
  if(error){$('questionMsg').textContent=error.message;return}
  questionDraft=[];
@@ -193,160 +198,69 @@ async function loadQuestionDraft(){
   if(ke){$('questionMsg').textContent='Gagal membaca kunci jawaban: '+ke.message;return}
   questionDraft.push({...q,key:k?.jawaban_benar||'A',bobot:k?.bobot||1});
  }
+ $('questionInfo').textContent='Mata pelajaran: '+(subjects.find(s=>String(s.id)===String(exams.find(e=>String(e.id)===String(id))?.mata_pelajaran_id))?.nama||'—')+' | Ujian: '+(exams.find(e=>String(e.id)===String(id))?.judul||'')+' | Jumlah soal: '+(data||[]).length;
  if(!questionDraft.length)questionDraft.push({pertanyaan:'',pilihan_a:'',pilihan_b:'',pilihan_c:'',pilihan_d:'',pilihan_e:'',key:'A',bobot:1});
- importedQuestions=null;$('importPreview').classList.add('hidden');$('importMsg').textContent='Pilih file Excel atau Word untuk mengimpor soal.';
- $('excelFile').value='';$('wordFile').value='';
+ importedQuestions=null;$('importPreview').classList.add('hidden');$('importMsg').textContent='Pilih file Excel atau Word untuk mengimpor soal.';$('excelFile').value='';$('wordFile').value='';
  renderQuestionEditors();$('questionForm').classList.remove('hidden');
 }
 function renderQuestionEditors(){
  $('questionEditors').innerHTML='';
  questionDraft.forEach((q,i)=>{
   const d=document.createElement('div');d.className='question-editor';
-  d.innerHTML=`<div class="row"><b>Soal ${i+1}</b><button class="danger" type="button" data-remove="${i}">Hapus</button></div>
-  <label>Pertanyaan</label><textarea data-field="pertanyaan" data-i="${i}">${esc(q.pertanyaan)}</textarea>
-  <div class="inline">${['a','b','c','d','e'].map(k=>`<div><label>Pilihan ${k.toUpperCase()}</label><input data-field="pilihan_${k}" data-i="${i}" value="${esc(q['pilihan_'+k]||'')}"></div>`).join('')}</div>
-  <div class="inline"><div><label>Kunci jawaban</label><select data-field="key" data-i="${i}">${['A','B','C','D','E'].map(k=>`<option value="${k}" ${q.key===k?'selected':''}>${k}</option>`).join('')}</select></div>
-  <div><label>Bobot nilai</label><input type="number" min="0.1" step="0.1" data-field="bobot" data-i="${i}" value="${esc(q.bobot??1)}"></div></div>`;
+  d.innerHTML=`<div class="row"><b>Soal ${i+1}</b><button class="danger" type="button" data-remove="${i}">Hapus</button></div><label>Pertanyaan</label><textarea data-field="pertanyaan" data-i="${i}">${esc(q.pertanyaan)}</textarea><div class="inline">${['a','b','c','d','e'].map(k=>`<div><label>Pilihan ${k.toUpperCase()}</label><input data-field="pilihan_${k}" data-i="${i}" value="${esc(q['pilihan_'+k]||'')}"></div>`).join('')}</div><div class="inline"><div><label>Kunci jawaban</label><select data-field="key" data-i="${i}">${['A','B','C','D','E'].map(k=>`<option value="${k}" ${q.key===k?'selected':''}>${k}</option>`).join('')}</select></div><div><label>Bobot nilai</label><input type="number" min="0.1" step="0.1" data-field="bobot" data-i="${i}" value="${esc(q.bobot??1)}"></div></div>`;
   $('questionEditors').append(d);
  });
- $('questionEditors').querySelectorAll('[data-field]').forEach(el=>{
-  const update=()=>{const i=Number(el.dataset.i);questionDraft[i][el.dataset.field]=el.dataset.field==='bobot'?Number(el.value):el.value};
-  el.oninput=update;el.onchange=update;
- });
+ $('questionEditors').querySelectorAll('[data-field]').forEach(el=>{const update=()=>{const i=Number(el.dataset.i);questionDraft[i][el.dataset.field]=el.dataset.field==='bobot'?Number(el.value):el.value};el.oninput=update;el.onchange=update});
  $('questionEditors').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{questionDraft.splice(Number(b.dataset.remove),1);renderQuestionEditors()});
 }
-
-/* Import Excel */
 function normalizeHeader(v){return String(v??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'')}
-function readCell(row,names){
- const keys=Object.keys(row);
- for(const n of names){const k=keys.find(x=>normalizeHeader(x)===normalizeHeader(n));if(k!==undefined&&row[k]!==undefined&&row[k]!==null)return row[k]}
- return '';
-}
-function mapExcelRow(row){
- return {
-  pertanyaan:readCell(row,['pertanyaan','soal','question']),
-  pilihan_a:readCell(row,['pilihan_a','pilihana','a','opsi_a']),
-  pilihan_b:readCell(row,['pilihan_b','pilihanb','b','opsi_b']),
-  pilihan_c:readCell(row,['pilihan_c','pilihanc','c','opsi_c']),
-  pilihan_d:readCell(row,['pilihan_d','pilihand','d','opsi_d']),
-  pilihan_e:readCell(row,['pilihan_e','pilihane','e','opsi_e']),
-  key:readCell(row,['key','kunci','kunci_jawaban','jawaban_benar']),
-  bobot:readCell(row,['bobot','nilai','skor'])||1
- };
-}
+function readCell(row,names){const keys=Object.keys(row);for(const n of names){const k=keys.find(x=>normalizeHeader(x)===normalizeHeader(n));if(k!==undefined&&row[k]!==undefined&&row[k]!==null)return row[k]}return ''}
+function mapExcelRow(row){return {pertanyaan:readCell(row,['pertanyaan','soal','question']),pilihan_a:readCell(row,['pilihan_a','pilihana','a','opsi_a']),pilihan_b:readCell(row,['pilihan_b','pilihanb','b','opsi_b']),pilihan_c:readCell(row,['pilihan_c','pilihanc','c','opsi_c']),pilihan_d:readCell(row,['pilihan_d','pilihand','d','opsi_d']),pilihan_e:readCell(row,['pilihan_e','pilihane','e','opsi_e']),key:readCell(row,['key','kunci','kunci_jawaban','jawaban_benar']),bobot:readCell(row,['bobot','nilai','skor'])||1}}
 function parseWordQuestions(text){
- const blocks=String(text||'').replace(/\r/g,'').split(/\n(?=\s*(?:SOAL|PERTANYAAN)\s*[:.-])/i).map(x=>x.trim()).filter(Boolean);
- const out=[];
- for(const block of blocks){
-  const lines=block.split('\n').map(x=>x.trim()).filter(Boolean);
-  const q={pertanyaan:'',pilihan_a:'',pilihan_b:'',pilihan_c:'',pilihan_d:'',pilihan_e:'',key:'A',bobot:1};
-  let current='';
-  for(const line of lines){
-   let m;
+ const blocks=String(text||'').replace(/\r/g,'').split(/\n(?=\s*(?:SOAL|PERTANYAAN)\s*[:.-])/i).map(x=>x.trim()).filter(Boolean),out=[];
+ for(const block of blocks){const lines=block.split('\n').map(x=>x.trim()).filter(Boolean),q={pertanyaan:'',pilihan_a:'',pilihan_b:'',pilihan_c:'',pilihan_d:'',pilihan_e:'',key:'A',bobot:1};let current='';
+  for(const line of lines){let m;
    if((m=line.match(/^(?:SOAL|PERTANYAAN)\s*[:.-]\s*(.*)$/i))){q.pertanyaan=m[1].trim();current='pertanyaan';continue}
-   if((m=line.match(/^([A-E])\s*[.)]\s*(.*)$/i))){q['pilihan_'+m[1].toLowerCase()]=m[2].trim();current='pilihan_'+m[1].toLowerCase();continue}
+   if((m=line.match(/^([A-E])\s*[.)]\s*(.*)$/i))){current='pilihan_'+m[1].toLowerCase();q[current]=m[2].trim();continue}
    if((m=line.match(/^(?:KUNCI|JAWABAN\s*BENAR|KEY)\s*[:.-]\s*([A-E])\b/i))){q.key=m[1].toUpperCase();current='';continue}
    if((m=line.match(/^(?:BOBOT|NILAI|SKOR)\s*[:.-]\s*(\d+(?:[.,]\d+)?)$/i))){q.bobot=Number(m[1].replace(',','.'));current='';continue}
    if(current)q[current]+=(q[current]?' ':'')+line;
-  }
-  if(q.pertanyaan)out.push(q);
- }
- return out;
+  }if(q.pertanyaan)out.push(q);
+ }return out;
 }
 function showImportPreview(items){
- const errors=[];
- items.forEach((q,i)=>{
-  q.pertanyaan=String(q.pertanyaan??'').trim();
-  ['a','b','c','d','e'].forEach(k=>q['pilihan_'+k]=String(q['pilihan_'+k]??'').trim());
-  q.key=String(q.key||'A').trim().toUpperCase();
-  q.bobot=Number(String(q.bobot||1).replace(',','.'));
-  if(!q.pertanyaan||!q.pilihan_a||!q.pilihan_b||!q.pilihan_c||!q.pilihan_d)errors.push(`Soal ${i+1}: pertanyaan dan pilihan A-D wajib diisi.`);
-  else if(!['A','B','C','D','E'].includes(q.key))errors.push(`Soal ${i+1}: kunci harus A, B, C, D, atau E.`);
-  else if(q.key==='E'&&!q.pilihan_e)errors.push(`Soal ${i+1}: kunci E dipilih tetapi pilihan E kosong.`);
-  else if(!Number.isFinite(q.bobot)||q.bobot<=0)errors.push(`Soal ${i+1}: bobot harus lebih dari 0.`);
- });
+ const errors=[];items.forEach((q,i)=>{q.pertanyaan=String(q.pertanyaan??'').trim();['a','b','c','d','e'].forEach(k=>q['pilihan_'+k]=String(q['pilihan_'+k]??'').trim());q.key=String(q.key||'A').trim().toUpperCase();q.bobot=Number(String(q.bobot||1).replace(',','.'));if(!q.pertanyaan||!q.pilihan_a||!q.pilihan_b||!q.pilihan_c||!q.pilihan_d)errors.push(`Soal ${i+1}: pertanyaan dan pilihan A-D wajib diisi.`);else if(!['A','B','C','D','E'].includes(q.key))errors.push(`Soal ${i+1}: kunci harus A-E.`);else if(q.key==='E'&&!q.pilihan_e)errors.push(`Soal ${i+1}: pilihan E kosong.`);else if(!Number.isFinite(q.bobot)||q.bobot<=0)errors.push(`Soal ${i+1}: bobot harus lebih dari 0.`)});
  if(!items.length)errors.push('Tidak ada soal yang berhasil dibaca. Periksa format file.');
- $('importMsg').textContent=errors.length?errors.slice(0,8).join(' | '):`${items.length} soal terbaca. Periksa pratinjau di bawah; soal belum disimpan.`;
+ $('importMsg').textContent=errors.length?errors.slice(0,8).join(' | '):`${items.length} soal terbaca. Periksa pratinjau; belum disimpan.`;
  if(errors.length){importedQuestions=null;$('importPreview').classList.add('hidden');return}
  importedQuestions=items.map(q=>({...q}));
  $('importPreview').innerHTML=`<table><thead><tr><th>No.</th><th>Pertanyaan</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>Kunci</th><th>Bobot</th></tr></thead><tbody>${items.map((q,i)=>`<tr><td>${i+1}</td><td>${esc(q.pertanyaan)}</td><td>${esc(q.pilihan_a)}</td><td>${esc(q.pilihan_b)}</td><td>${esc(q.pilihan_c)}</td><td>${esc(q.pilihan_d)}</td><td>${esc(q.pilihan_e)}</td><td>${esc(q.key)}</td><td>${q.bobot}</td></tr>`).join('')}</tbody></table>`;
- $('importPreview').classList.remove('hidden');
- const use=document.createElement('button');use.type='button';use.textContent='Gunakan hasil import';use.style.margin='10px 0';use.onclick=()=>{
-  if(!importedQuestions)return;
-  if(!$('questionExam').value){$('importMsg').textContent='Pilih ujian terlebih dahulu pada daftar di atas, lalu klik Gunakan hasil import.';return;}
-  if(!confirm(`Ganti daftar soal yang sedang tampil dengan ${importedQuestions.length} soal hasil import? Perubahan belum disimpan ke database.`))return;
-  questionDraft=importedQuestions.map(q=>({...q}));
-  renderQuestionEditors();$('questionMsg').textContent='Hasil import sudah dimasukkan ke editor. Tekan Simpan semua soal untuk menyimpan ke database.';
-  $('importMsg').textContent='Soal siap disimpan. Periksa kembali sebelum menyimpan.';
- };
- $('importPreview').append(use);
+ $('importPreview').classList.remove('hidden');const use=document.createElement('button');use.type='button';use.textContent='Gunakan hasil import';use.style.margin='10px 0';use.onclick=()=>{if(!importedQuestions)return;if(!$('questionExam').value){$('importMsg').textContent='Pilih mata pelajaran dan ujian terlebih dahulu.';return}if(!confirm(`Masukkan ${importedQuestions.length} soal ke editor untuk ujian terpilih?`))return;questionDraft=importedQuestions.map(q=>({...q}));renderQuestionEditors();$('questionForm').classList.remove('hidden');$('questionMsg').textContent='Periksa soal, lalu tekan Simpan semua soal.';$('importMsg').textContent='Soal siap disimpan.'};$('importPreview').append(use);
 }
-$('excelFile').onchange=async()=>{
- const file=$('excelFile').files[0];if(!file)return;
- $('wordFile').value='';$('importMsg').textContent='Membaca file Excel...';
- try{
-  if(!window.XLSX)throw new Error('Library Excel belum termuat. Periksa koneksi internet lalu muat ulang halaman.');
-  const bytes=await file.arrayBuffer();const wb=XLSX.read(bytes,{type:'array'});
-  const sheet=wb.Sheets[wb.SheetNames[0]];
-  const rows=XLSX.utils.sheet_to_json(sheet,{defval:'',raw:false});
-  showImportPreview(rows.map(mapExcelRow));
- }catch(e){$('importMsg').textContent='Gagal membaca Excel: '+e.message}
-};
-$('wordFile').onchange=async()=>{
- const file=$('wordFile').files[0];if(!file)return;
- $('excelFile').value='';$('importMsg').textContent='Membaca file Word...';
- try{
-  if(!window.mammoth)throw new Error('Library Word belum termuat. Periksa koneksi internet lalu muat ulang halaman.');
-  const result=await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});
-  showImportPreview(parseWordQuestions(result.value));
- }catch(e){$('importMsg').textContent='Gagal membaca Word: '+e.message}
-};
-
+$('excelFile').onchange=async()=>{const file=$('excelFile').files[0];if(!file)return;$('wordFile').value='';if(!$('questionExam').value){$('importMsg').textContent='Pilih mata pelajaran dan nama ujian terlebih dahulu.';$('excelFile').value='';return}try{if(!window.XLSX)throw new Error('Library Excel belum termuat.');$('importMsg').textContent='Membaca Excel...';const wb=XLSX.read(await file.arrayBuffer(),{type:'array'}),sheet=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(sheet,{defval:'',raw:false});showImportPreview(rows.map(mapExcelRow))}catch(e){$('importMsg').textContent='Gagal membaca Excel: '+e.message}};
+$('wordFile').onchange=async()=>{const file=$('wordFile').files[0];if(!file)return;$('excelFile').value='';if(!$('questionExam').value){$('importMsg').textContent='Pilih mata pelajaran dan nama ujian terlebih dahulu.';$('wordFile').value='';return}try{if(!window.mammoth)throw new Error('Library Word belum termuat.');$('importMsg').textContent='Membaca Word...';const result=await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});showImportPreview(parseWordQuestions(result.value))}catch(e){$('importMsg').textContent='Gagal membaca Word: '+e.message}};
 $('addQuestion').onclick=()=>{questionDraft.push({pertanyaan:'',pilihan_a:'',pilihan_b:'',pilihan_c:'',pilihan_d:'',pilihan_e:'',key:'A',bobot:1});renderQuestionEditors()};
 $('saveQuestions').onclick=async()=>{
- const examId=$('questionExam').value;if(!examId)return;
- if(!questionDraft.length){$('questionMsg').textContent='Belum ada soal untuk disimpan.';return}
- for(let i=0;i<questionDraft.length;i++){
-  const q=questionDraft[i];
-  if(!q.pertanyaan||!q.pilihan_a||!q.pilihan_b||!q.pilihan_c||!q.pilihan_d){$('questionMsg').textContent=`Lengkapi pertanyaan dan minimal pilihan A-D pada soal ${i+1}.`;return}
-  if(!['A','B','C','D','E'].includes(String(q.key).toUpperCase())||(String(q.key).toUpperCase()==='E'&&!q.pilihan_e)){$('questionMsg').textContent=`Periksa kunci jawaban soal ${i+1}.`;return}
- }
+ const examId=$('questionExam').value;if(!examId){$('questionMsg').textContent='Pilih ujian terlebih dahulu.';return}
+ if(!questionDraft.length){$('questionMsg').textContent='Belum ada soal.';return}
+ for(let i=0;i<questionDraft.length;i++){const q=questionDraft[i];if(!q.pertanyaan||!q.pilihan_a||!q.pilihan_b||!q.pilihan_c||!q.pilihan_d){$('questionMsg').textContent=`Lengkapi pertanyaan dan pilihan A-D pada soal ${i+1}.`;return}if(!['A','B','C','D','E'].includes(String(q.key).toUpperCase())||(String(q.key).toUpperCase()==='E'&&!q.pilihan_e)){$('questionMsg').textContent=`Periksa kunci jawaban soal ${i+1}.`;return}}
  $('saveQuestions').disabled=true;$('questionMsg').textContent='Menyimpan soal...';
- for(let i=0;i<questionDraft.length;i++){
-  const q=questionDraft[i],payload={ujian_id:examId,pertanyaan:q.pertanyaan,pilihan_a:q.pilihan_a,pilihan_b:q.pilihan_b,pilihan_c:q.pilihan_c,pilihan_d:q.pilihan_d,pilihan_e:q.pilihan_e||null,tipe:'pilihan_ganda',nomor:i+1};
-  let id=q.id;
-  if(id){
-   const {error}=await sb.from('soal').update(payload).eq('id',id);
-   if(error){$('questionMsg').textContent='Gagal menyimpan soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
-  }else{
-   const {data,error}=await sb.from('soal').insert(payload).select('id').single();
-   if(error){$('questionMsg').textContent='Gagal menambah soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}
-   id=data.id;q.id=id;
-  }
-  const {data:old,error:readError}=await sb.from('kunci_jawaban').select('soal_id').eq('soal_id',id).maybeSingle();
-  if(readError){$('questionMsg').textContent='Soal tersimpan tetapi kunci tidak dapat diperiksa: '+readError.message;$('saveQuestions').disabled=false;return}
-  const keyPayload={soal_id:id,jawaban_benar:String(q.key).toUpperCase(),bobot:Number(q.bobot)||1};
-  const kr=old?await sb.from('kunci_jawaban').update(keyPayload).eq('soal_id',id):await sb.from('kunci_jawaban').insert(keyPayload);
+ for(let i=0;i<questionDraft.length;i++){const q=questionDraft[i],payload={ujian_id:examId,pertanyaan:q.pertanyaan,pilihan_a:q.pilihan_a,pilihan_b:q.pilihan_b,pilihan_c:q.pilihan_c,pilihan_d:q.pilihan_d,pilihan_e:q.pilihan_e||null,tipe:'pilihan_ganda',nomor:i+1};let id=q.id;
+  if(id){const {error}=await sb.from('soal').update(payload).eq('id',id);if(error){$('questionMsg').textContent='Gagal menyimpan soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}}
+  else{const {data,error}=await sb.from('soal').insert(payload).select('id').single();if(error){$('questionMsg').textContent='Gagal menambah soal '+(i+1)+': '+error.message;$('saveQuestions').disabled=false;return}id=data.id;q.id=id}
+  const {data:old,error:readError}=await sb.from('kunci_jawaban').select('soal_id').eq('soal_id',id).maybeSingle();if(readError){$('questionMsg').textContent='Soal tersimpan tetapi kunci tidak dapat diperiksa: '+readError.message;$('saveQuestions').disabled=false;return}
+  const keyPayload={soal_id:id,jawaban_benar:String(q.key).toUpperCase(),bobot:Number(q.bobot)||1},kr=old?await sb.from('kunci_jawaban').update(keyPayload).eq('soal_id',id):await sb.from('kunci_jawaban').insert(keyPayload);
   if(kr.error){$('questionMsg').textContent='Soal tersimpan tetapi kunci gagal disimpan: '+kr.error.message;$('saveQuestions').disabled=false;return}
  }
- $('questionMsg').textContent='Soal dan kunci jawaban berhasil disimpan.';
- $('saveQuestions').disabled=false;await loadQuestionDraft();
+ $('questionMsg').textContent='Soal dan kunci jawaban berhasil disimpan.';$('saveQuestions').disabled=false;await loadQuestionDraft();
 };
 async function loadResults(){
  const {data,error}=await sb.from('hasil_ujian').select('id,siswa_id,ujian_id,nilai,jumlah_benar,jumlah_salah,status,waktu_selesai').order('created_at',{ascending:false});
  if(error){$('resultRows').innerHTML=`<tr><td colspan="9">${esc(error.message)}</td></tr>`;return}
- const [{data:ss},{data:ee}]=await Promise.all([sb.from('siswa').select('id,nama,nis,kelas'),sb.from('ujian').select('id,judul')]);
- const sm=Object.fromEntries((ss||[]).map(x=>[x.id,x])),em=Object.fromEntries((ee||[]).map(x=>[x.id,x.judul]));
+ const [{data:ss},{data:ee}]=await Promise.all([sb.from('siswa').select('id,nama,nis,kelas'),sb.from('ujian').select('id,judul')]),sm=Object.fromEntries((ss||[]).map(x=>[x.id,x])),em=Object.fromEntries((ee||[]).map(x=>[x.id,x.judul]));
  $('resultRows').innerHTML=(data||[]).map(x=>{const st=sm[x.siswa_id]||{};return `<tr><td>${esc(st.nama)}</td><td>${esc(st.nis)}</td><td>${esc(st.kelas)}</td><td>${esc(em[x.ujian_id])}</td><td>${x.nilai??'—'}</td><td>${x.jumlah_benar??'—'}</td><td>${x.jumlah_salah??'—'}</td><td>${esc(x.status)}</td><td>${dt(x.waktu_selesai)}</td></tr>`}).join('')||'<tr><td colspan="9">Belum ada hasil ujian.</td></tr>';
 }
-$('loginBtn').onclick=async()=>{
- if(!sb){say('Konfigurasi Supabase belum siap.');return}
- say('Memeriksa akun...');
- const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
- if(error){say('Login gagal: '+error.message);return}
- await enter(data.user);
-};
+$('loginBtn').onclick=async()=>{if(!sb){say('Konfigurasi Supabase belum siap.');return}say('Memeriksa akun...');const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){say('Login gagal: '+error.message);return}await enter(data.user)};
 $('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
 init();
 </script>
